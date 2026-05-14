@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f2;
+    color: #1d2b22;
+}
+
+.hero {
+    min-height: 380px;
+    background: linear-gradient(135deg, #123524, #2f6b45);
+    color: white;
+    padding: 24px 8%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.hero-content {
+    max-width: 720px;
+    margin-top: 80px;
+}
+
+.hero-content h1 {
+    font-size: 46px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #e5f2e9;
+}
+
+.main-container {
+    max-width: 1150px;
+    margin: -70px auto 40px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    color: #123524;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: #5c6c61;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd8cf;
+    border-radius: 12px;
+    font-size: 15px;
+    background: white;
+}
+
+button {
+    width: 100%;
+    margin-top: 26px;
+    padding: 15px;
+    background: #2f6b45;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #244f35;
+}
+
+.empty-result {
+    color: #5c6c61;
+    line-height: 1.6;
+}
+
+.route-path {
+    background: #edf6ef;
+    border-left: 5px solid #2f6b45;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.result-list p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.error {
+    background: #ffecec;
+    color: #a30000;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.info-section {
+    max-width: 1150px;
+    margin: 20px auto 50px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.info-box {
+    background: white;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.info-box h3 {
+    color: #2f6b45;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    color: #5c6c61;
+    line-height: 1.5;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #5c6c61;
+}
+
+@media (max-width: 850px) {
+    .main-container,
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+/*mapa*/
+#map {
+    width: 100%;
+    height: 360px;
+    margin-top: 24px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+.small-hero {
+    min-height: 260px;
+}
+
+.auth-container {
+    max-width: 520px;
+    margin: -70px auto 50px;
+    padding: 0 24px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd8cf;
+    border-radius: 12px;
+    font-size: 15px;
+    background: white;
+}
+
+.auth-message {
+    margin-top: 18px;
+    line-height: 1.5;
+}
+
+.auth-message.success {
+    background: #edf6ef;
+    color: #1f5f3b;
+    padding: 13px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.auth-message.error {
+    background: #ffecec;
+    color: #a30000;
+    padding: 13px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.auth-link {
+    margin-top: 20px;
+    color: #5c6c61;
+    text-align: center;
+}
+
+.auth-link a {
+    color: #2f6b45;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}

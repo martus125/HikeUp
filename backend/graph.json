@@ -1,0 +1,146 @@
+{
+    "nodes": [
+        {
+            "id": "kuznice",
+            "name": "Kuźnice",
+            "type": "punkt startowy",
+            "lat": 49.2695,
+            "lng": 19.9816
+        },
+        {
+            "id": "boczan",
+            "name": "Boczań",
+            "type": "punkt na szlaku",
+            "lat": 49.2628,
+            "lng": 19.9894
+        },
+        {
+            "id": "skupniow_uplaz",
+            "name": "Skupniów Upłaz",
+            "type": "punkt na szlaku",
+            "lat": 49.2538,
+            "lng": 20.0012
+        },
+        {
+            "id": "przelecz_miedzy_kopami",
+            "name": "Przełęcz między Kopami",
+            "type": "przełęcz",
+            "lat": 49.2469,
+            "lng": 20.0084
+        },
+        {
+            "id": "dolina_jaworzynka",
+            "name": "Dolina Jaworzynka",
+            "type": "dolina",
+            "lat": 49.2587,
+            "lng": 19.9996
+        },
+        {
+            "id": "hala_gasienicowa",
+            "name": "Hala Gąsienicowa",
+            "type": "hala",
+            "lat": 49.2432,
+            "lng": 20.0116
+        },
+        {
+            "id": "murowaniec",
+            "name": "Schronisko Murowaniec",
+            "type": "schronisko",
+            "lat": 49.2436,
+            "lng": 20.0145
+        },
+        {
+            "id": "czarny_staw_gasienicowy",
+            "name": "Czarny Staw Gąsienicowy",
+            "type": "staw",
+            "lat": 49.2317,
+            "lng": 20.0149
+        },
+        {
+            "id": "karb",
+            "name": "Karb",
+            "type": "przełęcz",
+            "lat": 49.2255,
+            "lng": 20.0019
+        },
+        {
+            "id": "koscielec",
+            "name": "Kościelec",
+            "type": "szczyt",
+            "lat": 49.2237,
+            "lng": 20.0052
+        }
+    ],
+    "edges": [
+        {
+            "from": "kuznice",
+            "to": "boczan",
+            "distance_km": 1.7,
+            "time_min": 45,
+            "difficulty": 4
+        },
+        {
+            "from": "boczan",
+            "to": "skupniow_uplaz",
+            "distance_km": 1.4,
+            "time_min": 40,
+            "difficulty": 5
+        },
+        {
+            "from": "skupniow_uplaz",
+            "to": "przelecz_miedzy_kopami",
+            "distance_km": 1.2,
+            "time_min": 35,
+            "difficulty": 5
+        },
+        {
+            "from": "przelecz_miedzy_kopami",
+            "to": "hala_gasienicowa",
+            "distance_km": 1.3,
+            "time_min": 30,
+            "difficulty": 3
+        },
+        {
+            "from": "kuznice",
+            "to": "dolina_jaworzynka",
+            "distance_km": 1.5,
+            "time_min": 35,
+            "difficulty": 3
+        },
+        {
+            "from": "dolina_jaworzynka",
+            "to": "przelecz_miedzy_kopami",
+            "distance_km": 2.5,
+            "time_min": 70,
+            "difficulty": 6
+        },
+        {
+            "from": "hala_gasienicowa",
+            "to": "murowaniec",
+            "distance_km": 0.4,
+            "time_min": 10,
+            "difficulty": 1
+        },
+        {
+            "from": "murowaniec",
+            "to": "czarny_staw_gasienicowy",
+            "distance_km": 1.8,
+            "time_min": 45,
+            "difficulty": 4
+        },
+        {
+            "from": "czarny_staw_gasienicowy",
+            "to": "karb",
+            "distance_km": 1.1,
+            "time_min": 60,
+            "difficulty": 8
+        },
+        {
+            "from": "karb",
+            "to": "koscielec",
+            "distance_km": 0.6,
+            "time_min": 35,
+            "difficulty": 9
+        }
+    ]
+}

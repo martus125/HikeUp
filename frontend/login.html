@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HikeUp - Logowanie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero small-hero">
+        <nav class="navbar">
+            <div class="logo">HikeUp</div>
+            <div class="nav-links">
+                <a href="index.html">Trasy</a>
+                <a href="register.html">Rejestracja</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Zaloguj się</h1>
+            <p>Uzyskaj dostęp do profilu i zapisanych tras.</p>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <section class="card auth-card">
+            <h2>Logowanie</h2>
+
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="Wpisz email">
+
+            <label for="loginPassword">Hasło</label>
+            <input type="password" id="loginPassword" placeholder="Wpisz hasło">
+
+            <button id="loginButton">Zaloguj się</button>
+
+            <div id="authMessage" class="auth-message"></div>
+
+            <p class="auth-link">
+                Nie masz konta? <a href="register.html">Zarejestruj się</a>
+            </p>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,109 +1,13 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HikeUp - Planowanie tras górskich</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-</head>
-<body>
-
-    <header class="hero">
-        <nav class="navbar">
-            <div class="logo">HikeUp</div>
-            <div class="nav-links">
-                <a href="index.html">Trasy</a>
-                <a href="login.html">Logowanie</a>
-                <a href="register.html">Rejestracja</a>
-</div>
-        </nav>
-
-        <div class="hero-content">
-            <h1>Zaplanuj trasę górską dopasowaną do swoich możliwości</h1>
-            <p>
-                Wybierz punkt startowy, cel oraz kryterium wyszukiwania,
-                a aplikacja wyznaczy odpowiedni wariant trasy.
-            </p>
-        </div>
-    </header>
-
-    <main class="main-container">
-
-        <section class="card form-card">
-            <h2>Wyznacz trasę</h2>
-            <p class="section-description">
-                Wybierz punkty trasy oraz kryterium, według którego ma zostać wyznaczona droga.
-            </p>
-
-            <label for="start">Punkt początkowy</label>
-            <select id="start">
-                <option value="">Wybierz punkt</option>
-                <option value="Kuźnice">Kuźnice</option>
-                <option value="Boczań">Boczań</option>
-                <option value="Przełęcz między Kopami">Przełęcz między Kopami</option>
-                <option value="Hala Gąsienicowa">Hala Gąsienicowa</option>
-                <option value="Murowaniec">Schronisko Murowaniec</option>
-                <option value="Czarny Staw Gąsienicowy">Czarny Staw Gąsienicowy</option>
-            </select>
-
-            <label for="end">Punkt końcowy</label>
-            <select id="end">
-                <option value="">Wybierz punkt</option>
-                <option value="Kuźnice">Kuźnice</option>
-                <option value="Boczań">Boczań</option>
-                <option value="Przełęcz między Kopami">Przełęcz między Kopami</option>
-                <option value="Hala Gąsienicowa">Hala Gąsienicowa</option>
-                <option value="Murowaniec">Schronisko Murowaniec</option>
-                <option value="Czarny Staw Gąsienicowy">Czarny Staw Gąsienicowy</option>
-            </select>
-
-            <label for="criterion">Kryterium wyszukiwania</label>
-            <select id="criterion">
-                <option value="time">Najszybsza trasa</option>
-                <option value="distance">Najkrótsza trasa</option>
-                <option value="difficulty">Najmniej trudna trasa</option>
-            </select>
-
-            <button id="routeButton">Wyznacz trasę</button>
-        </section>
-
-        <section class="card result-card">
-            <h2>Wynik trasy</h2>
-            <div id="routeResult" class="empty-result">
-                Wynik trasy pojawi się w tym miejscu po uzupełnieniu formularza.
-            </div>
-
-            <div id="map"></div>
-
-        </section>
-
-    </main>
-
-    <section class="info-section">
-        <div class="info-box">
-            <h3>Obszar tras</h3>
-            <p>Tatry — okolice Kuźnic, Hali Gąsienicowej i Czarnego Stawu Gąsienicowego.</p>
-        </div>
-
-        <div class="info-box">
-            <h3>Kryteria wyboru</h3>
-            <p>Trasa może być wyznaczana według czasu przejścia, długości lub poziomu trudności.</p>
-        </div>
-
-        <div class="info-box">
-            <h3>Dopasowanie trasy</h3>
-            <p>Aplikacja pomaga wybrać wariant trasy dostosowany do preferencji użytkownika.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>HikeUp — planowanie tras górskich</p>
-    </footer>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-
-    <script src="script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

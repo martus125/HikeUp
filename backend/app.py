@@ -143,13 +143,15 @@ def route():
             })
 
     return jsonify({
-        "success": True,
-        "path": path_points,
-        "total_distance_km": route_result["total_distance_km"],
-        "total_time_min": route_result["total_time_min"],
-        "total_difficulty": route_result["total_difficulty"],
-        "criterion": criterion
-    })
+    "success": True,
+    "path": path_points,
+    "total_distance_km": route_result["total_distance_km"],
+    "total_time_min": route_result["total_time_min"],
+    "total_difficulty": route_result["total_difficulty"],
+    "total_elevation_gain_m": route_result["total_elevation_gain_m"],
+    "route_weight": route_result["route_weight"],
+    "criterion": criterion
+})
 
 
 if __name__ == "__main__":

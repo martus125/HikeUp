@@ -1,0 +1,475 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6f7;
+  color: #1f2933;
+}
+
+button,
+select,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ================= STRONA STARTOWA ================= */
+
+.hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(10, 25, 45, 0.03),
+      rgba(10, 25, 45, 0.16) 45%,
+      rgba(10, 25, 45, 0.42) 100%
+    ),
+    url("/tatry.jpg");
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  color: white;
+  clip-path: ellipse(115% 100% at 50% 0%);
+}
+
+
+.navbar {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 90px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  margin-left: 0;
+  color: white;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.38);
+}
+
+.login-top-button {
+  height: 50px;
+  padding: 0 34px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #163b2a;
+  font-size: 19px;
+  font-weight: 850;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.login-top-button:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.plan-button {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 55px;
+  transform: translateX(-50%);
+  padding: 18px 50px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+  backdrop-filter: blur(7px);
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: 0.2px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.plan-button:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* ================= SEKCJA PLANOWANIA ================= */
+
+.planner-section {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  background: #e9ecef;
+}
+
+.planner-panel {
+  background: #f1f1f1;
+  border-right: 1px solid #d5d5d5;
+  box-shadow: 8px 0 22px rgba(0, 0, 0, 0.08);
+  z-index: 3;
+}
+
+.tabs {
+  height: 74px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  background: white;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.tab {
+  border: none;
+  background: white;
+  font-size: 15px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.tab.active {
+  color: #1a73e8;
+  border-bottom: 4px solid #1a73e8;
+}
+
+.panel-content {
+  padding: 24px 26px;
+}
+
+.route-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #606873;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.point-row {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.pin-label {
+  width: 38px;
+  height: 46px;
+  border: 3px solid #ff8a00;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: white;
+  color: #1f2933;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.pin-label {
+  font-size: 0;
+}
+
+.pin-label::after {
+  transform: rotate(45deg);
+  font-size: 16px;
+}
+
+.point-row:nth-of-type(1) .pin-label::after {
+  content: "A";
+}
+
+.point-row:nth-of-type(2) .pin-label::after {
+  content: "B";
+}
+
+.point-row select,
+.criterion-box select,
+.login-modal input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #d0d7de;
+  border-radius: 5px;
+  background: white;
+  padding: 0 14px;
+  font-size: 16px;
+  outline: none;
+}
+
+.point-row select:focus,
+.criterion-box select:focus,
+.login-modal input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15);
+}
+
+.criterion-box {
+  margin-top: 24px;
+}
+
+.criterion-box label {
+  display: block;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.calculate-button {
+  width: 100%;
+  height: 48px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 6px;
+  background: #ef6c00;
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.calculate-button:hover {
+  background: #df6100;
+}
+
+.message {
+  margin-top: 16px;
+  color: #b42318;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ================= WYNIK ================= */
+
+.route-result {
+  margin-top: 24px;
+  padding: 18px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+}
+
+.route-result h3 {
+  margin-top: 0;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.result-grid div {
+  background: #f5f6f7;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.result-grid span {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.result-grid strong {
+  display: block;
+  margin-top: 4px;
+  color: #1f4d3a;
+}
+
+.route-list {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.route-list li {
+  margin-bottom: 6px;
+}
+
+/* ================= MAPA ================= */
+
+.map-area {
+  position: relative;
+  background: #d8dfd1;
+}
+
+.map-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)),
+    repeating-linear-gradient(
+      35deg,
+      rgba(80, 120, 80, 0.22) 0,
+      rgba(80, 120, 80, 0.22) 2px,
+      transparent 2px,
+      transparent 18px
+    ),
+    radial-gradient(circle at 30% 30%, #a5c49b, transparent 26%),
+    radial-gradient(circle at 70% 55%, #b7c8a4, transparent 30%),
+    radial-gradient(circle at 50% 80%, #d3c9aa, transparent 35%),
+    #d9dfcf;
+}
+
+.map-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(80, 80, 80, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(80, 80, 80, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.5;
+}
+
+.map-placeholder::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  top: 22%;
+  width: 65%;
+  height: 50%;
+  border-top: 5px dashed #e7342c;
+  border-right: 5px dashed #1d73c9;
+  border-bottom: 5px dashed #f2b705;
+  border-radius: 45%;
+  transform: rotate(-12deg);
+  opacity: 0.85;
+}
+
+.map-label {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 2;
+  background: white;
+  color: #374151;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+}
+
+.route-line-card {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  z-index: 3;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+.route-line-card p {
+  margin-bottom: 0;
+  color: #4b5563;
+}
+
+/* ================= MODAL ================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 20, 14, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 20;
+}
+
+.login-modal {
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  padding: 34px;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.login-modal h2 {
+  margin-top: 0;
+  font-size: 30px;
+}
+
+.login-modal p {
+  color: #647067;
+}
+
+.login-modal label {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 700;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: #eef2ef;
+  font-size: 24px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .navbar {
+    padding: 0 24px;
+  }
+
+  .brand {
+    font-size: 28px;
+  }
+
+  .login-top-button {
+    height: 50px;
+    padding: 0 22px;
+    font-size: 16px;
+  }
+
+  .plan-button {
+    bottom: 120px;
+    font-size: 18px;
+    padding: 15px 34px;
+  }
+
+  .planner-section {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-panel {
+    border-right: none;
+  }
+
+  .map-placeholder {
+    min-height: 520px;
+  }
+}

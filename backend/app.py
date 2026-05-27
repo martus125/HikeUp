@@ -25,6 +25,15 @@ def get_point_by_id(nodes, point_id):
 
     return None
 
+@app.route("/api/graph", methods=["GET"])
+def get_graph():
+    graph_path = os.path.join(os.path.dirname(__file__), "graph.json")
+
+    with open(graph_path, "r", encoding="utf-8") as file:
+        graph = json.load(file)
+
+    return graph
+
 
 @app.route("/")
 def home():

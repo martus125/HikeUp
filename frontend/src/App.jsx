@@ -22,6 +22,25 @@ const markerIcon = new L.Icon({
 });
 
 function App() {
+
+    const [showScrollTop, setShowScrollTop] = useState(false);
+
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 400) {
+          setShowScrollTop(true);
+        } else {
+          setShowScrollTop(false);
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
   const plannerRef = useRef(null);
 
   const [activeTab, setActiveTab] = useState("plan");
@@ -33,6 +52,34 @@ function App() {
   const [criterion, setCriterion] = useState("time");
   const [selectingPoint, setSelectingPoint] = useState("A");
   const [routeResult, setRouteResult] = useState(null);
+  const [favoriteRoutes, setFavoriteRoutes] = useState([]);
+
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
+useEffect(() => {
+  const savedFavorites = localStorage.getItem("hikeup_favorite_routes");
+
+  if (savedFavorites) {
+    setFavoriteRoutes(JSON.parse(savedFavorites));
+  }
+}, []);
+
+//stany do logowania
+const [showAuthModal, setShowAuthModal] = useState(false);
+const [authMode, setAuthMode] = useState("login");
+
+const [user, setUser] = useState(null);
+
+const [loginEmail, setLoginEmail] = useState("");
+const [loginPassword, setLoginPassword] = useState("");
+
+const [registerName, setRegisterName] = useState("");
+const [registerEmail, setRegisterEmail] = useState("");
+const [registerPassword, setRegisterPassword] = useState("");
+
+const [authMessage, setAuthMessage] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/graph")
@@ -212,24 +259,169 @@ function App() {
     }
   };
 
-  if (loadingGraph) {
-    return <div className="loading-screen">Ładowanie mapy...</div>;
+  const handleRegister = async () => {
+  if (!registerName || !registerEmail || !registerPassword) {
+    setAuthMessage("Uzupełnij wszystkie pola rejestracji.");
+    return;
   }
 
-  if (!graph) {
-    return (
-      <div className="loading-screen">
-        Nie udało się pobrać grafu z backendu.
-      </div>
-    );
+  try {
+    const response = await fetch("http://localhost:5000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: registerName,
+        email: registerEmail,
+        password: registerPassword,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      setAuthMessage(data.message || "Konto zostało utworzone. Możesz się zalogować.");
+      setAuthMode("login");
+      setRegisterName("");
+      setRegisterEmail("");
+      setRegisterPassword("");
+    } else {
+      setAuthMessage(data.message || "Nie udało się zarejestrować użytkownika.");
+    }
+  } catch (error) {
+    console.error("Błąd rejestracji:", error);
+    setAuthMessage("Błąd połączenia z backendem.");
   }
+};
+
+const handleLogin = async () => {
+  if (!loginEmail || !loginPassword) {
+    setAuthMessage("Wpisz email i hasło.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: loginEmail,
+        password: loginPassword,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      setUser(data.user);
+      setAuthMessage("");
+      setShowAuthModal(false);
+      setLoginEmail("");
+      setLoginPassword("");
+    } else {
+      setAuthMessage(data.message || "Nieprawidłowy email lub hasło.");
+    }
+  } catch (error) {
+    console.error("Błąd logowania:", error);
+    setAuthMessage("Błąd połączenia z backendem.");
+  }
+};
+
+const handleLogout = () => {
+  setUser(null);
+};
+
+const addRouteToFavorites = async () => {
+  if (!user) {
+    setShowAuthModal(true);
+    setAuthMode("login");
+    setAuthMessage("Zaloguj się, aby dodać trasę do ulubionych.");
+    return;
+  }
+
+  if (!routeResult) {
+    alert("Najpierw wyznacz trasę.");
+    return;
+  }
+
+  const startNode = routeResult.routeNodes[0];
+  const endNode = routeResult.routeNodes[routeResult.routeNodes.length - 1];
+
+  const favoriteData = {
+    user_id: user.id,
+    route_name: `${startNode.name} → ${endNode.name}`,
+    start_point_name: startNode.name,
+    end_point_name: endNode.name,
+    distance_km: routeResult.distance,
+    time_min: routeResult.time,
+    elevation_gain_m: routeResult.elevation,
+    criterion: criterion,
+    path: routeResult.routeNodes.map((node) => node.name).join(" → "),
+  };
+
+  try {
+    const response = await fetch("http://localhost:5000/api/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(favoriteData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      alert("Trasa została dodana do ulubionych i zapisana w bazie.");
+
+      setFavoriteRoutes((prevFavorites) => [
+        {
+          id: data.favorite_id,
+          userId: user.id,
+          name: favoriteData.route_name,
+          distance: favoriteData.distance_km,
+          time: favoriteData.time_min,
+          elevation: favoriteData.elevation_gain_m,
+          criterion: favoriteData.criterion,
+          path: favoriteData.path,
+        },
+        ...prevFavorites,
+      ]);
+    } else {
+      alert(data.message || "Nie udało się dodać trasy do ulubionych.");
+    }
+  } catch (error) {
+    console.error("Błąd zapisu ulubionej trasy:", error);
+    alert("Błąd połączenia z backendem.");
+  }
+};
 
   return (
     <>
       <section className="hero">
         <header className="navbar">
           <div className="logo">HikeUp</div>
-          <button className="login-button">Zaloguj się</button>
+                {user ? (
+//logowanie, a po zalogowaniu bedzie imie i wyloguj
+        <button className="login-button" onClick={handleLogout}>
+          {user.name} | Wyloguj
+        </button>
+      ) : (
+        <button
+          className="login-button"
+          onClick={() => {
+            setShowAuthModal(true);
+            setAuthMode("login");
+            setAuthMessage("");
+          }}
+        >
+          Zaloguj się
+        </button>
+
+        
+      )}
         </header>
 
         <div className="hero-content">
@@ -242,6 +434,118 @@ function App() {
           </button>
         </div>
       </section>
+                    {showScrollTop && (
+            <button
+              className="scroll-top-btn"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              ↑
+            </button>
+          )}
+
+
+      {showAuthModal && (
+  <div className="auth-modal-overlay">
+    <div className="auth-modal">
+      <button
+        className="auth-close"
+        onClick={() => setShowAuthModal(false)}
+      >
+        ×
+      </button>
+
+      <div className="auth-tabs">
+        <button
+          className={authMode === "login" ? "auth-tab active" : "auth-tab"}
+          onClick={() => {
+            setAuthMode("login");
+            setAuthMessage("");
+          }}
+        >
+          Logowanie
+        </button>
+
+        <button
+          className={authMode === "register" ? "auth-tab active" : "auth-tab"}
+          onClick={() => {
+            setAuthMode("register");
+            setAuthMessage("");
+          }}
+        >
+          Rejestracja
+        </button>
+      </div>
+
+      {authMode === "login" && (
+        <div className="auth-form">
+          <h2>Zaloguj się</h2>
+          <p>Uzyskaj dostęp do profilu i zapisanych tras.</p>
+
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Wpisz email"
+            value={loginEmail}
+            onChange={(event) => setLoginEmail(event.target.value)}
+          />
+
+          <label>Hasło</label>
+          <input
+            type="password"
+            placeholder="Wpisz hasło"
+            value={loginPassword}
+            onChange={(event) => setLoginPassword(event.target.value)}
+          />
+
+          <button className="auth-submit" onClick={handleLogin}>
+            Zaloguj się
+          </button>
+        </div>
+      )}
+
+      {authMode === "register" && (
+        <div className="auth-form">
+          <h2>Utwórz konto</h2>
+          <p>Zarejestruj się, aby zapisywać swoje trasy.</p>
+
+          <label>Imię</label>
+          <input
+            type="text"
+            placeholder="Wpisz imię"
+            value={registerName}
+            onChange={(event) => setRegisterName(event.target.value)}
+          />
+
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Wpisz email"
+            value={registerEmail}
+            onChange={(event) => setRegisterEmail(event.target.value)}
+          />
+
+          <label>Hasło</label>
+          <input
+            type="password"
+            placeholder="Wpisz hasło"
+            value={registerPassword}
+            onChange={(event) => setRegisterPassword(event.target.value)}
+          />
+
+          <button className="auth-submit" onClick={handleRegister}>
+            Zarejestruj się
+          </button>
+        </div>
+      )}
+
+      {authMessage && (
+        <div className="auth-message">
+          {authMessage}
+        </div>
+      )}
+    </div>
+  </div>
+)}
 
       <section className="route-section" ref={plannerRef}>
         <main className="map-area">
@@ -332,7 +636,7 @@ function App() {
         </main>
 
         <aside className="planner-panel">
-          <div className="tabs">
+         <div className="tabs">
             <button
               className={activeTab === "plan" ? "tab active" : "tab"}
               onClick={() => setActiveTab("plan")}
@@ -344,7 +648,14 @@ function App() {
               className={activeTab === "recommended" ? "tab active" : "tab"}
               onClick={() => setActiveTab("recommended")}
             >
-              Polecane trasy
+              Polecane
+            </button>
+
+            <button
+              className={activeTab === "favorites" ? "tab active" : "tab"}
+              onClick={() => setActiveTab("favorites")}
+            >
+              Ulubione
             </button>
           </div>
 
@@ -418,24 +729,28 @@ function App() {
                 <div className="result-card">
                   <h2>Wynik trasy</h2>
 
-                  <div className="result-grid">
-                    <div className="result-box">
-                      <span>Dystans</span>
-                      <strong>{routeResult.distance.toFixed(1)} km</strong>
+                 <div className="result-grid">
+                      <div className="result-box">
+                        <span>Dystans</span>
+                        <strong>{routeResult.distance.toFixed(1)} km</strong>
+                      </div>
+
+                      <div className="result-box">
+                        <span>Czas</span>
+                        <strong>{routeResult.time} min</strong>
+                      </div>
+
+                      <div className="result-box">
+                        <span>Przewyższenie</span>
+                        <strong>{routeResult.elevation} m</strong>
+                      </div>
                     </div>
 
-                    <div className="result-box">
-                      <span>Czas</span>
-                      <strong>{routeResult.time} min</strong>
-                    </div>
+                    <button className="favorite-button" onClick={addRouteToFavorites}>
+                      Dodaj do ulubionych
+                    </button>
 
-                    <div className="result-box">
-                      <span>Przewyższenie</span>
-                      <strong>{routeResult.elevation} m</strong>
-                    </div>
-                  </div>
-
-                  <div className="route-path">
+                    <div className="route-path">
                     <h3>Przebieg trasy</h3>
 
                     {routeResult.routeNodes.map((node, index) => (
@@ -467,6 +782,37 @@ function App() {
                 <h3>Kuźnice → Świnica</h3>
                 <p>Przez Halę Gąsienicową i Liliowe</p>
               </div>
+            </div>
+          )}
+                    {activeTab === "favorites" && (
+            <div className="planner-content">
+              <h2 className="recommended-title">Ulubione trasy</h2>
+
+              {!user && (
+                <p className="empty-favorites">
+                  Zaloguj się, aby korzystać z ulubionych tras.
+                </p>
+              )}
+
+              {user &&
+                favoriteRoutes.filter((route) => route.userId === user.id).length === 0 && (
+                  <p className="empty-favorites">
+                    Nie masz jeszcze zapisanych tras.
+                  </p>
+                )}
+
+              {user &&
+                favoriteRoutes
+                  .filter((route) => route.userId === user.id)
+                  .map((route) => (
+                    <div className="recommended-card" key={route.id}>
+                      <h3>{route.name}</h3>
+                      <p>Dystans: {route.distance.toFixed(1)} km</p>
+                      <p>Czas: {route.time} min</p>
+                      <p>Przewyższenie: {route.elevation} m</p>
+                      <p>Kryterium: {route.criterion}</p>
+                    </div>
+                  ))}
             </div>
           )}
         </aside>

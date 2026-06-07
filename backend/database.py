@@ -160,3 +160,105 @@ def verify_user(email, password):
     finally:
         cur.close()
         conn.close()
+
+# Ulubione trasy do bazy
+
+def add_favorite_route(user_id, route_name, start_point_name, end_point_name,
+                       distance_km, time_min, elevation_gain_m, criterion, path):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+            INSERT INTO favorite_routes (
+                user_id,
+                route_name,
+                start_point_name,
+                end_point_name,
+                distance_km,
+                time_min,
+                elevation_gain_m,
+                criterion,
+                path
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id;
+        """, (
+            user_id,
+            route_name,
+            start_point_name,
+            end_point_name,
+            distance_km,
+            time_min,
+            elevation_gain_m,
+            criterion,
+            path
+        ))
+
+        favorite_id = cur.fetchone()[0]
+        conn.commit()
+
+        return {
+            "success": True,
+            "favorite_id": favorite_id,
+            "message": "Trasa została dodana do ulubionych."
+        }
+
+    except Exception as error:
+        conn.rollback()
+
+        return {
+            "success": False,
+            "message": f"Błąd zapisu ulubionej trasy: {error}"
+        }
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+def get_favorite_routes(user_id):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+            SELECT id, route_name, start_point_name, end_point_name,
+                   distance_km, time_min, elevation_gain_m, criterion, path, created_at
+            FROM favorite_routes
+            WHERE user_id = %s
+            ORDER BY created_at DESC;
+        """, (user_id,))
+
+        rows = cur.fetchall()
+
+        favorites = []
+
+        for row in rows:
+            favorites.append({
+                "id": row[0],
+                "route_name": row[1],
+                "start_point_name": row[2],
+                "end_point_name": row[3],
+                "distance_km": row[4],
+                "time_min": row[5],
+                "elevation_gain_m": row[6],
+                "criterion": row[7],
+                "path": row[8],
+                "created_at": str(row[9])
+            })
+
+        return {
+            "success": True,
+            "favorites": favorites
+        }
+
+    except Exception as error:
+        return {
+            "success": False,
+            "message": f"Błąd pobierania ulubionych tras: {error}"
+        }
+
+    finally:
+        cur.close()
+        conn.close()

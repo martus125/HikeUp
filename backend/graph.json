@@ -4,80 +4,80 @@
       "id": "rysy",
       "name": "Rysy",
       "type": "peak",
-      "lat": 49.1794,
-      "lng": 20.0881,
+      "lat": 49.1795756,
+      "lng": 20.0881081,
       "elevation": 2499
     },
     {
       "id": "kozi_wierch",
       "name": "Kozi Wierch",
       "type": "peak",
-      "lat": 49.2192,
-      "lng": 20.0281,
+      "lat": 49.2183333,
+      "lng": 20.0286111,
       "elevation": 2291
     },
     {
       "id": "swinica",
       "name": "Świnica",
       "type": "peak",
-      "lat": 49.2197,
-      "lng": 20.0097,
+      "lat": 49.2194444,
+      "lng": 20.0091667,
       "elevation": 2301
     },
     {
       "id": "koscielec",
       "name": "Kościelec",
       "type": "peak",
-      "lat": 49.2311,
-      "lng": 20.0114,
+      "lat": 49.2251794,
+      "lng": 20.0145834,
       "elevation": 2155
     },
     {
       "id": "kasprowy_wierch",
       "name": "Kasprowy Wierch",
       "type": "peak",
-      "lat": 49.2319,
-      "lng": 19.9811,
+      "lat": 49.2319444,
+      "lng": 19.9819444,
       "elevation": 1987
     },
     {
       "id": "giewont",
       "name": "Giewont",
       "type": "peak",
-      "lat": 49.2500,
-      "lng": 19.9333,
+      "lat": 49.2505556,
+      "lng": 19.9338889,
       "elevation": 1894
     },
     {
       "id": "kopa_kondracka",
       "name": "Kopa Kondracka",
       "type": "peak",
-      "lat": 49.2342,
-      "lng": 19.9258,
+      "lat": 49.2366667,
+      "lng": 19.9322222,
       "elevation": 2005
     },
     {
       "id": "malolaczniak",
       "name": "Małołączniak",
       "type": "peak",
-      "lat": 49.2292,
-      "lng": 19.9058,
+      "lat": 49.2291667,
+      "lng": 19.9077778,
       "elevation": 2096
     },
     {
       "id": "krzesanica",
       "name": "Krzesanica",
       "type": "peak",
-      "lat": 49.2281,
-      "lng": 19.8889,
+      "lat": 49.2316667,
+      "lng": 19.9094444,
       "elevation": 2122
     },
     {
       "id": "ciemniak",
       "name": "Ciemniak",
       "type": "peak",
-      "lat": 49.2294,
-      "lng": 19.8758,
+      "lat": 49.2309444,
+      "lng": 19.9033056,
       "elevation": 2096
     },
 
@@ -85,56 +85,64 @@
       "id": "zawrat",
       "name": "Zawrat",
       "type": "pass",
-      "lat": 49.2197,
-      "lng": 20.0214,
+      "lat": 49.2191111,
+      "lng": 20.0164167,
       "elevation": 2159
     },
     {
       "id": "krzyzne",
       "name": "Krzyżne",
       "type": "pass",
-      "lat": 49.2264,
-      "lng": 20.0606,
+      "lat": 49.2286944,
+      "lng": 20.0473306,
       "elevation": 2112
     },
     {
       "id": "szpiglasowa_przelecz",
       "name": "Szpiglasowa Przełęcz",
       "type": "pass",
-      "lat": 49.1967,
-      "lng": 20.0425,
+      "lat": 49.1972222,
+      "lng": 20.0422222,
       "elevation": 2110
     },
     {
       "id": "liliowe",
       "name": "Liliowe",
       "type": "pass",
-      "lat": 49.2211,
-      "lng": 19.9908,
+      "lat": 49.2211111,
+      "lng": 19.9894444,
       "elevation": 1952
     },
     {
       "id": "karb",
       "name": "Karb",
       "type": "pass",
-      "lat": 49.2297,
-      "lng": 20.0133,
+      "lat": 49.2288106,
+      "lng": 20.0117079,
       "elevation": 1853
+    },
+    {
+  "id": "czuba_nad_karbem",
+  "name": "Czuba nad Karbem",
+  "type": "peak",
+  "lat": 49.228889,
+  "lng": 20.012306,
+  "elevation": 1896
     },
     {
       "id": "przelecz_kondracka",
       "name": "Przełęcz Kondracka",
       "type": "pass",
-      "lat": 49.2422,
-      "lng": 19.9389,
+      "lat": 49.2422222,
+      "lng": 19.9372222,
       "elevation": 1725
     },
     {
       "id": "iwaniacka_przelecz",
       "name": "Iwaniacka Przełęcz",
       "type": "pass",
-      "lat": 49.2383,
-      "lng": 19.8250,
+      "lat": 49.2388889,
+      "lng": 19.8250000,
       "elevation": 1459
     },
 
@@ -142,72 +150,72 @@
       "id": "hala_gasienicowa",
       "name": "Hala Gąsienicowa",
       "type": "valley",
-      "lat": 49.2431,
-      "lng": 20.0000,
+      "lat": 49.2430556,
+      "lng": 20.0011111,
       "elevation": 1500
     },
     {
       "id": "hala_kondratowa",
       "name": "Hala Kondratowa",
       "type": "valley",
-      "lat": 49.2522,
-      "lng": 19.9550,
+      "lat": 49.2519444,
+      "lng": 19.9547222,
       "elevation": 1333
     },
     {
       "id": "dolina_pieciu_stawow",
       "name": "Dolina Pięciu Stawów",
       "type": "valley",
-      "lat": 49.2136,
-      "lng": 20.0489,
+      "lat": 49.2141667,
+      "lng": 20.0480556,
       "elevation": 1670
     },
     {
       "id": "morskie_oko",
       "name": "Morskie Oko",
       "type": "valley",
-      "lat": 49.2019,
-      "lng": 20.0703,
+      "lat": 49.1972222,
+      "lng": 20.0708333,
       "elevation": 1395
     },
     {
       "id": "dolina_chocholowska",
       "name": "Dolina Chochołowska",
       "type": "valley",
-      "lat": 49.2361,
-      "lng": 19.7889,
+      "lat": 49.2369444,
+      "lng": 19.7875000,
       "elevation": 1146
     },
     {
       "id": "dolina_koscieliska",
       "name": "Dolina Kościeliska",
       "type": "valley",
-      "lat": 49.2500,
-      "lng": 19.8667,
+      "lat": 49.2538889,
+      "lng": 19.8502778,
       "elevation": 927
     },
     {
       "id": "polana_kalatowki",
       "name": "Polana Kalatówki",
       "type": "valley",
-      "lat": 49.2636,
-      "lng": 19.9672,
+      "lat": 49.2636111,
+      "lng": 19.9672222,
       "elevation": 1198
     },
     {
       "id": "czarny_staw_gasienicowy",
       "name": "Czarny Staw Gąsienicowy",
       "type": "valley",
-      "lat": 49.2358,
-      "lng": 20.0117,
+      "lat": 49.2325730,
+      "lng": 20.0147367,
       "elevation": 1624
     },
     {
       "id": "czarny_staw_pod_rysami",
       "name": "Czarny Staw pod Rysami",
       "type": "valley",
-      "lat": 49.1889,
-      "lng": 20.0758,
+      "lat": 49.1883333,
+      "lng": 20.0761111,
       "elevation": 1583
     },
 
@@ -215,48 +223,48 @@
       "id": "schronisko_murowaniec",
       "name": "Schronisko Murowaniec",
       "type": "shelter",
-      "lat": 49.2436,
-      "lng": 20.0019,
+      "lat": 49.2434270,
+      "lng": 20.0071760,
       "elevation": 1500
     },
     {
       "id": "schronisko_hala_kondratowa",
       "name": "Schronisko na Hali Kondratowej",
       "type": "shelter",
-      "lat": 49.2522,
-      "lng": 19.9558,
+      "lat": 49.2519444,
+      "lng": 19.9558333,
       "elevation": 1333
     },
     {
       "id": "schronisko_piec_stawow",
       "name": "Schronisko w Dolinie Pięciu Stawów",
       "type": "shelter",
-      "lat": 49.2131,
-      "lng": 20.0481,
+      "lat": 49.2130556,
+      "lng": 20.0480556,
       "elevation": 1671
     },
     {
       "id": "schronisko_morskie_oko",
       "name": "Schronisko nad Morskim Okiem",
       "type": "shelter",
-      "lat": 49.2019,
-      "lng": 20.0708,
+      "lat": 49.2019444,
+      "lng": 20.0708333,
       "elevation": 1410
     },
     {
       "id": "schronisko_ornak",
       "name": "Schronisko na Hali Ornak",
       "type": "shelter",
-      "lat": 49.2400,
-      "lng": 19.8600,
+      "lat": 49.2397222,
+      "lng": 19.8597222,
       "elevation": 1100
     },
     {
       "id": "schronisko_chocholowska",
       "name": "Schronisko w Dolinie Chochołowskiej",
       "type": "shelter",
-      "lat": 49.2367,
-      "lng": 19.7894,
+      "lat": 49.2366667,
+      "lng": 19.7894444,
       "elevation": 1146
     },
 
@@ -264,48 +272,48 @@
       "id": "kuznice",
       "name": "Kuźnice",
       "type": "start",
-      "lat": 49.2705,
-      "lng": 19.9816,
+      "lat": 49.2705556,
+      "lng": 19.9816667,
       "elevation": 1025
     },
     {
       "id": "palenica_bialczanska",
       "name": "Palenica Białczańska",
       "type": "start",
-      "lat": 49.2553,
-      "lng": 20.1036,
+      "lat": 49.2552778,
+      "lng": 20.1038889,
       "elevation": 984
     },
     {
       "id": "brzeziny",
       "name": "Brzeziny",
       "type": "start",
-      "lat": 49.2772,
-      "lng": 20.0458,
+      "lat": 49.2772222,
+      "lng": 20.0455556,
       "elevation": 1007
     },
     {
       "id": "kiry",
       "name": "Kiry",
       "type": "start",
-      "lat": 49.2750,
-      "lng": 19.8681,
+      "lat": 49.2750000,
+      "lng": 19.8680556,
       "elevation": 927
     },
     {
       "id": "siwa_polana",
       "name": "Siwa Polana",
       "type": "start",
-      "lat": 49.2867,
-      "lng": 19.8167,
+      "lat": 49.2866667,
+      "lng": 19.8166667,
       "elevation": 910
     },
     {
       "id": "mala_laka",
       "name": "Mała Łąka",
       "type": "start",
-      "lat": 49.2733,
-      "lng": 19.9133,
+      "lat": 49.2733333,
+      "lng": 19.9133333,
       "elevation": 930
     }
   ],
@@ -472,10 +480,18 @@
     },
     {
       "from": "karb",
+      "to": "czuba_nad_karbem",
+      "distance_km": 0.2,
+      "time_min": 10,
+      "elevation_gain_m": 43,
+      "difficulty": 4
+    },
+    {
+      "from": "czuba_nad_karbem",
       "to": "koscielec",
-      "distance_km": 1.1,
-      "time_min": 45,
-      "elevation_gain_m": 250,
+      "distance_km": 0.9,
+      "time_min": 35,
+      "elevation_gain_m": 259,
       "difficulty": 4
     },
     {

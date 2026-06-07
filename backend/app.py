@@ -4,7 +4,7 @@ import json
 import os
 
 from algorithms.dijkstra import calculate_route
-from database import init_database, create_user, verify_user
+from database import init_database, create_user, verify_user, add_favorite_route, get_favorite_routes
 
 app = Flask(__name__)
 CORS(app)
@@ -162,6 +162,52 @@ def route():
     "criterion": criterion
 })
 
+@app.route("/api/favorites", methods=["POST"])
+def add_favorite():
+    data = request.get_json()
+
+    user_id = data.get("user_id")
+    route_name = data.get("route_name")
+    start_point_name = data.get("start_point_name")
+    end_point_name = data.get("end_point_name")
+    distance_km = data.get("distance_km")
+    time_min = data.get("time_min")
+    elevation_gain_m = data.get("elevation_gain_m")
+    criterion = data.get("criterion")
+    path = data.get("path")
+
+    if not user_id or not route_name:
+        return jsonify({
+            "success": False,
+            "message": "Brakuje danych użytkownika lub nazwy trasy."
+        }), 400
+
+    result = add_favorite_route(
+        user_id,
+        route_name,
+        start_point_name,
+        end_point_name,
+        distance_km,
+        time_min,
+        elevation_gain_m,
+        criterion,
+        path
+    )
+
+    if not result["success"]:
+        return jsonify(result), 400
+
+    return jsonify(result), 201
+
+
+@app.route("/api/favorites/<int:user_id>", methods=["GET"])
+def get_favorites(user_id):
+    result = get_favorite_routes(user_id)
+
+    if not result["success"]:
+        return jsonify(result), 400
+
+    return jsonify(result)
 
 if __name__ == "__main__":
     app.run(debug=True)

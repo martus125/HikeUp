@@ -1,0 +1,5944 @@
+{
+  "nodes": [
+    {
+      "id": "node/3544067861",
+      "name": "Apostoły",
+      "type": "peak",
+      "lat": 49.195414,
+      "lng": 20.081632,
+      "elevation": 1953.0,
+      "nearest_routing_node_id": "node/13383464036",
+      "distance_to_trail_m": 184
+    },
+    {
+      "id": "node/3600501725",
+      "name": "Bacuch",
+      "type": "saddle",
+      "lat": 49.253619,
+      "lng": 19.925013,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3738537256",
+      "distance_to_trail_m": 534
+    },
+    {
+      "id": "node/9034231034",
+      "name": "Bacuch",
+      "type": "peak",
+      "lat": 49.253991,
+      "lng": 19.924866,
+      "elevation": 1507.0,
+      "nearest_routing_node_id": "node/3738537256",
+      "distance_to_trail_m": 576
+    },
+    {
+      "id": "node/8809914852",
+      "name": "Banie",
+      "type": "peak",
+      "lat": 49.263756,
+      "lng": 19.83303,
+      "elevation": 1270.0,
+      "nearest_routing_node_id": "node/13236811254",
+      "distance_to_trail_m": 281
+    },
+    {
+      "id": "node/10873136350",
+      "name": "Baszta",
+      "type": "peak",
+      "lat": 49.23471,
+      "lng": 19.875044,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 585
+    },
+    {
+      "id": "node/11595734654",
+      "name": "Biała Czubka",
+      "type": "peak",
+      "lat": 49.261653,
+      "lng": 19.96355,
+      "elevation": 1333.0,
+      "nearest_routing_node_id": "node/2292519817",
+      "distance_to_trail_m": 284
+    },
+    {
+      "id": "node/11592361063",
+      "name": "Biała Giewoncka Baszta",
+      "type": "peak",
+      "lat": 49.250654,
+      "lng": 19.928293,
+      "elevation": 1728.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 194
+    },
+    {
+      "id": "node/8807314860",
+      "name": "Biała Turnia",
+      "type": "peak",
+      "lat": 49.246441,
+      "lng": 19.87109,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 437
+    },
+    {
+      "id": "node/8807314825",
+      "name": "Białe Siodełko",
+      "type": "saddle",
+      "lat": 49.243886,
+      "lng": 19.877869,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 981
+    },
+    {
+      "id": "node/615736220",
+      "name": "Bobrowiec",
+      "type": "peak",
+      "lat": 49.246227,
+      "lng": 19.784693,
+      "elevation": 1665.0,
+      "nearest_routing_node_id": "node/5557405756",
+      "distance_to_trail_m": 698
+    },
+    {
+      "id": "node/3560969656",
+      "name": "Bobrowiecka Przełęcz",
+      "type": "saddle",
+      "lat": 49.242149,
+      "lng": 19.776218,
+      "elevation": 1356.0,
+      "nearest_routing_node_id": "node/1296414246",
+      "distance_to_trail_m": 11
+    },
+    {
+      "id": "node/2604672434",
+      "name": "Boczań",
+      "type": "peak",
+      "lat": 49.26461,
+      "lng": 19.987138,
+      "elevation": 1224.0,
+      "nearest_routing_node_id": "node/356339799",
+      "distance_to_trail_m": 126
+    },
+    {
+      "id": "node/3503806182",
+      "name": "Buczynowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.226748,
+      "lng": 20.041592,
+      "elevation": 2127.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 374
+    },
+    {
+      "id": "node/4807993961",
+      "name": "Buczynowa Siklawa",
+      "type": "waterfall",
+      "lat": 49.220044,
+      "lng": 20.045829,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384341364",
+      "distance_to_trail_m": 438
+    },
+    {
+      "id": "node/1103563283",
+      "name": "Buczynowa Strażnica",
+      "type": "peak",
+      "lat": 49.220292,
+      "lng": 20.033828,
+      "elevation": 2242.0,
+      "nearest_routing_node_id": "node/460951592",
+      "distance_to_trail_m": 99
+    },
+    {
+      "id": "node/9032605690",
+      "name": "Buczynowa Szczerbinka",
+      "type": "saddle",
+      "lat": 49.226325,
+      "lng": 20.040114,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 489
+    },
+    {
+      "id": "node/9032605691",
+      "name": "Buczynowa Turniczka",
+      "type": "peak",
+      "lat": 49.22623,
+      "lng": 20.040135,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 492
+    },
+    {
+      "id": "node/9032605692",
+      "name": "Buczynowe Siodło",
+      "type": "saddle",
+      "lat": 49.226701,
+      "lng": 20.040079,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 476
+    },
+    {
+      "id": "node/9032609521",
+      "name": "Buczynowy Karb",
+      "type": "saddle",
+      "lat": 49.227395,
+      "lng": 20.036944,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 255
+    },
+    {
+      "id": "node/9032605713",
+      "name": "Budzowa Igła",
+      "type": "peak",
+      "lat": 49.226951,
+      "lng": 20.039378,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 429
+    },
+    {
+      "id": "node/9032605693",
+      "name": "Budzowa Przełączka",
+      "type": "saddle",
+      "lat": 49.22693,
+      "lng": 20.03947,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 435
+    },
+    {
+      "id": "node/3508693152",
+      "name": "Bula pod Rysami",
+      "type": "peak",
+      "lat": 49.181919,
+      "lng": 20.080791,
+      "elevation": 2055.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 71
+    },
+    {
+      "id": "node/495957128",
+      "name": "Błyszcz",
+      "type": "peak",
+      "lat": 49.19263,
+      "lng": 19.840997,
+      "elevation": 2159.0,
+      "nearest_routing_node_id": "node/1799844495",
+      "distance_to_trail_m": 63
+    },
+    {
+      "id": "node/353112971",
+      "name": "Chuda Przełączka",
+      "type": "saddle",
+      "lat": 49.238033,
+      "lng": 19.895609,
+      "elevation": 1850.0,
+      "nearest_routing_node_id": "node/353112971",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/1295341401",
+      "name": "Chuda Turnia",
+      "type": "peak",
+      "lat": 49.238214,
+      "lng": 19.895166,
+      "elevation": 1858.0,
+      "nearest_routing_node_id": "node/353112971",
+      "distance_to_trail_m": 38
+    },
+    {
+      "id": "node/496805357",
+      "name": "Ciemniak",
+      "type": "peak",
+      "lat": 49.231007,
+      "lng": 19.903405,
+      "elevation": 2096.0,
+      "nearest_routing_node_id": "node/5968611523",
+      "distance_to_trail_m": 8
+    },
+    {
+      "id": "node/3508368558",
+      "name": "Ciemnosmreczyńska Przełączka",
+      "type": "saddle",
+      "lat": 49.189473,
+      "lng": 20.049557,
+      "elevation": 2115.0,
+      "nearest_routing_node_id": "node/11361853618",
+      "distance_to_trail_m": 259
+    },
+    {
+      "id": "node/3508355562",
+      "name": "Ciemnosmreczyńska Turnia",
+      "type": "peak",
+      "lat": 49.189661,
+      "lng": 20.04857,
+      "elevation": 2142.0,
+      "nearest_routing_node_id": "node/11361853618",
+      "distance_to_trail_m": 319
+    },
+    {
+      "id": "node/3568548393",
+      "name": "Cisowa Turnia",
+      "type": "peak",
+      "lat": 49.272137,
+      "lng": 19.840327,
+      "elevation": 1112.0,
+      "nearest_routing_node_id": "node/13236835966",
+      "distance_to_trail_m": 282
+    },
+    {
+      "id": "node/13653301161",
+      "name": "Cubryńska Igła",
+      "type": "peak",
+      "lat": 49.192057,
+      "lng": 20.061089,
+      "elevation": 1905.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 290
+    },
+    {
+      "id": "node/13653301159",
+      "name": "Cubryńska Kazalnica",
+      "type": "peak",
+      "lat": 49.192483,
+      "lng": 20.062612,
+      "elevation": 1836.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 365
+    },
+    {
+      "id": "node/13589456685",
+      "name": "Cubryńska Kopka",
+      "type": "peak",
+      "lat": 49.190832,
+      "lng": 20.05724,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/10923459188",
+      "distance_to_trail_m": 232
+    },
+    {
+      "id": "node/9296056231",
+      "name": "Cubryńska Strażnica",
+      "type": "peak",
+      "lat": 49.188468,
+      "lng": 20.055315,
+      "elevation": 2335.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 74
+    },
+    {
+      "id": "node/13653301160",
+      "name": "Cubryński Koń",
+      "type": "peak",
+      "lat": 49.19231,
+      "lng": 20.061845,
+      "elevation": 1870.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 321
+    },
+    {
+      "id": "node/9983979744",
+      "name": "Cubryński Słup",
+      "type": "peak",
+      "lat": 49.187943,
+      "lng": 20.053243,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 118
+    },
+    {
+      "id": "node/9983979743",
+      "name": "Cubryński Zwornik",
+      "type": "peak",
+      "lat": 49.187873,
+      "lng": 20.054683,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 13
+    },
+    {
+      "id": "node/9983979742",
+      "name": "Cubryński Ząb",
+      "type": "peak",
+      "lat": 49.187752,
+      "lng": 20.054817,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 13
+    },
+    {
+      "id": "node/8807314837",
+      "name": "Czarna Turnia",
+      "type": "peak",
+      "lat": 49.245291,
+      "lng": 19.868457,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 403
+    },
+    {
+      "id": "node/11603240935",
+      "name": "Czarna Turnia",
+      "type": "peak",
+      "lat": 49.261974,
+      "lng": 19.919876,
+      "elevation": 1323.0,
+      "nearest_routing_node_id": "node/3001984396",
+      "distance_to_trail_m": 334
+    },
+    {
+      "id": "node/8807314834",
+      "name": "Czarna Turniczka",
+      "type": "peak",
+      "lat": 49.244638,
+      "lng": 19.869947,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/8725587763",
+      "distance_to_trail_m": 510
+    },
+    {
+      "id": "node/3538957936",
+      "name": "Czarna Ławka",
+      "type": "saddle",
+      "lat": 49.199797,
+      "lng": 20.029517,
+      "elevation": 1969.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 818
+    },
+    {
+      "id": "node/3509918208",
+      "name": "Czarnostawiańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.181412,
+      "lng": 20.068601,
+      "elevation": 2340.0,
+      "nearest_routing_node_id": "node/615589481",
+      "distance_to_trail_m": 359
+    },
+    {
+      "id": "node/4793588344",
+      "name": "Czarnostawiańska Siklawa",
+      "type": "waterfall",
+      "lat": 49.190819,
+      "lng": 20.073921,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1779827685",
+      "distance_to_trail_m": 52
+    },
+    {
+      "id": "node/9036094075",
+      "name": "Czarny Mniszek",
+      "type": "peak",
+      "lat": 49.221344,
+      "lng": 20.032513,
+      "elevation": 2178.0,
+      "nearest_routing_node_id": "node/460951592",
+      "distance_to_trail_m": 55
+    },
+    {
+      "id": "node/8807314835",
+      "name": "Czarny Przechód",
+      "type": "saddle",
+      "lat": 49.24516,
+      "lng": 19.869374,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 453
+    },
+    {
+      "id": "relation/8626083",
+      "name": "Czarny Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.230748,
+      "lng": 20.018069,
+      "elevation": 1624.0,
+      "nearest_routing_node_id": "node/356339574",
+      "distance_to_trail_m": 205
+    },
+    {
+      "id": "way/29239574",
+      "name": "Czarny Staw Polski",
+      "type": "water",
+      "lat": 49.204384,
+      "lng": 20.025838,
+      "elevation": 1722.0,
+      "nearest_routing_node_id": "node/11379617464",
+      "distance_to_trail_m": 595
+    },
+    {
+      "id": "way/29239539",
+      "name": "Czarny Staw pod Rysami",
+      "type": "water",
+      "lat": 49.188404,
+      "lng": 20.076197,
+      "elevation": 1583.0,
+      "nearest_routing_node_id": "node/9952912473",
+      "distance_to_trail_m": 227
+    },
+    {
+      "id": "node/8807314831",
+      "name": "Czarny Zwornik",
+      "type": "peak",
+      "lat": 49.245018,
+      "lng": 19.874106,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 697
+    },
+    {
+      "id": "node/9516399111",
+      "name": "Czerwona Przełęcz",
+      "type": "saddle",
+      "lat": 49.262807,
+      "lng": 19.942588,
+      "elevation": 1301.0,
+      "nearest_routing_node_id": "node/132274281",
+      "distance_to_trail_m": 2
+    },
+    {
+      "id": "node/8805220358",
+      "name": "Czerwony Filar",
+      "type": "peak",
+      "lat": 49.262242,
+      "lng": 19.885415,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1200977217",
+      "distance_to_trail_m": 280
+    },
+    {
+      "id": "node/2569948269",
+      "name": "Czerwony Gronik",
+      "type": "peak",
+      "lat": 49.265126,
+      "lng": 19.882324,
+      "elevation": 1294.0,
+      "nearest_routing_node_id": "node/9709524949",
+      "distance_to_trail_m": 266
+    },
+    {
+      "id": "way/29239713",
+      "name": "Czerwony Staw",
+      "type": "water",
+      "lat": 49.239993,
+      "lng": 20.035769,
+      "elevation": 1654.0,
+      "nearest_routing_node_id": "node/1200866533",
+      "distance_to_trail_m": 396
+    },
+    {
+      "id": "node/1295379308",
+      "name": "Czerwony Wierch",
+      "type": "peak",
+      "lat": 49.21354,
+      "lng": 19.781574,
+      "elevation": 1766.0,
+      "nearest_routing_node_id": "node/3079625571",
+      "distance_to_trail_m": 798
+    },
+    {
+      "id": "node/11331646687",
+      "name": "Czoło",
+      "type": "peak",
+      "lat": 49.239069,
+      "lng": 19.773439,
+      "elevation": 1514.0,
+      "nearest_routing_node_id": "node/803761527",
+      "distance_to_trail_m": 333
+    },
+    {
+      "id": "node/9962071956",
+      "name": "Czuba nad Karbem",
+      "type": "peak",
+      "lat": 49.228451,
+      "lng": 20.012824,
+      "elevation": 1896.0,
+      "nearest_routing_node_id": "node/355985946",
+      "distance_to_trail_m": 90
+    },
+    {
+      "id": "node/8993678469",
+      "name": "Czuba nad Uboczą",
+      "type": "peak",
+      "lat": 49.219172,
+      "lng": 20.071371,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384345966",
+      "distance_to_trail_m": 629
+    },
+    {
+      "id": "node/1294543793",
+      "name": "Czubik",
+      "type": "peak",
+      "lat": 49.212702,
+      "lng": 19.807949,
+      "elevation": 1846.0,
+      "nearest_routing_node_id": "node/4338036446",
+      "distance_to_trail_m": 546
+    },
+    {
+      "id": "node/8511259350",
+      "name": "Diabełek",
+      "type": "saddle",
+      "lat": 49.256733,
+      "lng": 20.003247,
+      "elevation": 1470.0,
+      "nearest_routing_node_id": "node/7925444895",
+      "distance_to_trail_m": 7
+    },
+    {
+      "id": "node/2107822733",
+      "name": "Diabliniec",
+      "type": "peak",
+      "lat": 49.256611,
+      "lng": 19.844667,
+      "elevation": 1241.0,
+      "nearest_routing_node_id": "node/1200790225",
+      "distance_to_trail_m": 487
+    },
+    {
+      "id": "node/4549628387",
+      "name": "Dudowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.210864,
+      "lng": 19.807319,
+      "elevation": 1815.0,
+      "nearest_routing_node_id": "node/4338036446",
+      "distance_to_trail_m": 736
+    },
+    {
+      "id": "node/3508398131",
+      "name": "Dwoista Siklawa",
+      "type": "waterfall",
+      "lat": 49.195377,
+      "lng": 20.064287,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1779864985",
+      "distance_to_trail_m": 488
+    },
+    {
+      "id": "node/3508402062",
+      "name": "Dwoista Siklawa",
+      "type": "waterfall",
+      "lat": 49.195713,
+      "lng": 20.064318,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1779864985",
+      "distance_to_trail_m": 503
+    },
+    {
+      "id": "relation/12980773",
+      "name": "Dwoiśniaczek",
+      "type": "water",
+      "lat": 49.230816,
+      "lng": 20.00259,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 334
+    },
+    {
+      "id": "way/200463480",
+      "name": "Dwoiśniak",
+      "type": "water",
+      "lat": 49.237941,
+      "lng": 19.997447,
+      "elevation": 1588.2,
+      "nearest_routing_node_id": "node/295645442",
+      "distance_to_trail_m": 110
+    },
+    {
+      "id": "node/9024500964",
+      "name": "Dymiąca Woda",
+      "type": "waterfall",
+      "lat": 49.183912,
+      "lng": 20.075949,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/4803367613",
+      "distance_to_trail_m": 391
+    },
+    {
+      "id": "node/9978523979",
+      "name": "Dziurawa Czuba",
+      "type": "peak",
+      "lat": 49.194753,
+      "lng": 20.041143,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 292
+    },
+    {
+      "id": "node/2359130651",
+      "name": "Dziurawa Przełęcz",
+      "type": "saddle",
+      "lat": 49.205542,
+      "lng": 19.773309,
+      "elevation": 1836.0,
+      "nearest_routing_node_id": "node/2359130651",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/8807314830",
+      "name": "Dziurawa Ściana",
+      "type": "peak",
+      "lat": 49.245524,
+      "lng": 19.872702,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 588
+    },
+    {
+      "id": "node/1295278134",
+      "name": "Długi Giewont",
+      "type": "peak",
+      "lat": 49.252087,
+      "lng": 19.93815,
+      "elevation": 1867.0,
+      "nearest_routing_node_id": "node/3741575976",
+      "distance_to_trail_m": 326
+    },
+    {
+      "id": "way/29239656",
+      "name": "Długi Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.226886,
+      "lng": 20.008914,
+      "elevation": 1783.0,
+      "nearest_routing_node_id": "node/3653329493",
+      "distance_to_trail_m": 219
+    },
+    {
+      "id": "way/174700529",
+      "name": "EnHotel",
+      "type": "guest_house",
+      "lat": 49.267625,
+      "lng": 19.979053,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3635984576",
+      "distance_to_trail_m": 38
+    },
+    {
+      "id": "node/11217424623",
+      "name": "Filipczański Wierch",
+      "type": "peak",
+      "lat": 49.274116,
+      "lng": 20.076514,
+      "elevation": 1223.0,
+      "nearest_routing_node_id": "node/11838227671",
+      "distance_to_trail_m": 242
+    },
+    {
+      "id": "node/11592361115",
+      "name": "Giewoncka Przełęcz",
+      "type": "saddle",
+      "lat": 49.249889,
+      "lng": 19.929639,
+      "elevation": 1709.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 196
+    },
+    {
+      "id": "node/11592361114",
+      "name": "Giewoncki Chłopek",
+      "type": "peak",
+      "lat": 49.249859,
+      "lng": 19.929161,
+      "elevation": 1730.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 164
+    },
+    {
+      "id": "node/11592361064",
+      "name": "Giewoncki Przechód",
+      "type": "saddle",
+      "lat": 49.250448,
+      "lng": 19.92811,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 167
+    },
+    {
+      "id": "way/300679695",
+      "name": "Gospoda \"Harnaś\"",
+      "type": "guest_house",
+      "lat": 49.275304,
+      "lng": 19.868303,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2120847437",
+      "distance_to_trail_m": 36
+    },
+    {
+      "id": "node/2102060425",
+      "name": "Goły Wierch",
+      "type": "peak",
+      "lat": 49.267542,
+      "lng": 20.096846,
+      "elevation": 1206.0,
+      "nearest_routing_node_id": "node/803745577",
+      "distance_to_trail_m": 62
+    },
+    {
+      "id": "node/10011307879",
+      "name": "Gościniec Polana Błociska",
+      "type": "guest_house",
+      "lat": 49.295783,
+      "lng": 20.072103,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11838257168",
+      "distance_to_trail_m": 321
+    },
+    {
+      "id": "node/3503801146",
+      "name": "Granacka Przełęcz",
+      "type": "saddle",
+      "lat": 49.227081,
+      "lng": 20.034473,
+      "elevation": 2145.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 73
+    },
+    {
+      "id": "node/3544034418",
+      "name": "Granat",
+      "type": "peak",
+      "lat": 49.207135,
+      "lng": 20.086911,
+      "elevation": 1751.0,
+      "nearest_routing_node_id": "node/5983666382",
+      "distance_to_trail_m": 818
+    },
+    {
+      "id": "node/8809914835",
+      "name": "Grześ",
+      "type": "peak",
+      "lat": 49.259542,
+      "lng": 19.810377,
+      "elevation": 1050.0,
+      "nearest_routing_node_id": "node/10221234397",
+      "distance_to_trail_m": 356
+    },
+    {
+      "id": "node/9034231033",
+      "name": "Grzybowiec",
+      "type": "peak",
+      "lat": 49.256552,
+      "lng": 19.91715,
+      "elevation": 1417.0,
+      "nearest_routing_node_id": "node/2569949692",
+      "distance_to_trail_m": 113
+    },
+    {
+      "id": "node/10128847999",
+      "name": "Gubalec",
+      "type": "peak",
+      "lat": 49.231735,
+      "lng": 19.871827,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 696
+    },
+    {
+      "id": "node/11453832108",
+      "name": "Gáborovo sedlo",
+      "type": "saddle",
+      "lat": 49.201341,
+      "lng": 19.826666,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1202079414",
+      "distance_to_trail_m": 348
+    },
+    {
+      "id": "node/9957754030",
+      "name": "Gąsienicowa Przełączka",
+      "type": "saddle",
+      "lat": 49.219364,
+      "lng": 20.011054,
+      "elevation": 2265.0,
+      "nearest_routing_node_id": "node/460927821",
+      "distance_to_trail_m": 108
+    },
+    {
+      "id": "node/2721684697",
+      "name": "Gąsienicowa Turnia",
+      "type": "peak",
+      "lat": 49.219314,
+      "lng": 20.012013,
+      "elevation": 2280.0,
+      "nearest_routing_node_id": "node/460927821",
+      "distance_to_trail_m": 178
+    },
+    {
+      "id": "node/803761539",
+      "name": "Gęsia Szyja",
+      "type": "peak",
+      "lat": 49.259029,
+      "lng": 20.076519,
+      "elevation": 1489.0,
+      "nearest_routing_node_id": "node/6719914741",
+      "distance_to_trail_m": 8
+    },
+    {
+      "id": "node/3538992122",
+      "name": "Gładka Kotelnica",
+      "type": "peak",
+      "lat": 49.20256,
+      "lng": 20.019372,
+      "elevation": 1990.0,
+      "nearest_routing_node_id": "node/5980841173",
+      "distance_to_trail_m": 762
+    },
+    {
+      "id": "node/1149300478",
+      "name": "Gładka Przełęcz",
+      "type": "saddle",
+      "lat": 49.207944,
+      "lng": 20.012562,
+      "elevation": 1994.0,
+      "nearest_routing_node_id": "node/1149300478",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/10840390984",
+      "name": "Gładka Turnia",
+      "type": "peak",
+      "lat": 49.236363,
+      "lng": 19.878368,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 746
+    },
+    {
+      "id": "node/3538994697",
+      "name": "Gładka Ławka",
+      "type": "saddle",
+      "lat": 49.204057,
+      "lng": 20.017558,
+      "elevation": 1965.0,
+      "nearest_routing_node_id": "node/7813850021",
+      "distance_to_trail_m": 564
+    },
+    {
+      "id": "node/385123541",
+      "name": "Gładki Wierch",
+      "type": "peak",
+      "lat": 49.206776,
+      "lng": 20.013413,
+      "elevation": 2065.0,
+      "nearest_routing_node_id": "node/1149300478",
+      "distance_to_trail_m": 144
+    },
+    {
+      "id": "node/11079467141",
+      "name": "Głazista Czubka",
+      "type": "peak",
+      "lat": 49.227858,
+      "lng": 19.903497,
+      "elevation": 1982.0,
+      "nearest_routing_node_id": "node/5968611523",
+      "distance_to_trail_m": 344
+    },
+    {
+      "id": "node/9978523978",
+      "name": "Głaźna Czuba",
+      "type": "peak",
+      "lat": 49.192867,
+      "lng": 20.043822,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3344854169",
+      "distance_to_trail_m": 150
+    },
+    {
+      "id": "node/8807314843",
+      "name": "Głucha Skała",
+      "type": "peak",
+      "lat": 49.248614,
+      "lng": 19.865516,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 29
+    },
+    {
+      "id": "node/3510051397",
+      "name": "Hińczowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.187706,
+      "lng": 20.055245,
+      "elevation": 2323.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 33
+    },
+    {
+      "id": "node/3068056463",
+      "name": "Hlińska Przełęcz",
+      "type": "saddle",
+      "lat": 49.201175,
+      "lng": 19.874597,
+      "elevation": 1906.0,
+      "nearest_routing_node_id": "node/5175485213",
+      "distance_to_trail_m": 83
+    },
+    {
+      "id": "node/1295379313",
+      "name": "Hrubas",
+      "type": "peak",
+      "lat": 49.245198,
+      "lng": 19.80067,
+      "elevation": 1499.0,
+      "nearest_routing_node_id": "node/2510760172",
+      "distance_to_trail_m": 720
+    },
+    {
+      "id": "node/2100603506",
+      "name": "Hruby Regiel",
+      "type": "peak",
+      "lat": 49.267778,
+      "lng": 19.889444,
+      "elevation": 1339.0,
+      "nearest_routing_node_id": "node/4369792598",
+      "distance_to_trail_m": 682
+    },
+    {
+      "id": "node/8809914845",
+      "name": "Huciański Klin",
+      "type": "peak",
+      "lat": 49.260427,
+      "lng": 19.822537,
+      "elevation": 1180.0,
+      "nearest_routing_node_id": "node/9827041741",
+      "distance_to_trail_m": 382
+    },
+    {
+      "id": "node/8809914851",
+      "name": "Huciańskie Siodło",
+      "type": "saddle",
+      "lat": 49.260309,
+      "lng": 19.832679,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13236811255",
+      "distance_to_trail_m": 101
+    },
+    {
+      "id": "node/1333271264",
+      "name": "Igła",
+      "type": "peak",
+      "lat": 49.264562,
+      "lng": 19.950132,
+      "elevation": 1207.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 382
+    },
+    {
+      "id": "node/1125062544",
+      "name": "Iwaniacka Przełęcz",
+      "type": "saddle",
+      "lat": 49.232175,
+      "lng": 19.836304,
+      "elevation": 1459.0,
+      "nearest_routing_node_id": "node/1125062544",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/11090149599",
+      "name": "Jaferowa Kopa",
+      "type": "peak",
+      "lat": 49.213756,
+      "lng": 19.869261,
+      "elevation": 1595.0,
+      "nearest_routing_node_id": "node/1943389694",
+      "distance_to_trail_m": 1029
+    },
+    {
+      "id": "node/1295379316",
+      "name": "Jamborowy Wierch",
+      "type": "peak",
+      "lat": 49.245357,
+      "lng": 19.778443,
+      "elevation": 1565.0,
+      "nearest_routing_node_id": "node/1296414246",
+      "distance_to_trail_m": 399
+    },
+    {
+      "id": "node/3568740193",
+      "name": "Jamska Czuba",
+      "type": "peak",
+      "lat": 49.256337,
+      "lng": 19.818971,
+      "elevation": 1108.0,
+      "nearest_routing_node_id": "node/3694146467",
+      "distance_to_trail_m": 215
+    },
+    {
+      "id": "node/3560916856",
+      "name": "Jarząbcza Przełęcz",
+      "type": "saddle",
+      "lat": 49.204604,
+      "lng": 19.803696,
+      "elevation": 1955.0,
+      "nearest_routing_node_id": "node/1224881947",
+      "distance_to_trail_m": 936
+    },
+    {
+      "id": "node/4549628386",
+      "name": "Jarząbczy Kopieniec",
+      "type": "peak",
+      "lat": 49.207601,
+      "lng": 19.80326,
+      "elevation": 1702.0,
+      "nearest_routing_node_id": "node/4338036446",
+      "distance_to_trail_m": 1106
+    },
+    {
+      "id": "node/8806223755",
+      "name": "Jasiowe Turnie",
+      "type": "peak",
+      "lat": 49.274484,
+      "lng": 19.914685,
+      "elevation": 1050.0,
+      "nearest_routing_node_id": "node/132273668",
+      "distance_to_trail_m": 541
+    },
+    {
+      "id": "node/11603241283",
+      "name": "Jastrzębia Turnia",
+      "type": "peak",
+      "lat": 49.275746,
+      "lng": 19.967139,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5891090049",
+      "distance_to_trail_m": 376
+    },
+    {
+      "id": "node/11603241071",
+      "name": "Jatki",
+      "type": "peak",
+      "lat": 49.264971,
+      "lng": 19.921362,
+      "elevation": 1377.0,
+      "nearest_routing_node_id": "node/3001984396",
+      "distance_to_trail_m": 639
+    },
+    {
+      "id": "node/8499322250",
+      "name": "Jaworzyńska Czuba",
+      "type": "peak",
+      "lat": 49.249069,
+      "lng": 19.993409,
+      "elevation": 1625.0,
+      "nearest_routing_node_id": "node/7925441465",
+      "distance_to_trail_m": 623
+    },
+    {
+      "id": "node/8499094279",
+      "name": "Jaworzyńska Przełęcz",
+      "type": "saddle",
+      "lat": 49.248367,
+      "lng": 19.996312,
+      "elevation": 1605.0,
+      "nearest_routing_node_id": "node/10773530871",
+      "distance_to_trail_m": 605
+    },
+    {
+      "id": "node/3568750126",
+      "name": "Jaworzyński Przysłop",
+      "type": "peak",
+      "lat": 49.254123,
+      "lng": 19.804767,
+      "elevation": 1269.0,
+      "nearest_routing_node_id": "node/11359870803",
+      "distance_to_trail_m": 702
+    },
+    {
+      "id": "way/200463481",
+      "name": "Jedyniak",
+      "type": "water",
+      "lat": 49.239639,
+      "lng": 19.99906,
+      "elevation": 1577.0,
+      "nearest_routing_node_id": "node/295645429",
+      "distance_to_trail_m": 282
+    },
+    {
+      "id": "node/11581710075",
+      "name": "Juhaska Kopa",
+      "type": "peak",
+      "lat": 49.253682,
+      "lng": 19.94418,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5627166663",
+      "distance_to_trail_m": 659
+    },
+    {
+      "id": "node/3600513252",
+      "name": "Juhaska Przehyba",
+      "type": "saddle",
+      "lat": 49.2536,
+      "lng": 19.943939,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5627166663",
+      "distance_to_trail_m": 661
+    },
+    {
+      "id": "node/11581710098",
+      "name": "Juhaska Turnia",
+      "type": "peak",
+      "lat": 49.253429,
+      "lng": 19.942635,
+      "elevation": 1834.0,
+      "nearest_routing_node_id": "node/3741575976",
+      "distance_to_trail_m": 684
+    },
+    {
+      "id": "node/3560986607",
+      "name": "Juraniowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.252532,
+      "lng": 19.788466,
+      "elevation": 1382.0,
+      "nearest_routing_node_id": "node/3560986607",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/1295278146",
+      "name": "Kalacka Kopa",
+      "type": "peak",
+      "lat": 49.254429,
+      "lng": 19.953758,
+      "elevation": 1601.0,
+      "nearest_routing_node_id": "node/9514597545",
+      "distance_to_trail_m": 536
+    },
+    {
+      "id": "node/1295278129",
+      "name": "Kalacka Turnia",
+      "type": "peak",
+      "lat": 49.255875,
+      "lng": 19.964257,
+      "elevation": 1383.0,
+      "nearest_routing_node_id": "node/314262319",
+      "distance_to_trail_m": 324
+    },
+    {
+      "id": "node/3600515230",
+      "name": "Kalackie Siodło",
+      "type": "saddle",
+      "lat": 49.255017,
+      "lng": 19.962533,
+      "elevation": 1404.0,
+      "nearest_routing_node_id": "node/2570078091",
+      "distance_to_trail_m": 422
+    },
+    {
+      "id": "node/355985946",
+      "name": "Karb",
+      "type": "saddle",
+      "lat": 49.228811,
+      "lng": 20.011708,
+      "elevation": 1853.0,
+      "nearest_routing_node_id": "node/355985946",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3504561976",
+      "name": "Karbik",
+      "type": "saddle",
+      "lat": 49.236856,
+      "lng": 20.069371,
+      "elevation": 1951.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 1312
+    },
+    {
+      "id": "way/1161804201",
+      "name": "Kasprowy Stawek",
+      "type": "water",
+      "lat": 49.250633,
+      "lng": 19.980065,
+      "elevation": 1290.0,
+      "nearest_routing_node_id": "node/5949252006",
+      "distance_to_trail_m": 355
+    },
+    {
+      "id": "node/3552158247",
+      "name": "Kasprowy Wierch",
+      "type": "peak",
+      "lat": 49.231801,
+      "lng": 19.981561,
+      "elevation": 1987.0,
+      "nearest_routing_node_id": "node/1195252197",
+      "distance_to_trail_m": 57
+    },
+    {
+      "id": "node/3075294960",
+      "name": "Kazalnica",
+      "type": "peak",
+      "lat": 49.229588,
+      "lng": 19.893207,
+      "elevation": 1767.0,
+      "nearest_routing_node_id": "node/7838797301",
+      "distance_to_trail_m": 724
+    },
+    {
+      "id": "node/8809479339",
+      "name": "Kazalnica",
+      "type": "peak",
+      "lat": 49.246798,
+      "lng": 19.860404,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 408
+    },
+    {
+      "id": "node/3508700214",
+      "name": "Kazalnica Mięguszowiecka",
+      "type": "peak",
+      "lat": 49.185204,
+      "lng": 20.069727,
+      "elevation": 2159.0,
+      "nearest_routing_node_id": "node/9952912498",
+      "distance_to_trail_m": 1
+    },
+    {
+      "id": "node/8807314874",
+      "name": "Kciuk",
+      "type": "peak",
+      "lat": 49.247608,
+      "lng": 19.868533,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 236
+    },
+    {
+      "id": "node/3751210922",
+      "name": "Kiernia",
+      "type": "peak",
+      "lat": 49.265647,
+      "lng": 19.923068,
+      "elevation": 1317.0,
+      "nearest_routing_node_id": "node/11704246475",
+      "distance_to_trail_m": 559
+    },
+    {
+      "id": "node/8806223756",
+      "name": "Kierpcówka",
+      "type": "peak",
+      "lat": 49.276027,
+      "lng": 19.903087,
+      "elevation": 980.0,
+      "nearest_routing_node_id": "node/3076230372",
+      "distance_to_trail_m": 244
+    },
+    {
+      "id": "node/9017604431",
+      "name": "Kieszonkowy Przechód",
+      "type": "saddle",
+      "lat": 49.20192,
+      "lng": 20.057098,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384075571",
+      "distance_to_trail_m": 436
+    },
+    {
+      "id": "way/300679697",
+      "name": "Kirowy Gościniec",
+      "type": "guest_house",
+      "lat": 49.276965,
+      "lng": 19.870695,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3047868901",
+      "distance_to_trail_m": 9
+    },
+    {
+      "id": "node/3568646693",
+      "name": "Klinowa Czuba",
+      "type": "peak",
+      "lat": 49.261703,
+      "lng": 19.825787,
+      "elevation": 1276.0,
+      "nearest_routing_node_id": "node/9827041741",
+      "distance_to_trail_m": 373
+    },
+    {
+      "id": "node/3568653493",
+      "name": "Klinowe Siodło",
+      "type": "saddle",
+      "lat": 49.261604,
+      "lng": 19.826911,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9827041741",
+      "distance_to_trail_m": 355
+    },
+    {
+      "id": "node/3598422900",
+      "name": "Kobylarz",
+      "type": "peak",
+      "lat": 49.246196,
+      "lng": 19.903125,
+      "elevation": 1430.0,
+      "nearest_routing_node_id": "node/2009108458",
+      "distance_to_trail_m": 612
+    },
+    {
+      "id": "node/3600809099",
+      "name": "Kobylarzowa Turnia",
+      "type": "peak",
+      "lat": 49.245783,
+      "lng": 19.90952,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1200977310",
+      "distance_to_trail_m": 428
+    },
+    {
+      "id": "node/11603241276",
+      "name": "Kogutki",
+      "type": "peak",
+      "lat": 49.277542,
+      "lng": 19.965895,
+      "elevation": 1011.0,
+      "nearest_routing_node_id": "node/5891090049",
+      "distance_to_trail_m": 254
+    },
+    {
+      "id": "node/11603241277",
+      "name": "Kogutki",
+      "type": "peak",
+      "lat": 49.277486,
+      "lng": 19.96577,
+      "elevation": 1013.0,
+      "nearest_routing_node_id": "node/5891090049",
+      "distance_to_trail_m": 265
+    },
+    {
+      "id": "node/8806223759",
+      "name": "Kohut",
+      "type": "peak",
+      "lat": 49.265598,
+      "lng": 19.906224,
+      "elevation": 1014.0,
+      "nearest_routing_node_id": "node/469733515",
+      "distance_to_trail_m": 419
+    },
+    {
+      "id": "node/8807314828",
+      "name": "Kolisty Przechód",
+      "type": "saddle",
+      "lat": 49.246002,
+      "lng": 19.872972,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 561
+    },
+    {
+      "id": "node/3571707793",
+      "name": "Kominiarska Przełęcz",
+      "type": "saddle",
+      "lat": 49.255583,
+      "lng": 19.83412,
+      "elevation": 1307.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 331
+    },
+    {
+      "id": "node/1295379325",
+      "name": "Kominiarski Wierch",
+      "type": "peak",
+      "lat": 49.240814,
+      "lng": 19.835541,
+      "elevation": 1829.0,
+      "nearest_routing_node_id": "node/1125062544",
+      "distance_to_trail_m": 962
+    },
+    {
+      "id": "node/3571711493",
+      "name": "Kominiarskie Siodło",
+      "type": "saddle",
+      "lat": 49.256815,
+      "lng": 19.841966,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 485
+    },
+    {
+      "id": "node/11595734713",
+      "name": "Kondracka Kopka",
+      "type": "peak",
+      "lat": 49.248121,
+      "lng": 19.933126,
+      "elevation": 1776.0,
+      "nearest_routing_node_id": "node/467480919",
+      "distance_to_trail_m": 81
+    },
+    {
+      "id": "node/1295341386",
+      "name": "Kondracka Przełęcz",
+      "type": "saddle",
+      "lat": 49.2462,
+      "lng": 19.932333,
+      "elevation": 1725.0,
+      "nearest_routing_node_id": "node/467480905",
+      "distance_to_trail_m": 18
+    },
+    {
+      "id": "node/10027944559",
+      "name": "Kondratowy Przechód",
+      "type": "saddle",
+      "lat": 49.23471,
+      "lng": 19.957297,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2570020515",
+      "distance_to_trail_m": 1056
+    },
+    {
+      "id": "node/1295379320",
+      "name": "Kopa",
+      "type": "peak",
+      "lat": 49.212331,
+      "lng": 19.774922,
+      "elevation": 1596.0,
+      "nearest_routing_node_id": "node/2359130651",
+      "distance_to_trail_m": 764
+    },
+    {
+      "id": "node/3560695684",
+      "name": "Kopa Kondracka",
+      "type": "peak",
+      "lat": 49.236541,
+      "lng": 19.932268,
+      "elevation": 2005.0,
+      "nearest_routing_node_id": "node/3552162784",
+      "distance_to_trail_m": 5
+    },
+    {
+      "id": "node/6178007809",
+      "name": "Kopa Magury",
+      "type": "peak",
+      "lat": 49.248612,
+      "lng": 20.000697,
+      "elevation": 1704.0,
+      "nearest_routing_node_id": "node/10773530871",
+      "distance_to_trail_m": 355
+    },
+    {
+      "id": "node/3560918391",
+      "name": "Kopa Prawdy",
+      "type": "peak",
+      "lat": 49.20223,
+      "lng": 19.800817,
+      "elevation": 2027.0,
+      "nearest_routing_node_id": "node/1224881947",
+      "distance_to_trail_m": 600
+    },
+    {
+      "id": "node/9451044777",
+      "name": "Kopa nad Białym",
+      "type": "peak",
+      "lat": 49.275456,
+      "lng": 19.95398,
+      "elevation": 1035.0,
+      "nearest_routing_node_id": "node/11708046728",
+      "distance_to_trail_m": 803
+    },
+    {
+      "id": "node/9032605698",
+      "name": "Kopa nad Krzyżnem",
+      "type": "peak",
+      "lat": 49.228471,
+      "lng": 20.046412,
+      "elevation": 2135.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 26
+    },
+    {
+      "id": "node/2359130652",
+      "name": "Kopieńcowy Przechód",
+      "type": "saddle",
+      "lat": 49.237306,
+      "lng": 19.810278,
+      "elevation": 1205.0,
+      "nearest_routing_node_id": "node/1124709499",
+      "distance_to_trail_m": 357
+    },
+    {
+      "id": "node/3568554193",
+      "name": "Koryciańska Czuba",
+      "type": "peak",
+      "lat": 49.270505,
+      "lng": 19.801906,
+      "elevation": 1161.0,
+      "nearest_routing_node_id": "node/11359870901",
+      "distance_to_trail_m": 171
+    },
+    {
+      "id": "way/1051469781",
+      "name": "Kosowinowe Oczko",
+      "type": "water",
+      "lat": 49.202054,
+      "lng": 19.846927,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1799844535",
+      "distance_to_trail_m": 1007
+    },
+    {
+      "id": "way/343888526",
+      "name": "Kotlinowy Stawek",
+      "type": "water",
+      "lat": 49.229627,
+      "lng": 19.996832,
+      "elevation": 1680.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 451
+    },
+    {
+      "id": "node/9512402786",
+      "name": "Kotlinowy Wierch",
+      "type": "peak",
+      "lat": 49.271192,
+      "lng": 20.029307,
+      "elevation": 1304.0,
+      "nearest_routing_node_id": "node/2445052124",
+      "distance_to_trail_m": 413
+    },
+    {
+      "id": "node/1295379312",
+      "name": "Kotłowa Czubka",
+      "type": "peak",
+      "lat": 49.206962,
+      "lng": 19.83492,
+      "elevation": 1840.0,
+      "nearest_routing_node_id": "node/1202227723",
+      "distance_to_trail_m": 248
+    },
+    {
+      "id": "node/3571413493",
+      "name": "Kotłowe Siodło",
+      "type": "saddle",
+      "lat": 49.209772,
+      "lng": 19.835649,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/7804655469",
+      "distance_to_trail_m": 185
+    },
+    {
+      "id": "node/460928401",
+      "name": "Kozi Wierch",
+      "type": "peak",
+      "lat": 49.218317,
+      "lng": 20.028705,
+      "elevation": 2291.0,
+      "nearest_routing_node_id": "node/460928364",
+      "distance_to_trail_m": 58
+    },
+    {
+      "id": "node/460928198",
+      "name": "Kozia Przełęcz",
+      "type": "saddle",
+      "lat": 49.219552,
+      "lng": 20.025325,
+      "elevation": 2126.0,
+      "nearest_routing_node_id": "node/460928198",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/460928364",
+      "name": "Kozia Przełęcz Wyżnia",
+      "type": "saddle",
+      "lat": 49.218485,
+      "lng": 20.027949,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460928364",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/1103563275",
+      "name": "Kozie Czuby",
+      "type": "peak",
+      "lat": 49.218681,
+      "lng": 20.027648,
+      "elevation": 2263.0,
+      "nearest_routing_node_id": "node/460928364",
+      "distance_to_trail_m": 31
+    },
+    {
+      "id": "node/9041102944",
+      "name": "Kozie Czuby",
+      "type": "peak",
+      "lat": 49.219013,
+      "lng": 20.026098,
+      "elevation": 2239.0,
+      "nearest_routing_node_id": "node/460928226",
+      "distance_to_trail_m": 72
+    },
+    {
+      "id": "node/9041102947",
+      "name": "Kozie Czuby",
+      "type": "peak",
+      "lat": 49.218803,
+      "lng": 20.026939,
+      "elevation": 2256.0,
+      "nearest_routing_node_id": "node/460928364",
+      "distance_to_trail_m": 81
+    },
+    {
+      "id": "node/3494317589",
+      "name": "Kołowa Czuba",
+      "type": "peak",
+      "lat": 49.215095,
+      "lng": 20.020393,
+      "elevation": 2105.0,
+      "nearest_routing_node_id": "node/11113904760",
+      "distance_to_trail_m": 314
+    },
+    {
+      "id": "node/2569948267",
+      "name": "Kończysta Turnia",
+      "type": "peak",
+      "lat": 49.263638,
+      "lng": 19.877774,
+      "elevation": 1248.0,
+      "nearest_routing_node_id": "node/9709524949",
+      "distance_to_trail_m": 109
+    },
+    {
+      "id": "node/1294543842",
+      "name": "Kończysty Wierch",
+      "type": "peak",
+      "lat": 49.205658,
+      "lng": 19.807585,
+      "elevation": 2002.0,
+      "nearest_routing_node_id": "node/1202079374",
+      "distance_to_trail_m": 1120
+    },
+    {
+      "id": "node/6238091106",
+      "name": "Kościelcowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.224443,
+      "lng": 20.014978,
+      "elevation": 2110.0,
+      "nearest_routing_node_id": "node/355985949",
+      "distance_to_trail_m": 87
+    },
+    {
+      "id": "node/355985949",
+      "name": "Kościelec",
+      "type": "peak",
+      "lat": 49.225179,
+      "lng": 20.014583,
+      "elevation": 2155.0,
+      "nearest_routing_node_id": "node/355985949",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3600157703",
+      "name": "Kościołki",
+      "type": "peak",
+      "lat": 49.226252,
+      "lng": 19.89442,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/797774758",
+      "distance_to_trail_m": 526
+    },
+    {
+      "id": "node/3600160026",
+      "name": "Kościołki",
+      "type": "peak",
+      "lat": 49.22637,
+      "lng": 19.895768,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/797774758",
+      "distance_to_trail_m": 528
+    },
+    {
+      "id": "node/2100603508",
+      "name": "Krokiew",
+      "type": "peak",
+      "lat": 49.267122,
+      "lng": 19.964607,
+      "elevation": 1378.0,
+      "nearest_routing_node_id": "node/7925508897",
+      "distance_to_trail_m": 459
+    },
+    {
+      "id": "node/2359130653",
+      "name": "Kryta Czuba",
+      "type": "peak",
+      "lat": 49.263972,
+      "lng": 19.806,
+      "elevation": 1246.0,
+      "nearest_routing_node_id": "node/13238662662",
+      "distance_to_trail_m": 58
+    },
+    {
+      "id": "node/1295341402",
+      "name": "Krzesanica",
+      "type": "peak",
+      "lat": 49.231665,
+      "lng": 19.909492,
+      "elevation": 2122.0,
+      "nearest_routing_node_id": "node/7838797312",
+      "distance_to_trail_m": 359
+    },
+    {
+      "id": "node/1200864424",
+      "name": "Krzyżne",
+      "type": "saddle",
+      "lat": 49.228652,
+      "lng": 20.047278,
+      "elevation": 2112.0,
+      "nearest_routing_node_id": "node/1200864424",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/8809914850",
+      "name": "Kuca",
+      "type": "peak",
+      "lat": 49.261043,
+      "lng": 19.831997,
+      "elevation": 1294.0,
+      "nearest_routing_node_id": "node/13236811255",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "relation/9968121",
+      "name": "Kurtkowiec",
+      "type": "water",
+      "lat": 49.229354,
+      "lng": 20.003009,
+      "elevation": 1686.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 177
+    },
+    {
+      "id": "node/9004693486",
+      "name": "Kępa",
+      "type": "peak",
+      "lat": 49.214606,
+      "lng": 20.069655,
+      "elevation": 1683.0,
+      "nearest_routing_node_id": "node/11157563249",
+      "distance_to_trail_m": 515
+    },
+    {
+      "id": "node/3571695305",
+      "name": "Lejowe Siodło",
+      "type": "saddle",
+      "lat": 49.263009,
+      "lng": 19.833227,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13236811255",
+      "distance_to_trail_m": 240
+    },
+    {
+      "id": "node/9957754070",
+      "name": "Liliowa Kopka",
+      "type": "peak",
+      "lat": 49.226281,
+      "lng": 19.989769,
+      "elevation": 1979.0,
+      "nearest_routing_node_id": "node/295648381",
+      "distance_to_trail_m": 148
+    },
+    {
+      "id": "node/8993678463",
+      "name": "Limbowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.22264,
+      "lng": 20.079207,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/991639132",
+      "distance_to_trail_m": 798
+    },
+    {
+      "id": "way/200463482",
+      "name": "Litworowy Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.233557,
+      "lng": 19.997011,
+      "elevation": 1618.0,
+      "nearest_routing_node_id": "node/308092499",
+      "distance_to_trail_m": 255
+    },
+    {
+      "id": "node/10700151985",
+      "name": "Lodowe Siodło",
+      "type": "saddle",
+      "lat": 49.235329,
+      "lng": 19.892111,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/797774723",
+      "distance_to_trail_m": 316
+    },
+    {
+      "id": "node/9445410603",
+      "name": "Magurska Przełęcz",
+      "type": "saddle",
+      "lat": 49.251668,
+      "lng": 20.003482,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/10773530868",
+      "distance_to_trail_m": 1
+    },
+    {
+      "id": "node/1103423428",
+      "name": "Marchwiczna Przełęcz",
+      "type": "saddle",
+      "lat": 49.206078,
+      "lng": 20.05651,
+      "elevation": 2055.0,
+      "nearest_routing_node_id": "node/384075571",
+      "distance_to_trail_m": 870
+    },
+    {
+      "id": "node/3544043717",
+      "name": "Marusarzowa Przełączka",
+      "type": "saddle",
+      "lat": 49.195379,
+      "lng": 20.084459,
+      "elevation": 2060.0,
+      "nearest_routing_node_id": "node/13383464101",
+      "distance_to_trail_m": 76
+    },
+    {
+      "id": "node/3544051107",
+      "name": "Marusarzowa Turnia",
+      "type": "peak",
+      "lat": 49.194869,
+      "lng": 20.084296,
+      "elevation": 2075.0,
+      "nearest_routing_node_id": "node/12743887628",
+      "distance_to_trail_m": 42
+    },
+    {
+      "id": "node/8809479336",
+      "name": "Maturkowa Turnia",
+      "type": "peak",
+      "lat": 49.246536,
+      "lng": 19.860934,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 388
+    },
+    {
+      "id": "node/2639389008",
+      "name": "Mała Buczynowa Turnia",
+      "type": "peak",
+      "lat": 49.227426,
+      "lng": 20.043086,
+      "elevation": 2172.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 243
+    },
+    {
+      "id": "node/8809914868",
+      "name": "Mała Furkaska",
+      "type": "peak",
+      "lat": 49.27522,
+      "lng": 19.813627,
+      "elevation": 1132.0,
+      "nearest_routing_node_id": "node/12899048298",
+      "distance_to_trail_m": 266
+    },
+    {
+      "id": "node/1496149193",
+      "name": "Mała Kopka",
+      "type": "peak",
+      "lat": 49.236404,
+      "lng": 20.035092,
+      "elevation": 1793.0,
+      "nearest_routing_node_id": "node/1200866533",
+      "distance_to_trail_m": 772
+    },
+    {
+      "id": "node/3499289916",
+      "name": "Mała Koszysta",
+      "type": "peak",
+      "lat": 49.243757,
+      "lng": 20.053527,
+      "elevation": 2014.0,
+      "nearest_routing_node_id": "node/3499289916",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3538967097",
+      "name": "Mała Kotelnica",
+      "type": "peak",
+      "lat": 49.200436,
+      "lng": 20.026493,
+      "elevation": 1974.0,
+      "nearest_routing_node_id": "node/11379617464",
+      "distance_to_trail_m": 1024
+    },
+    {
+      "id": "node/8518741431",
+      "name": "Mała Krokiew",
+      "type": "peak",
+      "lat": 49.264058,
+      "lng": 19.963754,
+      "elevation": 1365.0,
+      "nearest_routing_node_id": "node/7925508897",
+      "distance_to_trail_m": 300
+    },
+    {
+      "id": "node/3633405165",
+      "name": "Mała Królowa Kopa",
+      "type": "peak",
+      "lat": 49.252611,
+      "lng": 20.002692,
+      "elevation": 1577.0,
+      "nearest_routing_node_id": "node/10773530868",
+      "distance_to_trail_m": 120
+    },
+    {
+      "id": "node/9032609524",
+      "name": "Mała Orla Turniczka",
+      "type": "peak",
+      "lat": 49.227206,
+      "lng": 20.035313,
+      "elevation": 2158.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 135
+    },
+    {
+      "id": "node/5325488063",
+      "name": "Mała Przełączka",
+      "type": "saddle",
+      "lat": 49.226756,
+      "lng": 19.903686,
+      "elevation": 1915.0,
+      "nearest_routing_node_id": "node/5968611523",
+      "distance_to_trail_m": 467
+    },
+    {
+      "id": "node/3508649878",
+      "name": "Mała Rogata Szczerbina",
+      "type": "saddle",
+      "lat": 49.18003,
+      "lng": 20.072575,
+      "elevation": 2355.0,
+      "nearest_routing_node_id": "node/1779828445",
+      "distance_to_trail_m": 580
+    },
+    {
+      "id": "node/9973083717",
+      "name": "Mała Walentkowa Czuba",
+      "type": "peak",
+      "lat": 49.215894,
+      "lng": 20.009,
+      "elevation": 2108.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 256
+    },
+    {
+      "id": "node/3509896264",
+      "name": "Mała Wołowa Szczerbina",
+      "type": "saddle",
+      "lat": 49.180259,
+      "lng": 20.071354,
+      "elevation": 2355.0,
+      "nearest_routing_node_id": "node/1779828445",
+      "distance_to_trail_m": 528
+    },
+    {
+      "id": "way/402225672",
+      "name": "Małe Morskie Oko",
+      "type": "water",
+      "lat": 49.203208,
+      "lng": 20.071879,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384360353",
+      "distance_to_trail_m": 92
+    },
+    {
+      "id": "node/9447967719",
+      "name": "Małe Uhrocie Kasprowe",
+      "type": "peak",
+      "lat": 49.243445,
+      "lng": 19.997006,
+      "elevation": 1750.0,
+      "nearest_routing_node_id": "node/295645429",
+      "distance_to_trail_m": 409
+    },
+    {
+      "id": "way/988954369",
+      "name": "Małe Żabie Oko",
+      "type": "water",
+      "lat": 49.20379,
+      "lng": 20.072835,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384360353",
+      "distance_to_trail_m": 131
+    },
+    {
+      "id": "node/496805360",
+      "name": "Małołączniak",
+      "type": "peak",
+      "lat": 49.23583,
+      "lng": 19.919223,
+      "elevation": 2096.0,
+      "nearest_routing_node_id": "node/7838744158",
+      "distance_to_trail_m": 15
+    },
+    {
+      "id": "node/1294543765",
+      "name": "Mały Kopieniec",
+      "type": "peak",
+      "lat": 49.23493,
+      "lng": 19.810506,
+      "elevation": 1329.0,
+      "nearest_routing_node_id": "node/1124709499",
+      "distance_to_trail_m": 540
+    },
+    {
+      "id": "node/7917548639",
+      "name": "Mały Kopieniec",
+      "type": "peak",
+      "lat": 49.276192,
+      "lng": 20.004981,
+      "elevation": 1170.0,
+      "nearest_routing_node_id": "node/5868911616",
+      "distance_to_trail_m": 279
+    },
+    {
+      "id": "node/460928032",
+      "name": "Mały Kozi Wierch",
+      "type": "peak",
+      "lat": 49.218922,
+      "lng": 20.020038,
+      "elevation": 2226.0,
+      "nearest_routing_node_id": "node/3755385023",
+      "distance_to_trail_m": 188
+    },
+    {
+      "id": "node/3560285056",
+      "name": "Mały Kościelec",
+      "type": "peak",
+      "lat": 49.229934,
+      "lng": 20.011406,
+      "elevation": 1866.0,
+      "nearest_routing_node_id": "node/355985946",
+      "distance_to_trail_m": 127
+    },
+    {
+      "id": "node/2107834137",
+      "name": "Mały Opalony Wierch",
+      "type": "peak",
+      "lat": 49.251944,
+      "lng": 19.833056,
+      "elevation": 1448.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 740
+    },
+    {
+      "id": "node/2359130654",
+      "name": "Mały Regiel",
+      "type": "peak",
+      "lat": 49.271028,
+      "lng": 19.877556,
+      "elevation": 1141.0,
+      "nearest_routing_node_id": "node/9709524963",
+      "distance_to_trail_m": 83
+    },
+    {
+      "id": "way/29239547",
+      "name": "Mały Staw Polski",
+      "type": "water",
+      "lat": 49.211839,
+      "lng": 20.045422,
+      "elevation": 1668.0,
+      "nearest_routing_node_id": "node/11156672432",
+      "distance_to_trail_m": 42
+    },
+    {
+      "id": "node/3503810011",
+      "name": "Mały Wołoszyn",
+      "type": "peak",
+      "lat": 49.228524,
+      "lng": 20.049233,
+      "elevation": 2145.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 105
+    },
+    {
+      "id": "node/6178007810",
+      "name": "Mechy",
+      "type": "saddle",
+      "lat": 49.246831,
+      "lng": 20.000037,
+      "elevation": 1662.0,
+      "nearest_routing_node_id": "node/295621492",
+      "distance_to_trail_m": 485
+    },
+    {
+      "id": "node/1103423432",
+      "name": "Miedziane",
+      "type": "peak",
+      "lat": 49.201023,
+      "lng": 20.047371,
+      "elevation": 2233.0,
+      "nearest_routing_node_id": "node/11383307214",
+      "distance_to_trail_m": 383
+    },
+    {
+      "id": "node/8809394996",
+      "name": "Między Ściany",
+      "type": "peak",
+      "lat": 49.275847,
+      "lng": 19.852722,
+      "elevation": 1026.0,
+      "nearest_routing_node_id": "node/1294726701",
+      "distance_to_trail_m": 287
+    },
+    {
+      "id": "node/615589481",
+      "name": "Mięguszowiecka Przełęcz pod Chłopkiem",
+      "type": "saddle",
+      "lat": 49.183705,
+      "lng": 20.065128,
+      "elevation": 2307.0,
+      "nearest_routing_node_id": "node/615589481",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/12962332515",
+      "name": "Mięguszowiecka Szczerba",
+      "type": "saddle",
+      "lat": 49.187112,
+      "lng": 20.059854,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/8960110469",
+      "distance_to_trail_m": 109
+    },
+    {
+      "id": "node/9991444418",
+      "name": "Mięguszowiecka Szczerbinka",
+      "type": "saddle",
+      "lat": 49.186593,
+      "lng": 20.060384,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/8960110469",
+      "distance_to_trail_m": 144
+    },
+    {
+      "id": "node/9991444419",
+      "name": "Mięguszowiecki Przechód",
+      "type": "saddle",
+      "lat": 49.187637,
+      "lng": 20.057224,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11381381851",
+      "distance_to_trail_m": 173
+    },
+    {
+      "id": "node/615589377",
+      "name": "Mięguszowiecki Szczyt Wielki",
+      "type": "peak",
+      "lat": 49.18703,
+      "lng": 20.059298,
+      "elevation": 2438.0,
+      "nearest_routing_node_id": "node/8960110469",
+      "distance_to_trail_m": 144
+    },
+    {
+      "id": "node/605282386",
+      "name": "Mnich",
+      "type": "peak",
+      "lat": 49.192676,
+      "lng": 20.054906,
+      "elevation": 2068.0,
+      "nearest_routing_node_id": "node/11157565093",
+      "distance_to_trail_m": 59
+    },
+    {
+      "id": "node/3600481596",
+      "name": "Mnich Małołącki",
+      "type": "peak",
+      "lat": 49.246167,
+      "lng": 19.928204,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2570077611",
+      "distance_to_trail_m": 246
+    },
+    {
+      "id": "node/3508343300",
+      "name": "Mnichowa Kopa",
+      "type": "peak",
+      "lat": 49.190545,
+      "lng": 20.05234,
+      "elevation": 2090.0,
+      "nearest_routing_node_id": "node/11361853618",
+      "distance_to_trail_m": 35
+    },
+    {
+      "id": "node/1295379310",
+      "name": "Mnichy Chochołowskie",
+      "type": "peak",
+      "lat": 49.244968,
+      "lng": 19.793335,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5557426451",
+      "distance_to_trail_m": 709
+    },
+    {
+      "id": "way/487217782",
+      "name": "Mokra Jama",
+      "type": "water",
+      "lat": 49.241572,
+      "lng": 20.003358,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/295645429",
+      "distance_to_trail_m": 117
+    },
+    {
+      "id": "way/27952583",
+      "name": "Morskie Oko",
+      "type": "water",
+      "lat": 49.197147,
+      "lng": 20.070107,
+      "elevation": 1395.0,
+      "nearest_routing_node_id": "node/1779864985",
+      "distance_to_trail_m": 404
+    },
+    {
+      "id": "way/358407058",
+      "name": "Murowaniec",
+      "type": "alpine_hut",
+      "lat": 49.243412,
+      "lng": 20.00716,
+      "elevation": 1500.0,
+      "nearest_routing_node_id": "node/5810136954",
+      "distance_to_trail_m": 11
+    },
+    {
+      "id": "node/2721684698",
+      "name": "Mylna Kopa",
+      "type": "peak",
+      "lat": 49.223276,
+      "lng": 20.015461,
+      "elevation": 2159.0,
+      "nearest_routing_node_id": "node/11156609443",
+      "distance_to_trail_m": 44
+    },
+    {
+      "id": "node/1103563319",
+      "name": "Mylna Przełęcz",
+      "type": "saddle",
+      "lat": 49.222569,
+      "lng": 20.015763,
+      "elevation": 2096.0,
+      "nearest_routing_node_id": "node/11379380546",
+      "distance_to_trail_m": 11
+    },
+    {
+      "id": "node/3494334483",
+      "name": "Mylna Strażnica",
+      "type": "peak",
+      "lat": 49.222742,
+      "lng": 20.015534,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11379380553",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "node/5909943460",
+      "name": "Mylna Turnia",
+      "type": "peak",
+      "lat": 49.22298,
+      "lng": 20.015518,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11379380553",
+      "distance_to_trail_m": 24
+    },
+    {
+      "id": "node/8807314864",
+      "name": "Mylne Siodełko",
+      "type": "saddle",
+      "lat": 49.247104,
+      "lng": 19.871126,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 380
+    },
+    {
+      "id": "node/1295278154",
+      "name": "Myślenickie Turnie",
+      "type": "peak",
+      "lat": 49.251913,
+      "lng": 19.973783,
+      "elevation": 1354.0,
+      "nearest_routing_node_id": "node/308090606",
+      "distance_to_trail_m": 246
+    },
+    {
+      "id": "node/3499314690",
+      "name": "Młyn",
+      "type": "waterfall",
+      "lat": 49.246361,
+      "lng": 20.068242,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3190976899",
+      "distance_to_trail_m": 946
+    },
+    {
+      "id": "node/615618637",
+      "name": "Nad Zakosy",
+      "type": "saddle",
+      "lat": 49.230369,
+      "lng": 19.969244,
+      "elevation": 1816.0,
+      "nearest_routing_node_id": "node/1200918498",
+      "distance_to_trail_m": 823
+    },
+    {
+      "id": "node/9957727703",
+      "name": "Niebieska Przełączka Wyżnia",
+      "type": "saddle",
+      "lat": 49.2196,
+      "lng": 20.013286,
+      "elevation": 2247.0,
+      "nearest_routing_node_id": "node/460927955",
+      "distance_to_trail_m": 182
+    },
+    {
+      "id": "node/9957727700",
+      "name": "Niebieska Przełęcz",
+      "type": "saddle",
+      "lat": 49.219523,
+      "lng": 20.014024,
+      "elevation": 2230.0,
+      "nearest_routing_node_id": "node/460927955",
+      "distance_to_trail_m": 134
+    },
+    {
+      "id": "node/1103563228",
+      "name": "Niebieska Turnia",
+      "type": "peak",
+      "lat": 49.219653,
+      "lng": 20.013733,
+      "elevation": 2262.0,
+      "nearest_routing_node_id": "node/460927955",
+      "distance_to_trail_m": 160
+    },
+    {
+      "id": "node/1103336859",
+      "name": "Nieborak",
+      "type": "peak",
+      "lat": 49.268187,
+      "lng": 19.991074,
+      "elevation": 1219.0,
+      "nearest_routing_node_id": "node/356339780",
+      "distance_to_trail_m": 391
+    },
+    {
+      "id": "node/1103562984",
+      "name": "Niedźwiedź",
+      "type": "peak",
+      "lat": 49.207391,
+      "lng": 20.048506,
+      "elevation": 1812.0,
+      "nearest_routing_node_id": "node/11156672432",
+      "distance_to_trail_m": 564
+    },
+    {
+      "id": "node/10128848016",
+      "name": "Niedźwiedź",
+      "type": "peak",
+      "lat": 49.229339,
+      "lng": 19.885915,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/797774723",
+      "distance_to_trail_m": 1049
+    },
+    {
+      "id": "node/3560926182",
+      "name": "Niska Przełęcz",
+      "type": "saddle",
+      "lat": 49.199188,
+      "lng": 19.787145,
+      "elevation": 1831.0,
+      "nearest_routing_node_id": "node/1224881947",
+      "distance_to_trail_m": 579
+    },
+    {
+      "id": "node/10802758131",
+      "name": "Niska Turnia",
+      "type": "peak",
+      "lat": 49.234436,
+      "lng": 19.883636,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 907
+    },
+    {
+      "id": "node/10802758130",
+      "name": "Niskie Siodło",
+      "type": "saddle",
+      "lat": 49.234638,
+      "lng": 19.883714,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 886
+    },
+    {
+      "id": "node/11066304549",
+      "name": "Niżne Rysy, Skrajna Turnia / Malé Rysy, Predná veža",
+      "type": "peak",
+      "lat": 49.184294,
+      "lng": 20.086954,
+      "elevation": 2375.0,
+      "nearest_routing_node_id": "node/3508632046",
+      "distance_to_trail_m": 238
+    },
+    {
+      "id": "node/615589972",
+      "name": "Niżne Rysy, Zadnia Turnia / Malé Rysy, Zadná veža",
+      "type": "peak",
+      "lat": 49.183901,
+      "lng": 20.087383,
+      "elevation": 2410.0,
+      "nearest_routing_node_id": "node/3508644599",
+      "distance_to_trail_m": 233
+    },
+    {
+      "id": "node/13674502280",
+      "name": "Niżni Cubryński Przechód",
+      "type": "saddle",
+      "lat": 49.192389,
+      "lng": 20.062196,
+      "elevation": 1835.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 341
+    },
+    {
+      "id": "way/136388846",
+      "name": "Niżni Czerwony Stawek",
+      "type": "water",
+      "lat": 49.227828,
+      "lng": 20.004643,
+      "elevation": 1693.2,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 163
+    },
+    {
+      "id": "node/452477312",
+      "name": "Niżni Kostur",
+      "type": "peak",
+      "lat": 49.199958,
+      "lng": 20.032256,
+      "elevation": 2055.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 643
+    },
+    {
+      "id": "way/581704890",
+      "name": "Niżni Staw Staszica",
+      "type": "water",
+      "lat": 49.196585,
+      "lng": 20.052038,
+      "elevation": 1785.0,
+      "nearest_routing_node_id": "node/9023167493",
+      "distance_to_trail_m": 74
+    },
+    {
+      "id": "way/199588071",
+      "name": "Niżni Toporowy Staw",
+      "type": "water",
+      "lat": 49.28329,
+      "lng": 20.030656,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/10047910511",
+      "distance_to_trail_m": 102
+    },
+    {
+      "id": "way/1063344680",
+      "name": "Niżni Waksmundzki Stawek",
+      "type": "water",
+      "lat": 49.232117,
+      "lng": 20.053024,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 520
+    },
+    {
+      "id": "node/2597044867",
+      "name": "Niżni Wodogrzmot",
+      "type": "waterfall",
+      "lat": 49.234376,
+      "lng": 20.087711,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346097",
+      "distance_to_trail_m": 55
+    },
+    {
+      "id": "node/10873136327",
+      "name": "Niżni Zbójnicki Przechód",
+      "type": "saddle",
+      "lat": 49.236941,
+      "lng": 19.864798,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2487026279",
+      "distance_to_trail_m": 226
+    },
+    {
+      "id": "node/3544035356",
+      "name": "Niżni Żabi Szczyt",
+      "type": "peak",
+      "lat": 49.196063,
+      "lng": 20.08437,
+      "elevation": 2098.0,
+      "nearest_routing_node_id": "node/13383464101",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/8757470156",
+      "name": "Niżnia Kopa",
+      "type": "peak",
+      "lat": 49.214535,
+      "lng": 20.051009,
+      "elevation": 1711.0,
+      "nearest_routing_node_id": "node/2571257299",
+      "distance_to_trail_m": 179
+    },
+    {
+      "id": "node/3538948668",
+      "name": "Niżnia Liptowska Ławka",
+      "type": "saddle",
+      "lat": 49.199363,
+      "lng": 20.032865,
+      "elevation": 2035.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 574
+    },
+    {
+      "id": "node/11595734599",
+      "name": "Niżnia Sucha Przełęcz",
+      "type": "saddle",
+      "lat": 49.256786,
+      "lng": 19.942927,
+      "elevation": 1511.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 635
+    },
+    {
+      "id": "node/3508632046",
+      "name": "Niżnia Tomkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.18402,
+      "lng": 20.083702,
+      "elevation": 2094.0,
+      "nearest_routing_node_id": "node/3508632046",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/9973078509",
+      "name": "Niżnia Walentkowa Baszta",
+      "type": "peak",
+      "lat": 49.213956,
+      "lng": 20.007411,
+      "elevation": 2129.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 12
+    },
+    {
+      "id": "node/2569948266",
+      "name": "Niżnia Zawiesista Turnia",
+      "type": "peak",
+      "lat": 49.262293,
+      "lng": 19.885359,
+      "elevation": 1180.0,
+      "nearest_routing_node_id": "node/1200977217",
+      "distance_to_trail_m": 278
+    },
+    {
+      "id": "node/9447962111",
+      "name": "Niżnie Kasprowe Siodło",
+      "type": "saddle",
+      "lat": 49.243034,
+      "lng": 19.996709,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/295645429",
+      "distance_to_trail_m": 406
+    },
+    {
+      "id": "node/9961990216",
+      "name": "Niżnie Mylne Wrótka",
+      "type": "saddle",
+      "lat": 49.222783,
+      "lng": 20.015519,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11379380553",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "node/9036094082",
+      "name": "Niżnie Sieczkowe Siodełko",
+      "type": "saddle",
+      "lat": 49.223607,
+      "lng": 20.033249,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 56
+    },
+    {
+      "id": "node/3504617326",
+      "name": "Niżnie Siodło",
+      "type": "saddle",
+      "lat": 49.233454,
+      "lng": 20.072199,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 1035
+    },
+    {
+      "id": "node/3592771639",
+      "name": "Niżnie Stanikowe Siodło",
+      "type": "saddle",
+      "lat": 49.269648,
+      "lng": 19.877989,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9709524963",
+      "distance_to_trail_m": 74
+    },
+    {
+      "id": "node/9978523980",
+      "name": "Niżnie Szpiglasowe Wrótka",
+      "type": "saddle",
+      "lat": 49.195008,
+      "lng": 20.04071,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 258
+    },
+    {
+      "id": "node/9973078516",
+      "name": "Niżnie Walentkowe Wrótka",
+      "type": "saddle",
+      "lat": 49.215727,
+      "lng": 20.00894,
+      "elevation": 2099.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 238
+    },
+    {
+      "id": "node/1103336843",
+      "name": "Nosal",
+      "type": "peak",
+      "lat": 49.276431,
+      "lng": 19.989459,
+      "elevation": 1205.7,
+      "nearest_routing_node_id": "node/1386627440",
+      "distance_to_trail_m": 17
+    },
+    {
+      "id": "node/1103336431",
+      "name": "Nosalowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.272937,
+      "lng": 19.991448,
+      "elevation": 1102.8,
+      "nearest_routing_node_id": "node/1103336431",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/8806223790",
+      "name": "Okręt",
+      "type": "peak",
+      "lat": 49.252432,
+      "lng": 19.866931,
+      "elevation": 1052.0,
+      "nearest_routing_node_id": "node/5907345216",
+      "distance_to_trail_m": 255
+    },
+    {
+      "id": "node/8809867703",
+      "name": "Olejarnia",
+      "type": "peak",
+      "lat": 49.247777,
+      "lng": 19.811601,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/4351691671",
+      "distance_to_trail_m": 162
+    },
+    {
+      "id": "node/1103423820",
+      "name": "Opalony Wierch",
+      "type": "peak",
+      "lat": 49.207494,
+      "lng": 20.059043,
+      "elevation": 2115.0,
+      "nearest_routing_node_id": "node/1908708928",
+      "distance_to_trail_m": 857
+    },
+    {
+      "id": "node/8807314842",
+      "name": "Organy",
+      "type": "peak",
+      "lat": 49.248193,
+      "lng": 19.868812,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 184
+    },
+    {
+      "id": "node/8809867701",
+      "name": "Organy",
+      "type": "peak",
+      "lat": 49.245601,
+      "lng": 19.806879,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5602494048",
+      "distance_to_trail_m": 373
+    },
+    {
+      "id": "node/3503795970",
+      "name": "Orla Baszta",
+      "type": "peak",
+      "lat": 49.227333,
+      "lng": 20.035759,
+      "elevation": 2177.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 169
+    },
+    {
+      "id": "node/9032605696",
+      "name": "Orla Przełączka Niżnia",
+      "type": "saddle",
+      "lat": 49.227211,
+      "lng": 20.03542,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 142
+    },
+    {
+      "id": "node/9032605697",
+      "name": "Orla Przełączka Wyżnia",
+      "type": "saddle",
+      "lat": 49.227106,
+      "lng": 20.035055,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 115
+    },
+    {
+      "id": "node/3571383993",
+      "name": "Ornaczańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.215753,
+      "lng": 19.834354,
+      "elevation": 1795.0,
+      "nearest_routing_node_id": "node/7804655479",
+      "distance_to_trail_m": 3
+    },
+    {
+      "id": "node/1294577934",
+      "name": "Ornak",
+      "type": "peak",
+      "lat": 49.219046,
+      "lng": 19.832949,
+      "elevation": 1854.0,
+      "nearest_routing_node_id": "node/3324223830",
+      "distance_to_trail_m": 59
+    },
+    {
+      "id": "node/2102060445",
+      "name": "Ostry Wierch",
+      "type": "peak",
+      "lat": 49.26419,
+      "lng": 20.061172,
+      "elevation": 1475.0,
+      "nearest_routing_node_id": "node/11837813985",
+      "distance_to_trail_m": 9
+    },
+    {
+      "id": "node/3544053223",
+      "name": "Owcza Przełęcz",
+      "type": "saddle",
+      "lat": 49.194507,
+      "lng": 20.084663,
+      "elevation": 2038.0,
+      "nearest_routing_node_id": "node/12743887628",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "node/3544056626",
+      "name": "Owcze Turniczki",
+      "type": "peak",
+      "lat": 49.193624,
+      "lng": 20.084599,
+      "elevation": 2040.0,
+      "nearest_routing_node_id": "node/12743887628",
+      "distance_to_trail_m": 108
+    },
+    {
+      "id": "node/3560988994",
+      "name": "Parzątczak",
+      "type": "peak",
+      "lat": 49.255679,
+      "lng": 19.790495,
+      "elevation": 1486.0,
+      "nearest_routing_node_id": "node/11359870803",
+      "distance_to_trail_m": 357
+    },
+    {
+      "id": "node/9029897685",
+      "name": "Pańszczycka Przełączka Pośrednia",
+      "type": "saddle",
+      "lat": 49.227833,
+      "lng": 20.033378,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 88
+    },
+    {
+      "id": "node/9029897682",
+      "name": "Pańszczycka Przełączka Wyżnia",
+      "type": "saddle",
+      "lat": 49.227564,
+      "lng": 20.033674,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 60
+    },
+    {
+      "id": "node/1496149194",
+      "name": "Pańszczycka Przełęcz",
+      "type": "saddle",
+      "lat": 49.228464,
+      "lng": 20.033071,
+      "elevation": 2115.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 161
+    },
+    {
+      "id": "node/1496149195",
+      "name": "Pańszczycka Turnia",
+      "type": "peak",
+      "lat": 49.22979,
+      "lng": 20.032729,
+      "elevation": 2105.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 310
+    },
+    {
+      "id": "node/1995387408",
+      "name": "Piec",
+      "type": "peak",
+      "lat": 49.248655,
+      "lng": 19.886667,
+      "elevation": 1472.0,
+      "nearest_routing_node_id": "node/2009108458",
+      "distance_to_trail_m": 695
+    },
+    {
+      "id": "node/8809867702",
+      "name": "Piece",
+      "type": "peak",
+      "lat": 49.244365,
+      "lng": 19.802034,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2510760172",
+      "distance_to_trail_m": 590
+    },
+    {
+      "id": "node/13674502284",
+      "name": "Pośredni Cubryński Przechód",
+      "type": "saddle",
+      "lat": 49.192205,
+      "lng": 20.061533,
+      "elevation": 1865.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 307
+    },
+    {
+      "id": "node/1878512558",
+      "name": "Pośredni Granat",
+      "type": "peak",
+      "lat": 49.225701,
+      "lng": 20.032735,
+      "elevation": 2234.0,
+      "nearest_routing_node_id": "node/460951714",
+      "distance_to_trail_m": 143
+    },
+    {
+      "id": "node/8806223760",
+      "name": "Pośredni Wierszyk",
+      "type": "peak",
+      "lat": 49.268175,
+      "lng": 19.911431,
+      "elevation": 1262.0,
+      "nearest_routing_node_id": "node/469733515",
+      "distance_to_trail_m": 813
+    },
+    {
+      "id": "node/321624794",
+      "name": "Pośredni Wodogrzmot",
+      "type": "waterfall",
+      "lat": 49.234229,
+      "lng": 20.087016,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346097",
+      "distance_to_trail_m": 57
+    },
+    {
+      "id": "node/2103272996",
+      "name": "Pośredni Wołoszyn",
+      "type": "peak",
+      "lat": 49.230556,
+      "lng": 20.055556,
+      "elevation": 2117.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 588
+    },
+    {
+      "id": "node/2107808027",
+      "name": "Pośrednia Kopka",
+      "type": "peak",
+      "lat": 49.266044,
+      "lng": 19.852927,
+      "elevation": 1305.0,
+      "nearest_routing_node_id": "node/9709544431",
+      "distance_to_trail_m": 646
+    },
+    {
+      "id": "node/9036094102",
+      "name": "Pośrednia Sieczkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.225448,
+      "lng": 20.032588,
+      "elevation": 2218.0,
+      "nearest_routing_node_id": "node/460951714",
+      "distance_to_trail_m": 113
+    },
+    {
+      "id": "node/9036094083",
+      "name": "Pośrednia Sieczkowa Turnia",
+      "type": "peak",
+      "lat": 49.223686,
+      "lng": 20.033425,
+      "elevation": 2205.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 71
+    },
+    {
+      "id": "node/10027944670",
+      "name": "Pośrednia Sucha Czuba Kondracka",
+      "type": "peak",
+      "lat": 49.232806,
+      "lng": 19.950236,
+      "elevation": 1844.0,
+      "nearest_routing_node_id": "node/2570020515",
+      "distance_to_trail_m": 566
+    },
+    {
+      "id": "node/3504631174",
+      "name": "Pośrednia Turnia",
+      "type": "peak",
+      "lat": 49.222284,
+      "lng": 20.001235,
+      "elevation": 2128.0,
+      "nearest_routing_node_id": "node/3653329404",
+      "distance_to_trail_m": 309
+    },
+    {
+      "id": "node/9973078515",
+      "name": "Pośrednia Walentkowa Czuba",
+      "type": "peak",
+      "lat": 49.215165,
+      "lng": 20.008507,
+      "elevation": 2107.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 168
+    },
+    {
+      "id": "node/8809914840",
+      "name": "Pośrednie",
+      "type": "peak",
+      "lat": 49.261111,
+      "lng": 19.798887,
+      "elevation": 1260.0,
+      "nearest_routing_node_id": "node/13238662668",
+      "distance_to_trail_m": 375
+    },
+    {
+      "id": "node/9962071918",
+      "name": "Pośrednie Mylne Wrótka",
+      "type": "saddle",
+      "lat": 49.223018,
+      "lng": 20.015499,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11379380553",
+      "distance_to_trail_m": 29
+    },
+    {
+      "id": "node/9973078514",
+      "name": "Pośrednie Walentkowe Wrótka",
+      "type": "saddle",
+      "lat": 49.215136,
+      "lng": 20.008486,
+      "elevation": 2104.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 164
+    },
+    {
+      "id": "node/8807314871",
+      "name": "Przechód za Rękawicą",
+      "type": "saddle",
+      "lat": 49.247413,
+      "lng": 19.870346,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 318
+    },
+    {
+      "id": "way/29239542",
+      "name": "Przedni Staw Polski",
+      "type": "water",
+      "lat": 49.212069,
+      "lng": 20.049,
+      "elevation": 1668.0,
+      "nearest_routing_node_id": "node/10007501934",
+      "distance_to_trail_m": 168
+    },
+    {
+      "id": "node/11217424621",
+      "name": "Przednia Kopa Sołtysia",
+      "type": "peak",
+      "lat": 49.274933,
+      "lng": 20.059766,
+      "elevation": 1334.0,
+      "nearest_routing_node_id": "node/11838227737",
+      "distance_to_trail_m": 71
+    },
+    {
+      "id": "node/2107808028",
+      "name": "Przednia Kopka",
+      "type": "peak",
+      "lat": 49.274167,
+      "lng": 19.860889,
+      "elevation": 1113.0,
+      "nearest_routing_node_id": "node/9709544431",
+      "distance_to_trail_m": 432
+    },
+    {
+      "id": "node/460951558",
+      "name": "Przełączka nad Dolinką Buczynową",
+      "type": "saddle",
+      "lat": 49.220605,
+      "lng": 20.033958,
+      "elevation": 2225.0,
+      "nearest_routing_node_id": "node/460951592",
+      "distance_to_trail_m": 89
+    },
+    {
+      "id": "node/8809479324",
+      "name": "Przełączka nad Załupą",
+      "type": "saddle",
+      "lat": 49.242303,
+      "lng": 19.845568,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 914
+    },
+    {
+      "id": "node/1496149196",
+      "name": "Przełączka pod Fajki",
+      "type": "saddle",
+      "lat": 49.229495,
+      "lng": 20.032425,
+      "elevation": 2085.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 283
+    },
+    {
+      "id": "node/3569146193",
+      "name": "Przełączka pod Kufą",
+      "type": "saddle",
+      "lat": 49.247641,
+      "lng": 19.838696,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 1081
+    },
+    {
+      "id": "node/9032605701",
+      "name": "Przełączka pod Ptakiem",
+      "type": "saddle",
+      "lat": 49.227967,
+      "lng": 20.045706,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 50
+    },
+    {
+      "id": "node/3544036060",
+      "name": "Przełączka pod Żabią Czubą",
+      "type": "saddle",
+      "lat": 49.197293,
+      "lng": 20.086022,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13383464037",
+      "distance_to_trail_m": 26
+    },
+    {
+      "id": "node/2003440376",
+      "name": "Przełączka przy Kopie",
+      "type": "saddle",
+      "lat": 49.239154,
+      "lng": 19.891395,
+      "elevation": 1775.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 197
+    },
+    {
+      "id": "node/11595734342",
+      "name": "Przełączka za Igłą",
+      "type": "saddle",
+      "lat": 49.263762,
+      "lng": 19.950162,
+      "elevation": 1176.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 303
+    },
+    {
+      "id": "node/3592609506",
+      "name": "Przełączka za Saturnem",
+      "type": "saddle",
+      "lat": 49.238581,
+      "lng": 19.874709,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 482
+    },
+    {
+      "id": "node/8809440019",
+      "name": "Przełączka za Sową",
+      "type": "saddle",
+      "lat": 49.247516,
+      "lng": 19.864176,
+      "elevation": 1062.0,
+      "nearest_routing_node_id": "node/461054319",
+      "distance_to_trail_m": 133
+    },
+    {
+      "id": "node/13589456697",
+      "name": "Przełączka za Turnią Zwornikową",
+      "type": "saddle",
+      "lat": 49.191884,
+      "lng": 20.059408,
+      "elevation": 1950.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 222
+    },
+    {
+      "id": "node/10840394017",
+      "name": "Przełączka za Upłazkową Basztą",
+      "type": "saddle",
+      "lat": 49.238146,
+      "lng": 19.876423,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 596
+    },
+    {
+      "id": "node/8457144019",
+      "name": "Przełęcz Białego",
+      "type": "saddle",
+      "lat": 49.262688,
+      "lng": 19.964156,
+      "elevation": 1305.0,
+      "nearest_routing_node_id": "node/7925508897",
+      "distance_to_trail_m": 283
+    },
+    {
+      "id": "node/3503789861",
+      "name": "Przełęcz Nowickiego",
+      "type": "saddle",
+      "lat": 49.227257,
+      "lng": 20.03836,
+      "elevation": 2105.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 355
+    },
+    {
+      "id": "node/3494318324",
+      "name": "Przełęcz Schodki",
+      "type": "saddle",
+      "lat": 49.216236,
+      "lng": 20.020608,
+      "elevation": 2065.0,
+      "nearest_routing_node_id": "node/3755385023",
+      "distance_to_trail_m": 281
+    },
+    {
+      "id": "node/8809479355",
+      "name": "Przełęcz ku Stawku",
+      "type": "saddle",
+      "lat": 49.24666,
+      "lng": 19.851077,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 285
+    },
+    {
+      "id": "node/3633357479",
+      "name": "Przełęcz między Kopami",
+      "type": "saddle",
+      "lat": 49.254913,
+      "lng": 20.003291,
+      "elevation": 1499.0,
+      "nearest_routing_node_id": "node/5620206050",
+      "distance_to_trail_m": 82
+    },
+    {
+      "id": "node/7917548638",
+      "name": "Przełęcz między Kopieńcami",
+      "type": "saddle",
+      "lat": 49.275394,
+      "lng": 20.007756,
+      "elevation": 1109.0,
+      "nearest_routing_node_id": "node/5868911616",
+      "distance_to_trail_m": 258
+    },
+    {
+      "id": "node/11592361024",
+      "name": "Przełęcz nad Dziurą",
+      "type": "saddle",
+      "lat": 49.250889,
+      "lng": 19.927937,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 211
+    },
+    {
+      "id": "node/4549628388",
+      "name": "Przełęcz nad Szyją",
+      "type": "saddle",
+      "lat": 49.21549,
+      "lng": 19.807271,
+      "elevation": 1754.0,
+      "nearest_routing_node_id": "node/4338036446",
+      "distance_to_trail_m": 238
+    },
+    {
+      "id": "node/9983979746",
+      "name": "Przełęcz nad Wrotami",
+      "type": "saddle",
+      "lat": 49.19055,
+      "lng": 20.047069,
+      "elevation": 2055.0,
+      "nearest_routing_node_id": "node/3344854169",
+      "distance_to_trail_m": 202
+    },
+    {
+      "id": "node/3560989598",
+      "name": "Przełęcz pod Furkaską",
+      "type": "saddle",
+      "lat": 49.260648,
+      "lng": 19.789639,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/12899048294",
+      "distance_to_trail_m": 85
+    },
+    {
+      "id": "node/3558357900",
+      "name": "Przełęcz pod Kopą Kondracką",
+      "type": "saddle",
+      "lat": 49.234262,
+      "lng": 19.938761,
+      "elevation": 1863.0,
+      "nearest_routing_node_id": "node/7838740148",
+      "distance_to_trail_m": 24
+    },
+    {
+      "id": "node/3508644599",
+      "name": "Przełęcz pod Rysami",
+      "type": "saddle",
+      "lat": 49.181839,
+      "lng": 20.08796,
+      "elevation": 2365.0,
+      "nearest_routing_node_id": "node/3508644599",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3600497907",
+      "name": "Przełęcz w Grzybowcu",
+      "type": "saddle",
+      "lat": 49.259395,
+      "lng": 19.915946,
+      "elevation": 1311.0,
+      "nearest_routing_node_id": "node/3001984396",
+      "distance_to_trail_m": 118
+    },
+    {
+      "id": "node/9032605702",
+      "name": "Ptak",
+      "type": "peak",
+      "lat": 49.227928,
+      "lng": 20.045043,
+      "elevation": 2131.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 91
+    },
+    {
+      "id": "node/10840390978",
+      "name": "Ptakowa Turnia",
+      "type": "peak",
+      "lat": 49.236499,
+      "lng": 19.877177,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 658
+    },
+    {
+      "id": "node/10840390963",
+      "name": "Ptakowy Przechód",
+      "type": "saddle",
+      "lat": 49.23648,
+      "lng": 19.877283,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 666
+    },
+    {
+      "id": "node/946080669",
+      "name": "Rakoń",
+      "type": "peak",
+      "lat": 49.215958,
+      "lng": 19.758462,
+      "elevation": 1879.0,
+      "nearest_routing_node_id": "node/244892804",
+      "distance_to_trail_m": 4
+    },
+    {
+      "id": "node/8806223762",
+      "name": "Rapasiowa Turnia",
+      "type": "peak",
+      "lat": 49.266594,
+      "lng": 19.899227,
+      "elevation": 1075.0,
+      "nearest_routing_node_id": "node/469733515",
+      "distance_to_trail_m": 101
+    },
+    {
+      "id": "node/3592566151",
+      "name": "Ratusz",
+      "type": "peak",
+      "lat": 49.237866,
+      "lng": 19.869975,
+      "elevation": 1296.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 130
+    },
+    {
+      "id": "node/2003568183",
+      "name": "Ratusz Litworowy",
+      "type": "peak",
+      "lat": 49.243278,
+      "lng": 19.906564,
+      "elevation": 1670.0,
+      "nearest_routing_node_id": "node/2009093629",
+      "distance_to_trail_m": 404
+    },
+    {
+      "id": "node/3509905952",
+      "name": "Rogata Turniczka",
+      "type": "peak",
+      "lat": 49.179421,
+      "lng": 20.074081,
+      "elevation": 2365.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 590
+    },
+    {
+      "id": "node/3571683693",
+      "name": "Rosochowate Siodło",
+      "type": "saddle",
+      "lat": 49.264733,
+      "lng": 19.834378,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13236811254",
+      "distance_to_trail_m": 135
+    },
+    {
+      "id": "node/8757489712",
+      "name": "Roztocka Czuba",
+      "type": "peak",
+      "lat": 49.228528,
+      "lng": 20.090765,
+      "elevation": 1425.0,
+      "nearest_routing_node_id": "node/13158721294",
+      "distance_to_trail_m": 565
+    },
+    {
+      "id": "node/9021008781",
+      "name": "Roztocka Turniczka",
+      "type": "peak",
+      "lat": 49.231271,
+      "lng": 20.079052,
+      "elevation": 1536.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 568
+    },
+    {
+      "id": "node/8757489711",
+      "name": "Roztockie Siodło",
+      "type": "saddle",
+      "lat": 49.227589,
+      "lng": 20.090432,
+      "elevation": 1405.0,
+      "nearest_routing_node_id": "node/13158721294",
+      "distance_to_trail_m": 516
+    },
+    {
+      "id": "node/4366169405",
+      "name": "Rysy",
+      "type": "peak",
+      "lat": 49.179576,
+      "lng": 20.088108,
+      "elevation": 2499.0,
+      "nearest_routing_node_id": "node/1778569991",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/8656518463",
+      "name": "Rówienki",
+      "type": "saddle",
+      "lat": 49.252323,
+      "lng": 19.985913,
+      "elevation": 1491.0,
+      "nearest_routing_node_id": "node/5949252006",
+      "distance_to_trail_m": 122
+    },
+    {
+      "id": "node/8807314869",
+      "name": "Rękawica",
+      "type": "peak",
+      "lat": 49.247239,
+      "lng": 19.869885,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 315
+    },
+    {
+      "id": "node/2100603509",
+      "name": "Samkowa Czuba",
+      "type": "peak",
+      "lat": 49.272148,
+      "lng": 19.926839,
+      "elevation": 1189.0,
+      "nearest_routing_node_id": "node/9534775792",
+      "distance_to_trail_m": 685
+    },
+    {
+      "id": "node/3600497836",
+      "name": "Samkowe Siodło",
+      "type": "saddle",
+      "lat": 49.27097,
+      "lng": 19.926309,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9534775792",
+      "distance_to_trail_m": 813
+    },
+    {
+      "id": "node/11603241052",
+      "name": "Samkowy Zwornik",
+      "type": "peak",
+      "lat": 49.266957,
+      "lng": 19.923254,
+      "elevation": 1316.0,
+      "nearest_routing_node_id": "node/11704246475",
+      "distance_to_trail_m": 627
+    },
+    {
+      "id": "node/469733583",
+      "name": "Sarnia Skała",
+      "type": "peak",
+      "lat": 49.264899,
+      "lng": 19.941001,
+      "elevation": 1378.0,
+      "nearest_routing_node_id": "node/132274279",
+      "distance_to_trail_m": 53
+    },
+    {
+      "id": "node/3592615590",
+      "name": "Saturn",
+      "type": "peak",
+      "lat": 49.239016,
+      "lng": 19.871998,
+      "elevation": 1391.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 317
+    },
+    {
+      "id": "way/347519068",
+      "name": "Schronisko Głodówka",
+      "type": "alpine_hut",
+      "lat": 49.302051,
+      "lng": 20.116762,
+      "elevation": 1120.0,
+      "nearest_routing_node_id": "node/13006289789",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "way/184188834",
+      "name": "Schronisko PTTK Hala Kondratowa",
+      "type": "alpine_hut",
+      "lat": 49.249871,
+      "lng": 19.951679,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9514597545",
+      "distance_to_trail_m": 9
+    },
+    {
+      "id": "way/300719423",
+      "name": "Schronisko PTTK Morskie Oko",
+      "type": "alpine_hut",
+      "lat": 49.20142,
+      "lng": 20.071271,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9266872919",
+      "distance_to_trail_m": 22
+    },
+    {
+      "id": "way/241024507",
+      "name": "Schronisko PTTK na Hali Ornak",
+      "type": "alpine_hut",
+      "lat": 49.229158,
+      "lng": 19.858741,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/8804719788",
+      "distance_to_trail_m": 16
+    },
+    {
+      "id": "way/303740443",
+      "name": "Schronisko PTTK na Polanie Chochołowskiej",
+      "type": "alpine_hut",
+      "lat": 49.236351,
+      "lng": 19.787786,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5881659594",
+      "distance_to_trail_m": 13
+    },
+    {
+      "id": "way/250746663",
+      "name": "Schronisko PTTK w Dolinie Pięciu Stawów Polskich",
+      "type": "alpine_hut",
+      "lat": 49.213619,
+      "lng": 20.048703,
+      "elevation": 1670.0,
+      "nearest_routing_node_id": "node/10007501937",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "way/253824570",
+      "name": "Schronisko PTTK w Dolinie Roztoki",
+      "type": "alpine_hut",
+      "lat": 49.233709,
+      "lng": 20.095678,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2597128716",
+      "distance_to_trail_m": 9
+    },
+    {
+      "id": "node/9036094090",
+      "name": "Sieczkowa Szczerba",
+      "type": "saddle",
+      "lat": 49.223888,
+      "lng": 20.032786,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951714",
+      "distance_to_trail_m": 65
+    },
+    {
+      "id": "node/8807314884",
+      "name": "Sikawka",
+      "type": "waterfall",
+      "lat": 49.247836,
+      "lng": 19.882584,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2009108458",
+      "distance_to_trail_m": 929
+    },
+    {
+      "id": "node/3503513134",
+      "name": "Siklawa",
+      "type": "attraction",
+      "lat": 49.214156,
+      "lng": 20.043961,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749758425",
+      "distance_to_trail_m": 58
+    },
+    {
+      "id": "node/1333271083",
+      "name": "Siklawica",
+      "type": "waterfall",
+      "lat": 49.259166,
+      "lng": 19.930242,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2097797498",
+      "distance_to_trail_m": 21
+    },
+    {
+      "id": "node/10873136349",
+      "name": "Siodełko za Basztą",
+      "type": "saddle",
+      "lat": 49.234588,
+      "lng": 19.874899,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 584
+    },
+    {
+      "id": "node/3600486338",
+      "name": "Siodło",
+      "type": "saddle",
+      "lat": 49.249022,
+      "lng": 19.927259,
+      "elevation": 1630.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 3
+    },
+    {
+      "id": "node/9991444412",
+      "name": "Siodło za Kazalnicą",
+      "type": "saddle",
+      "lat": 49.184997,
+      "lng": 20.069633,
+      "elevation": 2157.0,
+      "nearest_routing_node_id": "node/1779828445",
+      "distance_to_trail_m": 16
+    },
+    {
+      "id": "node/1995387410",
+      "name": "Siodło za Piecem",
+      "type": "saddle",
+      "lat": 49.248438,
+      "lng": 19.886784,
+      "elevation": 1465.0,
+      "nearest_routing_node_id": "node/2009108458",
+      "distance_to_trail_m": 676
+    },
+    {
+      "id": "node/3571365293",
+      "name": "Siwa Przełęcz",
+      "type": "saddle",
+      "lat": 49.205012,
+      "lng": 19.833388,
+      "elevation": 1812.0,
+      "nearest_routing_node_id": "node/1202227723",
+      "distance_to_trail_m": 7
+    },
+    {
+      "id": "node/3600823222",
+      "name": "Siwarowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.248958,
+      "lng": 19.908885,
+      "elevation": 1531.0,
+      "nearest_routing_node_id": "node/1200977310",
+      "distance_to_trail_m": 725
+    },
+    {
+      "id": "node/8518741432",
+      "name": "Siwarowe Siodło",
+      "type": "saddle",
+      "lat": 49.265614,
+      "lng": 19.964241,
+      "elevation": 1340.0,
+      "nearest_routing_node_id": "node/7925508897",
+      "distance_to_trail_m": 346
+    },
+    {
+      "id": "relation/7569900",
+      "name": "Siwe Stawki",
+      "type": "water",
+      "lat": 49.204375,
+      "lng": 19.8353,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1202227723",
+      "distance_to_trail_m": 162
+    },
+    {
+      "id": "node/3568541637",
+      "name": "Siwiańskie Turnie",
+      "type": "peak",
+      "lat": 49.276477,
+      "lng": 19.825158,
+      "elevation": 1065.0,
+      "nearest_routing_node_id": "node/13236835983",
+      "distance_to_trail_m": 362
+    },
+    {
+      "id": "node/1294577864",
+      "name": "Siwy Zwornik",
+      "type": "peak",
+      "lat": 49.201654,
+      "lng": 19.829543,
+      "elevation": 1965.0,
+      "nearest_routing_node_id": "node/1202079414",
+      "distance_to_trail_m": 150
+    },
+    {
+      "id": "node/8809394994",
+      "name": "Skałki w Jarońcu",
+      "type": "peak",
+      "lat": 49.275796,
+      "lng": 19.857419,
+      "elevation": 1117.0,
+      "nearest_routing_node_id": "node/5881975992",
+      "distance_to_trail_m": 340
+    },
+    {
+      "id": "node/8964222561",
+      "name": "Skoruszowe Siodło",
+      "type": "saddle",
+      "lat": 49.249806,
+      "lng": 19.907864,
+      "elevation": 1503.0,
+      "nearest_routing_node_id": "node/1200977310",
+      "distance_to_trail_m": 844
+    },
+    {
+      "id": "node/11592361035",
+      "name": "Skrajna Giewoncka Baszta",
+      "type": "peak",
+      "lat": 49.251139,
+      "lng": 19.927724,
+      "elevation": 1730.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 235
+    },
+    {
+      "id": "node/1496149197",
+      "name": "Skrajna Pańszczycka Czuba",
+      "type": "peak",
+      "lat": 49.228074,
+      "lng": 20.033497,
+      "elevation": 2155.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 115
+    },
+    {
+      "id": "node/3504634616",
+      "name": "Skrajna Przełęcz",
+      "type": "saddle",
+      "lat": 49.222301,
+      "lng": 19.999216,
+      "elevation": 2071.0,
+      "nearest_routing_node_id": "node/3653329404",
+      "distance_to_trail_m": 447
+    },
+    {
+      "id": "node/3571689193",
+      "name": "Skrajna Rosocha",
+      "type": "peak",
+      "lat": 49.265701,
+      "lng": 19.836227,
+      "elevation": 1262.0,
+      "nearest_routing_node_id": "node/13236811254",
+      "distance_to_trail_m": 55
+    },
+    {
+      "id": "node/9036094103",
+      "name": "Skrajna Sieczkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.226351,
+      "lng": 20.033179,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 80
+    },
+    {
+      "id": "node/9036094091",
+      "name": "Skrajna Sieczkowa Turnia",
+      "type": "peak",
+      "lat": 49.223792,
+      "lng": 20.033007,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 67
+    },
+    {
+      "id": "node/3508632047",
+      "name": "Skrajna Tomkowa Igła",
+      "type": "peak",
+      "lat": 49.184087,
+      "lng": 20.083533,
+      "elevation": 2109.0,
+      "nearest_routing_node_id": "node/3508632046",
+      "distance_to_trail_m": 14
+    },
+    {
+      "id": "node/385115021",
+      "name": "Skrajna Turnia",
+      "type": "peak",
+      "lat": 49.223158,
+      "lng": 19.998553,
+      "elevation": 2097.0,
+      "nearest_routing_node_id": "node/3653329404",
+      "distance_to_trail_m": 480
+    },
+    {
+      "id": "node/11592361111",
+      "name": "Skrajny Giewoncki Karbik",
+      "type": "saddle",
+      "lat": 49.250023,
+      "lng": 19.928627,
+      "elevation": 1729.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 147
+    },
+    {
+      "id": "node/1496151182",
+      "name": "Skrajny Granat",
+      "type": "peak",
+      "lat": 49.226945,
+      "lng": 20.033293,
+      "elevation": 2228.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 17
+    },
+    {
+      "id": "node/2103272997",
+      "name": "Skrajny Wołoszyn",
+      "type": "peak",
+      "lat": 49.233333,
+      "lng": 20.0625,
+      "elevation": 2090.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 1172
+    },
+    {
+      "id": "node/9445410550",
+      "name": "Skupniów Przechód",
+      "type": "saddle",
+      "lat": 49.263822,
+      "lng": 19.994094,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5671991161",
+      "distance_to_trail_m": 510
+    },
+    {
+      "id": "way/171648212",
+      "name": "Smreczyński Staw",
+      "type": "water",
+      "lat": 49.222237,
+      "lng": 19.863858,
+      "elevation": 1226.0,
+      "nearest_routing_node_id": "node/1943389694",
+      "distance_to_trail_m": 49
+    },
+    {
+      "id": "node/2107834138",
+      "name": "Spalona Czuba",
+      "type": "peak",
+      "lat": 49.253796,
+      "lng": 19.824478,
+      "elevation": 1257.0,
+      "nearest_routing_node_id": "node/9827041747",
+      "distance_to_trail_m": 443
+    },
+    {
+      "id": "node/3592766993",
+      "name": "Spalone Siodło",
+      "type": "saddle",
+      "lat": 49.26444,
+      "lng": 19.879944,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9709524949",
+      "distance_to_trail_m": 78
+    },
+    {
+      "id": "way/300719425",
+      "name": "Stare Schronisko PTTK Morskie Oko",
+      "type": "alpine_hut",
+      "lat": 49.202045,
+      "lng": 20.070797,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13016074494",
+      "distance_to_trail_m": 33
+    },
+    {
+      "id": "way/1120162238",
+      "name": "Stawek",
+      "type": "water",
+      "lat": 49.246717,
+      "lng": 19.851139,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 278
+    },
+    {
+      "id": "way/581704892",
+      "name": "Stawek na Kopkach",
+      "type": "water",
+      "lat": 49.195026,
+      "lng": 20.046764,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/9023167485",
+      "distance_to_trail_m": 348
+    },
+    {
+      "id": "node/8809479343",
+      "name": "Stoły",
+      "type": "peak",
+      "lat": 49.24632,
+      "lng": 19.858405,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 442
+    },
+    {
+      "id": "node/1295278131",
+      "name": "Sucha Czuba",
+      "type": "peak",
+      "lat": 49.240927,
+      "lng": 19.977644,
+      "elevation": 1696.0,
+      "nearest_routing_node_id": "node/9505568028",
+      "distance_to_trail_m": 41
+    },
+    {
+      "id": "node/11595734600",
+      "name": "Sucha Czubka",
+      "type": "peak",
+      "lat": 49.255363,
+      "lng": 19.944081,
+      "elevation": 1562.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 731
+    },
+    {
+      "id": "node/1295278153",
+      "name": "Suchy Wierch",
+      "type": "peak",
+      "lat": 49.258012,
+      "lng": 19.942429,
+      "elevation": 1539.0,
+      "nearest_routing_node_id": "node/132274281",
+      "distance_to_trail_m": 533
+    },
+    {
+      "id": "node/2107808029",
+      "name": "Suchy Wierch",
+      "type": "peak",
+      "lat": 49.247587,
+      "lng": 19.852695,
+      "elevation": 1428.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 135
+    },
+    {
+      "id": "node/11603241165",
+      "name": "Suchy Wierch Olczyski",
+      "type": "peak",
+      "lat": 49.26343,
+      "lng": 20.008098,
+      "elevation": 1227.0,
+      "nearest_routing_node_id": "node/10032229628",
+      "distance_to_trail_m": 516
+    },
+    {
+      "id": "node/3571391593",
+      "name": "Suchy Wierch Ornaczański",
+      "type": "peak",
+      "lat": 49.222113,
+      "lng": 19.833634,
+      "elevation": 1832.0,
+      "nearest_routing_node_id": "node/13180654620",
+      "distance_to_trail_m": 186
+    },
+    {
+      "id": "node/2102060451",
+      "name": "Suchy Wierch Waksmundzki",
+      "type": "peak",
+      "lat": 49.258611,
+      "lng": 20.068056,
+      "elevation": 1485.0,
+      "nearest_routing_node_id": "node/803745587",
+      "distance_to_trail_m": 366
+    },
+    {
+      "id": "node/11592361023",
+      "name": "Szara Przełączka",
+      "type": "saddle",
+      "lat": 49.251805,
+      "lng": 19.928314,
+      "elevation": 1636.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 316
+    },
+    {
+      "id": "node/11592361058",
+      "name": "Szara Turnia",
+      "type": "peak",
+      "lat": 49.251809,
+      "lng": 19.92847,
+      "elevation": 1647.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 319
+    },
+    {
+      "id": "node/10921092363",
+      "name": "Szczerba",
+      "type": "saddle",
+      "lat": 49.250881,
+      "lng": 19.936809,
+      "elevation": 1810.0,
+      "nearest_routing_node_id": "node/3741575976",
+      "distance_to_trail_m": 193
+    },
+    {
+      "id": "node/3592417902",
+      "name": "Szczerbina",
+      "type": "saddle",
+      "lat": 49.242376,
+      "lng": 19.84382,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 993
+    },
+    {
+      "id": "node/9991444413",
+      "name": "Szczerbina nad Igłami",
+      "type": "saddle",
+      "lat": 49.185303,
+      "lng": 20.061425,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/8960110469",
+      "distance_to_trail_m": 287
+    },
+    {
+      "id": "node/11581687626",
+      "name": "Szczerbinka",
+      "type": "saddle",
+      "lat": 49.253242,
+      "lng": 19.942136,
+      "elevation": 1823.0,
+      "nearest_routing_node_id": "node/3741575976",
+      "distance_to_trail_m": 643
+    },
+    {
+      "id": "node/803819836",
+      "name": "Szerokie Siodło",
+      "type": "saddle",
+      "lat": 49.233952,
+      "lng": 19.900667,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/7838797301",
+      "distance_to_trail_m": 354
+    },
+    {
+      "id": "node/8499322247",
+      "name": "Szerokie Siodło",
+      "type": "saddle",
+      "lat": 49.249789,
+      "lng": 19.991541,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5949252006",
+      "distance_to_trail_m": 600
+    },
+    {
+      "id": "node/9520210970",
+      "name": "Szpiglasowa Kopka",
+      "type": "peak",
+      "lat": 49.196636,
+      "lng": 20.04471,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11383307214",
+      "distance_to_trail_m": 212
+    },
+    {
+      "id": "node/11189254686",
+      "name": "Szpiglasowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.197854,
+      "lng": 20.042199,
+      "elevation": 2110.0,
+      "nearest_routing_node_id": "node/384075808",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/9978523982",
+      "name": "Szpiglasowa Szczerbina",
+      "type": "saddle",
+      "lat": 49.195182,
+      "lng": 20.040624,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 238
+    },
+    {
+      "id": "node/9978523981",
+      "name": "Szpiglasowa Turniczka",
+      "type": "peak",
+      "lat": 49.195119,
+      "lng": 20.04067,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 245
+    },
+    {
+      "id": "relation/12991546",
+      "name": "Szpiglasowe Stawki",
+      "type": "water",
+      "lat": 49.203446,
+      "lng": 20.038823,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11383307214",
+      "distance_to_trail_m": 664
+    },
+    {
+      "id": "node/452477062",
+      "name": "Szpiglasowy Wierch",
+      "type": "peak",
+      "lat": 49.197291,
+      "lng": 20.040106,
+      "elevation": 2172.1,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3560322431",
+      "name": "Tatrzańskie Serduszko",
+      "type": "viewpoint",
+      "lat": 49.229287,
+      "lng": 20.011503,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/355985946",
+      "distance_to_trail_m": 55
+    },
+    {
+      "id": "node/1202117006",
+      "name": "Tomanowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.219669,
+      "lng": 19.904728,
+      "elevation": 1686.0,
+      "nearest_routing_node_id": "node/1202117006",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/10128861029",
+      "name": "Tomanowy Przechód",
+      "type": "saddle",
+      "lat": 49.229092,
+      "lng": 19.892331,
+      "elevation": 1740.0,
+      "nearest_routing_node_id": "node/7838797301",
+      "distance_to_trail_m": 800
+    },
+    {
+      "id": "relation/12980772",
+      "name": "Troiśniak",
+      "type": "water",
+      "lat": 49.234563,
+      "lng": 19.996214,
+      "elevation": 1612.6,
+      "nearest_routing_node_id": "node/308092499",
+      "distance_to_trail_m": 185
+    },
+    {
+      "id": "node/1294543814",
+      "name": "Trzydniowiański Wierch",
+      "type": "peak",
+      "lat": 49.219104,
+      "lng": 19.803726,
+      "elevation": 1758.0,
+      "nearest_routing_node_id": "node/1202079306",
+      "distance_to_trail_m": 49
+    },
+    {
+      "id": "node/12407901058",
+      "name": "Turnia Zwornikowa",
+      "type": "peak",
+      "lat": 49.191949,
+      "lng": 20.059928,
+      "elevation": 1962.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 237
+    },
+    {
+      "id": "node/11581710090",
+      "name": "Turnia nad Białem",
+      "type": "peak",
+      "lat": 49.253977,
+      "lng": 19.946081,
+      "elevation": 1740.0,
+      "nearest_routing_node_id": "node/9514597545",
+      "distance_to_trail_m": 620
+    },
+    {
+      "id": "node/2103272998",
+      "name": "Turnia nad Dziadem",
+      "type": "peak",
+      "lat": 49.23901,
+      "lng": 20.072458,
+      "elevation": 1901.0,
+      "nearest_routing_node_id": "node/384346091",
+      "distance_to_trail_m": 1212
+    },
+    {
+      "id": "node/3494312974",
+      "name": "Turnia nad Schodkami",
+      "type": "peak",
+      "lat": 49.217298,
+      "lng": 20.020877,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3755385023",
+      "distance_to_trail_m": 234
+    },
+    {
+      "id": "node/2103272999",
+      "name": "Turnia nad Szczotami",
+      "type": "peak",
+      "lat": 49.232592,
+      "lng": 20.075715,
+      "elevation": 1741.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 779
+    },
+    {
+      "id": "node/1295341393",
+      "name": "Twarda Kopa",
+      "type": "peak",
+      "lat": 49.234677,
+      "lng": 19.9003,
+      "elevation": 2026.0,
+      "nearest_routing_node_id": "node/797774723",
+      "distance_to_trail_m": 311
+    },
+    {
+      "id": "node/8809914841",
+      "name": "Tyrałowa Czuba",
+      "type": "peak",
+      "lat": 49.265022,
+      "lng": 19.796027,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13238662766",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "node/8809914842",
+      "name": "Tyrałowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.264244,
+      "lng": 19.804707,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13238662653",
+      "distance_to_trail_m": 36
+    },
+    {
+      "id": "node/3560953192",
+      "name": "Upalone",
+      "type": "saddle",
+      "lat": 49.23605,
+      "lng": 19.777606,
+      "elevation": 1421.0,
+      "nearest_routing_node_id": "node/5427568224",
+      "distance_to_trail_m": 409
+    },
+    {
+      "id": "node/1295341388",
+      "name": "Upłaziańska Kopa",
+      "type": "peak",
+      "lat": 49.239514,
+      "lng": 19.889733,
+      "elevation": 1796.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 190
+    },
+    {
+      "id": "node/1995387409",
+      "name": "Upłaziańska Kopka",
+      "type": "peak",
+      "lat": 49.250365,
+      "lng": 19.887133,
+      "elevation": 1457.0,
+      "nearest_routing_node_id": "node/2009108458",
+      "distance_to_trail_m": 788
+    },
+    {
+      "id": "node/2008611051",
+      "name": "Upłaziański Wierszyk",
+      "type": "peak",
+      "lat": 49.256334,
+      "lng": 19.878431,
+      "elevation": 1203.0,
+      "nearest_routing_node_id": "node/1200977217",
+      "distance_to_trail_m": 631
+    },
+    {
+      "id": "node/10840394025",
+      "name": "Upłazkowa Baszta",
+      "type": "peak",
+      "lat": 49.238106,
+      "lng": 19.876107,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 573
+    },
+    {
+      "id": "node/10840394029",
+      "name": "Upłazkowa Kopa",
+      "type": "peak",
+      "lat": 49.237773,
+      "lng": 19.878512,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 745
+    },
+    {
+      "id": "node/1295341385",
+      "name": "Upłazkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.238341,
+      "lng": 19.880662,
+      "elevation": 1600.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 818
+    },
+    {
+      "id": "node/10840394021",
+      "name": "Upłazkowa Szczerbina",
+      "type": "saddle",
+      "lat": 49.237842,
+      "lng": 19.87819,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 722
+    },
+    {
+      "id": "node/1295341384",
+      "name": "Upłazkowa Turnia",
+      "type": "peak",
+      "lat": 49.237518,
+      "lng": 19.87916,
+      "elevation": 1608.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 791
+    },
+    {
+      "id": "node/10840394022",
+      "name": "Upłazkowe Siodło",
+      "type": "saddle",
+      "lat": 49.237763,
+      "lng": 19.878695,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 758
+    },
+    {
+      "id": "node/10840394018",
+      "name": "Upłazkowe Wrótka",
+      "type": "saddle",
+      "lat": 49.238053,
+      "lng": 19.876973,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 635
+    },
+    {
+      "id": "node/10840394019",
+      "name": "Upłazkowy Kopiniak",
+      "type": "peak",
+      "lat": 49.237983,
+      "lng": 19.877852,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 698
+    },
+    {
+      "id": "node/10840394020",
+      "name": "Upłazkowy Przechód",
+      "type": "saddle",
+      "lat": 49.237893,
+      "lng": 19.877977,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 707
+    },
+    {
+      "id": "node/10840394028",
+      "name": "Upłazkowy Ząb",
+      "type": "peak",
+      "lat": 49.237884,
+      "lng": 19.878148,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 719
+    },
+    {
+      "id": "node/9032592432",
+      "name": "Waksmundzka Przełęcz",
+      "type": "saddle",
+      "lat": 49.255522,
+      "lng": 20.06603,
+      "elevation": 1418.0,
+      "nearest_routing_node_id": "node/2096802180",
+      "distance_to_trail_m": 39
+    },
+    {
+      "id": "node/2103273000",
+      "name": "Waksmundzki Wierch",
+      "type": "peak",
+      "lat": 49.231944,
+      "lng": 20.046944,
+      "elevation": 2189.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 350
+    },
+    {
+      "id": "node/8930822599",
+      "name": "Walentkowa Kopka",
+      "type": "peak",
+      "lat": 49.215417,
+      "lng": 20.010527,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 290
+    },
+    {
+      "id": "node/3504724224",
+      "name": "Walentkowa Przełęcz",
+      "type": "saddle",
+      "lat": 49.216031,
+      "lng": 20.009035,
+      "elevation": 2100.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 270
+    },
+    {
+      "id": "node/385107932",
+      "name": "Walentkowy Wierch",
+      "type": "peak",
+      "lat": 49.213435,
+      "lng": 20.006815,
+      "elevation": 2156.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 61
+    },
+    {
+      "id": "node/2639389007",
+      "name": "Wielka Buczynowa Turnia",
+      "type": "peak",
+      "lat": 49.227182,
+      "lng": 20.040264,
+      "elevation": 2184.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 446
+    },
+    {
+      "id": "node/1496149198",
+      "name": "Wielka Kopka",
+      "type": "peak",
+      "lat": 49.233663,
+      "lng": 20.039436,
+      "elevation": 1856.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 770
+    },
+    {
+      "id": "node/2103273001",
+      "name": "Wielka Koszysta",
+      "type": "peak",
+      "lat": 49.235363,
+      "lng": 20.049513,
+      "elevation": 2193.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 733
+    },
+    {
+      "id": "node/3538976943",
+      "name": "Wielka Kotelnica",
+      "type": "peak",
+      "lat": 49.201622,
+      "lng": 20.020924,
+      "elevation": 1987.0,
+      "nearest_routing_node_id": "node/11379617464",
+      "distance_to_trail_m": 855
+    },
+    {
+      "id": "node/3633401218",
+      "name": "Wielka Królowa Kopa",
+      "type": "peak",
+      "lat": 49.255862,
+      "lng": 20.004845,
+      "elevation": 1531.0,
+      "nearest_routing_node_id": "node/9521570246",
+      "distance_to_trail_m": 103
+    },
+    {
+      "id": "node/9032609525",
+      "name": "Wielka Orla Turniczka",
+      "type": "peak",
+      "lat": 49.227043,
+      "lng": 20.034948,
+      "elevation": 2162.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 107
+    },
+    {
+      "id": "node/3600532984",
+      "name": "Wielka Turnia",
+      "type": "peak",
+      "lat": 49.244535,
+      "lng": 19.92024,
+      "elevation": 1847.0,
+      "nearest_routing_node_id": "node/2570077611",
+      "distance_to_trail_m": 432
+    },
+    {
+      "id": "node/10873136341",
+      "name": "Wielka Turnia",
+      "type": "peak",
+      "lat": 49.235202,
+      "lng": 19.872032,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 378
+    },
+    {
+      "id": "node/9973078511",
+      "name": "Wielka Walentkowa Czuba",
+      "type": "peak",
+      "lat": 49.214523,
+      "lng": 20.007684,
+      "elevation": 2128.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 77
+    },
+    {
+      "id": "node/3508660246",
+      "name": "Wielka Wołowa Szczerbina",
+      "type": "saddle",
+      "lat": 49.179147,
+      "lng": 20.074672,
+      "elevation": 2355.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 564
+    },
+    {
+      "id": "node/1295278143",
+      "name": "Wielki Giewont",
+      "type": "peak",
+      "lat": 49.250954,
+      "lng": 19.934102,
+      "elevation": 1894.5,
+      "nearest_routing_node_id": "node/3741575976",
+      "distance_to_trail_m": 24
+    },
+    {
+      "id": "node/1294543865",
+      "name": "Wielki Kopieniec",
+      "type": "peak",
+      "lat": 49.239348,
+      "lng": 19.809999,
+      "elevation": 1257.0,
+      "nearest_routing_node_id": "node/1202079304",
+      "distance_to_trail_m": 287
+    },
+    {
+      "id": "node/2098613390",
+      "name": "Wielki Kopieniec",
+      "type": "peak",
+      "lat": 49.271655,
+      "lng": 20.016304,
+      "elevation": 1328.0,
+      "nearest_routing_node_id": "node/5671991137",
+      "distance_to_trail_m": 3
+    },
+    {
+      "id": "node/2107834139",
+      "name": "Wielki Opalony Wierch",
+      "type": "peak",
+      "lat": 49.250306,
+      "lng": 19.836611,
+      "elevation": 1485.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 899
+    },
+    {
+      "id": "way/29239554",
+      "name": "Wielki Staw Polski",
+      "type": "water",
+      "lat": 49.208652,
+      "lng": 20.039496,
+      "elevation": 1665.0,
+      "nearest_routing_node_id": "node/5874402120",
+      "distance_to_trail_m": 352
+    },
+    {
+      "id": "node/2103273002",
+      "name": "Wielki Wołoszyn",
+      "type": "peak",
+      "lat": 49.228333,
+      "lng": 20.05,
+      "elevation": 2155.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 165
+    },
+    {
+      "id": "node/1295379321",
+      "name": "Wielkie Turnie",
+      "type": "peak",
+      "lat": 49.244896,
+      "lng": 19.806503,
+      "elevation": 1350.0,
+      "nearest_routing_node_id": "node/5602494048",
+      "distance_to_trail_m": 377
+    },
+    {
+      "id": "node/2107822736",
+      "name": "Wierch Spalenisko",
+      "type": "peak",
+      "lat": 49.256361,
+      "lng": 19.835167,
+      "elevation": 1324.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 227
+    },
+    {
+      "id": "node/8967856477",
+      "name": "Wierch nad Zagonnym Żlebem",
+      "type": "peak",
+      "lat": 49.234677,
+      "lng": 20.067135,
+      "elevation": 2039.0,
+      "nearest_routing_node_id": "node/3499289916",
+      "distance_to_trail_m": 1413
+    },
+    {
+      "id": "node/1496149199",
+      "name": "Wierch pod Fajki",
+      "type": "peak",
+      "lat": 49.228955,
+      "lng": 20.032733,
+      "elevation": 2135.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 219
+    },
+    {
+      "id": "node/3569141394",
+      "name": "Wierch Świerkule",
+      "type": "peak",
+      "lat": 49.248382,
+      "lng": 19.838573,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 1085
+    },
+    {
+      "id": "node/13749716182",
+      "name": "Wierchporoniec",
+      "type": "peak",
+      "lat": 49.2934,
+      "lng": 20.095049,
+      "elevation": 1036.0,
+      "nearest_routing_node_id": "node/10778318849",
+      "distance_to_trail_m": 495
+    },
+    {
+      "id": "way/300679700",
+      "name": "Willa Kościeliska",
+      "type": "guest_house",
+      "lat": 49.276495,
+      "lng": 19.870007,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3047868905",
+      "distance_to_trail_m": 49
+    },
+    {
+      "id": "node/3598563338",
+      "name": "Wolarski Przechód",
+      "type": "saddle",
+      "lat": 49.229573,
+      "lng": 19.879521,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 1206
+    },
+    {
+      "id": "way/248995274",
+      "name": "Wole Oko",
+      "type": "water",
+      "lat": 49.209789,
+      "lng": 20.015257,
+      "elevation": 1862.0,
+      "nearest_routing_node_id": "node/5980841173",
+      "distance_to_trail_m": 96
+    },
+    {
+      "id": "node/3503813793",
+      "name": "Wołoszyńska Szczerbina",
+      "type": "saddle",
+      "lat": 49.228507,
+      "lng": 20.049648,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 134
+    },
+    {
+      "id": "way/930417423",
+      "name": "Wołoszyński Stawek",
+      "type": "water",
+      "lat": 49.248884,
+      "lng": 20.086381,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1293463275",
+      "distance_to_trail_m": 216
+    },
+    {
+      "id": "node/385106041",
+      "name": "Wołowa Turnia",
+      "type": "peak",
+      "lat": 49.178902,
+      "lng": 20.075116,
+      "elevation": 2373.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 550
+    },
+    {
+      "id": "node/3344854169",
+      "name": "Wrota Chałubińskiego",
+      "type": "saddle",
+      "lat": 49.191758,
+      "lng": 20.044994,
+      "elevation": 2022.0,
+      "nearest_routing_node_id": "node/3344854169",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3592476518",
+      "name": "Wrótka",
+      "type": "saddle",
+      "lat": 49.239409,
+      "lng": 19.852653,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5916784586",
+      "distance_to_trail_m": 603
+    },
+    {
+      "id": "node/3600514330",
+      "name": "Wrótka",
+      "type": "saddle",
+      "lat": 49.254736,
+      "lng": 19.953073,
+      "elevation": 1579.0,
+      "nearest_routing_node_id": "node/9514597545",
+      "distance_to_trail_m": 558
+    },
+    {
+      "id": "relation/9968120",
+      "name": "Wschodni Dwoisty Staw",
+      "type": "water",
+      "lat": 49.233089,
+      "lng": 20.005043,
+      "elevation": 1657.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 617
+    },
+    {
+      "id": "node/11592361116",
+      "name": "Wysoka Giewoncka Baszta",
+      "type": "peak",
+      "lat": 49.250081,
+      "lng": 19.928438,
+      "elevation": 1738.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 143
+    },
+    {
+      "id": "node/10802758129",
+      "name": "Wysoka Szczerbina",
+      "type": "saddle",
+      "lat": 49.236243,
+      "lng": 19.882185,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 837
+    },
+    {
+      "id": "node/1295341391",
+      "name": "Wysoka Turnia",
+      "type": "peak",
+      "lat": 49.236051,
+      "lng": 19.882798,
+      "elevation": 1643.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 816
+    },
+    {
+      "id": "node/8518741430",
+      "name": "Wysokie",
+      "type": "peak",
+      "lat": 49.264306,
+      "lng": 19.994087,
+      "elevation": 1287.0,
+      "nearest_routing_node_id": "node/3005882542",
+      "distance_to_trail_m": 474
+    },
+    {
+      "id": "node/3592618809",
+      "name": "Wysokie Siodło",
+      "type": "saddle",
+      "lat": 49.236649,
+      "lng": 19.883467,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3075474947",
+      "distance_to_trail_m": 736
+    },
+    {
+      "id": "node/13674592718",
+      "name": "Wyżni Cubryński Przechód",
+      "type": "saddle",
+      "lat": 49.191898,
+      "lng": 20.060468,
+      "elevation": 1890.0,
+      "nearest_routing_node_id": "node/11157565047",
+      "distance_to_trail_m": 267
+    },
+    {
+      "id": "node/9991444411",
+      "name": "Wyżni Czarnostawiański Przechód",
+      "type": "saddle",
+      "lat": 49.183923,
+      "lng": 20.07026,
+      "elevation": 2181.0,
+      "nearest_routing_node_id": "node/1779828445",
+      "distance_to_trail_m": 116
+    },
+    {
+      "id": "way/136388849",
+      "name": "Wyżni Czerwony Stawek",
+      "type": "water",
+      "lat": 49.227629,
+      "lng": 20.003986,
+      "elevation": 1694.6,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 117
+    },
+    {
+      "id": "node/2359130656",
+      "name": "Wyżni Kopieńcowy Przechód",
+      "type": "saddle",
+      "lat": 49.234111,
+      "lng": 19.810111,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1202079211",
+      "distance_to_trail_m": 630
+    },
+    {
+      "id": "node/1103562910",
+      "name": "Wyżni Kostur",
+      "type": "peak",
+      "lat": 49.199207,
+      "lng": 20.033387,
+      "elevation": 2083.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 533
+    },
+    {
+      "id": "way/581704891",
+      "name": "Wyżni Staw Staszica",
+      "type": "water",
+      "lat": 49.195465,
+      "lng": 20.050375,
+      "elevation": 1785.0,
+      "nearest_routing_node_id": "node/9023167485",
+      "distance_to_trail_m": 83
+    },
+    {
+      "id": "way/621286993",
+      "name": "Wyżni Toporowy Staw",
+      "type": "water",
+      "lat": 49.279437,
+      "lng": 20.029729,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5871116727",
+      "distance_to_trail_m": 370
+    },
+    {
+      "id": "way/1063344679",
+      "name": "Wyżni Waksmundzki Stawek",
+      "type": "water",
+      "lat": 49.230637,
+      "lng": 20.051954,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747324",
+      "distance_to_trail_m": 356
+    },
+    {
+      "id": "node/2721707707",
+      "name": "Wyżni Wodogrzmot",
+      "type": "waterfall",
+      "lat": 49.234139,
+      "lng": 20.086793,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346097",
+      "distance_to_trail_m": 65
+    },
+    {
+      "id": "node/10873136334",
+      "name": "Wyżni Zbójnicki Przechód",
+      "type": "saddle",
+      "lat": 49.236117,
+      "lng": 19.865402,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2487026279",
+      "distance_to_trail_m": 242
+    },
+    {
+      "id": "node/3508598896",
+      "name": "Wyżnia Białczańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.189107,
+      "lng": 20.086516,
+      "elevation": 2085.0,
+      "nearest_routing_node_id": "node/11077642396",
+      "distance_to_trail_m": 123
+    },
+    {
+      "id": "node/11217424616",
+      "name": "Wyżnia Filipczańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.261526,
+      "lng": 20.062313,
+      "elevation": 1434.0,
+      "nearest_routing_node_id": "node/11837813985",
+      "distance_to_trail_m": 300
+    },
+    {
+      "id": "node/3600484614",
+      "name": "Wyżnia Kondracka Przełęcz",
+      "type": "saddle",
+      "lat": 49.248856,
+      "lng": 19.933743,
+      "elevation": 1765.0,
+      "nearest_routing_node_id": "node/467480919",
+      "distance_to_trail_m": 31
+    },
+    {
+      "id": "node/8757470155",
+      "name": "Wyżnia Kopa",
+      "type": "peak",
+      "lat": 49.213256,
+      "lng": 20.045385,
+      "elevation": 1725.0,
+      "nearest_routing_node_id": "node/11156672426",
+      "distance_to_trail_m": 133
+    },
+    {
+      "id": "node/3538939602",
+      "name": "Wyżnia Liptowska Ławka",
+      "type": "saddle",
+      "lat": 49.198628,
+      "lng": 20.034475,
+      "elevation": 2071.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 435
+    },
+    {
+      "id": "node/11079467142",
+      "name": "Wyżnia Mała Przełączka",
+      "type": "saddle",
+      "lat": 49.228616,
+      "lng": 19.904047,
+      "elevation": 1977.0,
+      "nearest_routing_node_id": "node/5968611523",
+      "distance_to_trail_m": 264
+    },
+    {
+      "id": "node/3571409793",
+      "name": "Wyżnia Ornaczańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.220415,
+      "lng": 19.8335,
+      "elevation": 1825.0,
+      "nearest_routing_node_id": "node/3324223812",
+      "distance_to_trail_m": 93
+    },
+    {
+      "id": "node/9032605672",
+      "name": "Wyżnia Przełączka pod Ptakiem",
+      "type": "saddle",
+      "lat": 49.227815,
+      "lng": 20.04496,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/6749747318",
+      "distance_to_trail_m": 103
+    },
+    {
+      "id": "node/8457144020",
+      "name": "Wyżnia Przełęcz Białego",
+      "type": "saddle",
+      "lat": 49.261361,
+      "lng": 19.962321,
+      "elevation": 1331.0,
+      "nearest_routing_node_id": "node/2292519817",
+      "distance_to_trail_m": 351
+    },
+    {
+      "id": "node/3600507064",
+      "name": "Wyżnia Sucha Przełęcz",
+      "type": "saddle",
+      "lat": 49.255293,
+      "lng": 19.944099,
+      "elevation": 1560.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 738
+    },
+    {
+      "id": "node/3508632048",
+      "name": "Wyżnia Tomkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.183764,
+      "lng": 20.084071,
+      "elevation": 2115.0,
+      "nearest_routing_node_id": "node/3508632046",
+      "distance_to_trail_m": 39
+    },
+    {
+      "id": "node/9973078513",
+      "name": "Wyżnia Walentkowa Czuba",
+      "type": "peak",
+      "lat": 49.214859,
+      "lng": 20.008187,
+      "elevation": 2114.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 127
+    },
+    {
+      "id": "node/3508683403",
+      "name": "Wyżnia Żabia Przełęcz",
+      "type": "saddle",
+      "lat": 49.178509,
+      "lng": 20.078627,
+      "elevation": 2315.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 395
+    },
+    {
+      "id": "node/3569134393",
+      "name": "Wyżnie Dudowe Siodło",
+      "type": "saddle",
+      "lat": 49.248662,
+      "lng": 19.837685,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/13236813761",
+      "distance_to_trail_m": 1088
+    },
+    {
+      "id": "node/9447967726",
+      "name": "Wyżnie Kasprowe Siodło",
+      "type": "saddle",
+      "lat": 49.238219,
+      "lng": 19.98983,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/295645442",
+      "distance_to_trail_m": 507
+    },
+    {
+      "id": "node/9957754072",
+      "name": "Wyżnie Liliowe",
+      "type": "saddle",
+      "lat": 49.22696,
+      "lng": 19.989379,
+      "elevation": 1965.0,
+      "nearest_routing_node_id": "node/295648381",
+      "distance_to_trail_m": 68
+    },
+    {
+      "id": "relation/13111006",
+      "name": "Wyżnie Mnichowe Stawki",
+      "type": "water",
+      "lat": 49.194716,
+      "lng": 20.053287,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/10923459146",
+      "distance_to_trail_m": 59
+    },
+    {
+      "id": "node/3494334491",
+      "name": "Wyżnie Mylne Wrótka",
+      "type": "saddle",
+      "lat": 49.223508,
+      "lng": 20.015613,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11156609443",
+      "distance_to_trail_m": 17
+    },
+    {
+      "id": "node/3503766330",
+      "name": "Wyżnie Sieczkowe Siodełko",
+      "type": "saddle",
+      "lat": 49.223388,
+      "lng": 20.033044,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 27
+    },
+    {
+      "id": "node/3504619541",
+      "name": "Wyżnie Siodło",
+      "type": "saddle",
+      "lat": 49.234677,
+      "lng": 20.06844,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 1320
+    },
+    {
+      "id": "node/9978523986",
+      "name": "Wyżnie Szpiglasowe Wrótka",
+      "type": "saddle",
+      "lat": 49.196199,
+      "lng": 20.04,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/452477062",
+      "distance_to_trail_m": 122
+    },
+    {
+      "id": "way/1063344681",
+      "name": "Wyżnie Waksmundzkie Oko",
+      "type": "water",
+      "lat": 49.235804,
+      "lng": 20.057894,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3499289916",
+      "distance_to_trail_m": 940
+    },
+    {
+      "id": "node/9973078512",
+      "name": "Wyżnie Walentkowe Wrótka",
+      "type": "saddle",
+      "lat": 49.214758,
+      "lng": 20.0081,
+      "elevation": 2113.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 114
+    },
+    {
+      "id": "node/3600513910",
+      "name": "Wyżnie Wrótka",
+      "type": "saddle",
+      "lat": 49.253864,
+      "lng": 19.945652,
+      "elevation": 1733.0,
+      "nearest_routing_node_id": "node/5627166663",
+      "distance_to_trail_m": 625
+    },
+    {
+      "id": "way/200463486",
+      "name": "Zachodni Dwoisty Staw",
+      "type": "water",
+      "lat": 49.233256,
+      "lng": 20.003394,
+      "elevation": 1657.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 609
+    },
+    {
+      "id": "node/11592361112",
+      "name": "Zadni Giewoncki Karbik",
+      "type": "saddle",
+      "lat": 49.24987,
+      "lng": 19.928996,
+      "elevation": 1718.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 155
+    },
+    {
+      "id": "node/1496151183",
+      "name": "Zadni Granat",
+      "type": "peak",
+      "lat": 49.22477,
+      "lng": 20.032569,
+      "elevation": 2240.0,
+      "nearest_routing_node_id": "node/460951714",
+      "distance_to_trail_m": 39
+    },
+    {
+      "id": "node/2721684699",
+      "name": "Zadni Kościelec",
+      "type": "peak",
+      "lat": 49.223691,
+      "lng": 20.015552,
+      "elevation": 2162.0,
+      "nearest_routing_node_id": "node/11156609443",
+      "distance_to_trail_m": 4
+    },
+    {
+      "id": "way/581704893",
+      "name": "Zadni Mnichowy Stawek",
+      "type": "water",
+      "lat": 49.190089,
+      "lng": 20.051779,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11361853618",
+      "distance_to_trail_m": 84
+    },
+    {
+      "id": "node/1295379318",
+      "name": "Zadni Ornak",
+      "type": "peak",
+      "lat": 49.212959,
+      "lng": 19.835383,
+      "elevation": 1867.0,
+      "nearest_routing_node_id": "node/13175442236",
+      "distance_to_trail_m": 47
+    },
+    {
+      "id": "way/29239659",
+      "name": "Zadni Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.224153,
+      "lng": 20.010109,
+      "elevation": 1852.0,
+      "nearest_routing_node_id": "node/11373293906",
+      "distance_to_trail_m": 89
+    },
+    {
+      "id": "way/29239582",
+      "name": "Zadni Staw Polski",
+      "type": "water",
+      "lat": 49.21295,
+      "lng": 20.012946,
+      "elevation": 1890.0,
+      "nearest_routing_node_id": "node/7813849872",
+      "distance_to_trail_m": 423
+    },
+    {
+      "id": "node/11592361113",
+      "name": "Zadnia Giewoncka Baszta",
+      "type": "peak",
+      "lat": 49.250046,
+      "lng": 19.928691,
+      "elevation": 1735.0,
+      "nearest_routing_node_id": "node/5902390253",
+      "distance_to_trail_m": 152
+    },
+    {
+      "id": "node/11217424618",
+      "name": "Zadnia Kopa Sołtysia",
+      "type": "peak",
+      "lat": 49.268201,
+      "lng": 20.062953,
+      "elevation": 1420.0,
+      "nearest_routing_node_id": "node/11838258529",
+      "distance_to_trail_m": 7
+    },
+    {
+      "id": "node/2107808030",
+      "name": "Zadnia Kopka",
+      "type": "peak",
+      "lat": 49.260112,
+      "lng": 19.858905,
+      "elevation": 1333.0,
+      "nearest_routing_node_id": "node/7898132605",
+      "distance_to_trail_m": 474
+    },
+    {
+      "id": "node/8805220357",
+      "name": "Zadnia Kończysta",
+      "type": "peak",
+      "lat": 49.26439,
+      "lng": 19.884776,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1200977217",
+      "distance_to_trail_m": 383
+    },
+    {
+      "id": "node/9029897690",
+      "name": "Zadnia Pańszczycka Czuba",
+      "type": "peak",
+      "lat": 49.227617,
+      "lng": 20.033673,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951757",
+      "distance_to_trail_m": 65
+    },
+    {
+      "id": "node/3571653875",
+      "name": "Zadnia Rosocha",
+      "type": "peak",
+      "lat": 49.263582,
+      "lng": 19.83298,
+      "elevation": 1271.0,
+      "nearest_routing_node_id": "node/13236811255",
+      "distance_to_trail_m": 294
+    },
+    {
+      "id": "node/3503760077",
+      "name": "Zadnia Sieczkowa Przełączka",
+      "type": "saddle",
+      "lat": 49.22293,
+      "lng": 20.032951,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 33
+    },
+    {
+      "id": "node/3503766329",
+      "name": "Zadnia Sieczkowa Turnia",
+      "type": "peak",
+      "lat": 49.223313,
+      "lng": 20.033129,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/460951693",
+      "distance_to_trail_m": 27
+    },
+    {
+      "id": "node/11217424617",
+      "name": "Zadnia Sołtysia Przełęcz",
+      "type": "saddle",
+      "lat": 49.267082,
+      "lng": 20.062433,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11838258529",
+      "distance_to_trail_m": 129
+    },
+    {
+      "id": "node/10857671205",
+      "name": "Zadnia Tomkowa Igła",
+      "type": "peak",
+      "lat": 49.183847,
+      "lng": 20.084029,
+      "elevation": 2133.0,
+      "nearest_routing_node_id": "node/3508632046",
+      "distance_to_trail_m": 31
+    },
+    {
+      "id": "node/3600809370",
+      "name": "Zagonna Przełęcz",
+      "type": "saddle",
+      "lat": 49.247176,
+      "lng": 19.911075,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1200977310",
+      "distance_to_trail_m": 474
+    },
+    {
+      "id": "node/3600809685",
+      "name": "Zagonna Turnia",
+      "type": "peak",
+      "lat": 49.247641,
+      "lng": 19.910562,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/1200977310",
+      "distance_to_trail_m": 537
+    },
+    {
+      "id": "node/8967856473",
+      "name": "Zagonny Zwornik",
+      "type": "peak",
+      "lat": 49.234992,
+      "lng": 20.067908,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384346085",
+      "distance_to_trail_m": 1364
+    },
+    {
+      "id": "node/1103563004",
+      "name": "Zamarła Turnia",
+      "type": "peak",
+      "lat": 49.219426,
+      "lng": 20.024293,
+      "elevation": 2179.0,
+      "nearest_routing_node_id": "node/460928226",
+      "distance_to_trail_m": 68
+    },
+    {
+      "id": "node/1295341398",
+      "name": "Zameczki",
+      "type": "peak",
+      "lat": 49.25907,
+      "lng": 19.950552,
+      "elevation": 1434.0,
+      "nearest_routing_node_id": "node/1333271099",
+      "distance_to_trail_m": 314
+    },
+    {
+      "id": "node/8809867690",
+      "name": "Zawiesista",
+      "type": "peak",
+      "lat": 49.243357,
+      "lng": 19.806694,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5602494048",
+      "distance_to_trail_m": 373
+    },
+    {
+      "id": "node/2569948268",
+      "name": "Zawiesista Turnia",
+      "type": "peak",
+      "lat": 49.263127,
+      "lng": 19.885947,
+      "elevation": 1296.0,
+      "nearest_routing_node_id": "node/6746951573",
+      "distance_to_trail_m": 352
+    },
+    {
+      "id": "node/9451044782",
+      "name": "Zawieszka",
+      "type": "peak",
+      "lat": 49.265833,
+      "lng": 19.943644,
+      "elevation": 1339.0,
+      "nearest_routing_node_id": "node/132274279",
+      "distance_to_trail_m": 186
+    },
+    {
+      "id": "node/8809479346",
+      "name": "Zawieszona Skała",
+      "type": "peak",
+      "lat": 49.243287,
+      "lng": 19.849682,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5905115331",
+      "distance_to_trail_m": 661
+    },
+    {
+      "id": "node/460927985",
+      "name": "Zawrat",
+      "type": "saddle",
+      "lat": 49.219088,
+      "lng": 20.016392,
+      "elevation": 2159.0,
+      "nearest_routing_node_id": "node/460927985",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/3494334728",
+      "name": "Zawratowa Turnia",
+      "type": "peak",
+      "lat": 49.219909,
+      "lng": 20.015338,
+      "elevation": 2247.0,
+      "nearest_routing_node_id": "node/460927985",
+      "distance_to_trail_m": 119
+    },
+    {
+      "id": "node/8807314850",
+      "name": "Zbójeckie Siodełki",
+      "type": "saddle",
+      "lat": 49.248806,
+      "lng": 19.868292,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 106
+    },
+    {
+      "id": "node/10873151884",
+      "name": "Zbójnicka Igła",
+      "type": "peak",
+      "lat": 49.237231,
+      "lng": 19.864736,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2487026315",
+      "distance_to_trail_m": 214
+    },
+    {
+      "id": "node/10873136330",
+      "name": "Zbójnicka Turnia",
+      "type": "peak",
+      "lat": 49.236399,
+      "lng": 19.865042,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/2487026279",
+      "distance_to_trail_m": 241
+    },
+    {
+      "id": "way/95951672",
+      "name": "Zielony Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.228636,
+      "lng": 19.999236,
+      "elevation": 1672.0,
+      "nearest_routing_node_id": "node/355985902",
+      "distance_to_trail_m": 247
+    },
+    {
+      "id": "node/9041097016",
+      "name": "Zmarzła Przełączka Wyżnia",
+      "type": "saddle",
+      "lat": 49.218842,
+      "lng": 20.020172,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3755385023",
+      "distance_to_trail_m": 192
+    },
+    {
+      "id": "node/460928124",
+      "name": "Zmarzła Przełęcz",
+      "type": "saddle",
+      "lat": 49.219636,
+      "lng": 20.023077,
+      "elevation": 2123.0,
+      "nearest_routing_node_id": "node/460928226",
+      "distance_to_trail_m": 159
+    },
+    {
+      "id": "node/1103562966",
+      "name": "Zmarzłe Czuby",
+      "type": "peak",
+      "lat": 49.218927,
+      "lng": 20.02034,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/3755385023",
+      "distance_to_trail_m": 207
+    },
+    {
+      "id": "way/29239619",
+      "name": "Zmarzły Staw Gąsienicowy",
+      "type": "water",
+      "lat": 49.224057,
+      "lng": 20.022489,
+      "elevation": 1788.0,
+      "nearest_routing_node_id": "node/8721150911",
+      "distance_to_trail_m": 47
+    },
+    {
+      "id": "node/9512402761",
+      "name": "Łasicowa Czubka",
+      "type": "peak",
+      "lat": 49.255729,
+      "lng": 20.041954,
+      "elevation": 1461.2,
+      "nearest_routing_node_id": "node/1324541717",
+      "distance_to_trail_m": 843
+    },
+    {
+      "id": "node/9451044783",
+      "name": "Łomik",
+      "type": "peak",
+      "lat": 49.269099,
+      "lng": 19.947859,
+      "elevation": 1270.0,
+      "nearest_routing_node_id": "node/2100603507",
+      "distance_to_trail_m": 491
+    },
+    {
+      "id": "node/1294543790",
+      "name": "Łopata",
+      "type": "peak",
+      "lat": 49.205004,
+      "lng": 19.778579,
+      "elevation": 1958.0,
+      "nearest_routing_node_id": "node/2359130651",
+      "distance_to_trail_m": 388
+    },
+    {
+      "id": "node/3560954589",
+      "name": "Łuczniańska Przełęcz",
+      "type": "saddle",
+      "lat": 49.23329,
+      "lng": 19.767182,
+      "elevation": 1602.0,
+      "nearest_routing_node_id": "node/13336949564",
+      "distance_to_trail_m": 30
+    },
+    {
+      "id": "node/4784525459",
+      "name": "Łysa Skałka",
+      "type": "peak",
+      "lat": 49.265353,
+      "lng": 20.113146,
+      "elevation": 1119.0,
+      "nearest_routing_node_id": "node/13180307014",
+      "distance_to_trail_m": 173
+    },
+    {
+      "id": "node/1295341403",
+      "name": "Łysanki",
+      "type": "peak",
+      "lat": 49.262155,
+      "lng": 19.915443,
+      "elevation": 1446.7,
+      "nearest_routing_node_id": "node/3001984396",
+      "distance_to_trail_m": 192
+    },
+    {
+      "id": "node/11217424622",
+      "name": "Łężny Wierch",
+      "type": "peak",
+      "lat": 49.274801,
+      "lng": 20.070929,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/11838227671",
+      "distance_to_trail_m": 204
+    },
+    {
+      "id": "node/9489833354",
+      "name": "Śpiąca Gora",
+      "type": "peak",
+      "lat": 49.265443,
+      "lng": 19.970695,
+      "elevation": 1186.0,
+      "nearest_routing_node_id": "node/7925504073",
+      "distance_to_trail_m": 83
+    },
+    {
+      "id": "node/11217424620",
+      "name": "Średnia Kopa Sołtysia",
+      "type": "peak",
+      "lat": 49.271331,
+      "lng": 20.060921,
+      "elevation": 1362.0,
+      "nearest_routing_node_id": "node/11837813929",
+      "distance_to_trail_m": 111
+    },
+    {
+      "id": "node/11217424619",
+      "name": "Średnia Sołtysia Przełęcz",
+      "type": "saddle",
+      "lat": 49.270631,
+      "lng": 20.061433,
+      "elevation": 1335.0,
+      "nearest_routing_node_id": "node/11837813929",
+      "distance_to_trail_m": 27
+    },
+    {
+      "id": "node/2721684700",
+      "name": "Świnica",
+      "type": "peak",
+      "lat": 49.22004,
+      "lng": 20.008642,
+      "elevation": 2291.0,
+      "nearest_routing_node_id": "node/3343362920",
+      "distance_to_trail_m": 84
+    },
+    {
+      "id": "node/3343362920",
+      "name": "Świnica",
+      "type": "peak",
+      "lat": 49.219421,
+      "lng": 20.009306,
+      "elevation": 2302.0,
+      "nearest_routing_node_id": "node/3343362920",
+      "distance_to_trail_m": 0
+    },
+    {
+      "id": "node/9957754032",
+      "name": "Świnicka Kopa",
+      "type": "peak",
+      "lat": 49.219374,
+      "lng": 20.009612,
+      "elevation": 2298.0,
+      "nearest_routing_node_id": "node/460927821",
+      "distance_to_trail_m": 11
+    },
+    {
+      "id": "node/9957754034",
+      "name": "Świnicka Szczerbina Niżnia",
+      "type": "saddle",
+      "lat": 49.219866,
+      "lng": 20.008879,
+      "elevation": 2278.0,
+      "nearest_routing_node_id": "node/3343362920",
+      "distance_to_trail_m": 58
+    },
+    {
+      "id": "node/9957754033",
+      "name": "Świnicka Szczerbina Wyżnia",
+      "type": "saddle",
+      "lat": 49.219352,
+      "lng": 20.009491,
+      "elevation": 2295.0,
+      "nearest_routing_node_id": "node/460927821",
+      "distance_to_trail_m": 10
+    },
+    {
+      "id": "node/8757470164",
+      "name": "Świstowa Czuba",
+      "type": "peak",
+      "lat": 49.216469,
+      "lng": 20.057519,
+      "elevation": 1763.0,
+      "nearest_routing_node_id": "node/8999007432",
+      "distance_to_trail_m": 1
+    },
+    {
+      "id": "node/8757470163",
+      "name": "Świstowa Kopa",
+      "type": "peak",
+      "lat": 49.214358,
+      "lng": 20.058847,
+      "elevation": 1875.0,
+      "nearest_routing_node_id": "node/8999007461",
+      "distance_to_trail_m": 123
+    },
+    {
+      "id": "node/8757470161",
+      "name": "Świstowe Siodło",
+      "type": "saddle",
+      "lat": 49.213709,
+      "lng": 20.058175,
+      "elevation": 1870.0,
+      "nearest_routing_node_id": "node/1908708939",
+      "distance_to_trail_m": 199
+    },
+    {
+      "id": "node/8757470162",
+      "name": "Świstowy Przechód",
+      "type": "saddle",
+      "lat": 49.216212,
+      "lng": 20.057645,
+      "elevation": 1755.0,
+      "nearest_routing_node_id": "node/8999007440",
+      "distance_to_trail_m": 7
+    },
+    {
+      "id": "node/3571740754",
+      "name": "Świńska Turnia",
+      "type": "peak",
+      "lat": 49.260742,
+      "lng": 19.857664,
+      "elevation": 1333.0,
+      "nearest_routing_node_id": "node/7898132606",
+      "distance_to_trail_m": 468
+    },
+    {
+      "id": "node/6719281507",
+      "name": "Żabi Kapucyn",
+      "type": "peak",
+      "lat": 49.189007,
+      "lng": 20.085449,
+      "elevation": 2138.0,
+      "nearest_routing_node_id": "node/11077642396",
+      "distance_to_trail_m": 52
+    },
+    {
+      "id": "node/3508683869",
+      "name": "Żabi Koń",
+      "type": "peak",
+      "lat": 49.178587,
+      "lng": 20.079306,
+      "elevation": 2291.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 363
+    },
+    {
+      "id": "node/3508601596",
+      "name": "Żabi Mnich",
+      "type": "peak",
+      "lat": 49.18917,
+      "lng": 20.085844,
+      "elevation": 2146.0,
+      "nearest_routing_node_id": "node/11077642396",
+      "distance_to_trail_m": 85
+    },
+    {
+      "id": "node/385106042",
+      "name": "Żabi Szczyt Wyżni",
+      "type": "peak",
+      "lat": 49.187846,
+      "lng": 20.089249,
+      "elevation": 2263.0,
+      "nearest_routing_node_id": "node/11077642396",
+      "distance_to_trail_m": 324
+    },
+    {
+      "id": "node/3544033690",
+      "name": "Żabia Czuba",
+      "type": "peak",
+      "lat": 49.198501,
+      "lng": 20.086272,
+      "elevation": 2079.0,
+      "nearest_routing_node_id": "node/13383464037",
+      "distance_to_trail_m": 141
+    },
+    {
+      "id": "node/3544132281",
+      "name": "Żabia Lalka",
+      "type": "peak",
+      "lat": 49.188347,
+      "lng": 20.084499,
+      "elevation": 2095.0,
+      "nearest_routing_node_id": "node/11077642396",
+      "distance_to_trail_m": 49
+    },
+    {
+      "id": "node/3508680034",
+      "name": "Żabia Przełęcz Mięguszowiecka",
+      "type": "saddle",
+      "lat": 49.178642,
+      "lng": 20.076249,
+      "elevation": 2315.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 500
+    },
+    {
+      "id": "node/3508689204",
+      "name": "Żabia Turnia Mięguszowiecka",
+      "type": "peak",
+      "lat": 49.178604,
+      "lng": 20.077133,
+      "elevation": 2336.0,
+      "nearest_routing_node_id": "node/11157564994",
+      "distance_to_trail_m": 455
+    },
+    {
+      "id": "way/581704894",
+      "name": "Żabie Oko",
+      "type": "water",
+      "lat": 49.203403,
+      "lng": 20.072979,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/384360353",
+      "distance_to_trail_m": 149
+    },
+    {
+      "id": "node/10128848003",
+      "name": "Żar",
+      "type": "peak",
+      "lat": 49.230712,
+      "lng": 19.875894,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 941
+    },
+    {
+      "id": "node/10128848001",
+      "name": "Żarskie Siodło",
+      "type": "saddle",
+      "lat": 49.231083,
+      "lng": 19.873342,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5913733050",
+      "distance_to_trail_m": 808
+    },
+    {
+      "id": "node/8807314872",
+      "name": "Żółta Baszta",
+      "type": "peak",
+      "lat": 49.247423,
+      "lng": 19.870579,
+      "elevation": 0.0,
+      "nearest_routing_node_id": "node/5907345208",
+      "distance_to_trail_m": 327
+    },
+    {
+      "id": "node/1496149232",
+      "name": "Żółta Przełęcz",
+      "type": "saddle",
+      "lat": 49.230296,
+      "lng": 20.030582,
+      "elevation": 2028.0,
+      "nearest_routing_node_id": "node/11156609626",
+      "distance_to_trail_m": 234
+    },
+    {
+      "id": "node/1496149233",
+      "name": "Żółta Turnia",
+      "type": "peak",
+      "lat": 49.234481,
+      "lng": 20.029017,
+      "elevation": 2047.0,
+      "nearest_routing_node_id": "node/11156609611",
+      "distance_to_trail_m": 606
+    }
+  ]
+}

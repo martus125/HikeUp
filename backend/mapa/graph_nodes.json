@@ -7,8 +7,8 @@
       "lat": 49.195414,
       "lng": 20.081632,
       "elevation": 1953.0,
-      "nearest_routing_node_id": "node/13383464036",
-      "distance_to_trail_m": 184
+      "nearest_routing_node_id": "node/11380919910",
+      "distance_to_trail_m": 477
     },
     {
       "id": "node/3600501725",
@@ -17,8 +17,8 @@
       "lat": 49.253619,
       "lng": 19.925013,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3738537256",
-      "distance_to_trail_m": 534
+      "nearest_routing_node_id": "node/3750797866",
+      "distance_to_trail_m": 110
     },
     {
       "id": "node/9034231034",
@@ -27,8 +27,8 @@
       "lat": 49.253991,
       "lng": 19.924866,
       "elevation": 1507.0,
-      "nearest_routing_node_id": "node/3738537256",
-      "distance_to_trail_m": 576
+      "nearest_routing_node_id": "node/3750797868",
+      "distance_to_trail_m": 107
     },
     {
       "id": "node/8809914852",
@@ -37,8 +37,8 @@
       "lat": 49.263756,
       "lng": 19.83303,
       "elevation": 1270.0,
-      "nearest_routing_node_id": "node/13236811254",
-      "distance_to_trail_m": 281
+      "nearest_routing_node_id": "node/13236811264",
+      "distance_to_trail_m": 69
     },
     {
       "id": "node/10873136350",
@@ -57,8 +57,8 @@
       "lat": 49.261653,
       "lng": 19.96355,
       "elevation": 1333.0,
-      "nearest_routing_node_id": "node/2292519817",
-      "distance_to_trail_m": 284
+      "nearest_routing_node_id": "node/4889404726",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/11592361063",
@@ -67,8 +67,8 @@
       "lat": 49.250654,
       "lng": 19.928293,
       "elevation": 1728.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 194
+      "nearest_routing_node_id": "node/3737060254",
+      "distance_to_trail_m": 147
     },
     {
       "id": "node/8807314860",
@@ -77,8 +77,8 @@
       "lat": 49.246441,
       "lng": 19.87109,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 437
+      "nearest_routing_node_id": "node/836433280",
+      "distance_to_trail_m": 400
     },
     {
       "id": "node/8807314825",
@@ -87,8 +87,8 @@
       "lat": 49.243886,
       "lng": 19.877869,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 981
+      "nearest_routing_node_id": "node/3075475037",
+      "distance_to_trail_m": 676
     },
     {
       "id": "node/615736220",
@@ -97,8 +97,8 @@
       "lat": 49.246227,
       "lng": 19.784693,
       "elevation": 1665.0,
-      "nearest_routing_node_id": "node/5557405756",
-      "distance_to_trail_m": 698
+      "nearest_routing_node_id": "node/11359871045",
+      "distance_to_trail_m": 624
     },
     {
       "id": "node/3560969656",
@@ -107,8 +107,8 @@
       "lat": 49.242149,
       "lng": 19.776218,
       "elevation": 1356.0,
-      "nearest_routing_node_id": "node/1296414246",
-      "distance_to_trail_m": 11
+      "nearest_routing_node_id": "node/945988502",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/2604672434",
@@ -117,8 +117,8 @@
       "lat": 49.26461,
       "lng": 19.987138,
       "elevation": 1224.0,
-      "nearest_routing_node_id": "node/356339799",
-      "distance_to_trail_m": 126
+      "nearest_routing_node_id": "node/7925444899",
+      "distance_to_trail_m": 22
     },
     {
       "id": "node/3503806182",
@@ -127,8 +127,8 @@
       "lat": 49.226748,
       "lng": 20.041592,
       "elevation": 2127.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 374
+      "nearest_routing_node_id": "node/1200863810",
+      "distance_to_trail_m": 35
     },
     {
       "id": "node/4807993961",
@@ -137,8 +137,8 @@
       "lat": 49.220044,
       "lng": 20.045829,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384341364",
-      "distance_to_trail_m": 438
+      "nearest_routing_node_id": "node/5633429768",
+      "distance_to_trail_m": 71
     },
     {
       "id": "node/1103563283",
@@ -147,8 +147,8 @@
       "lat": 49.220292,
       "lng": 20.033828,
       "elevation": 2242.0,
-      "nearest_routing_node_id": "node/460951592",
-      "distance_to_trail_m": 99
+      "nearest_routing_node_id": "node/9036094074",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/9032605690",
@@ -157,8 +157,8 @@
       "lat": 49.226325,
       "lng": 20.040114,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 489
+      "nearest_routing_node_id": "node/8709973229",
+      "distance_to_trail_m": 36
     },
     {
       "id": "node/9032605691",
@@ -167,8 +167,8 @@
       "lat": 49.22623,
       "lng": 20.040135,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 492
+      "nearest_routing_node_id": "node/1200865886",
+      "distance_to_trail_m": 41
     },
     {
       "id": "node/9032605692",
@@ -177,8 +177,8 @@
       "lat": 49.226701,
       "lng": 20.040079,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 476
+      "nearest_routing_node_id": "node/1200865829",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/9032609521",
@@ -187,8 +187,8 @@
       "lat": 49.227395,
       "lng": 20.036944,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 255
+      "nearest_routing_node_id": "node/1200865934",
+      "distance_to_trail_m": 14
     },
     {
       "id": "node/9032605713",
@@ -197,8 +197,8 @@
       "lat": 49.226951,
       "lng": 20.039378,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 429
+      "nearest_routing_node_id": "node/1200865758",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/9032605693",
@@ -207,8 +207,8 @@
       "lat": 49.22693,
       "lng": 20.03947,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 435
+      "nearest_routing_node_id": "node/1200865764",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/3508693152",
@@ -217,8 +217,8 @@
       "lat": 49.181919,
       "lng": 20.080791,
       "elevation": 2055.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 71
+      "nearest_routing_node_id": "node/11157564996",
+      "distance_to_trail_m": 66
     },
     {
       "id": "node/495957128",
@@ -227,8 +227,8 @@
       "lat": 49.19263,
       "lng": 19.840997,
       "elevation": 2159.0,
-      "nearest_routing_node_id": "node/1799844495",
-      "distance_to_trail_m": 63
+      "nearest_routing_node_id": "node/1799844476",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/353112971",
@@ -247,8 +247,8 @@
       "lat": 49.238214,
       "lng": 19.895166,
       "elevation": 1858.0,
-      "nearest_routing_node_id": "node/353112971",
-      "distance_to_trail_m": 38
+      "nearest_routing_node_id": "node/8725580083",
+      "distance_to_trail_m": 24
     },
     {
       "id": "node/496805357",
@@ -257,7 +257,7 @@
       "lat": 49.231007,
       "lng": 19.903405,
       "elevation": 2096.0,
-      "nearest_routing_node_id": "node/5968611523",
+      "nearest_routing_node_id": "node/3699913633",
       "distance_to_trail_m": 8
     },
     {
@@ -287,8 +287,8 @@
       "lat": 49.272137,
       "lng": 19.840327,
       "elevation": 1112.0,
-      "nearest_routing_node_id": "node/13236835966",
-      "distance_to_trail_m": 282
+      "nearest_routing_node_id": "node/4889404857",
+      "distance_to_trail_m": 243
     },
     {
       "id": "node/13653301161",
@@ -307,8 +307,8 @@
       "lat": 49.192483,
       "lng": 20.062612,
       "elevation": 1836.0,
-      "nearest_routing_node_id": "node/11157565047",
-      "distance_to_trail_m": 365
+      "nearest_routing_node_id": "node/1779865824",
+      "distance_to_trail_m": 322
     },
     {
       "id": "node/13589456685",
@@ -317,8 +317,8 @@
       "lat": 49.190832,
       "lng": 20.05724,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/10923459188",
-      "distance_to_trail_m": 232
+      "nearest_routing_node_id": "node/6750366394",
+      "distance_to_trail_m": 47
     },
     {
       "id": "node/9296056231",
@@ -327,8 +327,8 @@
       "lat": 49.188468,
       "lng": 20.055315,
       "elevation": 2335.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 74
+      "nearest_routing_node_id": "node/11157565259",
+      "distance_to_trail_m": 65
     },
     {
       "id": "node/13653301160",
@@ -347,8 +347,8 @@
       "lat": 49.187943,
       "lng": 20.053243,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 118
+      "nearest_routing_node_id": "node/3510051397",
+      "distance_to_trail_m": 148
     },
     {
       "id": "node/9983979743",
@@ -357,8 +357,8 @@
       "lat": 49.187873,
       "lng": 20.054683,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 13
+      "nearest_routing_node_id": "node/3510051397",
+      "distance_to_trail_m": 45
     },
     {
       "id": "node/9983979742",
@@ -367,8 +367,8 @@
       "lat": 49.187752,
       "lng": 20.054817,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 13
+      "nearest_routing_node_id": "node/3510051397",
+      "distance_to_trail_m": 32
     },
     {
       "id": "node/8807314837",
@@ -377,8 +377,8 @@
       "lat": 49.245291,
       "lng": 19.868457,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 403
+      "nearest_routing_node_id": "node/836433374",
+      "distance_to_trail_m": 255
     },
     {
       "id": "node/11603240935",
@@ -387,8 +387,8 @@
       "lat": 49.261974,
       "lng": 19.919876,
       "elevation": 1323.0,
-      "nearest_routing_node_id": "node/3001984396",
-      "distance_to_trail_m": 334
+      "nearest_routing_node_id": "node/2569949973",
+      "distance_to_trail_m": 149
     },
     {
       "id": "node/8807314834",
@@ -397,8 +397,8 @@
       "lat": 49.244638,
       "lng": 19.869947,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8725587763",
-      "distance_to_trail_m": 510
+      "nearest_routing_node_id": "node/836433374",
+      "distance_to_trail_m": 378
     },
     {
       "id": "node/3538957936",
@@ -407,8 +407,8 @@
       "lat": 49.199797,
       "lng": 20.029517,
       "elevation": 1969.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 818
+      "nearest_routing_node_id": "node/11379616863",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/3509918208",
@@ -417,8 +417,8 @@
       "lat": 49.181412,
       "lng": 20.068601,
       "elevation": 2340.0,
-      "nearest_routing_node_id": "node/615589481",
-      "distance_to_trail_m": 359
+      "nearest_routing_node_id": "node/11383427811",
+      "distance_to_trail_m": 182
     },
     {
       "id": "node/4793588344",
@@ -427,8 +427,8 @@
       "lat": 49.190819,
       "lng": 20.073921,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1779827685",
-      "distance_to_trail_m": 52
+      "nearest_routing_node_id": "node/1778569171",
+      "distance_to_trail_m": 38
     },
     {
       "id": "node/9036094075",
@@ -437,8 +437,8 @@
       "lat": 49.221344,
       "lng": 20.032513,
       "elevation": 2178.0,
-      "nearest_routing_node_id": "node/460951592",
-      "distance_to_trail_m": 55
+      "nearest_routing_node_id": "node/460951614",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/8807314835",
@@ -447,18 +447,18 @@
       "lat": 49.24516,
       "lng": 19.869374,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 453
+      "nearest_routing_node_id": "node/836433374",
+      "distance_to_trail_m": 323
     },
     {
       "id": "relation/8626083",
       "name": "Czarny Staw Gąsienicowy",
       "type": "water",
-      "lat": 49.2325730,
+      "lat": 49.232573,
       "lng": 20.0147367,
       "elevation": 1624.0,
-      "nearest_routing_node_id": "node/356339574",
-      "distance_to_trail_m": 205
+      "nearest_routing_node_id": "node/3047874937",
+      "distance_to_trail_m": 4
     },
     {
       "id": "way/29239539",
@@ -467,8 +467,8 @@
       "lat": 49.1903503,
       "lng": 20.0737544,
       "elevation": 1583.0,
-      "nearest_routing_node_id": "node/9952912473", 
-      "distance_to_trail_m": 227
+      "nearest_routing_node_id": "node/4810516922",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/8807314831",
@@ -477,8 +477,8 @@
       "lat": 49.245018,
       "lng": 19.874106,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 697
+      "nearest_routing_node_id": "node/836433083",
+      "distance_to_trail_m": 655
     },
     {
       "id": "node/9516399111",
@@ -497,8 +497,8 @@
       "lat": 49.262242,
       "lng": 19.885415,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200977217",
-      "distance_to_trail_m": 280
+      "nearest_routing_node_id": "node/1200977227",
+      "distance_to_trail_m": 115
     },
     {
       "id": "node/2569948269",
@@ -507,8 +507,8 @@
       "lat": 49.265126,
       "lng": 19.882324,
       "elevation": 1294.0,
-      "nearest_routing_node_id": "node/9709524949",
-      "distance_to_trail_m": 266
+      "nearest_routing_node_id": "node/6746951561",
+      "distance_to_trail_m": 210
     },
     {
       "id": "node/1295379308",
@@ -517,8 +517,8 @@
       "lat": 49.21354,
       "lng": 19.781574,
       "elevation": 1766.0,
-      "nearest_routing_node_id": "node/3079625571",
-      "distance_to_trail_m": 798
+      "nearest_routing_node_id": "node/3086295107",
+      "distance_to_trail_m": 614
     },
     {
       "id": "node/11331646687",
@@ -527,8 +527,8 @@
       "lat": 49.239069,
       "lng": 19.773439,
       "elevation": 1514.0,
-      "nearest_routing_node_id": "node/803761527",
-      "distance_to_trail_m": 333
+      "nearest_routing_node_id": "node/3093593007",
+      "distance_to_trail_m": 67
     },
     {
       "id": "node/9962071956",
@@ -537,8 +537,8 @@
       "lat": 49.228451,
       "lng": 20.012824,
       "elevation": 1896.0,
-      "nearest_routing_node_id": "node/355985946",
-      "distance_to_trail_m": 90
+      "nearest_routing_node_id": "node/10032256349",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/8993678469",
@@ -547,8 +547,8 @@
       "lat": 49.219172,
       "lng": 20.071371,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384345966",
-      "distance_to_trail_m": 629
+      "nearest_routing_node_id": "node/8727840776",
+      "distance_to_trail_m": 456
     },
     {
       "id": "node/1294543793",
@@ -557,8 +557,8 @@
       "lat": 49.212702,
       "lng": 19.807949,
       "elevation": 1846.0,
-      "nearest_routing_node_id": "node/4338036446",
-      "distance_to_trail_m": 546
+      "nearest_routing_node_id": "node/5882194504",
+      "distance_to_trail_m": 60
     },
     {
       "id": "node/8511259350",
@@ -577,8 +577,8 @@
       "lat": 49.256611,
       "lng": 19.844667,
       "elevation": 1241.0,
-      "nearest_routing_node_id": "node/1200790225",
-      "distance_to_trail_m": 487
+      "nearest_routing_node_id": "node/5210691487",
+      "distance_to_trail_m": 198
     },
     {
       "id": "node/4549628387",
@@ -587,8 +587,8 @@
       "lat": 49.210864,
       "lng": 19.807319,
       "elevation": 1815.0,
-      "nearest_routing_node_id": "node/4338036446",
-      "distance_to_trail_m": 736
+      "nearest_routing_node_id": "node/1202079384",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/3508398131",
@@ -597,8 +597,8 @@
       "lat": 49.195377,
       "lng": 20.064287,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1779864985",
-      "distance_to_trail_m": 488
+      "nearest_routing_node_id": "node/1779865875",
+      "distance_to_trail_m": 70
     },
     {
       "id": "node/3508402062",
@@ -607,8 +607,8 @@
       "lat": 49.195713,
       "lng": 20.064318,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1779864985",
-      "distance_to_trail_m": 503
+      "nearest_routing_node_id": "node/1779865904",
+      "distance_to_trail_m": 77
     },
     {
       "id": "way/200463480",
@@ -617,8 +617,8 @@
       "lat": 49.237941,
       "lng": 19.997447,
       "elevation": 1588.2,
-      "nearest_routing_node_id": "node/295645442",
-      "distance_to_trail_m": 110
+      "nearest_routing_node_id": "node/295645439",
+      "distance_to_trail_m": 18
     },
     {
       "id": "node/9024500964",
@@ -627,8 +627,8 @@
       "lat": 49.183912,
       "lng": 20.075949,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/4803367613",
-      "distance_to_trail_m": 391
+      "nearest_routing_node_id": "node/1778569422",
+      "distance_to_trail_m": 197
     },
     {
       "id": "node/9978523979",
@@ -637,8 +637,8 @@
       "lat": 49.194753,
       "lng": 20.041143,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 292
+      "nearest_routing_node_id": "node/7591435534",
+      "distance_to_trail_m": 13
     },
     {
       "id": "node/2359130651",
@@ -657,8 +657,8 @@
       "lat": 49.245524,
       "lng": 19.872702,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 588
+      "nearest_routing_node_id": "node/836433083",
+      "distance_to_trail_m": 541
     },
     {
       "id": "node/1295278134",
@@ -667,8 +667,8 @@
       "lat": 49.252087,
       "lng": 19.93815,
       "elevation": 1867.0,
-      "nearest_routing_node_id": "node/3741575976",
-      "distance_to_trail_m": 326
+      "nearest_routing_node_id": "node/4810477707",
+      "distance_to_trail_m": 311
     },
     {
       "id": "way/174700529",
@@ -677,8 +677,8 @@
       "lat": 49.267625,
       "lng": 19.979053,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3635984576",
-      "distance_to_trail_m": 38
+      "nearest_routing_node_id": "node/308090643",
+      "distance_to_trail_m": 24
     },
     {
       "id": "node/11217424623",
@@ -687,8 +687,8 @@
       "lat": 49.274116,
       "lng": 20.076514,
       "elevation": 1223.0,
-      "nearest_routing_node_id": "node/11838227671",
-      "distance_to_trail_m": 242
+      "nearest_routing_node_id": "node/11838227688",
+      "distance_to_trail_m": 132
     },
     {
       "id": "node/11592361115",
@@ -697,8 +697,8 @@
       "lat": 49.249889,
       "lng": 19.929639,
       "elevation": 1709.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 196
+      "nearest_routing_node_id": "node/937966961",
+      "distance_to_trail_m": 40
     },
     {
       "id": "node/11592361114",
@@ -707,8 +707,8 @@
       "lat": 49.249859,
       "lng": 19.929161,
       "elevation": 1730.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 164
+      "nearest_routing_node_id": "node/10033775208",
+      "distance_to_trail_m": 42
     },
     {
       "id": "node/11592361064",
@@ -717,8 +717,8 @@
       "lat": 49.250448,
       "lng": 19.92811,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 167
+      "nearest_routing_node_id": "node/3735661655",
+      "distance_to_trail_m": 125
     },
     {
       "id": "way/300679695",
@@ -727,8 +727,8 @@
       "lat": 49.275304,
       "lng": 19.868303,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2120847437",
-      "distance_to_trail_m": 36
+      "nearest_routing_node_id": "node/836237552",
+      "distance_to_trail_m": 29
     },
     {
       "id": "node/2102060425",
@@ -737,8 +737,8 @@
       "lat": 49.267542,
       "lng": 20.096846,
       "elevation": 1206.0,
-      "nearest_routing_node_id": "node/803745577",
-      "distance_to_trail_m": 62
+      "nearest_routing_node_id": "node/8726141705",
+      "distance_to_trail_m": 56
     },
     {
       "id": "node/10011307879",
@@ -747,8 +747,8 @@
       "lat": 49.295783,
       "lng": 20.072103,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11838257168",
-      "distance_to_trail_m": 321
+      "nearest_routing_node_id": "node/7552841079",
+      "distance_to_trail_m": 315
     },
     {
       "id": "node/3503801146",
@@ -757,8 +757,8 @@
       "lat": 49.227081,
       "lng": 20.034473,
       "elevation": 2145.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 73
+      "nearest_routing_node_id": "node/1200865263",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/3544034418",
@@ -767,8 +767,8 @@
       "lat": 49.207135,
       "lng": 20.086911,
       "elevation": 1751.0,
-      "nearest_routing_node_id": "node/5983666382",
-      "distance_to_trail_m": 818
+      "nearest_routing_node_id": "node/13158721600",
+      "distance_to_trail_m": 62
     },
     {
       "id": "node/8809914835",
@@ -777,8 +777,8 @@
       "lat": 49.259542,
       "lng": 19.810377,
       "elevation": 1050.0,
-      "nearest_routing_node_id": "node/10221234397",
-      "distance_to_trail_m": 356
+      "nearest_routing_node_id": "node/10221234391",
+      "distance_to_trail_m": 104
     },
     {
       "id": "node/9034231033",
@@ -787,8 +787,8 @@
       "lat": 49.256552,
       "lng": 19.91715,
       "elevation": 1417.0,
-      "nearest_routing_node_id": "node/2569949692",
-      "distance_to_trail_m": 113
+      "nearest_routing_node_id": "node/10033775181",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/10128847999",
@@ -797,8 +797,8 @@
       "lat": 49.231735,
       "lng": 19.871827,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 696
+      "nearest_routing_node_id": "node/3075295027",
+      "distance_to_trail_m": 618
     },
     {
       "id": "node/11453832108",
@@ -807,8 +807,8 @@
       "lat": 49.201341,
       "lng": 19.826666,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1202079414",
-      "distance_to_trail_m": 348
+      "nearest_routing_node_id": "node/1202079430",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/9957754030",
@@ -817,8 +817,8 @@
       "lat": 49.219364,
       "lng": 20.011054,
       "elevation": 2265.0,
-      "nearest_routing_node_id": "node/460927821",
-      "distance_to_trail_m": 108
+      "nearest_routing_node_id": "node/460927847",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/2721684697",
@@ -827,8 +827,8 @@
       "lat": 49.219314,
       "lng": 20.012013,
       "elevation": 2280.0,
-      "nearest_routing_node_id": "node/460927821",
-      "distance_to_trail_m": 178
+      "nearest_routing_node_id": "node/8721150882",
+      "distance_to_trail_m": 59
     },
     {
       "id": "node/803761539",
@@ -837,8 +837,8 @@
       "lat": 49.259029,
       "lng": 20.076519,
       "elevation": 1489.0,
-      "nearest_routing_node_id": "node/6719914741",
-      "distance_to_trail_m": 8
+      "nearest_routing_node_id": "node/6719914740",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/3538992122",
@@ -847,8 +847,8 @@
       "lat": 49.20256,
       "lng": 20.019372,
       "elevation": 1990.0,
-      "nearest_routing_node_id": "node/5980841173",
-      "distance_to_trail_m": 762
+      "nearest_routing_node_id": "node/7591435398",
+      "distance_to_trail_m": 9
     },
     {
       "id": "node/1149300478",
@@ -877,8 +877,8 @@
       "lat": 49.204057,
       "lng": 20.017558,
       "elevation": 1965.0,
-      "nearest_routing_node_id": "node/7813850021",
-      "distance_to_trail_m": 564
+      "nearest_routing_node_id": "node/11379617139",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/385123541",
@@ -887,8 +887,8 @@
       "lat": 49.206776,
       "lng": 20.013413,
       "elevation": 2065.0,
-      "nearest_routing_node_id": "node/1149300478",
-      "distance_to_trail_m": 144
+      "nearest_routing_node_id": "node/11379617285",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/11079467141",
@@ -897,8 +897,8 @@
       "lat": 49.227858,
       "lng": 19.903497,
       "elevation": 1982.0,
-      "nearest_routing_node_id": "node/5968611523",
-      "distance_to_trail_m": 344
+      "nearest_routing_node_id": "node/10228556812",
+      "distance_to_trail_m": 20
     },
     {
       "id": "node/9978523978",
@@ -907,8 +907,8 @@
       "lat": 49.192867,
       "lng": 20.043822,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3344854169",
-      "distance_to_trail_m": 150
+      "nearest_routing_node_id": "node/7591435549",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/8807314843",
@@ -917,8 +917,8 @@
       "lat": 49.248614,
       "lng": 19.865516,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 29
+      "nearest_routing_node_id": "node/5907345224",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/3510051397",
@@ -927,8 +927,8 @@
       "lat": 49.187706,
       "lng": 20.055245,
       "elevation": 2323.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 33
+      "nearest_routing_node_id": "node/3510051397",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/3068056463",
@@ -937,8 +937,8 @@
       "lat": 49.201175,
       "lng": 19.874597,
       "elevation": 1906.0,
-      "nearest_routing_node_id": "node/5175485213",
-      "distance_to_trail_m": 83
+      "nearest_routing_node_id": "node/7839048246",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/1295379313",
@@ -947,8 +947,8 @@
       "lat": 49.245198,
       "lng": 19.80067,
       "elevation": 1499.0,
-      "nearest_routing_node_id": "node/2510760172",
-      "distance_to_trail_m": 720
+      "nearest_routing_node_id": "node/797774702",
+      "distance_to_trail_m": 655
     },
     {
       "id": "node/2100603506",
@@ -957,8 +957,8 @@
       "lat": 49.267778,
       "lng": 19.889444,
       "elevation": 1339.0,
-      "nearest_routing_node_id": "node/4369792598",
-      "distance_to_trail_m": 682
+      "nearest_routing_node_id": "node/5772164844",
+      "distance_to_trail_m": 152
     },
     {
       "id": "node/8809914845",
@@ -967,8 +967,8 @@
       "lat": 49.260427,
       "lng": 19.822537,
       "elevation": 1180.0,
-      "nearest_routing_node_id": "node/9827041741",
-      "distance_to_trail_m": 382
+      "nearest_routing_node_id": "node/3001994490",
+      "distance_to_trail_m": 303
     },
     {
       "id": "node/8809914851",
@@ -977,8 +977,8 @@
       "lat": 49.260309,
       "lng": 19.832679,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13236811255",
-      "distance_to_trail_m": 101
+      "nearest_routing_node_id": "node/8809914851",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/1333271264",
@@ -987,8 +987,8 @@
       "lat": 49.264562,
       "lng": 19.950132,
       "elevation": 1207.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 382
+      "nearest_routing_node_id": "node/1333271173",
+      "distance_to_trail_m": 88
     },
     {
       "id": "node/1125062544",
@@ -1017,8 +1017,8 @@
       "lat": 49.245357,
       "lng": 19.778443,
       "elevation": 1565.0,
-      "nearest_routing_node_id": "node/1296414246",
-      "distance_to_trail_m": 399
+      "nearest_routing_node_id": "node/8697568634",
+      "distance_to_trail_m": 347
     },
     {
       "id": "node/3568740193",
@@ -1027,8 +1027,8 @@
       "lat": 49.256337,
       "lng": 19.818971,
       "elevation": 1108.0,
-      "nearest_routing_node_id": "node/3694146467",
-      "distance_to_trail_m": 215
+      "nearest_routing_node_id": "node/3744343089",
+      "distance_to_trail_m": 102
     },
     {
       "id": "node/3560916856",
@@ -1037,8 +1037,8 @@
       "lat": 49.204604,
       "lng": 19.803696,
       "elevation": 1955.0,
-      "nearest_routing_node_id": "node/1224881947",
-      "distance_to_trail_m": 936
+      "nearest_routing_node_id": "node/8701877712",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/4549628386",
@@ -1047,8 +1047,8 @@
       "lat": 49.207601,
       "lng": 19.80326,
       "elevation": 1702.0,
-      "nearest_routing_node_id": "node/4338036446",
-      "distance_to_trail_m": 1106
+      "nearest_routing_node_id": "node/1202079403",
+      "distance_to_trail_m": 292
     },
     {
       "id": "node/8806223755",
@@ -1057,8 +1057,8 @@
       "lat": 49.274484,
       "lng": 19.914685,
       "elevation": 1050.0,
-      "nearest_routing_node_id": "node/132273668",
-      "distance_to_trail_m": 541
+      "nearest_routing_node_id": "node/1305519599",
+      "distance_to_trail_m": 125
     },
     {
       "id": "node/11603241283",
@@ -1067,8 +1067,8 @@
       "lat": 49.275746,
       "lng": 19.967139,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5891090049",
-      "distance_to_trail_m": 376
+      "nearest_routing_node_id": "node/11313863227",
+      "distance_to_trail_m": 375
     },
     {
       "id": "node/11603241071",
@@ -1077,8 +1077,8 @@
       "lat": 49.264971,
       "lng": 19.921362,
       "elevation": 1377.0,
-      "nearest_routing_node_id": "node/3001984396",
-      "distance_to_trail_m": 639
+      "nearest_routing_node_id": "node/8725588041",
+      "distance_to_trail_m": 493
     },
     {
       "id": "node/8499322250",
@@ -1087,8 +1087,8 @@
       "lat": 49.249069,
       "lng": 19.993409,
       "elevation": 1625.0,
-      "nearest_routing_node_id": "node/7925441465",
-      "distance_to_trail_m": 623
+      "nearest_routing_node_id": "node/7925441449",
+      "distance_to_trail_m": 564
     },
     {
       "id": "node/8499094279",
@@ -1097,8 +1097,8 @@
       "lat": 49.248367,
       "lng": 19.996312,
       "elevation": 1605.0,
-      "nearest_routing_node_id": "node/10773530871",
-      "distance_to_trail_m": 605
+      "nearest_routing_node_id": "node/295620827",
+      "distance_to_trail_m": 641
     },
     {
       "id": "node/3568750126",
@@ -1107,8 +1107,8 @@
       "lat": 49.254123,
       "lng": 19.804767,
       "elevation": 1269.0,
-      "nearest_routing_node_id": "node/11359870803",
-      "distance_to_trail_m": 702
+      "nearest_routing_node_id": "node/10221234398",
+      "distance_to_trail_m": 163
     },
     {
       "id": "way/200463481",
@@ -1117,8 +1117,8 @@
       "lat": 49.239639,
       "lng": 19.99906,
       "elevation": 1577.0,
-      "nearest_routing_node_id": "node/295645429",
-      "distance_to_trail_m": 282
+      "nearest_routing_node_id": "node/295645434",
+      "distance_to_trail_m": 25
     },
     {
       "id": "node/11581710075",
@@ -1147,8 +1147,8 @@
       "lat": 49.253429,
       "lng": 19.942635,
       "elevation": 1834.0,
-      "nearest_routing_node_id": "node/3741575976",
-      "distance_to_trail_m": 684
+      "nearest_routing_node_id": "node/4810477707",
+      "distance_to_trail_m": 669
     },
     {
       "id": "node/3560986607",
@@ -1167,8 +1167,8 @@
       "lat": 49.254429,
       "lng": 19.953758,
       "elevation": 1601.0,
-      "nearest_routing_node_id": "node/9514597545",
-      "distance_to_trail_m": 536
+      "nearest_routing_node_id": "node/5896379280",
+      "distance_to_trail_m": 421
     },
     {
       "id": "node/1295278129",
@@ -1177,8 +1177,8 @@
       "lat": 49.255875,
       "lng": 19.964257,
       "elevation": 1383.0,
-      "nearest_routing_node_id": "node/314262319",
-      "distance_to_trail_m": 324
+      "nearest_routing_node_id": "node/5896381004",
+      "distance_to_trail_m": 224
     },
     {
       "id": "node/3600515230",
@@ -1187,8 +1187,8 @@
       "lat": 49.255017,
       "lng": 19.962533,
       "elevation": 1404.0,
-      "nearest_routing_node_id": "node/2570078091",
-      "distance_to_trail_m": 422
+      "nearest_routing_node_id": "node/314262366",
+      "distance_to_trail_m": 310
     },
     {
       "id": "node/355985946",
@@ -1207,8 +1207,8 @@
       "lat": 49.236856,
       "lng": 20.069371,
       "elevation": 1951.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 1312
+      "nearest_routing_node_id": "node/4262890539",
+      "distance_to_trail_m": 1247
     },
     {
       "id": "way/1161804201",
@@ -1217,8 +1217,8 @@
       "lat": 49.250633,
       "lng": 19.980065,
       "elevation": 1290.0,
-      "nearest_routing_node_id": "node/5949252006",
-      "distance_to_trail_m": 355
+      "nearest_routing_node_id": "node/308090597",
+      "distance_to_trail_m": 36
     },
     {
       "id": "node/3552158247",
@@ -1227,8 +1227,8 @@
       "lat": 49.231801,
       "lng": 19.981561,
       "elevation": 1987.0,
-      "nearest_routing_node_id": "node/1195252197",
-      "distance_to_trail_m": 57
+      "nearest_routing_node_id": "node/7838700731",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/3075294960",
@@ -1237,8 +1237,8 @@
       "lat": 49.229588,
       "lng": 19.893207,
       "elevation": 1767.0,
-      "nearest_routing_node_id": "node/7838797301",
-      "distance_to_trail_m": 724
+      "nearest_routing_node_id": "node/797774714",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/8809479339",
@@ -1247,8 +1247,8 @@
       "lat": 49.246798,
       "lng": 19.860404,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 408
+      "nearest_routing_node_id": "node/461054326",
+      "distance_to_trail_m": 353
     },
     {
       "id": "node/3508700214",
@@ -1257,8 +1257,8 @@
       "lat": 49.185204,
       "lng": 20.069727,
       "elevation": 2159.0,
-      "nearest_routing_node_id": "node/9952912498",
-      "distance_to_trail_m": 1
+      "nearest_routing_node_id": "node/11373295808",
+      "distance_to_trail_m": 21
     },
     {
       "id": "node/8807314874",
@@ -1267,8 +1267,8 @@
       "lat": 49.247608,
       "lng": 19.868533,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 236
+      "nearest_routing_node_id": "node/5907345222",
+      "distance_to_trail_m": 202
     },
     {
       "id": "node/3751210922",
@@ -1277,8 +1277,8 @@
       "lat": 49.265647,
       "lng": 19.923068,
       "elevation": 1317.0,
-      "nearest_routing_node_id": "node/11704246475",
-      "distance_to_trail_m": 559
+      "nearest_routing_node_id": "node/5865558131",
+      "distance_to_trail_m": 477
     },
     {
       "id": "node/8806223756",
@@ -1287,8 +1287,8 @@
       "lat": 49.276027,
       "lng": 19.903087,
       "elevation": 980.0,
-      "nearest_routing_node_id": "node/3076230372",
-      "distance_to_trail_m": 244
+      "nearest_routing_node_id": "node/469733570",
+      "distance_to_trail_m": 53
     },
     {
       "id": "node/9017604431",
@@ -1297,8 +1297,8 @@
       "lat": 49.20192,
       "lng": 20.057098,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384075571",
-      "distance_to_trail_m": 436
+      "nearest_routing_node_id": "node/384075524",
+      "distance_to_trail_m": 277
     },
     {
       "id": "way/300679697",
@@ -1317,8 +1317,8 @@
       "lat": 49.261703,
       "lng": 19.825787,
       "elevation": 1276.0,
-      "nearest_routing_node_id": "node/9827041741",
-      "distance_to_trail_m": 373
+      "nearest_routing_node_id": "node/3001994490",
+      "distance_to_trail_m": 30
     },
     {
       "id": "node/3568653493",
@@ -1327,8 +1327,8 @@
       "lat": 49.261604,
       "lng": 19.826911,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9827041741",
-      "distance_to_trail_m": 355
+      "nearest_routing_node_id": "node/3568653493",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/3598422900",
@@ -1337,8 +1337,8 @@
       "lat": 49.246196,
       "lng": 19.903125,
       "elevation": 1430.0,
-      "nearest_routing_node_id": "node/2009108458",
-      "distance_to_trail_m": 612
+      "nearest_routing_node_id": "node/1200977169",
+      "distance_to_trail_m": 49
     },
     {
       "id": "node/3600809099",
@@ -1347,8 +1347,8 @@
       "lat": 49.245783,
       "lng": 19.90952,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200977310",
-      "distance_to_trail_m": 428
+      "nearest_routing_node_id": "node/5983735991",
+      "distance_to_trail_m": 187
     },
     {
       "id": "node/11603241276",
@@ -1367,8 +1367,8 @@
       "lat": 49.277486,
       "lng": 19.96577,
       "elevation": 1013.0,
-      "nearest_routing_node_id": "node/5891090049",
-      "distance_to_trail_m": 265
+      "nearest_routing_node_id": "node/10291961927",
+      "distance_to_trail_m": 263
     },
     {
       "id": "node/8806223759",
@@ -1377,8 +1377,8 @@
       "lat": 49.265598,
       "lng": 19.906224,
       "elevation": 1014.0,
-      "nearest_routing_node_id": "node/469733515",
-      "distance_to_trail_m": 419
+      "nearest_routing_node_id": "node/3001994368",
+      "distance_to_trail_m": 119
     },
     {
       "id": "node/8807314828",
@@ -1387,8 +1387,8 @@
       "lat": 49.246002,
       "lng": 19.872972,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 561
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 530
     },
     {
       "id": "node/3571707793",
@@ -1397,8 +1397,8 @@
       "lat": 49.255583,
       "lng": 19.83412,
       "elevation": 1307.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 331
+      "nearest_routing_node_id": "node/8696645643",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/1295379325",
@@ -1407,8 +1407,8 @@
       "lat": 49.240814,
       "lng": 19.835541,
       "elevation": 1829.0,
-      "nearest_routing_node_id": "node/1125062544",
-      "distance_to_trail_m": 962
+      "nearest_routing_node_id": "node/8697598346",
+      "distance_to_trail_m": 783
     },
     {
       "id": "node/3571711493",
@@ -1417,8 +1417,8 @@
       "lat": 49.256815,
       "lng": 19.841966,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 485
+      "nearest_routing_node_id": "node/8696645664",
+      "distance_to_trail_m": 111
     },
     {
       "id": "node/11595734713",
@@ -1427,8 +1427,8 @@
       "lat": 49.248121,
       "lng": 19.933126,
       "elevation": 1776.0,
-      "nearest_routing_node_id": "node/467480919",
-      "distance_to_trail_m": 81
+      "nearest_routing_node_id": "node/3005869172",
+      "distance_to_trail_m": 36
     },
     {
       "id": "node/1295341386",
@@ -1437,8 +1437,8 @@
       "lat": 49.2462,
       "lng": 19.932333,
       "elevation": 1725.0,
-      "nearest_routing_node_id": "node/467480905",
-      "distance_to_trail_m": 18
+      "nearest_routing_node_id": "node/10033775140",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/10027944559",
@@ -1447,8 +1447,8 @@
       "lat": 49.23471,
       "lng": 19.957297,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2570020515",
-      "distance_to_trail_m": 1056
+      "nearest_routing_node_id": "node/2570020210",
+      "distance_to_trail_m": 301
     },
     {
       "id": "node/1295379320",
@@ -1457,8 +1457,8 @@
       "lat": 49.212331,
       "lng": 19.774922,
       "elevation": 1596.0,
-      "nearest_routing_node_id": "node/2359130651",
-      "distance_to_trail_m": 764
+      "nearest_routing_node_id": "node/3086295096",
+      "distance_to_trail_m": 354
     },
     {
       "id": "node/3560695684",
@@ -1467,8 +1467,8 @@
       "lat": 49.236541,
       "lng": 19.932268,
       "elevation": 2005.0,
-      "nearest_routing_node_id": "node/3552162784",
-      "distance_to_trail_m": 5
+      "nearest_routing_node_id": "node/3750085233",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/6178007809",
@@ -1477,8 +1477,8 @@
       "lat": 49.248612,
       "lng": 20.000697,
       "elevation": 1704.0,
-      "nearest_routing_node_id": "node/10773530871",
-      "distance_to_trail_m": 355
+      "nearest_routing_node_id": "node/2688458485",
+      "distance_to_trail_m": 482
     },
     {
       "id": "node/3560918391",
@@ -1487,8 +1487,8 @@
       "lat": 49.20223,
       "lng": 19.800817,
       "elevation": 2027.0,
-      "nearest_routing_node_id": "node/1224881947",
-      "distance_to_trail_m": 600
+      "nearest_routing_node_id": "node/8701877703",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/9451044777",
@@ -1497,8 +1497,8 @@
       "lat": 49.275456,
       "lng": 19.95398,
       "elevation": 1035.0,
-      "nearest_routing_node_id": "node/11708046728",
-      "distance_to_trail_m": 803
+      "nearest_routing_node_id": "node/4262625238",
+      "distance_to_trail_m": 177
     },
     {
       "id": "node/9032605698",
@@ -1507,8 +1507,8 @@
       "lat": 49.228471,
       "lng": 20.046412,
       "elevation": 2135.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 26
+      "nearest_routing_node_id": "node/6749747383",
+      "distance_to_trail_m": 21
     },
     {
       "id": "node/2359130652",
@@ -1517,8 +1517,8 @@
       "lat": 49.237306,
       "lng": 19.810278,
       "elevation": 1205.0,
-      "nearest_routing_node_id": "node/1124709499",
-      "distance_to_trail_m": 357
+      "nearest_routing_node_id": "node/1202227927",
+      "distance_to_trail_m": 287
     },
     {
       "id": "node/3568554193",
@@ -1527,8 +1527,8 @@
       "lat": 49.270505,
       "lng": 19.801906,
       "elevation": 1161.0,
-      "nearest_routing_node_id": "node/11359870901",
-      "distance_to_trail_m": 171
+      "nearest_routing_node_id": "node/3568554193",
+      "distance_to_trail_m": 0
     },
     {
       "id": "way/1051469781",
@@ -1537,8 +1537,8 @@
       "lat": 49.202054,
       "lng": 19.846927,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1799844535",
-      "distance_to_trail_m": 1007
+      "nearest_routing_node_id": "node/1799844744",
+      "distance_to_trail_m": 711
     },
     {
       "id": "node/9512402786",
@@ -1547,8 +1547,8 @@
       "lat": 49.271192,
       "lng": 20.029307,
       "elevation": 1304.0,
-      "nearest_routing_node_id": "node/2445052124",
-      "distance_to_trail_m": 413
+      "nearest_routing_node_id": "node/1293463409",
+      "distance_to_trail_m": 385
     },
     {
       "id": "node/1295379312",
@@ -1557,8 +1557,8 @@
       "lat": 49.206962,
       "lng": 19.83492,
       "elevation": 1840.0,
-      "nearest_routing_node_id": "node/1202227723",
-      "distance_to_trail_m": 248
+      "nearest_routing_node_id": "node/5882322135",
+      "distance_to_trail_m": 9
     },
     {
       "id": "node/3571413493",
@@ -1567,8 +1567,8 @@
       "lat": 49.209772,
       "lng": 19.835649,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/7804655469",
-      "distance_to_trail_m": 185
+      "nearest_routing_node_id": "node/5882322126",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/460928401",
@@ -1577,8 +1577,8 @@
       "lat": 49.218317,
       "lng": 20.028705,
       "elevation": 2291.0,
-      "nearest_routing_node_id": "node/460928364",
-      "distance_to_trail_m": 58
+      "nearest_routing_node_id": "node/460928401",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/460928198",
@@ -1607,8 +1607,8 @@
       "lat": 49.218681,
       "lng": 20.027648,
       "elevation": 2263.0,
-      "nearest_routing_node_id": "node/460928364",
-      "distance_to_trail_m": 31
+      "nearest_routing_node_id": "node/460928362",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/9041102944",
@@ -1617,8 +1617,8 @@
       "lat": 49.219013,
       "lng": 20.026098,
       "elevation": 2239.0,
-      "nearest_routing_node_id": "node/460928226",
-      "distance_to_trail_m": 72
+      "nearest_routing_node_id": "node/1103562894",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/9041102947",
@@ -1627,8 +1627,8 @@
       "lat": 49.218803,
       "lng": 20.026939,
       "elevation": 2256.0,
-      "nearest_routing_node_id": "node/460928364",
-      "distance_to_trail_m": 81
+      "nearest_routing_node_id": "node/460928342",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/3494317589",
@@ -1637,8 +1637,8 @@
       "lat": 49.215095,
       "lng": 20.020393,
       "elevation": 2105.0,
-      "nearest_routing_node_id": "node/11113904760",
-      "distance_to_trail_m": 314
+      "nearest_routing_node_id": "node/2570572131",
+      "distance_to_trail_m": 138
     },
     {
       "id": "node/2569948267",
@@ -1657,8 +1657,8 @@
       "lat": 49.205658,
       "lng": 19.807585,
       "elevation": 2002.0,
-      "nearest_routing_node_id": "node/1202079374",
-      "distance_to_trail_m": 1120
+      "nearest_routing_node_id": "node/1202079154",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/6238091106",
@@ -1667,8 +1667,8 @@
       "lat": 49.224443,
       "lng": 20.014978,
       "elevation": 2110.0,
-      "nearest_routing_node_id": "node/355985949",
-      "distance_to_trail_m": 87
+      "nearest_routing_node_id": "node/6238091106",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/355985949",
@@ -1687,8 +1687,8 @@
       "lat": 49.226252,
       "lng": 19.89442,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/797774758",
-      "distance_to_trail_m": 526
+      "nearest_routing_node_id": "node/797774799",
+      "distance_to_trail_m": 182
     },
     {
       "id": "node/3600160026",
@@ -1697,8 +1697,8 @@
       "lat": 49.22637,
       "lng": 19.895768,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/797774758",
-      "distance_to_trail_m": 528
+      "nearest_routing_node_id": "node/3054092900",
+      "distance_to_trail_m": 103
     },
     {
       "id": "node/2100603508",
@@ -1707,8 +1707,8 @@
       "lat": 49.267122,
       "lng": 19.964607,
       "elevation": 1378.0,
-      "nearest_routing_node_id": "node/7925508897",
-      "distance_to_trail_m": 459
+      "nearest_routing_node_id": "node/3639600873",
+      "distance_to_trail_m": 442
     },
     {
       "id": "node/2359130653",
@@ -1717,8 +1717,8 @@
       "lat": 49.263972,
       "lng": 19.806,
       "elevation": 1246.0,
-      "nearest_routing_node_id": "node/13238662662",
-      "distance_to_trail_m": 58
+      "nearest_routing_node_id": "node/13238662650",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/1295341402",
@@ -1727,8 +1727,8 @@
       "lat": 49.231665,
       "lng": 19.909492,
       "elevation": 2122.0,
-      "nearest_routing_node_id": "node/7838797312",
-      "distance_to_trail_m": 359
+      "nearest_routing_node_id": "node/7838755408",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/1200864424",
@@ -1747,8 +1747,8 @@
       "lat": 49.261043,
       "lng": 19.831997,
       "elevation": 1294.0,
-      "nearest_routing_node_id": "node/13236811255",
-      "distance_to_trail_m": 10
+      "nearest_routing_node_id": "node/3001994493",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/9004693486",
@@ -1757,8 +1757,8 @@
       "lat": 49.214606,
       "lng": 20.069655,
       "elevation": 1683.0,
-      "nearest_routing_node_id": "node/11157563249",
-      "distance_to_trail_m": 515
+      "nearest_routing_node_id": "node/8727840784",
+      "distance_to_trail_m": 54
     },
     {
       "id": "node/3571695305",
@@ -1767,8 +1767,8 @@
       "lat": 49.263009,
       "lng": 19.833227,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13236811255",
-      "distance_to_trail_m": 240
+      "nearest_routing_node_id": "node/13236811261",
+      "distance_to_trail_m": 43
     },
     {
       "id": "node/9957754070",
@@ -1777,8 +1777,8 @@
       "lat": 49.226281,
       "lng": 19.989769,
       "elevation": 1979.0,
-      "nearest_routing_node_id": "node/295648381",
-      "distance_to_trail_m": 148
+      "nearest_routing_node_id": "node/295648989",
+      "distance_to_trail_m": 29
     },
     {
       "id": "node/8993678463",
@@ -1787,8 +1787,8 @@
       "lat": 49.22264,
       "lng": 20.079207,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/991639132",
-      "distance_to_trail_m": 798
+      "nearest_routing_node_id": "node/384346031",
+      "distance_to_trail_m": 408
     },
     {
       "id": "node/10700151985",
@@ -1797,8 +1797,8 @@
       "lat": 49.235329,
       "lng": 19.892111,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/797774723",
-      "distance_to_trail_m": 316
+      "nearest_routing_node_id": "node/3075295249",
+      "distance_to_trail_m": 285
     },
     {
       "id": "node/9445410603",
@@ -1807,8 +1807,8 @@
       "lat": 49.251668,
       "lng": 20.003482,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/10773530868",
-      "distance_to_trail_m": 1
+      "nearest_routing_node_id": "node/295621471",
+      "distance_to_trail_m": 169
     },
     {
       "id": "node/1103423428",
@@ -1817,8 +1817,8 @@
       "lat": 49.206078,
       "lng": 20.05651,
       "elevation": 2055.0,
-      "nearest_routing_node_id": "node/384075571",
-      "distance_to_trail_m": 870
+      "nearest_routing_node_id": "node/384075524",
+      "distance_to_trail_m": 740
     },
     {
       "id": "node/3544043717",
@@ -1827,8 +1827,8 @@
       "lat": 49.195379,
       "lng": 20.084459,
       "elevation": 2060.0,
-      "nearest_routing_node_id": "node/13383464101",
-      "distance_to_trail_m": 76
+      "nearest_routing_node_id": "node/11380919910",
+      "distance_to_trail_m": 546
     },
     {
       "id": "node/3544051107",
@@ -1837,8 +1837,8 @@
       "lat": 49.194869,
       "lng": 20.084296,
       "elevation": 2075.0,
-      "nearest_routing_node_id": "node/12743887628",
-      "distance_to_trail_m": 42
+      "nearest_routing_node_id": "node/11380919910",
+      "distance_to_trail_m": 492
     },
     {
       "id": "node/8809479336",
@@ -1847,8 +1847,8 @@
       "lat": 49.246536,
       "lng": 19.860934,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 388
+      "nearest_routing_node_id": "node/461054326",
+      "distance_to_trail_m": 309
     },
     {
       "id": "node/2639389008",
@@ -1857,8 +1857,8 @@
       "lat": 49.227426,
       "lng": 20.043086,
       "elevation": 2172.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 243
+      "nearest_routing_node_id": "node/8709976085",
+      "distance_to_trail_m": 9
     },
     {
       "id": "node/8809914868",
@@ -1867,8 +1867,8 @@
       "lat": 49.27522,
       "lng": 19.813627,
       "elevation": 1132.0,
-      "nearest_routing_node_id": "node/12899048298",
-      "distance_to_trail_m": 266
+      "nearest_routing_node_id": "node/8809914868",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/1496149193",
@@ -1877,8 +1877,8 @@
       "lat": 49.236404,
       "lng": 20.035092,
       "elevation": 1793.0,
-      "nearest_routing_node_id": "node/1200866533",
-      "distance_to_trail_m": 772
+      "nearest_routing_node_id": "node/5986069946",
+      "distance_to_trail_m": 308
     },
     {
       "id": "node/3499289916",
@@ -1897,8 +1897,8 @@
       "lat": 49.200436,
       "lng": 20.026493,
       "elevation": 1974.0,
-      "nearest_routing_node_id": "node/11379617464",
-      "distance_to_trail_m": 1024
+      "nearest_routing_node_id": "node/7591435426",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/8518741431",
@@ -1907,8 +1907,8 @@
       "lat": 49.264058,
       "lng": 19.963754,
       "elevation": 1365.0,
-      "nearest_routing_node_id": "node/7925508897",
-      "distance_to_trail_m": 300
+      "nearest_routing_node_id": "node/5865726716",
+      "distance_to_trail_m": 164
     },
     {
       "id": "node/3633405165",
@@ -1917,8 +1917,8 @@
       "lat": 49.252611,
       "lng": 20.002692,
       "elevation": 1577.0,
-      "nearest_routing_node_id": "node/10773530868",
-      "distance_to_trail_m": 120
+      "nearest_routing_node_id": "node/5871741903",
+      "distance_to_trail_m": 183
     },
     {
       "id": "node/9032609524",
@@ -1927,8 +1927,8 @@
       "lat": 49.227206,
       "lng": 20.035313,
       "elevation": 2158.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 135
+      "nearest_routing_node_id": "node/1200865270",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/5325488063",
@@ -1937,8 +1937,8 @@
       "lat": 49.226756,
       "lng": 19.903686,
       "elevation": 1915.0,
-      "nearest_routing_node_id": "node/5968611523",
-      "distance_to_trail_m": 467
+      "nearest_routing_node_id": "node/5325488063",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/3508649878",
@@ -1947,8 +1947,8 @@
       "lat": 49.18003,
       "lng": 20.072575,
       "elevation": 2355.0,
-      "nearest_routing_node_id": "node/1779828445",
-      "distance_to_trail_m": 580
+      "nearest_routing_node_id": "node/11361853616",
+      "distance_to_trail_m": 223
     },
     {
       "id": "node/9973083717",
@@ -1967,8 +1967,8 @@
       "lat": 49.180259,
       "lng": 20.071354,
       "elevation": 2355.0,
-      "nearest_routing_node_id": "node/1779828445",
-      "distance_to_trail_m": 528
+      "nearest_routing_node_id": "node/11361853617",
+      "distance_to_trail_m": 313
     },
     {
       "id": "way/402225672",
@@ -1977,8 +1977,8 @@
       "lat": 49.203208,
       "lng": 20.071879,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384360353",
-      "distance_to_trail_m": 92
+      "nearest_routing_node_id": "node/991639119",
+      "distance_to_trail_m": 86
     },
     {
       "id": "node/9447967719",
@@ -1987,8 +1987,8 @@
       "lat": 49.243445,
       "lng": 19.997006,
       "elevation": 1750.0,
-      "nearest_routing_node_id": "node/295645429",
-      "distance_to_trail_m": 409
+      "nearest_routing_node_id": "node/4797284315",
+      "distance_to_trail_m": 400
     },
     {
       "id": "way/988954369",
@@ -1997,8 +1997,8 @@
       "lat": 49.20379,
       "lng": 20.072835,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384360353",
-      "distance_to_trail_m": 131
+      "nearest_routing_node_id": "node/3048258296",
+      "distance_to_trail_m": 57
     },
     {
       "id": "node/496805360",
@@ -2007,8 +2007,8 @@
       "lat": 49.23583,
       "lng": 19.919223,
       "elevation": 2096.0,
-      "nearest_routing_node_id": "node/7838744158",
-      "distance_to_trail_m": 15
+      "nearest_routing_node_id": "node/3699934544",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/1294543765",
@@ -2017,8 +2017,8 @@
       "lat": 49.23493,
       "lng": 19.810506,
       "elevation": 1329.0,
-      "nearest_routing_node_id": "node/1124709499",
-      "distance_to_trail_m": 540
+      "nearest_routing_node_id": "node/1202079235",
+      "distance_to_trail_m": 282
     },
     {
       "id": "node/7917548639",
@@ -2027,8 +2027,8 @@
       "lat": 49.276192,
       "lng": 20.004981,
       "elevation": 1170.0,
-      "nearest_routing_node_id": "node/5868911616",
-      "distance_to_trail_m": 279
+      "nearest_routing_node_id": "node/6733503351",
+      "distance_to_trail_m": 363
     },
     {
       "id": "node/460928032",
@@ -2037,8 +2037,8 @@
       "lat": 49.218922,
       "lng": 20.020038,
       "elevation": 2226.0,
-      "nearest_routing_node_id": "node/3755385023",
-      "distance_to_trail_m": 188
+      "nearest_routing_node_id": "node/460928032",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/3560285056",
@@ -2047,8 +2047,8 @@
       "lat": 49.229934,
       "lng": 20.011406,
       "elevation": 1866.0,
-      "nearest_routing_node_id": "node/355985946",
-      "distance_to_trail_m": 127
+      "nearest_routing_node_id": "node/355986191",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/2107834137",
@@ -2057,8 +2057,8 @@
       "lat": 49.251944,
       "lng": 19.833056,
       "elevation": 1448.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 740
+      "nearest_routing_node_id": "node/3001994502",
+      "distance_to_trail_m": 305
     },
     {
       "id": "node/2359130654",
@@ -2077,8 +2077,8 @@
       "lat": 49.228524,
       "lng": 20.049233,
       "elevation": 2145.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 105
+      "nearest_routing_node_id": "node/1200864424",
+      "distance_to_trail_m": 143
     },
     {
       "id": "node/6178007810",
@@ -2087,7 +2087,7 @@
       "lat": 49.246831,
       "lng": 20.000037,
       "elevation": 1662.0,
-      "nearest_routing_node_id": "node/295621492",
+      "nearest_routing_node_id": "node/5871291692",
       "distance_to_trail_m": 485
     },
     {
@@ -2097,8 +2097,8 @@
       "lat": 49.201023,
       "lng": 20.047371,
       "elevation": 2233.0,
-      "nearest_routing_node_id": "node/11383307214",
-      "distance_to_trail_m": 383
+      "nearest_routing_node_id": "node/384075747",
+      "distance_to_trail_m": 321
     },
     {
       "id": "node/8809394996",
@@ -2107,8 +2107,8 @@
       "lat": 49.275847,
       "lng": 19.852722,
       "elevation": 1026.0,
-      "nearest_routing_node_id": "node/1294726701",
-      "distance_to_trail_m": 287
+      "nearest_routing_node_id": "node/5881976008",
+      "distance_to_trail_m": 237
     },
     {
       "id": "node/615589481",
@@ -2127,8 +2127,8 @@
       "lat": 49.187112,
       "lng": 20.059854,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8960110469",
-      "distance_to_trail_m": 109
+      "nearest_routing_node_id": "node/8960110466",
+      "distance_to_trail_m": 92
     },
     {
       "id": "node/9991444418",
@@ -2137,8 +2137,8 @@
       "lat": 49.186593,
       "lng": 20.060384,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8960110469",
-      "distance_to_trail_m": 144
+      "nearest_routing_node_id": "node/11383279378",
+      "distance_to_trail_m": 125
     },
     {
       "id": "node/9991444419",
@@ -2147,8 +2147,8 @@
       "lat": 49.187637,
       "lng": 20.057224,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11381381851",
-      "distance_to_trail_m": 173
+      "nearest_routing_node_id": "node/9991444419",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/615589377",
@@ -2157,8 +2157,8 @@
       "lat": 49.18703,
       "lng": 20.059298,
       "elevation": 2438.0,
-      "nearest_routing_node_id": "node/8960110469",
-      "distance_to_trail_m": 144
+      "nearest_routing_node_id": "node/11222859302",
+      "distance_to_trail_m": 67
     },
     {
       "id": "node/605282386",
@@ -2177,8 +2177,8 @@
       "lat": 49.246167,
       "lng": 19.928204,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2570077611",
-      "distance_to_trail_m": 246
+      "nearest_routing_node_id": "node/797774819",
+      "distance_to_trail_m": 59
     },
     {
       "id": "node/3508343300",
@@ -2187,7 +2187,7 @@
       "lat": 49.190545,
       "lng": 20.05234,
       "elevation": 2090.0,
-      "nearest_routing_node_id": "node/11361853618",
+      "nearest_routing_node_id": "node/6750335781",
       "distance_to_trail_m": 35
     },
     {
@@ -2197,18 +2197,18 @@
       "lat": 49.244968,
       "lng": 19.793335,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5557426451",
-      "distance_to_trail_m": 709
+      "nearest_routing_node_id": "node/1294543867",
+      "distance_to_trail_m": 697
     },
     {
       "id": "way/27952583",
       "name": "Morskie Oko",
       "type": "water",
       "lat": 49.2011835,
-      "lng": 20.0708500,
+      "lng": 20.07085,
       "elevation": 1395.0,
-      "nearest_routing_node_id": "node/1779864985",
-      "distance_to_trail_m": 404
+      "nearest_routing_node_id": "node/1779865005",
+      "distance_to_trail_m": 1
     },
     {
       "id": "way/358407058",
@@ -2227,8 +2227,8 @@
       "lat": 49.223276,
       "lng": 20.015461,
       "elevation": 2159.0,
-      "nearest_routing_node_id": "node/11156609443",
-      "distance_to_trail_m": 44
+      "nearest_routing_node_id": "node/11156609444",
+      "distance_to_trail_m": 40
     },
     {
       "id": "node/1103563319",
@@ -2237,8 +2237,8 @@
       "lat": 49.222569,
       "lng": 20.015763,
       "elevation": 2096.0,
-      "nearest_routing_node_id": "node/11379380546",
-      "distance_to_trail_m": 11
+      "nearest_routing_node_id": "node/11379380547",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/3494334483",
@@ -2247,8 +2247,8 @@
       "lat": 49.222742,
       "lng": 20.015534,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11379380553",
-      "distance_to_trail_m": 10
+      "nearest_routing_node_id": "node/11379408686",
+      "distance_to_trail_m": 17
     },
     {
       "id": "node/5909943460",
@@ -2257,8 +2257,8 @@
       "lat": 49.22298,
       "lng": 20.015518,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11379380553",
-      "distance_to_trail_m": 24
+      "nearest_routing_node_id": "node/11379408686",
+      "distance_to_trail_m": 43
     },
     {
       "id": "node/8807314864",
@@ -2267,8 +2267,8 @@
       "lat": 49.247104,
       "lng": 19.871126,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 380
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 350
     },
     {
       "id": "node/1295278154",
@@ -2277,8 +2277,8 @@
       "lat": 49.251913,
       "lng": 19.973783,
       "elevation": 1354.0,
-      "nearest_routing_node_id": "node/308090606",
-      "distance_to_trail_m": 246
+      "nearest_routing_node_id": "node/314263160",
+      "distance_to_trail_m": 34
     },
     {
       "id": "node/3499314690",
@@ -2287,8 +2287,8 @@
       "lat": 49.246361,
       "lng": 20.068242,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3190976899",
-      "distance_to_trail_m": 946
+      "nearest_routing_node_id": "node/3190976919",
+      "distance_to_trail_m": 940
     },
     {
       "id": "node/615618637",
@@ -2297,8 +2297,8 @@
       "lat": 49.230369,
       "lng": 19.969244,
       "elevation": 1816.0,
-      "nearest_routing_node_id": "node/1200918498",
-      "distance_to_trail_m": 823
+      "nearest_routing_node_id": "node/8721958539",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/9957727703",
@@ -2307,8 +2307,8 @@
       "lat": 49.2196,
       "lng": 20.013286,
       "elevation": 2247.0,
-      "nearest_routing_node_id": "node/460927955",
-      "distance_to_trail_m": 182
+      "nearest_routing_node_id": "node/460927894",
+      "distance_to_trail_m": 56
     },
     {
       "id": "node/9957727700",
@@ -2317,8 +2317,8 @@
       "lat": 49.219523,
       "lng": 20.014024,
       "elevation": 2230.0,
-      "nearest_routing_node_id": "node/460927955",
-      "distance_to_trail_m": 134
+      "nearest_routing_node_id": "node/5980847366",
+      "distance_to_trail_m": 64
     },
     {
       "id": "node/1103563228",
@@ -2327,8 +2327,8 @@
       "lat": 49.219653,
       "lng": 20.013733,
       "elevation": 2262.0,
-      "nearest_routing_node_id": "node/460927955",
-      "distance_to_trail_m": 160
+      "nearest_routing_node_id": "node/460927898",
+      "distance_to_trail_m": 75
     },
     {
       "id": "node/1103336859",
@@ -2337,8 +2337,8 @@
       "lat": 49.268187,
       "lng": 19.991074,
       "elevation": 1219.0,
-      "nearest_routing_node_id": "node/356339780",
-      "distance_to_trail_m": 391
+      "nearest_routing_node_id": "node/5949438498",
+      "distance_to_trail_m": 207
     },
     {
       "id": "node/1103562984",
@@ -2347,8 +2347,8 @@
       "lat": 49.207391,
       "lng": 20.048506,
       "elevation": 1812.0,
-      "nearest_routing_node_id": "node/11156672432",
-      "distance_to_trail_m": 564
+      "nearest_routing_node_id": "node/384340762",
+      "distance_to_trail_m": 560
     },
     {
       "id": "node/10128848016",
@@ -2357,8 +2357,8 @@
       "lat": 49.229339,
       "lng": 19.885915,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/797774723",
-      "distance_to_trail_m": 1049
+      "nearest_routing_node_id": "node/3054092922",
+      "distance_to_trail_m": 539
     },
     {
       "id": "node/3560926182",
@@ -2367,8 +2367,8 @@
       "lat": 49.199188,
       "lng": 19.787145,
       "elevation": 1831.0,
-      "nearest_routing_node_id": "node/1224881947",
-      "distance_to_trail_m": 579
+      "nearest_routing_node_id": "node/1224881956",
+      "distance_to_trail_m": 13
     },
     {
       "id": "node/10802758131",
@@ -2377,8 +2377,8 @@
       "lat": 49.234436,
       "lng": 19.883636,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 907
+      "nearest_routing_node_id": "node/8725587799",
+      "distance_to_trail_m": 749
     },
     {
       "id": "node/10802758130",
@@ -2387,8 +2387,8 @@
       "lat": 49.234638,
       "lng": 19.883714,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 886
+      "nearest_routing_node_id": "node/8725587799",
+      "distance_to_trail_m": 751
     },
     {
       "id": "node/11066304549",
@@ -2397,8 +2397,8 @@
       "lat": 49.184294,
       "lng": 20.086954,
       "elevation": 2375.0,
-      "nearest_routing_node_id": "node/3508632046",
-      "distance_to_trail_m": 238
+      "nearest_routing_node_id": "node/11361853493",
+      "distance_to_trail_m": 99
     },
     {
       "id": "node/615589972",
@@ -2407,8 +2407,8 @@
       "lat": 49.183901,
       "lng": 20.087383,
       "elevation": 2410.0,
-      "nearest_routing_node_id": "node/3508644599",
-      "distance_to_trail_m": 233
+      "nearest_routing_node_id": "node/11361853493",
+      "distance_to_trail_m": 46
     },
     {
       "id": "node/13674502280",
@@ -2427,8 +2427,8 @@
       "lat": 49.199958,
       "lng": 20.032256,
       "elevation": 2055.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 643
+      "nearest_routing_node_id": "node/7591435452",
+      "distance_to_trail_m": 4
     },
     {
       "id": "way/581704890",
@@ -2437,8 +2437,8 @@
       "lat": 49.196585,
       "lng": 20.052038,
       "elevation": 1785.0,
-      "nearest_routing_node_id": "node/9023167493",
-      "distance_to_trail_m": 74
+      "nearest_routing_node_id": "node/9023167488",
+      "distance_to_trail_m": 41
     },
     {
       "id": "way/199588071",
@@ -2447,8 +2447,8 @@
       "lat": 49.28329,
       "lng": 20.030656,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/10047910511",
-      "distance_to_trail_m": 102
+      "nearest_routing_node_id": "node/3190977995",
+      "distance_to_trail_m": 244
     },
     {
       "id": "way/1063344680",
@@ -2457,8 +2457,8 @@
       "lat": 49.232117,
       "lng": 20.053024,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 520
+      "nearest_routing_node_id": "node/1200864428",
+      "distance_to_trail_m": 566
     },
     {
       "id": "node/2597044867",
@@ -2467,8 +2467,8 @@
       "lat": 49.234376,
       "lng": 20.087711,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346097",
-      "distance_to_trail_m": 55
+      "nearest_routing_node_id": "node/991638839",
+      "distance_to_trail_m": 26
     },
     {
       "id": "node/10873136327",
@@ -2477,8 +2477,8 @@
       "lat": 49.236941,
       "lng": 19.864798,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2487026279",
-      "distance_to_trail_m": 226
+      "nearest_routing_node_id": "node/2487026292",
+      "distance_to_trail_m": 185
     },
     {
       "id": "node/3544035356",
@@ -2487,8 +2487,8 @@
       "lat": 49.196063,
       "lng": 20.08437,
       "elevation": 2098.0,
-      "nearest_routing_node_id": "node/13383464101",
-      "distance_to_trail_m": 0
+      "nearest_routing_node_id": "node/11380919910",
+      "distance_to_trail_m": 609
     },
     {
       "id": "node/8757470156",
@@ -2497,8 +2497,8 @@
       "lat": 49.214535,
       "lng": 20.051009,
       "elevation": 1711.0,
-      "nearest_routing_node_id": "node/2571257299",
-      "distance_to_trail_m": 179
+      "nearest_routing_node_id": "node/5874383080",
+      "distance_to_trail_m": 47
     },
     {
       "id": "node/3538948668",
@@ -2507,8 +2507,8 @@
       "lat": 49.199363,
       "lng": 20.032865,
       "elevation": 2035.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 574
+      "nearest_routing_node_id": "node/11379616854",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/11595734599",
@@ -2517,8 +2517,8 @@
       "lat": 49.256786,
       "lng": 19.942927,
       "elevation": 1511.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 635
+      "nearest_routing_node_id": "node/4889404780",
+      "distance_to_trail_m": 599
     },
     {
       "id": "node/3508632046",
@@ -2547,8 +2547,8 @@
       "lat": 49.262293,
       "lng": 19.885359,
       "elevation": 1180.0,
-      "nearest_routing_node_id": "node/1200977217",
-      "distance_to_trail_m": 278
+      "nearest_routing_node_id": "node/1200977227",
+      "distance_to_trail_m": 121
     },
     {
       "id": "node/9447962111",
@@ -2557,8 +2557,8 @@
       "lat": 49.243034,
       "lng": 19.996709,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/295645429",
-      "distance_to_trail_m": 406
+      "nearest_routing_node_id": "node/4797284315",
+      "distance_to_trail_m": 385
     },
     {
       "id": "node/9961990216",
@@ -2567,8 +2567,8 @@
       "lat": 49.222783,
       "lng": 20.015519,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11379380553",
-      "distance_to_trail_m": 10
+      "nearest_routing_node_id": "node/11379408686",
+      "distance_to_trail_m": 21
     },
     {
       "id": "node/9036094082",
@@ -2577,8 +2577,8 @@
       "lat": 49.223607,
       "lng": 20.033249,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 56
+      "nearest_routing_node_id": "node/460951703",
+      "distance_to_trail_m": 24
     },
     {
       "id": "node/3504617326",
@@ -2587,8 +2587,8 @@
       "lat": 49.233454,
       "lng": 20.072199,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 1035
+      "nearest_routing_node_id": "node/4262890518",
+      "distance_to_trail_m": 820
     },
     {
       "id": "node/3592771639",
@@ -2597,8 +2597,8 @@
       "lat": 49.269648,
       "lng": 19.877989,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9709524963",
-      "distance_to_trail_m": 74
+      "nearest_routing_node_id": "node/3592771639",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/9978523980",
@@ -2607,8 +2607,8 @@
       "lat": 49.195008,
       "lng": 20.04071,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 258
+      "nearest_routing_node_id": "node/7591435533",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/9973078516",
@@ -2627,8 +2627,8 @@
       "lat": 49.276431,
       "lng": 19.989459,
       "elevation": 1205.7,
-      "nearest_routing_node_id": "node/1386627440",
-      "distance_to_trail_m": 17
+      "nearest_routing_node_id": "node/7925085982",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/1103336431",
@@ -2647,8 +2647,8 @@
       "lat": 49.252432,
       "lng": 19.866931,
       "elevation": 1052.0,
-      "nearest_routing_node_id": "node/5907345216",
-      "distance_to_trail_m": 255
+      "nearest_routing_node_id": "node/461054300",
+      "distance_to_trail_m": 62
     },
     {
       "id": "node/8809867703",
@@ -2657,8 +2657,8 @@
       "lat": 49.247777,
       "lng": 19.811601,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/4351691671",
-      "distance_to_trail_m": 162
+      "nearest_routing_node_id": "node/803761467",
+      "distance_to_trail_m": 159
     },
     {
       "id": "node/1103423820",
@@ -2667,8 +2667,8 @@
       "lat": 49.207494,
       "lng": 20.059043,
       "elevation": 2115.0,
-      "nearest_routing_node_id": "node/1908708928",
-      "distance_to_trail_m": 857
+      "nearest_routing_node_id": "node/3744004821",
+      "distance_to_trail_m": 690
     },
     {
       "id": "node/8807314842",
@@ -2677,8 +2677,8 @@
       "lat": 49.248193,
       "lng": 19.868812,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 184
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 157
     },
     {
       "id": "node/8809867701",
@@ -2687,8 +2687,8 @@
       "lat": 49.245601,
       "lng": 19.806879,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5602494048",
-      "distance_to_trail_m": 373
+      "nearest_routing_node_id": "node/8697568712",
+      "distance_to_trail_m": 370
     },
     {
       "id": "node/3503795970",
@@ -2697,8 +2697,8 @@
       "lat": 49.227333,
       "lng": 20.035759,
       "elevation": 2177.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 169
+      "nearest_routing_node_id": "node/8709973226",
+      "distance_to_trail_m": 13
     },
     {
       "id": "node/9032605696",
@@ -2707,8 +2707,8 @@
       "lat": 49.227211,
       "lng": 20.03542,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 142
+      "nearest_routing_node_id": "node/1200866035",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/9032605697",
@@ -2717,8 +2717,8 @@
       "lat": 49.227106,
       "lng": 20.035055,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 115
+      "nearest_routing_node_id": "node/1200864855",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/3571383993",
@@ -2737,8 +2737,8 @@
       "lat": 49.219046,
       "lng": 19.832949,
       "elevation": 1854.0,
-      "nearest_routing_node_id": "node/3324223830",
-      "distance_to_trail_m": 59
+      "nearest_routing_node_id": "node/5882321867",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/2102060445",
@@ -2757,8 +2757,8 @@
       "lat": 49.194507,
       "lng": 20.084663,
       "elevation": 2038.0,
-      "nearest_routing_node_id": "node/12743887628",
-      "distance_to_trail_m": 10
+      "nearest_routing_node_id": "node/11380919879",
+      "distance_to_trail_m": 466
     },
     {
       "id": "node/3544056626",
@@ -2767,8 +2767,8 @@
       "lat": 49.193624,
       "lng": 20.084599,
       "elevation": 2040.0,
-      "nearest_routing_node_id": "node/12743887628",
-      "distance_to_trail_m": 108
+      "nearest_routing_node_id": "node/11380919879",
+      "distance_to_trail_m": 372
     },
     {
       "id": "node/3560988994",
@@ -2777,8 +2777,8 @@
       "lat": 49.255679,
       "lng": 19.790495,
       "elevation": 1486.0,
-      "nearest_routing_node_id": "node/11359870803",
-      "distance_to_trail_m": 357
+      "nearest_routing_node_id": "node/3560988994",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/9029897685",
@@ -2787,8 +2787,8 @@
       "lat": 49.227833,
       "lng": 20.033378,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 88
+      "nearest_routing_node_id": "node/8721181560",
+      "distance_to_trail_m": 56
     },
     {
       "id": "node/9029897682",
@@ -2797,8 +2797,8 @@
       "lat": 49.227564,
       "lng": 20.033674,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 60
+      "nearest_routing_node_id": "node/460951856",
+      "distance_to_trail_m": 49
     },
     {
       "id": "node/1496149194",
@@ -2807,8 +2807,8 @@
       "lat": 49.228464,
       "lng": 20.033071,
       "elevation": 2115.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 161
+      "nearest_routing_node_id": "node/460951853",
+      "distance_to_trail_m": 114
     },
     {
       "id": "node/1496149195",
@@ -2817,8 +2817,8 @@
       "lat": 49.22979,
       "lng": 20.032729,
       "elevation": 2105.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 310
+      "nearest_routing_node_id": "node/8721181550",
+      "distance_to_trail_m": 233
     },
     {
       "id": "node/1995387408",
@@ -2827,8 +2827,8 @@
       "lat": 49.248655,
       "lng": 19.886667,
       "elevation": 1472.0,
-      "nearest_routing_node_id": "node/2009108458",
-      "distance_to_trail_m": 695
+      "nearest_routing_node_id": "node/1200755932",
+      "distance_to_trail_m": 17
     },
     {
       "id": "node/8809867702",
@@ -2837,8 +2837,8 @@
       "lat": 49.244365,
       "lng": 19.802034,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2510760172",
-      "distance_to_trail_m": 590
+      "nearest_routing_node_id": "node/797774702",
+      "distance_to_trail_m": 520
     },
     {
       "id": "node/13674502284",
@@ -2857,8 +2857,8 @@
       "lat": 49.225701,
       "lng": 20.032735,
       "elevation": 2234.0,
-      "nearest_routing_node_id": "node/460951714",
-      "distance_to_trail_m": 143
+      "nearest_routing_node_id": "node/460951730",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/8806223760",
@@ -2867,8 +2867,8 @@
       "lat": 49.268175,
       "lng": 19.911431,
       "elevation": 1262.0,
-      "nearest_routing_node_id": "node/469733515",
-      "distance_to_trail_m": 813
+      "nearest_routing_node_id": "node/3001994364",
+      "distance_to_trail_m": 339
     },
     {
       "id": "node/321624794",
@@ -2877,8 +2877,8 @@
       "lat": 49.234229,
       "lng": 20.087016,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346097",
-      "distance_to_trail_m": 57
+      "nearest_routing_node_id": "node/11134971931",
+      "distance_to_trail_m": 22
     },
     {
       "id": "node/2103272996",
@@ -2887,8 +2887,8 @@
       "lat": 49.230556,
       "lng": 20.055556,
       "elevation": 2117.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 588
+      "nearest_routing_node_id": "node/1200864428",
+      "distance_to_trail_m": 636
     },
     {
       "id": "node/2107808027",
@@ -2897,8 +2897,8 @@
       "lat": 49.266044,
       "lng": 19.852927,
       "elevation": 1305.0,
-      "nearest_routing_node_id": "node/9709544431",
-      "distance_to_trail_m": 646
+      "nearest_routing_node_id": "node/4889404834",
+      "distance_to_trail_m": 631
     },
     {
       "id": "node/9036094102",
@@ -2907,8 +2907,8 @@
       "lat": 49.225448,
       "lng": 20.032588,
       "elevation": 2218.0,
-      "nearest_routing_node_id": "node/460951714",
-      "distance_to_trail_m": 113
+      "nearest_routing_node_id": "node/460951728",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/9036094083",
@@ -2917,8 +2917,8 @@
       "lat": 49.223686,
       "lng": 20.033425,
       "elevation": 2205.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 71
+      "nearest_routing_node_id": "node/460951703",
+      "distance_to_trail_m": 33
     },
     {
       "id": "node/10027944670",
@@ -2927,8 +2927,8 @@
       "lat": 49.232806,
       "lng": 19.950236,
       "elevation": 1844.0,
-      "nearest_routing_node_id": "node/2570020515",
-      "distance_to_trail_m": 566
+      "nearest_routing_node_id": "node/8721958472",
+      "distance_to_trail_m": 44
     },
     {
       "id": "node/3504631174",
@@ -2937,8 +2937,8 @@
       "lat": 49.222284,
       "lng": 20.001235,
       "elevation": 2128.0,
-      "nearest_routing_node_id": "node/3653329404",
-      "distance_to_trail_m": 309
+      "nearest_routing_node_id": "node/460928521",
+      "distance_to_trail_m": 77
     },
     {
       "id": "node/9973078515",
@@ -2967,8 +2967,8 @@
       "lat": 49.223018,
       "lng": 20.015499,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11379380553",
-      "distance_to_trail_m": 29
+      "nearest_routing_node_id": "node/11379408686",
+      "distance_to_trail_m": 48
     },
     {
       "id": "node/9973078514",
@@ -2987,8 +2987,8 @@
       "lat": 49.247413,
       "lng": 19.870346,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 318
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 287
     },
     {
       "id": "node/11217424621",
@@ -3007,8 +3007,8 @@
       "lat": 49.274167,
       "lng": 19.860889,
       "elevation": 1113.0,
-      "nearest_routing_node_id": "node/9709544431",
-      "distance_to_trail_m": 432
+      "nearest_routing_node_id": "node/9709544441",
+      "distance_to_trail_m": 247
     },
     {
       "id": "node/460951558",
@@ -3017,8 +3017,8 @@
       "lat": 49.220605,
       "lng": 20.033958,
       "elevation": 2225.0,
-      "nearest_routing_node_id": "node/460951592",
-      "distance_to_trail_m": 89
+      "nearest_routing_node_id": "node/460951575",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/8809479324",
@@ -3027,8 +3027,8 @@
       "lat": 49.242303,
       "lng": 19.845568,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 914
+      "nearest_routing_node_id": "node/5905115333",
+      "distance_to_trail_m": 913
     },
     {
       "id": "node/1496149196",
@@ -3037,8 +3037,8 @@
       "lat": 49.229495,
       "lng": 20.032425,
       "elevation": 2085.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 283
+      "nearest_routing_node_id": "node/8721181551",
+      "distance_to_trail_m": 195
     },
     {
       "id": "node/3569146193",
@@ -3047,8 +3047,8 @@
       "lat": 49.247641,
       "lng": 19.838696,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 1081
+      "nearest_routing_node_id": "node/1200790078",
+      "distance_to_trail_m": 769
     },
     {
       "id": "node/9032605701",
@@ -3057,8 +3057,8 @@
       "lat": 49.227967,
       "lng": 20.045706,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 50
+      "nearest_routing_node_id": "node/6749747337",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/3544036060",
@@ -3067,8 +3067,8 @@
       "lat": 49.197293,
       "lng": 20.086022,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13383464037",
-      "distance_to_trail_m": 26
+      "nearest_routing_node_id": "node/13158721372",
+      "distance_to_trail_m": 523
     },
     {
       "id": "node/2003440376",
@@ -3077,8 +3077,8 @@
       "lat": 49.239154,
       "lng": 19.891395,
       "elevation": 1775.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 197
+      "nearest_routing_node_id": "node/3075474937",
+      "distance_to_trail_m": 83
     },
     {
       "id": "node/11595734342",
@@ -3087,8 +3087,8 @@
       "lat": 49.263762,
       "lng": 19.950162,
       "elevation": 1176.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 303
+      "nearest_routing_node_id": "node/8725626009",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/3592609506",
@@ -3107,8 +3107,8 @@
       "lat": 49.247516,
       "lng": 19.864176,
       "elevation": 1062.0,
-      "nearest_routing_node_id": "node/461054319",
-      "distance_to_trail_m": 133
+      "nearest_routing_node_id": "node/461054322",
+      "distance_to_trail_m": 107
     },
     {
       "id": "node/13589456697",
@@ -3117,8 +3117,8 @@
       "lat": 49.191884,
       "lng": 20.059408,
       "elevation": 1950.0,
-      "nearest_routing_node_id": "node/11157565047",
-      "distance_to_trail_m": 222
+      "nearest_routing_node_id": "node/11157565048",
+      "distance_to_trail_m": 212
     },
     {
       "id": "node/10840394017",
@@ -3128,7 +3128,7 @@
       "lng": 19.876423,
       "elevation": 0.0,
       "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 596
+      "distance_to_trail_m": 597
     },
     {
       "id": "node/8457144019",
@@ -3137,8 +3137,8 @@
       "lat": 49.262688,
       "lng": 19.964156,
       "elevation": 1305.0,
-      "nearest_routing_node_id": "node/7925508897",
-      "distance_to_trail_m": 283
+      "nearest_routing_node_id": "node/5865726716",
+      "distance_to_trail_m": 13
     },
     {
       "id": "node/3503789861",
@@ -3147,8 +3147,8 @@
       "lat": 49.227257,
       "lng": 20.03836,
       "elevation": 2105.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 355
+      "nearest_routing_node_id": "node/1200863936",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/3494318324",
@@ -3157,8 +3157,8 @@
       "lat": 49.216236,
       "lng": 20.020608,
       "elevation": 2065.0,
-      "nearest_routing_node_id": "node/3755385023",
-      "distance_to_trail_m": 281
+      "nearest_routing_node_id": "node/2570572147",
+      "distance_to_trail_m": 89
     },
     {
       "id": "node/8809479355",
@@ -3167,7 +3167,7 @@
       "lat": 49.24666,
       "lng": 19.851077,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
+      "nearest_routing_node_id": "node/5905115333",
       "distance_to_trail_m": 285
     },
     {
@@ -3177,8 +3177,8 @@
       "lat": 49.254913,
       "lng": 20.003291,
       "elevation": 1499.0,
-      "nearest_routing_node_id": "node/5620206050",
-      "distance_to_trail_m": 82
+      "nearest_routing_node_id": "node/5100098610",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/7917548638",
@@ -3187,8 +3187,8 @@
       "lat": 49.275394,
       "lng": 20.007756,
       "elevation": 1109.0,
-      "nearest_routing_node_id": "node/5868911616",
-      "distance_to_trail_m": 258
+      "nearest_routing_node_id": "node/10032166386",
+      "distance_to_trail_m": 436
     },
     {
       "id": "node/11592361024",
@@ -3197,8 +3197,8 @@
       "lat": 49.250889,
       "lng": 19.927937,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 211
+      "nearest_routing_node_id": "node/3738663741",
+      "distance_to_trail_m": 161
     },
     {
       "id": "node/4549628388",
@@ -3207,8 +3207,8 @@
       "lat": 49.21549,
       "lng": 19.807271,
       "elevation": 1754.0,
-      "nearest_routing_node_id": "node/4338036446",
-      "distance_to_trail_m": 238
+      "nearest_routing_node_id": "node/1202079151",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/9983979746",
@@ -3227,8 +3227,8 @@
       "lat": 49.260648,
       "lng": 19.789639,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/12899048294",
-      "distance_to_trail_m": 85
+      "nearest_routing_node_id": "node/10231328061",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/3558357900",
@@ -3237,8 +3237,8 @@
       "lat": 49.234262,
       "lng": 19.938761,
       "elevation": 1863.0,
-      "nearest_routing_node_id": "node/7838740148",
-      "distance_to_trail_m": 24
+      "nearest_routing_node_id": "node/7813822061",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/3508644599",
@@ -3247,8 +3247,8 @@
       "lat": 49.181839,
       "lng": 20.08796,
       "elevation": 2365.0,
-      "nearest_routing_node_id": "node/3508644599",
-      "distance_to_trail_m": 0
+      "nearest_routing_node_id": "node/11361853500",
+      "distance_to_trail_m": 106
     },
     {
       "id": "node/3600497907",
@@ -3257,8 +3257,8 @@
       "lat": 49.259395,
       "lng": 19.915946,
       "elevation": 1311.0,
-      "nearest_routing_node_id": "node/3001984396",
-      "distance_to_trail_m": 118
+      "nearest_routing_node_id": "node/937967043",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/9032605702",
@@ -3267,8 +3267,8 @@
       "lat": 49.227928,
       "lng": 20.045043,
       "elevation": 2131.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 91
+      "nearest_routing_node_id": "node/6749747336",
+      "distance_to_trail_m": 28
     },
     {
       "id": "node/10840390978",
@@ -3307,8 +3307,8 @@
       "lat": 49.266594,
       "lng": 19.899227,
       "elevation": 1075.0,
-      "nearest_routing_node_id": "node/469733515",
-      "distance_to_trail_m": 101
+      "nearest_routing_node_id": "node/8725587719",
+      "distance_to_trail_m": 95
     },
     {
       "id": "node/3592566151",
@@ -3327,8 +3327,8 @@
       "lat": 49.243278,
       "lng": 19.906564,
       "elevation": 1670.0,
-      "nearest_routing_node_id": "node/2009093629",
-      "distance_to_trail_m": 404
+      "nearest_routing_node_id": "node/6731903474",
+      "distance_to_trail_m": 59
     },
     {
       "id": "node/3509905952",
@@ -3337,8 +3337,8 @@
       "lat": 49.179421,
       "lng": 20.074081,
       "elevation": 2365.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 590
+      "nearest_routing_node_id": "node/11361853616",
+      "distance_to_trail_m": 95
     },
     {
       "id": "node/3571683693",
@@ -3347,8 +3347,8 @@
       "lat": 49.264733,
       "lng": 19.834378,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13236811254",
-      "distance_to_trail_m": 135
+      "nearest_routing_node_id": "node/13236811266",
+      "distance_to_trail_m": 17
     },
     {
       "id": "node/8757489712",
@@ -3357,8 +3357,8 @@
       "lat": 49.228528,
       "lng": 20.090765,
       "elevation": 1425.0,
-      "nearest_routing_node_id": "node/13158721294",
-      "distance_to_trail_m": 565
+      "nearest_routing_node_id": "node/5874314970",
+      "distance_to_trail_m": 349
     },
     {
       "id": "node/9021008781",
@@ -3367,8 +3367,8 @@
       "lat": 49.231271,
       "lng": 20.079052,
       "elevation": 1536.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 568
+      "nearest_routing_node_id": "node/4262890530",
+      "distance_to_trail_m": 339
     },
     {
       "id": "node/8757489711",
@@ -3377,8 +3377,8 @@
       "lat": 49.227589,
       "lng": 20.090432,
       "elevation": 1405.0,
-      "nearest_routing_node_id": "node/13158721294",
-      "distance_to_trail_m": 516
+      "nearest_routing_node_id": "node/3048258266",
+      "distance_to_trail_m": 392
     },
     {
       "id": "node/4366169405",
@@ -3397,8 +3397,8 @@
       "lat": 49.252323,
       "lng": 19.985913,
       "elevation": 1491.0,
-      "nearest_routing_node_id": "node/5949252006",
-      "distance_to_trail_m": 122
+      "nearest_routing_node_id": "node/5949251995",
+      "distance_to_trail_m": 59
     },
     {
       "id": "node/8807314869",
@@ -3407,8 +3407,8 @@
       "lat": 49.247239,
       "lng": 19.869885,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 315
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 286
     },
     {
       "id": "node/2100603509",
@@ -3417,8 +3417,8 @@
       "lat": 49.272148,
       "lng": 19.926839,
       "elevation": 1189.0,
-      "nearest_routing_node_id": "node/9534775792",
-      "distance_to_trail_m": 685
+      "nearest_routing_node_id": "node/5865558113",
+      "distance_to_trail_m": 404
     },
     {
       "id": "node/3600497836",
@@ -3427,8 +3427,8 @@
       "lat": 49.27097,
       "lng": 19.926309,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9534775792",
-      "distance_to_trail_m": 813
+      "nearest_routing_node_id": "node/3641111459",
+      "distance_to_trail_m": 430
     },
     {
       "id": "node/11603241052",
@@ -3437,8 +3437,8 @@
       "lat": 49.266957,
       "lng": 19.923254,
       "elevation": 1316.0,
-      "nearest_routing_node_id": "node/11704246475",
-      "distance_to_trail_m": 627
+      "nearest_routing_node_id": "node/3641175170",
+      "distance_to_trail_m": 529
     },
     {
       "id": "node/469733583",
@@ -3457,8 +3457,8 @@
       "lat": 49.239016,
       "lng": 19.871998,
       "elevation": 1391.0,
-      "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 317
+      "nearest_routing_node_id": "node/2487026334",
+      "distance_to_trail_m": 291
     },
     {
       "id": "way/347519068",
@@ -3497,8 +3497,8 @@
       "lat": 49.229158,
       "lng": 19.858741,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8804719788",
-      "distance_to_trail_m": 16
+      "nearest_routing_node_id": "node/3546544846",
+      "distance_to_trail_m": 10
     },
     {
       "id": "way/303740443",
@@ -3507,8 +3507,8 @@
       "lat": 49.236351,
       "lng": 19.787786,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5881659594",
-      "distance_to_trail_m": 13
+      "nearest_routing_node_id": "node/5881659600",
+      "distance_to_trail_m": 11
     },
     {
       "id": "way/250746663",
@@ -3517,7 +3517,7 @@
       "lat": 49.213619,
       "lng": 20.048703,
       "elevation": 1670.0,
-      "nearest_routing_node_id": "node/10007501937",
+      "nearest_routing_node_id": "node/10007501935",
       "distance_to_trail_m": 10
     },
     {
@@ -3537,8 +3537,8 @@
       "lat": 49.223888,
       "lng": 20.032786,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951714",
-      "distance_to_trail_m": 65
+      "nearest_routing_node_id": "node/460951707",
+      "distance_to_trail_m": 20
     },
     {
       "id": "node/8807314884",
@@ -3547,8 +3547,8 @@
       "lat": 49.247836,
       "lng": 19.882584,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2009108458",
-      "distance_to_trail_m": 929
+      "nearest_routing_node_id": "node/1200755942",
+      "distance_to_trail_m": 290
     },
     {
       "id": "node/3503513134",
@@ -3557,8 +3557,8 @@
       "lat": 49.214156,
       "lng": 20.043961,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749758425",
-      "distance_to_trail_m": 58
+      "nearest_routing_node_id": "node/4262890322",
+      "distance_to_trail_m": 16
     },
     {
       "id": "node/1333271083",
@@ -3597,8 +3597,8 @@
       "lat": 49.184997,
       "lng": 20.069633,
       "elevation": 2157.0,
-      "nearest_routing_node_id": "node/1779828445",
-      "distance_to_trail_m": 16
+      "nearest_routing_node_id": "node/1779828443",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/1995387410",
@@ -3607,8 +3607,8 @@
       "lat": 49.248438,
       "lng": 19.886784,
       "elevation": 1465.0,
-      "nearest_routing_node_id": "node/2009108458",
-      "distance_to_trail_m": 676
+      "nearest_routing_node_id": "node/3075475048",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/3571365293",
@@ -3627,8 +3627,8 @@
       "lat": 49.248958,
       "lng": 19.908885,
       "elevation": 1531.0,
-      "nearest_routing_node_id": "node/1200977310",
-      "distance_to_trail_m": 725
+      "nearest_routing_node_id": "node/1200977159",
+      "distance_to_trail_m": 253
     },
     {
       "id": "node/8518741432",
@@ -3637,8 +3637,8 @@
       "lat": 49.265614,
       "lng": 19.964241,
       "elevation": 1340.0,
-      "nearest_routing_node_id": "node/7925508897",
-      "distance_to_trail_m": 346
+      "nearest_routing_node_id": "node/4889404742",
+      "distance_to_trail_m": 296
     },
     {
       "id": "relation/7569900",
@@ -3647,8 +3647,8 @@
       "lat": 49.204375,
       "lng": 19.8353,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1202227723",
-      "distance_to_trail_m": 162
+      "nearest_routing_node_id": "node/1202079548",
+      "distance_to_trail_m": 152
     },
     {
       "id": "node/3568541637",
@@ -3657,8 +3657,8 @@
       "lat": 49.276477,
       "lng": 19.825158,
       "elevation": 1065.0,
-      "nearest_routing_node_id": "node/13236835983",
-      "distance_to_trail_m": 362
+      "nearest_routing_node_id": "node/10231598832",
+      "distance_to_trail_m": 121
     },
     {
       "id": "node/1294577864",
@@ -3667,8 +3667,8 @@
       "lat": 49.201654,
       "lng": 19.829543,
       "elevation": 1965.0,
-      "nearest_routing_node_id": "node/1202079414",
-      "distance_to_trail_m": 150
+      "nearest_routing_node_id": "node/5882233868",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/8809394994",
@@ -3677,8 +3677,8 @@
       "lat": 49.275796,
       "lng": 19.857419,
       "elevation": 1117.0,
-      "nearest_routing_node_id": "node/5881975992",
-      "distance_to_trail_m": 340
+      "nearest_routing_node_id": "node/9709544446",
+      "distance_to_trail_m": 53
     },
     {
       "id": "node/8964222561",
@@ -3687,8 +3687,8 @@
       "lat": 49.249806,
       "lng": 19.907864,
       "elevation": 1503.0,
-      "nearest_routing_node_id": "node/1200977310",
-      "distance_to_trail_m": 844
+      "nearest_routing_node_id": "node/5983736011",
+      "distance_to_trail_m": 241
     },
     {
       "id": "node/11592361035",
@@ -3697,8 +3697,8 @@
       "lat": 49.251139,
       "lng": 19.927724,
       "elevation": 1730.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 235
+      "nearest_routing_node_id": "node/10033775200",
+      "distance_to_trail_m": 165
     },
     {
       "id": "node/1496149197",
@@ -3707,8 +3707,8 @@
       "lat": 49.228074,
       "lng": 20.033497,
       "elevation": 2155.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 115
+      "nearest_routing_node_id": "node/8721181560",
+      "distance_to_trail_m": 83
     },
     {
       "id": "node/3504634616",
@@ -3717,8 +3717,8 @@
       "lat": 49.222301,
       "lng": 19.999216,
       "elevation": 2071.0,
-      "nearest_routing_node_id": "node/3653329404",
-      "distance_to_trail_m": 447
+      "nearest_routing_node_id": "node/3653329333",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/3571689193",
@@ -3727,8 +3727,8 @@
       "lat": 49.265701,
       "lng": 19.836227,
       "elevation": 1262.0,
-      "nearest_routing_node_id": "node/13236811254",
-      "distance_to_trail_m": 55
+      "nearest_routing_node_id": "node/13236811270",
+      "distance_to_trail_m": 16
     },
     {
       "id": "node/9036094103",
@@ -3737,8 +3737,8 @@
       "lat": 49.226351,
       "lng": 20.033179,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 80
+      "nearest_routing_node_id": "node/460951741",
+      "distance_to_trail_m": 10
     },
     {
       "id": "node/9036094091",
@@ -3747,8 +3747,8 @@
       "lat": 49.223792,
       "lng": 20.033007,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 67
+      "nearest_routing_node_id": "node/460951703",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/3508632047",
@@ -3767,8 +3767,8 @@
       "lat": 49.223158,
       "lng": 19.998553,
       "elevation": 2097.0,
-      "nearest_routing_node_id": "node/3653329404",
-      "distance_to_trail_m": 480
+      "nearest_routing_node_id": "node/6746769611",
+      "distance_to_trail_m": 31
     },
     {
       "id": "node/11592361111",
@@ -3777,8 +3777,8 @@
       "lat": 49.250023,
       "lng": 19.928627,
       "elevation": 1729.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 147
+      "nearest_routing_node_id": "node/3737060252",
+      "distance_to_trail_m": 73
     },
     {
       "id": "node/1496151182",
@@ -3787,8 +3787,8 @@
       "lat": 49.226945,
       "lng": 20.033293,
       "elevation": 2228.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 17
+      "nearest_routing_node_id": "node/460951756",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/2103272997",
@@ -3797,8 +3797,8 @@
       "lat": 49.233333,
       "lng": 20.0625,
       "elevation": 2090.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 1172
+      "nearest_routing_node_id": "node/4262890505",
+      "distance_to_trail_m": 1126
     },
     {
       "id": "node/9445410550",
@@ -3807,8 +3807,8 @@
       "lat": 49.263822,
       "lng": 19.994094,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5671991161",
-      "distance_to_trail_m": 510
+      "nearest_routing_node_id": "node/5871741887",
+      "distance_to_trail_m": 23
     },
     {
       "id": "way/171648212",
@@ -3827,8 +3827,8 @@
       "lat": 49.253796,
       "lng": 19.824478,
       "elevation": 1257.0,
-      "nearest_routing_node_id": "node/9827041747",
-      "distance_to_trail_m": 443
+      "nearest_routing_node_id": "node/1200790188",
+      "distance_to_trail_m": 301
     },
     {
       "id": "node/3592766993",
@@ -3837,8 +3837,8 @@
       "lat": 49.26444,
       "lng": 19.879944,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9709524949",
-      "distance_to_trail_m": 78
+      "nearest_routing_node_id": "node/9709524950",
+      "distance_to_trail_m": 70
     },
     {
       "id": "way/300719425",
@@ -3847,8 +3847,8 @@
       "lat": 49.202045,
       "lng": 20.070797,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13016074494",
-      "distance_to_trail_m": 33
+      "nearest_routing_node_id": "node/991639164",
+      "distance_to_trail_m": 20
     },
     {
       "id": "way/1120162238",
@@ -3857,8 +3857,8 @@
       "lat": 49.246717,
       "lng": 19.851139,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 278
+      "nearest_routing_node_id": "node/5905115333",
+      "distance_to_trail_m": 277
     },
     {
       "id": "way/581704892",
@@ -3867,8 +3867,8 @@
       "lat": 49.195026,
       "lng": 20.046764,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9023167485",
-      "distance_to_trail_m": 348
+      "nearest_routing_node_id": "node/1149295583",
+      "distance_to_trail_m": 130
     },
     {
       "id": "node/8809479343",
@@ -3877,8 +3877,8 @@
       "lat": 49.24632,
       "lng": 19.858405,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 442
+      "nearest_routing_node_id": "node/5905115354",
+      "distance_to_trail_m": 352
     },
     {
       "id": "node/1295278131",
@@ -3887,8 +3887,8 @@
       "lat": 49.240927,
       "lng": 19.977644,
       "elevation": 1696.0,
-      "nearest_routing_node_id": "node/9505568028",
-      "distance_to_trail_m": 41
+      "nearest_routing_node_id": "node/10033775468",
+      "distance_to_trail_m": 79
     },
     {
       "id": "node/11595734600",
@@ -3897,8 +3897,8 @@
       "lat": 49.255363,
       "lng": 19.944081,
       "elevation": 1562.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 731
+      "nearest_routing_node_id": "node/5865621809",
+      "distance_to_trail_m": 721
     },
     {
       "id": "node/1295278153",
@@ -3907,8 +3907,8 @@
       "lat": 49.258012,
       "lng": 19.942429,
       "elevation": 1539.0,
-      "nearest_routing_node_id": "node/132274281",
-      "distance_to_trail_m": 533
+      "nearest_routing_node_id": "node/4889404780",
+      "distance_to_trail_m": 482
     },
     {
       "id": "node/2107808029",
@@ -3917,8 +3917,8 @@
       "lat": 49.247587,
       "lng": 19.852695,
       "elevation": 1428.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 135
+      "nearest_routing_node_id": "node/5905115333",
+      "distance_to_trail_m": 132
     },
     {
       "id": "node/11603241165",
@@ -3927,8 +3927,8 @@
       "lat": 49.26343,
       "lng": 20.008098,
       "elevation": 1227.0,
-      "nearest_routing_node_id": "node/10032229628",
-      "distance_to_trail_m": 516
+      "nearest_routing_node_id": "node/10032229629",
+      "distance_to_trail_m": 494
     },
     {
       "id": "node/3571391593",
@@ -3937,8 +3937,8 @@
       "lat": 49.222113,
       "lng": 19.833634,
       "elevation": 1832.0,
-      "nearest_routing_node_id": "node/13180654620",
-      "distance_to_trail_m": 186
+      "nearest_routing_node_id": "node/1202079466",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/2102060451",
@@ -3947,8 +3947,8 @@
       "lat": 49.258611,
       "lng": 20.068056,
       "elevation": 1485.0,
-      "nearest_routing_node_id": "node/803745587",
-      "distance_to_trail_m": 366
+      "nearest_routing_node_id": "node/3748895983",
+      "distance_to_trail_m": 220
     },
     {
       "id": "node/11592361023",
@@ -3957,8 +3957,8 @@
       "lat": 49.251805,
       "lng": 19.928314,
       "elevation": 1636.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 316
+      "nearest_routing_node_id": "node/10033775200",
+      "distance_to_trail_m": 243
     },
     {
       "id": "node/11592361058",
@@ -3967,8 +3967,8 @@
       "lat": 49.251809,
       "lng": 19.92847,
       "elevation": 1647.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 319
+      "nearest_routing_node_id": "node/10033775200",
+      "distance_to_trail_m": 252
     },
     {
       "id": "node/10921092363",
@@ -3977,8 +3977,8 @@
       "lat": 49.250881,
       "lng": 19.936809,
       "elevation": 1810.0,
-      "nearest_routing_node_id": "node/3741575976",
-      "distance_to_trail_m": 193
+      "nearest_routing_node_id": "node/467480946",
+      "distance_to_trail_m": 181
     },
     {
       "id": "node/3592417902",
@@ -3997,8 +3997,8 @@
       "lat": 49.185303,
       "lng": 20.061425,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8960110469",
-      "distance_to_trail_m": 287
+      "nearest_routing_node_id": "node/11383279291",
+      "distance_to_trail_m": 22
     },
     {
       "id": "node/11581687626",
@@ -4007,8 +4007,8 @@
       "lat": 49.253242,
       "lng": 19.942136,
       "elevation": 1823.0,
-      "nearest_routing_node_id": "node/3741575976",
-      "distance_to_trail_m": 643
+      "nearest_routing_node_id": "node/4810477707",
+      "distance_to_trail_m": 627
     },
     {
       "id": "node/803819836",
@@ -4017,8 +4017,8 @@
       "lat": 49.233952,
       "lng": 19.900667,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/7838797301",
-      "distance_to_trail_m": 354
+      "nearest_routing_node_id": "node/803819836",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/8499322247",
@@ -4027,8 +4027,8 @@
       "lat": 49.249789,
       "lng": 19.991541,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5949252006",
-      "distance_to_trail_m": 600
+      "nearest_routing_node_id": "node/5949251999",
+      "distance_to_trail_m": 521
     },
     {
       "id": "node/9520210970",
@@ -4037,8 +4037,8 @@
       "lat": 49.196636,
       "lng": 20.04471,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11383307214",
-      "distance_to_trail_m": 212
+      "nearest_routing_node_id": "node/384075713",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/11189254686",
@@ -4057,8 +4057,8 @@
       "lat": 49.195182,
       "lng": 20.040624,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 238
+      "nearest_routing_node_id": "node/7591435532",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/9978523981",
@@ -4067,8 +4067,8 @@
       "lat": 49.195119,
       "lng": 20.04067,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 245
+      "nearest_routing_node_id": "node/7591435532",
+      "distance_to_trail_m": 9
     },
     {
       "id": "relation/12991546",
@@ -4077,8 +4077,8 @@
       "lat": 49.203446,
       "lng": 20.038823,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11383307214",
-      "distance_to_trail_m": 664
+      "nearest_routing_node_id": "node/5874401855",
+      "distance_to_trail_m": 357
     },
     {
       "id": "node/452477062",
@@ -4097,8 +4097,8 @@
       "lat": 49.229287,
       "lng": 20.011503,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/355985946",
-      "distance_to_trail_m": 55
+      "nearest_routing_node_id": "node/2570573563",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/1202117006",
@@ -4117,8 +4117,8 @@
       "lat": 49.229092,
       "lng": 19.892331,
       "elevation": 1740.0,
-      "nearest_routing_node_id": "node/7838797301",
-      "distance_to_trail_m": 800
+      "nearest_routing_node_id": "node/3054092922",
+      "distance_to_trail_m": 88
     },
     {
       "id": "relation/12980772",
@@ -4127,8 +4127,8 @@
       "lat": 49.234563,
       "lng": 19.996214,
       "elevation": 1612.6,
-      "nearest_routing_node_id": "node/308092499",
-      "distance_to_trail_m": 185
+      "nearest_routing_node_id": "node/4797284303",
+      "distance_to_trail_m": 16
     },
     {
       "id": "node/1294543814",
@@ -4137,8 +4137,8 @@
       "lat": 49.219104,
       "lng": 19.803726,
       "elevation": 1758.0,
-      "nearest_routing_node_id": "node/1202079306",
-      "distance_to_trail_m": 49
+      "nearest_routing_node_id": "node/3079625614",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/12407901058",
@@ -4147,8 +4147,8 @@
       "lat": 49.191949,
       "lng": 20.059928,
       "elevation": 1962.0,
-      "nearest_routing_node_id": "node/11157565047",
-      "distance_to_trail_m": 237
+      "nearest_routing_node_id": "node/11157565048",
+      "distance_to_trail_m": 231
     },
     {
       "id": "node/11581710090",
@@ -4157,8 +4157,8 @@
       "lat": 49.253977,
       "lng": 19.946081,
       "elevation": 1740.0,
-      "nearest_routing_node_id": "node/9514597545",
-      "distance_to_trail_m": 620
+      "nearest_routing_node_id": "node/2488594927",
+      "distance_to_trail_m": 610
     },
     {
       "id": "node/2103272998",
@@ -4167,8 +4167,8 @@
       "lat": 49.23901,
       "lng": 20.072458,
       "elevation": 1901.0,
-      "nearest_routing_node_id": "node/384346091",
-      "distance_to_trail_m": 1212
+      "nearest_routing_node_id": "node/2606108890",
+      "distance_to_trail_m": 1189
     },
     {
       "id": "node/3494312974",
@@ -4177,8 +4177,8 @@
       "lat": 49.217298,
       "lng": 20.020877,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3755385023",
-      "distance_to_trail_m": 234
+      "nearest_routing_node_id": "node/2570572149",
+      "distance_to_trail_m": 112
     },
     {
       "id": "node/2103272999",
@@ -4187,8 +4187,8 @@
       "lat": 49.232592,
       "lng": 20.075715,
       "elevation": 1741.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 779
+      "nearest_routing_node_id": "node/5874383602",
+      "distance_to_trail_m": 604
     },
     {
       "id": "node/1295341393",
@@ -4197,8 +4197,8 @@
       "lat": 49.234677,
       "lng": 19.9003,
       "elevation": 2026.0,
-      "nearest_routing_node_id": "node/797774723",
-      "distance_to_trail_m": 311
+      "nearest_routing_node_id": "node/3054021006",
+      "distance_to_trail_m": 20
     },
     {
       "id": "node/8809914841",
@@ -4217,8 +4217,8 @@
       "lat": 49.264244,
       "lng": 19.804707,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13238662653",
-      "distance_to_trail_m": 36
+      "nearest_routing_node_id": "node/13238662654",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/3560953192",
@@ -4227,8 +4227,8 @@
       "lat": 49.23605,
       "lng": 19.777606,
       "elevation": 1421.0,
-      "nearest_routing_node_id": "node/5427568224",
-      "distance_to_trail_m": 409
+      "nearest_routing_node_id": "node/6278952445",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/1295341388",
@@ -4237,8 +4237,8 @@
       "lat": 49.239514,
       "lng": 19.889733,
       "elevation": 1796.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 190
+      "nearest_routing_node_id": "node/1200755566",
+      "distance_to_trail_m": 158
     },
     {
       "id": "node/1995387409",
@@ -4247,8 +4247,8 @@
       "lat": 49.250365,
       "lng": 19.887133,
       "elevation": 1457.0,
-      "nearest_routing_node_id": "node/2009108458",
-      "distance_to_trail_m": 788
+      "nearest_routing_node_id": "node/8725580038",
+      "distance_to_trail_m": 101
     },
     {
       "id": "node/2008611051",
@@ -4257,8 +4257,8 @@
       "lat": 49.256334,
       "lng": 19.878431,
       "elevation": 1203.0,
-      "nearest_routing_node_id": "node/1200977217",
-      "distance_to_trail_m": 631
+      "nearest_routing_node_id": "node/1200756058",
+      "distance_to_trail_m": 11
     },
     {
       "id": "node/10840394025",
@@ -4287,8 +4287,8 @@
       "lat": 49.238341,
       "lng": 19.880662,
       "elevation": 1600.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 818
+      "nearest_routing_node_id": "node/3075474950",
+      "distance_to_trail_m": 813
     },
     {
       "id": "node/10840394021",
@@ -4308,7 +4308,7 @@
       "lng": 19.87916,
       "elevation": 1608.0,
       "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 791
+      "distance_to_trail_m": 792
     },
     {
       "id": "node/10840394022",
@@ -4367,8 +4367,8 @@
       "lat": 49.255522,
       "lng": 20.06603,
       "elevation": 1418.0,
-      "nearest_routing_node_id": "node/2096802180",
-      "distance_to_trail_m": 39
+      "nearest_routing_node_id": "node/6719914706",
+      "distance_to_trail_m": 19
     },
     {
       "id": "node/2103273000",
@@ -4377,8 +4377,8 @@
       "lat": 49.231944,
       "lng": 20.046944,
       "elevation": 2189.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 350
+      "nearest_routing_node_id": "node/6749747375",
+      "distance_to_trail_m": 323
     },
     {
       "id": "node/8930822599",
@@ -4407,8 +4407,8 @@
       "lat": 49.213435,
       "lng": 20.006815,
       "elevation": 2156.0,
-      "nearest_routing_node_id": "node/7813849872",
-      "distance_to_trail_m": 61
+      "nearest_routing_node_id": "node/7813849886",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/2639389007",
@@ -4417,8 +4417,8 @@
       "lat": 49.227182,
       "lng": 20.040264,
       "elevation": 2184.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 446
+      "nearest_routing_node_id": "node/1200865806",
+      "distance_to_trail_m": 49
     },
     {
       "id": "node/1496149198",
@@ -4427,8 +4427,8 @@
       "lat": 49.233663,
       "lng": 20.039436,
       "elevation": 1856.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 770
+      "nearest_routing_node_id": "node/2491918695",
+      "distance_to_trail_m": 120
     },
     {
       "id": "node/2103273001",
@@ -4437,8 +4437,8 @@
       "lat": 49.235363,
       "lng": 20.049513,
       "elevation": 2193.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 733
+      "nearest_routing_node_id": "node/1200865689",
+      "distance_to_trail_m": 689
     },
     {
       "id": "node/3538976943",
@@ -4447,8 +4447,8 @@
       "lat": 49.201622,
       "lng": 20.020924,
       "elevation": 1987.0,
-      "nearest_routing_node_id": "node/11379617464",
-      "distance_to_trail_m": 855
+      "nearest_routing_node_id": "node/7591435407",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/3633401218",
@@ -4457,8 +4457,8 @@
       "lat": 49.255862,
       "lng": 20.004845,
       "elevation": 1531.0,
-      "nearest_routing_node_id": "node/9521570246",
-      "distance_to_trail_m": 103
+      "nearest_routing_node_id": "node/5100269468",
+      "distance_to_trail_m": 104
     },
     {
       "id": "node/9032609525",
@@ -4467,8 +4467,8 @@
       "lat": 49.227043,
       "lng": 20.034948,
       "elevation": 2162.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 107
+      "nearest_routing_node_id": "node/1200864648",
+      "distance_to_trail_m": 13
     },
     {
       "id": "node/3600532984",
@@ -4477,8 +4477,8 @@
       "lat": 49.244535,
       "lng": 19.92024,
       "elevation": 1847.0,
-      "nearest_routing_node_id": "node/2570077611",
-      "distance_to_trail_m": 432
+      "nearest_routing_node_id": "node/5983724348",
+      "distance_to_trail_m": 405
     },
     {
       "id": "node/10873136341",
@@ -4507,8 +4507,8 @@
       "lat": 49.179147,
       "lng": 20.074672,
       "elevation": 2355.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 564
+      "nearest_routing_node_id": "node/11361853616",
+      "distance_to_trail_m": 42
     },
     {
       "id": "node/1295278143",
@@ -4517,8 +4517,8 @@
       "lat": 49.250954,
       "lng": 19.934102,
       "elevation": 1894.5,
-      "nearest_routing_node_id": "node/3741575976",
-      "distance_to_trail_m": 24
+      "nearest_routing_node_id": "node/4810477703",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/1294543865",
@@ -4527,8 +4527,8 @@
       "lat": 49.239348,
       "lng": 19.809999,
       "elevation": 1257.0,
-      "nearest_routing_node_id": "node/1202079304",
-      "distance_to_trail_m": 287
+      "nearest_routing_node_id": "node/2510760178",
+      "distance_to_trail_m": 261
     },
     {
       "id": "node/2098613390",
@@ -4547,8 +4547,8 @@
       "lat": 49.250306,
       "lng": 19.836611,
       "elevation": 1485.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 899
+      "nearest_routing_node_id": "node/1200790078",
+      "distance_to_trail_m": 450
     },
     {
       "id": "node/2103273002",
@@ -4557,8 +4557,8 @@
       "lat": 49.228333,
       "lng": 20.05,
       "elevation": 2155.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 165
+      "nearest_routing_node_id": "node/1200864424",
+      "distance_to_trail_m": 201
     },
     {
       "id": "node/1295379321",
@@ -4567,8 +4567,8 @@
       "lat": 49.244896,
       "lng": 19.806503,
       "elevation": 1350.0,
-      "nearest_routing_node_id": "node/5602494048",
-      "distance_to_trail_m": 377
+      "nearest_routing_node_id": "node/2510760187",
+      "distance_to_trail_m": 351
     },
     {
       "id": "node/2107822736",
@@ -4577,8 +4577,8 @@
       "lat": 49.256361,
       "lng": 19.835167,
       "elevation": 1324.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 227
+      "nearest_routing_node_id": "node/8696645638",
+      "distance_to_trail_m": 28
     },
     {
       "id": "node/8967856477",
@@ -4587,8 +4587,8 @@
       "lat": 49.234677,
       "lng": 20.067135,
       "elevation": 2039.0,
-      "nearest_routing_node_id": "node/3499289916",
-      "distance_to_trail_m": 1413
+      "nearest_routing_node_id": "node/4262890511",
+      "distance_to_trail_m": 1102
     },
     {
       "id": "node/1496149199",
@@ -4597,8 +4597,8 @@
       "lat": 49.228955,
       "lng": 20.032733,
       "elevation": 2135.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 219
+      "nearest_routing_node_id": "node/460951853",
+      "distance_to_trail_m": 167
     },
     {
       "id": "node/3569141394",
@@ -4607,8 +4607,8 @@
       "lat": 49.248382,
       "lng": 19.838573,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 1085
+      "nearest_routing_node_id": "node/1200790078",
+      "distance_to_trail_m": 687
     },
     {
       "id": "node/13749716182",
@@ -4617,8 +4617,8 @@
       "lat": 49.2934,
       "lng": 20.095049,
       "elevation": 1036.0,
-      "nearest_routing_node_id": "node/10778318849",
-      "distance_to_trail_m": 495
+      "nearest_routing_node_id": "node/7297882093",
+      "distance_to_trail_m": 543
     },
     {
       "id": "way/300679700",
@@ -4627,8 +4627,8 @@
       "lat": 49.276495,
       "lng": 19.870007,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3047868905",
-      "distance_to_trail_m": 49
+      "nearest_routing_node_id": "node/9231188577",
+      "distance_to_trail_m": 37
     },
     {
       "id": "node/3598563338",
@@ -4637,8 +4637,8 @@
       "lat": 49.229573,
       "lng": 19.879521,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 1206
+      "nearest_routing_node_id": "node/8709088090",
+      "distance_to_trail_m": 562
     },
     {
       "id": "node/3503813793",
@@ -4647,8 +4647,8 @@
       "lat": 49.228507,
       "lng": 20.049648,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 134
+      "nearest_routing_node_id": "node/1200864424",
+      "distance_to_trail_m": 173
     },
     {
       "id": "way/930417423",
@@ -4657,8 +4657,8 @@
       "lat": 49.248884,
       "lng": 20.086381,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1293463275",
-      "distance_to_trail_m": 216
+      "nearest_routing_node_id": "node/11134944013",
+      "distance_to_trail_m": 45
     },
     {
       "id": "node/385106041",
@@ -4667,8 +4667,8 @@
       "lat": 49.178902,
       "lng": 20.075116,
       "elevation": 2373.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 550
+      "nearest_routing_node_id": "node/11361853617",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/3344854169",
@@ -4687,8 +4687,8 @@
       "lat": 49.239409,
       "lng": 19.852653,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5916784586",
-      "distance_to_trail_m": 603
+      "nearest_routing_node_id": "node/3594321417",
+      "distance_to_trail_m": 599
     },
     {
       "id": "node/3600514330",
@@ -4697,8 +4697,8 @@
       "lat": 49.254736,
       "lng": 19.953073,
       "elevation": 1579.0,
-      "nearest_routing_node_id": "node/9514597545",
-      "distance_to_trail_m": 558
+      "nearest_routing_node_id": "node/5896379280",
+      "distance_to_trail_m": 474
     },
     {
       "id": "node/11592361116",
@@ -4707,8 +4707,8 @@
       "lat": 49.250081,
       "lng": 19.928438,
       "elevation": 1738.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 143
+      "nearest_routing_node_id": "node/3737060252",
+      "distance_to_trail_m": 84
     },
     {
       "id": "node/10802758129",
@@ -4717,8 +4717,8 @@
       "lat": 49.236243,
       "lng": 19.882185,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 837
+      "nearest_routing_node_id": "node/1200755566",
+      "distance_to_trail_m": 816
     },
     {
       "id": "node/1295341391",
@@ -4727,8 +4727,8 @@
       "lat": 49.236051,
       "lng": 19.882798,
       "elevation": 1643.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 816
+      "nearest_routing_node_id": "node/1200755978",
+      "distance_to_trail_m": 790
     },
     {
       "id": "node/8518741430",
@@ -4737,8 +4737,8 @@
       "lat": 49.264306,
       "lng": 19.994087,
       "elevation": 1287.0,
-      "nearest_routing_node_id": "node/3005882542",
-      "distance_to_trail_m": 474
+      "nearest_routing_node_id": "node/8725657632",
+      "distance_to_trail_m": 54
     },
     {
       "id": "node/3592618809",
@@ -4747,8 +4747,8 @@
       "lat": 49.236649,
       "lng": 19.883467,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3075474947",
-      "distance_to_trail_m": 736
+      "nearest_routing_node_id": "node/1200755566",
+      "distance_to_trail_m": 713
     },
     {
       "id": "node/13674592718",
@@ -4757,8 +4757,8 @@
       "lat": 49.191898,
       "lng": 20.060468,
       "elevation": 1890.0,
-      "nearest_routing_node_id": "node/11157565047",
-      "distance_to_trail_m": 267
+      "nearest_routing_node_id": "node/11157565048",
+      "distance_to_trail_m": 263
     },
     {
       "id": "node/9991444411",
@@ -4767,8 +4767,8 @@
       "lat": 49.183923,
       "lng": 20.07026,
       "elevation": 2181.0,
-      "nearest_routing_node_id": "node/1779828445",
-      "distance_to_trail_m": 116
+      "nearest_routing_node_id": "node/1779828487",
+      "distance_to_trail_m": 83
     },
     {
       "id": "node/2359130656",
@@ -4777,8 +4777,8 @@
       "lat": 49.234111,
       "lng": 19.810111,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1202079211",
-      "distance_to_trail_m": 630
+      "nearest_routing_node_id": "node/1202079382",
+      "distance_to_trail_m": 245
     },
     {
       "id": "node/1103562910",
@@ -4787,8 +4787,8 @@
       "lat": 49.199207,
       "lng": 20.033387,
       "elevation": 2083.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 533
+      "nearest_routing_node_id": "node/7591435466",
+      "distance_to_trail_m": 2
     },
     {
       "id": "way/581704891",
@@ -4797,8 +4797,8 @@
       "lat": 49.195465,
       "lng": 20.050375,
       "elevation": 1785.0,
-      "nearest_routing_node_id": "node/9023167485",
-      "distance_to_trail_m": 83
+      "nearest_routing_node_id": "node/10923465665",
+      "distance_to_trail_m": 38
     },
     {
       "id": "way/621286993",
@@ -4807,8 +4807,8 @@
       "lat": 49.279437,
       "lng": 20.029729,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5871116727",
-      "distance_to_trail_m": 370
+      "nearest_routing_node_id": "node/5869147087",
+      "distance_to_trail_m": 174
     },
     {
       "id": "way/1063344679",
@@ -4817,8 +4817,8 @@
       "lat": 49.230637,
       "lng": 20.051954,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747324",
-      "distance_to_trail_m": 356
+      "nearest_routing_node_id": "node/1200864428",
+      "distance_to_trail_m": 403
     },
     {
       "id": "node/2721707707",
@@ -4827,8 +4827,8 @@
       "lat": 49.234139,
       "lng": 20.086793,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346097",
-      "distance_to_trail_m": 65
+      "nearest_routing_node_id": "node/11134971931",
+      "distance_to_trail_m": 41
     },
     {
       "id": "node/10873136334",
@@ -4837,8 +4837,8 @@
       "lat": 49.236117,
       "lng": 19.865402,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2487026279",
-      "distance_to_trail_m": 242
+      "nearest_routing_node_id": "node/2487026284",
+      "distance_to_trail_m": 222
     },
     {
       "id": "node/3508598896",
@@ -4847,8 +4847,8 @@
       "lat": 49.189107,
       "lng": 20.086516,
       "elevation": 2085.0,
-      "nearest_routing_node_id": "node/11077642396",
-      "distance_to_trail_m": 123
+      "nearest_routing_node_id": "node/3508598896",
+      "distance_to_trail_m": 0
     },
     {
       "id": "node/11217424616",
@@ -4867,8 +4867,8 @@
       "lat": 49.248856,
       "lng": 19.933743,
       "elevation": 1765.0,
-      "nearest_routing_node_id": "node/467480919",
-      "distance_to_trail_m": 31
+      "nearest_routing_node_id": "node/3737047600",
+      "distance_to_trail_m": 1
     },
     {
       "id": "node/8757470155",
@@ -4877,8 +4877,8 @@
       "lat": 49.213256,
       "lng": 20.045385,
       "elevation": 1725.0,
-      "nearest_routing_node_id": "node/11156672426",
-      "distance_to_trail_m": 133
+      "nearest_routing_node_id": "node/384341304",
+      "distance_to_trail_m": 114
     },
     {
       "id": "node/3538939602",
@@ -4887,8 +4887,8 @@
       "lat": 49.198628,
       "lng": 20.034475,
       "elevation": 2071.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 435
+      "nearest_routing_node_id": "node/11379616832",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/11079467142",
@@ -4897,8 +4897,8 @@
       "lat": 49.228616,
       "lng": 19.904047,
       "elevation": 1977.0,
-      "nearest_routing_node_id": "node/5968611523",
-      "distance_to_trail_m": 264
+      "nearest_routing_node_id": "node/7838824242",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/3571409793",
@@ -4907,8 +4907,8 @@
       "lat": 49.220415,
       "lng": 19.8335,
       "elevation": 1825.0,
-      "nearest_routing_node_id": "node/3324223812",
-      "distance_to_trail_m": 93
+      "nearest_routing_node_id": "node/8699211847",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/9032605672",
@@ -4917,8 +4917,8 @@
       "lat": 49.227815,
       "lng": 20.04496,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/6749747318",
-      "distance_to_trail_m": 103
+      "nearest_routing_node_id": "node/6749747335",
+      "distance_to_trail_m": 27
     },
     {
       "id": "node/8457144020",
@@ -4927,8 +4927,8 @@
       "lat": 49.261361,
       "lng": 19.962321,
       "elevation": 1331.0,
-      "nearest_routing_node_id": "node/2292519817",
-      "distance_to_trail_m": 351
+      "nearest_routing_node_id": "node/2378954232",
+      "distance_to_trail_m": 23
     },
     {
       "id": "node/3600507064",
@@ -4937,8 +4937,8 @@
       "lat": 49.255293,
       "lng": 19.944099,
       "elevation": 1560.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 738
+      "nearest_routing_node_id": "node/5865621809",
+      "distance_to_trail_m": 728
     },
     {
       "id": "node/3508632048",
@@ -4947,8 +4947,8 @@
       "lat": 49.183764,
       "lng": 20.084071,
       "elevation": 2115.0,
-      "nearest_routing_node_id": "node/3508632046",
-      "distance_to_trail_m": 39
+      "nearest_routing_node_id": "node/11157565026",
+      "distance_to_trail_m": 26
     },
     {
       "id": "node/9973078513",
@@ -4967,8 +4967,8 @@
       "lat": 49.178509,
       "lng": 20.078627,
       "elevation": 2315.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 395
+      "nearest_routing_node_id": "node/11361853610",
+      "distance_to_trail_m": 175
     },
     {
       "id": "node/3569134393",
@@ -4977,8 +4977,8 @@
       "lat": 49.248662,
       "lng": 19.837685,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/13236813761",
-      "distance_to_trail_m": 1088
+      "nearest_routing_node_id": "node/1200790078",
+      "distance_to_trail_m": 642
     },
     {
       "id": "node/9447967726",
@@ -4987,8 +4987,8 @@
       "lat": 49.238219,
       "lng": 19.98983,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/295645442",
-      "distance_to_trail_m": 507
+      "nearest_routing_node_id": "node/5313344836",
+      "distance_to_trail_m": 459
     },
     {
       "id": "node/9957754072",
@@ -4997,8 +4997,8 @@
       "lat": 49.22696,
       "lng": 19.989379,
       "elevation": 1965.0,
-      "nearest_routing_node_id": "node/295648381",
-      "distance_to_trail_m": 68
+      "nearest_routing_node_id": "node/295648990",
+      "distance_to_trail_m": 4
     },
     {
       "id": "relation/13111006",
@@ -5007,8 +5007,8 @@
       "lat": 49.194716,
       "lng": 20.053287,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/10923459146",
-      "distance_to_trail_m": 59
+      "nearest_routing_node_id": "node/10923459139",
+      "distance_to_trail_m": 42
     },
     {
       "id": "node/3494334491",
@@ -5017,8 +5017,8 @@
       "lat": 49.223508,
       "lng": 20.015613,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11156609443",
-      "distance_to_trail_m": 17
+      "nearest_routing_node_id": "node/11156609444",
+      "distance_to_trail_m": 16
     },
     {
       "id": "node/3503766330",
@@ -5027,8 +5027,8 @@
       "lat": 49.223388,
       "lng": 20.033044,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 27
+      "nearest_routing_node_id": "node/460951696",
+      "distance_to_trail_m": 19
     },
     {
       "id": "node/3504619541",
@@ -5037,8 +5037,8 @@
       "lat": 49.234677,
       "lng": 20.06844,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 1320
+      "nearest_routing_node_id": "node/4262890511",
+      "distance_to_trail_m": 1065
     },
     {
       "id": "node/9978523986",
@@ -5047,8 +5047,8 @@
       "lat": 49.196199,
       "lng": 20.04,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 122
+      "nearest_routing_node_id": "node/7591435523",
+      "distance_to_trail_m": 9
     },
     {
       "id": "way/1063344681",
@@ -5058,7 +5058,7 @@
       "lng": 20.057894,
       "elevation": 0.0,
       "nearest_routing_node_id": "node/3499289916",
-      "distance_to_trail_m": 940
+      "distance_to_trail_m": 939
     },
     {
       "id": "node/9973078512",
@@ -5077,8 +5077,8 @@
       "lat": 49.253864,
       "lng": 19.945652,
       "elevation": 1733.0,
-      "nearest_routing_node_id": "node/5627166663",
-      "distance_to_trail_m": 625
+      "nearest_routing_node_id": "node/2488594927",
+      "distance_to_trail_m": 617
     },
     {
       "id": "node/11592361112",
@@ -5087,8 +5087,8 @@
       "lat": 49.24987,
       "lng": 19.928996,
       "elevation": 1718.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 155
+      "nearest_routing_node_id": "node/3737060254",
+      "distance_to_trail_m": 47
     },
     {
       "id": "node/1496151183",
@@ -5097,8 +5097,8 @@
       "lat": 49.22477,
       "lng": 20.032569,
       "elevation": 2240.0,
-      "nearest_routing_node_id": "node/460951714",
-      "distance_to_trail_m": 39
+      "nearest_routing_node_id": "node/460951721",
+      "distance_to_trail_m": 17
     },
     {
       "id": "node/2721684699",
@@ -5127,8 +5127,8 @@
       "lat": 49.212959,
       "lng": 19.835383,
       "elevation": 1867.0,
-      "nearest_routing_node_id": "node/13175442236",
-      "distance_to_trail_m": 47
+      "nearest_routing_node_id": "node/5882322106",
+      "distance_to_trail_m": 2
     },
     {
       "id": "way/29239659",
@@ -5137,8 +5137,8 @@
       "lat": 49.224153,
       "lng": 20.010109,
       "elevation": 1852.0,
-      "nearest_routing_node_id": "node/11373293906",
-      "distance_to_trail_m": 89
+      "nearest_routing_node_id": "node/11156609409",
+      "distance_to_trail_m": 171
     },
     {
       "id": "node/11592361113",
@@ -5147,8 +5147,8 @@
       "lat": 49.250046,
       "lng": 19.928691,
       "elevation": 1735.0,
-      "nearest_routing_node_id": "node/5902390253",
-      "distance_to_trail_m": 152
+      "nearest_routing_node_id": "node/3737060254",
+      "distance_to_trail_m": 74
     },
     {
       "id": "node/11217424618",
@@ -5167,8 +5167,8 @@
       "lat": 49.260112,
       "lng": 19.858905,
       "elevation": 1333.0,
-      "nearest_routing_node_id": "node/7898132605",
-      "distance_to_trail_m": 474
+      "nearest_routing_node_id": "node/5210691505",
+      "distance_to_trail_m": 449
     },
     {
       "id": "node/8805220357",
@@ -5177,8 +5177,8 @@
       "lat": 49.26439,
       "lng": 19.884776,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200977217",
-      "distance_to_trail_m": 383
+      "nearest_routing_node_id": "node/6746951563",
+      "distance_to_trail_m": 150
     },
     {
       "id": "node/9029897690",
@@ -5187,8 +5187,8 @@
       "lat": 49.227617,
       "lng": 20.033673,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951757",
-      "distance_to_trail_m": 65
+      "nearest_routing_node_id": "node/460951856",
+      "distance_to_trail_m": 53
     },
     {
       "id": "node/3571653875",
@@ -5197,8 +5197,8 @@
       "lat": 49.263582,
       "lng": 19.83298,
       "elevation": 1271.0,
-      "nearest_routing_node_id": "node/13236811255",
-      "distance_to_trail_m": 294
+      "nearest_routing_node_id": "node/13236811262",
+      "distance_to_trail_m": 75
     },
     {
       "id": "node/3503760077",
@@ -5207,8 +5207,8 @@
       "lat": 49.22293,
       "lng": 20.032951,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 33
+      "nearest_routing_node_id": "node/8709973230",
+      "distance_to_trail_m": 6
     },
     {
       "id": "node/3503766329",
@@ -5217,8 +5217,8 @@
       "lat": 49.223313,
       "lng": 20.033129,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460951693",
-      "distance_to_trail_m": 27
+      "nearest_routing_node_id": "node/460951696",
+      "distance_to_trail_m": 20
     },
     {
       "id": "node/11217424617",
@@ -5227,8 +5227,8 @@
       "lat": 49.267082,
       "lng": 20.062433,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11838258529",
-      "distance_to_trail_m": 129
+      "nearest_routing_node_id": "node/11837813977",
+      "distance_to_trail_m": 16
     },
     {
       "id": "node/10857671205",
@@ -5237,8 +5237,8 @@
       "lat": 49.183847,
       "lng": 20.084029,
       "elevation": 2133.0,
-      "nearest_routing_node_id": "node/3508632046",
-      "distance_to_trail_m": 31
+      "nearest_routing_node_id": "node/11157565027",
+      "distance_to_trail_m": 23
     },
     {
       "id": "node/3600809370",
@@ -5247,8 +5247,8 @@
       "lat": 49.247176,
       "lng": 19.911075,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200977310",
-      "distance_to_trail_m": 474
+      "nearest_routing_node_id": "node/5983735985",
+      "distance_to_trail_m": 313
     },
     {
       "id": "node/3600809685",
@@ -5257,8 +5257,8 @@
       "lat": 49.247641,
       "lng": 19.910562,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200977310",
-      "distance_to_trail_m": 537
+      "nearest_routing_node_id": "node/5983735036",
+      "distance_to_trail_m": 359
     },
     {
       "id": "node/8967856473",
@@ -5267,8 +5267,8 @@
       "lat": 49.234992,
       "lng": 20.067908,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384346085",
-      "distance_to_trail_m": 1364
+      "nearest_routing_node_id": "node/4262890511",
+      "distance_to_trail_m": 1112
     },
     {
       "id": "node/1103563004",
@@ -5277,8 +5277,8 @@
       "lat": 49.219426,
       "lng": 20.024293,
       "elevation": 2179.0,
-      "nearest_routing_node_id": "node/460928226",
-      "distance_to_trail_m": 68
+      "nearest_routing_node_id": "node/460928183",
+      "distance_to_trail_m": 30
     },
     {
       "id": "node/1295341398",
@@ -5287,8 +5287,8 @@
       "lat": 49.25907,
       "lng": 19.950552,
       "elevation": 1434.0,
-      "nearest_routing_node_id": "node/1333271099",
-      "distance_to_trail_m": 314
+      "nearest_routing_node_id": "node/4807431987",
+      "distance_to_trail_m": 165
     },
     {
       "id": "node/8809867690",
@@ -5297,8 +5297,8 @@
       "lat": 49.243357,
       "lng": 19.806694,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5602494048",
-      "distance_to_trail_m": 373
+      "nearest_routing_node_id": "node/2510760185",
+      "distance_to_trail_m": 211
     },
     {
       "id": "node/2569948268",
@@ -5307,8 +5307,8 @@
       "lat": 49.263127,
       "lng": 19.885947,
       "elevation": 1296.0,
-      "nearest_routing_node_id": "node/6746951573",
-      "distance_to_trail_m": 352
+      "nearest_routing_node_id": "node/10033498481",
+      "distance_to_trail_m": 203
     },
     {
       "id": "node/9451044782",
@@ -5317,8 +5317,8 @@
       "lat": 49.265833,
       "lng": 19.943644,
       "elevation": 1339.0,
-      "nearest_routing_node_id": "node/132274279",
-      "distance_to_trail_m": 186
+      "nearest_routing_node_id": "node/1333271020",
+      "distance_to_trail_m": 139
     },
     {
       "id": "node/8809479346",
@@ -5327,8 +5327,8 @@
       "lat": 49.243287,
       "lng": 19.849682,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5905115331",
-      "distance_to_trail_m": 661
+      "nearest_routing_node_id": "node/3063752147",
+      "distance_to_trail_m": 654
     },
     {
       "id": "node/460927985",
@@ -5347,8 +5347,8 @@
       "lat": 49.219909,
       "lng": 20.015338,
       "elevation": 2247.0,
-      "nearest_routing_node_id": "node/460927985",
-      "distance_to_trail_m": 119
+      "nearest_routing_node_id": "node/3105833579",
+      "distance_to_trail_m": 110
     },
     {
       "id": "node/8807314850",
@@ -5357,8 +5357,8 @@
       "lat": 49.248806,
       "lng": 19.868292,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 106
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 80
     },
     {
       "id": "node/10873151884",
@@ -5367,8 +5367,8 @@
       "lat": 49.237231,
       "lng": 19.864736,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2487026315",
-      "distance_to_trail_m": 214
+      "nearest_routing_node_id": "node/4809677731",
+      "distance_to_trail_m": 172
     },
     {
       "id": "node/10873136330",
@@ -5377,8 +5377,8 @@
       "lat": 49.236399,
       "lng": 19.865042,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2487026279",
-      "distance_to_trail_m": 241
+      "nearest_routing_node_id": "node/2487026292",
+      "distance_to_trail_m": 213
     },
     {
       "id": "node/9041097016",
@@ -5387,8 +5387,8 @@
       "lat": 49.218842,
       "lng": 20.020172,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3755385023",
-      "distance_to_trail_m": 192
+      "nearest_routing_node_id": "node/8709973238",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/460928124",
@@ -5397,8 +5397,8 @@
       "lat": 49.219636,
       "lng": 20.023077,
       "elevation": 2123.0,
-      "nearest_routing_node_id": "node/460928226",
-      "distance_to_trail_m": 159
+      "nearest_routing_node_id": "node/460928132",
+      "distance_to_trail_m": 4
     },
     {
       "id": "node/1103562966",
@@ -5407,8 +5407,8 @@
       "lat": 49.218927,
       "lng": 20.02034,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3755385023",
-      "distance_to_trail_m": 207
+      "nearest_routing_node_id": "node/8709973240",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/9512402761",
@@ -5417,8 +5417,8 @@
       "lat": 49.255729,
       "lng": 20.041954,
       "elevation": 1461.2,
-      "nearest_routing_node_id": "node/1324541717",
-      "distance_to_trail_m": 843
+      "nearest_routing_node_id": "node/8721959141",
+      "distance_to_trail_m": 363
     },
     {
       "id": "node/9451044783",
@@ -5427,8 +5427,8 @@
       "lat": 49.269099,
       "lng": 19.947859,
       "elevation": 1270.0,
-      "nearest_routing_node_id": "node/2100603507",
-      "distance_to_trail_m": 491
+      "nearest_routing_node_id": "node/803822246",
+      "distance_to_trail_m": 419
     },
     {
       "id": "node/1294543790",
@@ -5437,8 +5437,8 @@
       "lat": 49.205004,
       "lng": 19.778579,
       "elevation": 1958.0,
-      "nearest_routing_node_id": "node/2359130651",
-      "distance_to_trail_m": 388
+      "nearest_routing_node_id": "node/8345798378",
+      "distance_to_trail_m": 86
     },
     {
       "id": "node/3560954589",
@@ -5447,8 +5447,8 @@
       "lat": 49.23329,
       "lng": 19.767182,
       "elevation": 1602.0,
-      "nearest_routing_node_id": "node/13336949564",
-      "distance_to_trail_m": 30
+      "nearest_routing_node_id": "node/4975670750",
+      "distance_to_trail_m": 5
     },
     {
       "id": "node/4784525459",
@@ -5457,8 +5457,8 @@
       "lat": 49.265353,
       "lng": 20.113146,
       "elevation": 1119.0,
-      "nearest_routing_node_id": "node/13180307014",
-      "distance_to_trail_m": 173
+      "nearest_routing_node_id": "node/13180307007",
+      "distance_to_trail_m": 76
     },
     {
       "id": "node/1295341403",
@@ -5467,8 +5467,8 @@
       "lat": 49.262155,
       "lng": 19.915443,
       "elevation": 1446.7,
-      "nearest_routing_node_id": "node/3001984396",
-      "distance_to_trail_m": 192
+      "nearest_routing_node_id": "node/3001994405",
+      "distance_to_trail_m": 138
     },
     {
       "id": "node/11217424622",
@@ -5477,8 +5477,8 @@
       "lat": 49.274801,
       "lng": 20.070929,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11838227671",
-      "distance_to_trail_m": 204
+      "nearest_routing_node_id": "node/11838227681",
+      "distance_to_trail_m": 182
     },
     {
       "id": "node/9489833354",
@@ -5487,8 +5487,8 @@
       "lat": 49.265443,
       "lng": 19.970695,
       "elevation": 1186.0,
-      "nearest_routing_node_id": "node/7925504073",
-      "distance_to_trail_m": 83
+      "nearest_routing_node_id": "node/3009272570",
+      "distance_to_trail_m": 56
     },
     {
       "id": "node/11217424620",
@@ -5497,8 +5497,8 @@
       "lat": 49.271331,
       "lng": 20.060921,
       "elevation": 1362.0,
-      "nearest_routing_node_id": "node/11837813929",
-      "distance_to_trail_m": 111
+      "nearest_routing_node_id": "node/11837813942",
+      "distance_to_trail_m": 50
     },
     {
       "id": "node/11217424619",
@@ -5507,8 +5507,8 @@
       "lat": 49.270631,
       "lng": 20.061433,
       "elevation": 1335.0,
-      "nearest_routing_node_id": "node/11837813929",
-      "distance_to_trail_m": 27
+      "nearest_routing_node_id": "node/11837813930",
+      "distance_to_trail_m": 12
     },
     {
       "id": "node/2721684700",
@@ -5517,8 +5517,8 @@
       "lat": 49.22004,
       "lng": 20.008642,
       "elevation": 2291.0,
-      "nearest_routing_node_id": "node/3343362920",
-      "distance_to_trail_m": 84
+      "nearest_routing_node_id": "node/295645548",
+      "distance_to_trail_m": 68
     },
     {
       "id": "node/3343362920",
@@ -5537,8 +5537,8 @@
       "lat": 49.219374,
       "lng": 20.009612,
       "elevation": 2298.0,
-      "nearest_routing_node_id": "node/460927821",
-      "distance_to_trail_m": 11
+      "nearest_routing_node_id": "node/6746736452",
+      "distance_to_trail_m": 8
     },
     {
       "id": "node/9957754034",
@@ -5557,8 +5557,8 @@
       "lat": 49.219352,
       "lng": 20.009491,
       "elevation": 2295.0,
-      "nearest_routing_node_id": "node/460927821",
-      "distance_to_trail_m": 10
+      "nearest_routing_node_id": "node/10032319258",
+      "distance_to_trail_m": 2
     },
     {
       "id": "node/8757470164",
@@ -5567,8 +5567,8 @@
       "lat": 49.216469,
       "lng": 20.057519,
       "elevation": 1763.0,
-      "nearest_routing_node_id": "node/8999007432",
-      "distance_to_trail_m": 1
+      "nearest_routing_node_id": "node/8727840732",
+      "distance_to_trail_m": 31
     },
     {
       "id": "node/8757470163",
@@ -5577,8 +5577,8 @@
       "lat": 49.214358,
       "lng": 20.058847,
       "elevation": 1875.0,
-      "nearest_routing_node_id": "node/8999007461",
-      "distance_to_trail_m": 123
+      "nearest_routing_node_id": "node/1908708910",
+      "distance_to_trail_m": 7
     },
     {
       "id": "node/8757470161",
@@ -5587,8 +5587,8 @@
       "lat": 49.213709,
       "lng": 20.058175,
       "elevation": 1870.0,
-      "nearest_routing_node_id": "node/1908708939",
-      "distance_to_trail_m": 199
+      "nearest_routing_node_id": "node/3744004823",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/8757470162",
@@ -5597,8 +5597,8 @@
       "lat": 49.216212,
       "lng": 20.057645,
       "elevation": 1755.0,
-      "nearest_routing_node_id": "node/8999007440",
-      "distance_to_trail_m": 7
+      "nearest_routing_node_id": "node/8727840733",
+      "distance_to_trail_m": 14
     },
     {
       "id": "node/3571740754",
@@ -5607,8 +5607,8 @@
       "lat": 49.260742,
       "lng": 19.857664,
       "elevation": 1333.0,
-      "nearest_routing_node_id": "node/7898132606",
-      "distance_to_trail_m": 468
+      "nearest_routing_node_id": "node/4889404814",
+      "distance_to_trail_m": 443
     },
     {
       "id": "node/6719281507",
@@ -5617,8 +5617,8 @@
       "lat": 49.189007,
       "lng": 20.085449,
       "elevation": 2138.0,
-      "nearest_routing_node_id": "node/11077642396",
-      "distance_to_trail_m": 52
+      "nearest_routing_node_id": "node/11077642392",
+      "distance_to_trail_m": 46
     },
     {
       "id": "node/3508683869",
@@ -5627,8 +5627,8 @@
       "lat": 49.178587,
       "lng": 20.079306,
       "elevation": 2291.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 363
+      "nearest_routing_node_id": "node/11361853610",
+      "distance_to_trail_m": 224
     },
     {
       "id": "node/3508601596",
@@ -5637,8 +5637,8 @@
       "lat": 49.18917,
       "lng": 20.085844,
       "elevation": 2146.0,
-      "nearest_routing_node_id": "node/11077642396",
-      "distance_to_trail_m": 85
+      "nearest_routing_node_id": "node/6750297385",
+      "distance_to_trail_m": 42
     },
     {
       "id": "node/385106042",
@@ -5647,8 +5647,8 @@
       "lat": 49.187846,
       "lng": 20.089249,
       "elevation": 2263.0,
-      "nearest_routing_node_id": "node/11077642396",
-      "distance_to_trail_m": 324
+      "nearest_routing_node_id": "node/13383468202",
+      "distance_to_trail_m": 206
     },
     {
       "id": "node/3544033690",
@@ -5657,8 +5657,8 @@
       "lat": 49.198501,
       "lng": 20.086272,
       "elevation": 2079.0,
-      "nearest_routing_node_id": "node/13383464037",
-      "distance_to_trail_m": 141
+      "nearest_routing_node_id": "node/13158721372",
+      "distance_to_trail_m": 388
     },
     {
       "id": "node/3544132281",
@@ -5677,8 +5677,8 @@
       "lat": 49.178642,
       "lng": 20.076249,
       "elevation": 2315.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 500
+      "nearest_routing_node_id": "node/11361853610",
+      "distance_to_trail_m": 3
     },
     {
       "id": "node/3508689204",
@@ -5687,8 +5687,8 @@
       "lat": 49.178604,
       "lng": 20.077133,
       "elevation": 2336.0,
-      "nearest_routing_node_id": "node/11157564994",
-      "distance_to_trail_m": 455
+      "nearest_routing_node_id": "node/11361853610",
+      "distance_to_trail_m": 66
     },
     {
       "id": "way/581704894",
@@ -5697,8 +5697,8 @@
       "lat": 49.203403,
       "lng": 20.072979,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/384360353",
-      "distance_to_trail_m": 149
+      "nearest_routing_node_id": "node/3048258323",
+      "distance_to_trail_m": 97
     },
     {
       "id": "node/10128848003",
@@ -5707,8 +5707,8 @@
       "lat": 49.230712,
       "lng": 19.875894,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 941
+      "nearest_routing_node_id": "node/3075295006",
+      "distance_to_trail_m": 699
     },
     {
       "id": "node/10128848001",
@@ -5717,8 +5717,8 @@
       "lat": 49.231083,
       "lng": 19.873342,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5913733050",
-      "distance_to_trail_m": 808
+      "nearest_routing_node_id": "node/9714317063",
+      "distance_to_trail_m": 639
     },
     {
       "id": "node/8807314872",
@@ -5727,8 +5727,8 @@
       "lat": 49.247423,
       "lng": 19.870579,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5907345208",
-      "distance_to_trail_m": 327
+      "nearest_routing_node_id": "node/5907345209",
+      "distance_to_trail_m": 297
     },
     {
       "id": "node/1496149232",
@@ -5737,8 +5737,8 @@
       "lat": 49.230296,
       "lng": 20.030582,
       "elevation": 2028.0,
-      "nearest_routing_node_id": "node/11156609626",
-      "distance_to_trail_m": 234
+      "nearest_routing_node_id": "node/460951793",
+      "distance_to_trail_m": 190
     },
     {
       "id": "node/1496149233",
@@ -5747,8 +5747,8 @@
       "lat": 49.234481,
       "lng": 20.029017,
       "elevation": 2047.0,
-      "nearest_routing_node_id": "node/11156609611",
-      "distance_to_trail_m": 606
+      "nearest_routing_node_id": "node/8721181523",
+      "distance_to_trail_m": 550
     }
   ]
 }

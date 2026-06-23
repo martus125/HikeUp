@@ -1,44 +1,36 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Polyline,
-  Marker,
-  Popup,
-} from "react-leaflet";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 
-const API_URL = "http://localhost:5000";
-
-const markerIcon = new L.Icon({
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
+import { fetchRoute, loginUser, registerUser, saveFavoriteRoute } from "./api/hikeupApi";
+import { AuthModal } from "./components/AuthModal";
+import { FavoriteRoutes } from "./components/FavoriteRoutes";
+import { Header } from "./components/Header";
+import { PlannerPanel } from "./components/PlannerPanel";
+import { RecommendedRoutes } from "./components/RecommendedRoutes";
+import { RouteMap } from "./components/RouteMap";
+import { Tabs } from "./components/Tabs";
+import { useMapData } from "./hooks/useMapData";
+import { useScrollTopButton } from "./hooks/useScrollTopButton";
+import {
+  createPointMap,
+  filterPoints,
+  getPointName,
+  getUniqueSortedPoints,
+  normalizePointList,
+} from "./utils/points";
 
 function App() {
   const plannerRef = useRef(null);
+  const showScrollTop = useScrollTopButton();
+  const { graph, searchPoints, loadingGraph } = useMapData();
 
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeTab, setActiveTab] = useState("plan");
-
-  const [graph, setGraph] = useState(null);
-  const [loadingGraph, setLoadingGraph] = useState(true);
-  const [searchPoints, setSearchPoints] = useState([]);
-
   const [startId, setStartId] = useState("");
   const [endId, setEndId] = useState("");
   const [startSearch, setStartSearch] = useState("");
   const [endSearch, setEndSearch] = useState("");
   const [activeSearch, setActiveSearch] = useState(null);
-
   const [criterion, setCriterion] = useState("time");
   const [selectingPoint, setSelectingPoint] = useState("A");
   const [routeResult, setRouteResult] = useState(null);
@@ -47,383 +39,190 @@ function App() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("login");
   const [user, setUser] = useState(null);
-
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [registerName, setRegisterName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-
   const [authMessage, setAuthMessage] = useState("");
-
-  const normalizePoint = (point) => ({
-    ...point,
-    id: point.id,
-    name: point.name || point.label || point.title || point.id,
-    lat: Number(point.lat ?? point.latitude),
-    lng: Number(point.lng ?? point.lon ?? point.longitude),
-  });
-
-  const normalizePointList = (data) => {
-    const rawPoints = Array.isArray(data)
-      ? data
-      : Array.isArray(data?.points)
-      ? data.points
-      : Array.isArray(data?.nodes)
-      ? data.nodes
-      : data?.points && typeof data.points === "object"
-      ? Object.values(data.points)
-      : data?.nodes && typeof data.nodes === "object"
-      ? Object.values(data.nodes)
-      : data && typeof data === "object"
-      ? Object.values(data)
-      : [];
-
-    return rawPoints
-      .map(normalizePoint)
-      .filter(
-        (point) =>
-          point.id &&
-          point.name &&
-          Number.isFinite(point.lat) &&
-          Number.isFinite(point.lng)
-      );
-  };
-
-  const normalizeText = (text) => {
-    return String(text || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  };
-
-  const getPointName = (point) => {
-    return String(point?.name || point?.label || point?.title || point?.id || "");
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     const savedFavorites = localStorage.getItem("hikeup_favorite_routes");
-
     if (savedFavorites) {
       setFavoriteRoutes(JSON.parse(savedFavorites));
     }
   }, []);
 
   useEffect(() => {
-    const loadMapData = async () => {
-      try {
-        setLoadingGraph(true);
+    localStorage.setItem("hikeup_favorite_routes", JSON.stringify(favoriteRoutes));
+  }, [favoriteRoutes]);
 
-        const graphResponse = await fetch(`${API_URL}/api/graph`);
-        const graphData = await graphResponse.json();
-
-        if (graphResponse.ok && graphData.success) {
-          setGraph({
-            nodes: normalizePointList(graphData.nodes || graphData),
-            edges: Array.isArray(graphData.edges) ? graphData.edges : [],
-          });
-        }
-
-        const pointsResponse = await fetch(`${API_URL}/api/points`);
-        const pointsData = await pointsResponse.json();
-
-        if (pointsResponse.ok && pointsData.success) {
-          setSearchPoints(normalizePointList(pointsData.points || pointsData));
-        }
-      } catch (error) {
-        console.error("Błąd pobierania danych mapy:", error);
-      } finally {
-        setLoadingGraph(false);
-      }
-    };
-
-    loadMapData();
-  }, []);
-
-  const nodes = useMemo(() => {
-    if (!graph?.nodes) return [];
-
-    const rawNodes = Array.isArray(graph.nodes)
-      ? graph.nodes
-      : Object.entries(graph.nodes).map(([id, node]) => ({
-          id,
-          ...node,
-        }));
-
-    return normalizePointList(rawNodes);
-  }, [graph]);
-
-  const edges = useMemo(() => {
-    if (!graph?.edges) return [];
-
-    if (Array.isArray(graph.edges)) {
-      return graph.edges;
-    }
-
-    return Object.values(graph.edges);
-  }, [graph]);
-
-  const nodeById = useMemo(() => {
-    const map = {};
-
-    nodes.forEach((node) => {
-      map[node.id] = node;
-    });
-
-    return map;
-  }, [nodes]);
-
-  const pointById = useMemo(() => {
-    const map = {};
-
-    searchPoints.forEach((point) => {
-      map[point.id] = point;
-    });
-
-    return map;
-  }, [searchPoints]);
-
+  const nodes = useMemo(() => normalizePointList(graph.nodes), [graph.nodes]);
+  const edges = useMemo(
+    () => (Array.isArray(graph.edges) ? graph.edges : Object.values(graph.edges || {})),
+    [graph.edges],
+  );
+  const nodeById = useMemo(() => createPointMap(nodes), [nodes]);
+  const pointById = useMemo(() => createPointMap(searchPoints), [searchPoints]);
   const allSearchPoints = useMemo(() => {
     const source = searchPoints.length > 0 ? searchPoints : nodes;
-    const uniquePoints = new Map();
-
-    source.forEach((point) => {
-      if (point?.id) {
-        uniquePoints.set(point.id, point);
-      }
-    });
-
-    return Array.from(uniquePoints.values()).sort((a, b) =>
-      getPointName(a).localeCompare(getPointName(b), "pl")
-    );
+    return getUniqueSortedPoints(source);
   }, [searchPoints, nodes]);
 
-  const filterPoints = (query) => {
-    const search = normalizeText(query.trim());
+  const filteredStartNodes = useMemo(
+    () => filterPoints(allSearchPoints, startSearch),
+    [allSearchPoints, startSearch],
+  );
+  const filteredEndNodes = useMemo(
+    () => filterPoints(allSearchPoints, endSearch),
+    [allSearchPoints, endSearch],
+  );
 
-    if (!search) return [];
+  function openLoginModal(message = "") {
+    setShowAuthModal(true);
+    setAuthMode("login");
+    setAuthMessage(message);
+  }
 
-    return allSearchPoints
-      .filter((point) => {
-        const name = normalizeText(getPointName(point));
-        const id = normalizeText(point.id);
-        const type = normalizeText(point.type);
+  function closeAuthModal() {
+    setShowAuthModal(false);
+    setAuthMessage("");
+  }
 
-        return (
-          name.startsWith(search) ||
-          name.includes(search) ||
-          id.includes(search) ||
-          type.includes(search)
-        );
-      })
-      .slice(0, 8);
-  };
+  function handleModeChange(mode) {
+    setAuthMode(mode);
+    setAuthMessage("");
+  }
 
-  const filteredStartNodes = useMemo(() => {
-    return filterPoints(startSearch);
-  }, [allSearchPoints, startSearch]);
-
-  const filteredEndNodes = useMemo(() => {
-    return filterPoints(endSearch);
-  }, [allSearchPoints, endSearch]);
-
-  const selectStartPoint = (node) => {
-    setStartId(node.id);
-    setStartSearch(getPointName(node));
+  function selectStartPoint(point) {
+    setStartId(point.id);
+    setStartSearch(getPointName(point));
     setActiveSearch(null);
     setSelectingPoint("B");
-  };
+  }
 
-  const selectEndPoint = (node) => {
-    setEndId(node.id);
-    setEndSearch(getPointName(node));
+  function selectEndPoint(point) {
+    setEndId(point.id);
+    setEndSearch(getPointName(point));
     setActiveSearch(null);
     setSelectingPoint("A");
-  };
+  }
 
-  const scrollToPlanner = () => {
+  function handleMarkerClick(nodeId) {
+    const node = pointById[nodeId] || nodeById[nodeId];
+    if (!node) return;
+
+    if (selectingPoint === "A") {
+      selectStartPoint(node);
+    } else {
+      selectEndPoint(node);
+    }
+  }
+
+  function scrollToPlanner() {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-const calculateRoute = async () => {
-  if (!startId || !endId) {
-    alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
-    return;
   }
 
-  if (startId === endId) {
-    alert("Punkt A i punkt B nie mogą być takie same.");
-    return;
-  }
-
-  console.log("Wysyłam trasę:", {
-    start: startId,
-    end: endId,
-    criterion: criterion,
-  });
-
-  try {
-    const response = await fetch(`${API_URL}/api/route`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        start: startId,
-        end: endId,
-        criterion: criterion,
-      }),
-    });
-
-    const data = await response.json();
-
-    console.log("Odpowiedź backendu:", data);
-
-    if (!response.ok || !data.success) {
-      alert(data.message || "Nie udało się wyznaczyć trasy.");
-      setRouteResult(null);
+  async function calculateRoute() {
+    if (!startId || !endId) {
+      alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
       return;
     }
 
-    const routeNodes = data.path || [];
-
-    const positions = routeNodes
-      .map((node) => [
-        Number(node.lat ?? node.latitude),
-        Number(node.lng ?? node.lon ?? node.longitude),
-      ])
-      .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
-
-    setRouteResult({
-      pathIds: data.path_ids || routeNodes.map((node) => node.id),
-      routeNodes: routeNodes,
-      positions: positions,
-      distance: data.total_distance_km || 0,
-      time: data.total_time_min || 0,
-      elevation: data.total_elevation_gain_m || 0,
-      criterion: data.criterion,
-    });
-  } catch (error) {
-    console.error("Błąd wyznaczania trasy:", error);
-    alert(
-      "Błąd połączenia z backendem. Sprawdź, czy backend działa na http://localhost:5000 i czy endpoint /api/route nie wywala błędu."
-    );
-  }
-};
-
-  const handleMarkerClick = (nodeId) => {
-    const node = pointById[nodeId] || nodeById[nodeId];
-
-    if (selectingPoint === "A") {
-      setStartId(nodeId);
-      setStartSearch(getPointName(node));
-      setSelectingPoint("B");
-    } else {
-      setEndId(nodeId);
-      setEndSearch(getPointName(node));
-      setSelectingPoint("A");
+    if (startId === endId) {
+      alert("Punkt A i punkt B nie mogą być takie same.");
+      return;
     }
-  };
 
-  const handleRegister = async () => {
+    try {
+      const data = await fetchRoute({ start: startId, end: endId, criterion });
+      const routeNodes = data.path || [];
+      const positionsSource =
+        Array.isArray(data.positions) && data.positions.length > 0 ? data.positions : routeNodes;
+
+      const positions = positionsSource
+        .map((point) => {
+          if (Array.isArray(point)) {
+            return [Number(point[0]), Number(point[1])];
+          }
+
+          return [
+            Number(point.lat ?? point.latitude),
+            Number(point.lng ?? point.lon ?? point.longitude),
+          ];
+        })
+        .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
+
+      setRouteResult({
+        pathIds: data.path_ids || routeNodes.map((node) => node.id),
+        routeNodes,
+        positions,
+        distance: data.total_distance_km || 0,
+        time: data.total_time_min || 0,
+        elevation: data.total_elevation_gain_m || 0,
+        criterion: data.criterion,
+      });
+    } catch (error) {
+      console.error("Błąd wyznaczania trasy:", error);
+      alert(error.message || "Nie udało się wyznaczyć trasy.");
+      setRouteResult(null);
+    }
+  }
+
+  async function handleRegister() {
     if (!registerName || !registerEmail || !registerPassword) {
       setAuthMessage("Uzupełnij wszystkie pola rejestracji.");
       return;
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: registerName,
-          email: registerEmail,
-          password: registerPassword,
-        }),
+      const data = await registerUser({
+        name: registerName,
+        email: registerEmail,
+        password: registerPassword,
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setAuthMessage(
-          data.message || "Konto zostało utworzone. Możesz się zalogować."
-        );
-        setAuthMode("login");
-        setRegisterName("");
-        setRegisterEmail("");
-        setRegisterPassword("");
-      } else {
-        setAuthMessage(data.message || "Nie udało się zarejestrować użytkownika.");
-      }
+      setAuthMessage(data.message || "Konto zostało utworzone. Możesz się zalogować.");
+      setAuthMode("login");
+      setRegisterName("");
+      setRegisterEmail("");
+      setRegisterPassword("");
     } catch (error) {
       console.error("Błąd rejestracji:", error);
-      setAuthMessage("Błąd połączenia z backendem.");
+      setAuthMessage(error.message || "Błąd połączenia z backendem.");
     }
-  };
+  }
 
-  const handleLogin = async () => {
+  async function handleLogin() {
     if (!loginEmail || !loginPassword) {
       setAuthMessage("Wpisz email i hasło.");
       return;
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: loginEmail,
-          password: loginPassword,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setUser(data.user);
-        setAuthMessage("");
-        setShowAuthModal(false);
-        setLoginEmail("");
-        setLoginPassword("");
-      } else {
-        setAuthMessage(data.message || "Nieprawidłowy email lub hasło.");
-      }
+      const data = await loginUser({ email: loginEmail, password: loginPassword });
+      setUser(data.user);
+      setAuthMessage("");
+      setShowAuthModal(false);
+      setLoginEmail("");
+      setLoginPassword("");
     } catch (error) {
       console.error("Błąd logowania:", error);
-      setAuthMessage("Błąd połączenia z backendem.");
+      setAuthMessage(error.message || "Nieprawidłowy email lub hasło.");
     }
-  };
+  }
 
-  const handleLogout = () => {
+  function handleLogout() {
     setUser(null);
-  };
+  }
 
-  const addRouteToFavorites = async () => {
+  async function addRouteToFavorites() {
     if (!user) {
-      setShowAuthModal(true);
-      setAuthMode("login");
-      setAuthMessage("Zaloguj się, aby dodać trasę do ulubionych.");
+      openLoginModal("Zaloguj się, aby dodać trasę do ulubionych.");
       return;
     }
 
@@ -434,7 +233,6 @@ const calculateRoute = async () => {
 
     const startNode = routeResult.routeNodes[0];
     const endNode = routeResult.routeNodes[routeResult.routeNodes.length - 1];
-
     const favoriteData = {
       user_id: user.id,
       route_name: `${startNode.name} → ${endNode.name}`,
@@ -443,84 +241,44 @@ const calculateRoute = async () => {
       distance_km: routeResult.distance,
       time_min: routeResult.time,
       elevation_gain_m: routeResult.elevation,
-      criterion: criterion,
+      criterion,
       path: routeResult.routeNodes.map((node) => node.name).join(" → "),
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/favorites`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const data = await saveFavoriteRoute(favoriteData);
+      alert("Trasa została dodana do ulubionych i zapisana w bazie.");
+      setFavoriteRoutes((prevFavorites) => [
+        {
+          id: data.favorite_id,
+          userId: user.id,
+          name: favoriteData.route_name,
+          distance: favoriteData.distance_km,
+          time: favoriteData.time_min,
+          elevation: favoriteData.elevation_gain_m,
+          criterion: favoriteData.criterion,
+          path: favoriteData.path,
         },
-        body: JSON.stringify(favoriteData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        alert("Trasa została dodana do ulubionych i zapisana w bazie.");
-
-        setFavoriteRoutes((prevFavorites) => [
-          {
-            id: data.favorite_id,
-            userId: user.id,
-            name: favoriteData.route_name,
-            distance: favoriteData.distance_km,
-            time: favoriteData.time_min,
-            elevation: favoriteData.elevation_gain_m,
-            criterion: favoriteData.criterion,
-            path: favoriteData.path,
-          },
-          ...prevFavorites,
-        ]);
-      } else {
-        alert(data.message || "Nie udało się dodać trasy do ulubionych.");
-      }
+        ...prevFavorites,
+      ]);
     } catch (error) {
       console.error("Błąd zapisu ulubionej trasy:", error);
-      alert("Błąd połączenia z backendem.");
+      alert(error.message || "Nie udało się dodać trasy do ulubionych.");
     }
-  };
+  }
 
   return (
     <>
-      <section className="hero">
-        <header className="navbar">
-          <div className="logo">HikeUp</div>
-
-          {user ? (
-            <button className="login-button" onClick={handleLogout}>
-              {user.name} | Wyloguj
-            </button>
-          ) : (
-            <button
-              className="login-button"
-              onClick={() => {
-                setShowAuthModal(true);
-                setAuthMode("login");
-                setAuthMessage("");
-              }}
-            >
-              Zaloguj się
-            </button>
-          )}
-        </header>
-
-        <div className="hero-content">
-          <h1>Odkrywaj góry z HikeUp</h1>
-        </div>
-
-        <div className="hero-button-wrapper">
-          <button className="hero-button" onClick={scrollToPlanner}>
-            Zaplanuj trasę
-          </button>
-        </div>
-      </section>
+      <Header
+        user={user}
+        onLoginClick={() => openLoginModal()}
+        onLogout={handleLogout}
+        onPlanClick={scrollToPlanner}
+      />
 
       {showScrollTop && (
         <button
-          className="scroll-top-btn"
+          className="scroll-top-button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           ↑
@@ -528,438 +286,83 @@ const calculateRoute = async () => {
       )}
 
       {showAuthModal && (
-        <div className="auth-modal-overlay">
-          <div className="auth-modal">
-            <button
-              className="auth-close"
-              onClick={() => setShowAuthModal(false)}
-            >
-              ×
-            </button>
-
-            <div className="auth-tabs">
-              <button
-                className={authMode === "login" ? "auth-tab active" : "auth-tab"}
-                onClick={() => {
-                  setAuthMode("login");
-                  setAuthMessage("");
-                }}
-              >
-                Logowanie
-              </button>
-
-              <button
-                className={
-                  authMode === "register" ? "auth-tab active" : "auth-tab"
-                }
-                onClick={() => {
-                  setAuthMode("register");
-                  setAuthMessage("");
-                }}
-              >
-                Rejestracja
-              </button>
-            </div>
-
-            {authMode === "login" && (
-              <div className="auth-form">
-                <h2>Zaloguj się</h2>
-                <p>Uzyskaj dostęp do profilu i zapisanych tras.</p>
-
-                <label>Email</label>
-                <input
-                  type="email"
-                  placeholder="Wpisz email"
-                  value={loginEmail}
-                  onChange={(event) => setLoginEmail(event.target.value)}
-                />
-
-                <label>Hasło</label>
-                <input
-                  type="password"
-                  placeholder="Wpisz hasło"
-                  value={loginPassword}
-                  onChange={(event) => setLoginPassword(event.target.value)}
-                />
-
-                <button className="auth-submit" onClick={handleLogin}>
-                  Zaloguj się
-                </button>
-              </div>
-            )}
-
-            {authMode === "register" && (
-              <div className="auth-form">
-                <h2>Utwórz konto</h2>
-                <p>Zarejestruj się, aby zapisywać swoje trasy.</p>
-
-                <label>Imię</label>
-                <input
-                  type="text"
-                  placeholder="Wpisz imię"
-                  value={registerName}
-                  onChange={(event) => setRegisterName(event.target.value)}
-                />
-
-                <label>Email</label>
-                <input
-                  type="email"
-                  placeholder="Wpisz email"
-                  value={registerEmail}
-                  onChange={(event) => setRegisterEmail(event.target.value)}
-                />
-
-                <label>Hasło</label>
-                <input
-                  type="password"
-                  placeholder="Wpisz hasło"
-                  value={registerPassword}
-                  onChange={(event) => setRegisterPassword(event.target.value)}
-                />
-
-                <button className="auth-submit" onClick={handleRegister}>
-                  Zarejestruj się
-                </button>
-              </div>
-            )}
-
-            {authMessage && <div className="auth-message">{authMessage}</div>}
-          </div>
-        </div>
+        <AuthModal
+          authMode={authMode}
+          authMessage={authMessage}
+          loginEmail={loginEmail}
+          loginPassword={loginPassword}
+          registerName={registerName}
+          registerEmail={registerEmail}
+          registerPassword={registerPassword}
+          onClose={closeAuthModal}
+          onModeChange={handleModeChange}
+          onLoginEmailChange={setLoginEmail}
+          onLoginPasswordChange={setLoginPassword}
+          onRegisterNameChange={setRegisterName}
+          onRegisterEmailChange={setRegisterEmail}
+          onRegisterPasswordChange={setRegisterPassword}
+          onLogin={handleLogin}
+          onRegister={handleRegister}
+        />
       )}
 
-      <section className="route-section" ref={plannerRef}>
-        <main className="map-area">
-          <MapContainer
-            center={[49.23, 19.97]}
-            zoom={12}
-            scrollWheelZoom={true}
-            className="map"
-          >
-            <TileLayer
-              attribution="&copy; OpenStreetMap contributors"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+      <main ref={plannerRef} className="main-layout">
+        <div className="map-wrapper">
+          <RouteMap
+            nodes={searchPoints}
+            edges={edges}
+            nodeById={nodeById}
+            routeResult={routeResult}
+            onMarkerClick={handleMarkerClick}
+            onSetStart={selectStartPoint}
+            onSetEnd={selectEndPoint}
+          />
+        </div>
 
-            {edges.map((edge, index) => {
-              const from = nodeById[edge.from];
-              const to = nodeById[edge.to];
-
-              if (!from || !to) return null;
-
-              return (
-                <Polyline
-                  key={`edge-${index}`}
-                  positions={[
-                    [from.lat, from.lng],
-                    [to.lat, to.lng],
-                  ]}
-                  pathOptions={{
-                    color: "#5c8f5a",
-                    weight: 3,
-                    opacity: 0.45,
-                  }}
-                />
-              );
-            })}
-
-            {routeResult && routeResult.positions.length > 0 && (
-              <Polyline
-                positions={routeResult.positions}
-                pathOptions={{
-                  color: "#f26a00",
-                  weight: 6,
-                  opacity: 0.95,
-                }}
-              />
-            )}
-
-            {searchPoints.map((node, index) => (
-              <Marker
-                key={node.id || `node-${index}`}
-                position={[node.lat, node.lng]}
-                icon={markerIcon}
-                eventHandlers={{
-                  click: () => handleMarkerClick(node.id),
-                }}
-              >
-                <Popup>
-                  <strong>{getPointName(node)}</strong>
-                  <br />
-                  Wysokość: {node.elevation || "brak danych"} m n.p.m.
-                  <br />
-                  Typ: {node.type || "punkt"}
-                  <br />
-
-                  <button
-                    className="popup-button"
-                    onClick={() => {
-                      setStartId(node.id);
-                      setStartSearch(getPointName(node));
-                      setSelectingPoint("B");
-                    }}
-                  >
-                    Ustaw jako A
-                  </button>
-
-                  <button
-                    className="popup-button"
-                    onClick={() => {
-                      setEndId(node.id);
-                      setEndSearch(getPointName(node));
-                      setSelectingPoint("A");
-                    }}
-                  >
-                    Ustaw jako B
-                  </button>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </main>
-
-        <aside className="planner-panel">
-          <div className="tabs">
-            <button
-              className={activeTab === "plan" ? "tab active" : "tab"}
-              onClick={() => setActiveTab("plan")}
-            >
-              Planuj
-            </button>
-
-            <button
-              className={activeTab === "recommended" ? "tab active" : "tab"}
-              onClick={() => setActiveTab("recommended")}
-            >
-              Polecane
-            </button>
-
-            <button
-              className={activeTab === "favorites" ? "tab active" : "tab"}
-              onClick={() => setActiveTab("favorites")}
-            >
-              Ulubione
-            </button>
-          </div>
+        <section className="side-panel">
+          <Tabs activeTab={activeTab} onTabChange={setActiveTab} />
 
           {activeTab === "plan" && (
-            <div className="planner-content">
-              {loadingGraph && (
-                <p className="empty-favorites">Ładowanie punktów mapy...</p>
-              )}
-
-              <div className="points-wrapper">
-                <div className="point-row">
-                  <div className="point-marker">A</div>
-
-                  <div className="search-wrapper">
-                    <input
-                      className="point-search-input"
-                      type="text"
-                      placeholder="Wpisz punkt początkowy"
-                      value={startSearch}
-                      onFocus={() => {
-                        setActiveSearch("start");
-                        setSelectingPoint("A");
-                      }}
-                      onBlur={() => {
-                        setTimeout(() => setActiveSearch(null), 150);
-                      }}
-                      onChange={(event) => {
-                        setStartSearch(event.target.value);
-                        setStartId("");
-                        setActiveSearch("start");
-                      }}
-                    />
-
-                    {activeSearch === "start" &&
-                      filteredStartNodes.length > 0 && (
-                        <div className="search-results">
-                          {filteredStartNodes.map((node) => (
-                            <button
-                              key={node.id}
-                              type="button"
-                              className="search-result-item"
-                              onMouseDown={(event) => {
-                                event.preventDefault();
-                                selectStartPoint(node);
-                              }}
-                            >
-                              <span className="search-result-name">
-                                {getPointName(node)}
-                              </span>
-                              <span className="search-result-type">
-                                {node.type || "punkt trasy"}
-                              </span>
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                  </div>
-                </div>
-
-                <div className="point-row">
-                  <div className="point-marker">B</div>
-
-                  <div className="search-wrapper">
-                    <input
-                      className="point-search-input"
-                      type="text"
-                      placeholder="Wpisz punkt końcowy"
-                      value={endSearch}
-                      onFocus={() => {
-                        setActiveSearch("end");
-                        setSelectingPoint("B");
-                      }}
-                      onBlur={() => {
-                        setTimeout(() => setActiveSearch(null), 150);
-                      }}
-                      onChange={(event) => {
-                        setEndSearch(event.target.value);
-                        setEndId("");
-                        setActiveSearch("end");
-                      }}
-                    />
-
-                    {activeSearch === "end" && filteredEndNodes.length > 0 && (
-                      <div className="search-results">
-                        {filteredEndNodes.map((node) => (
-                          <button
-                            key={node.id}
-                            type="button"
-                            className="search-result-item"
-                            onMouseDown={(event) => {
-                              event.preventDefault();
-                              selectEndPoint(node);
-                            }}
-                          >
-                            <span className="search-result-name">
-                              {getPointName(node)}
-                            </span>
-                            <span className="search-result-type">
-                              {node.type || "punkt trasy"}
-                            </span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <label className="field-label">Kryterium trasy</label>
-
-              <select
-                className="criterion-select"
-                value={criterion}
-                onChange={(event) => setCriterion(event.target.value)}
-              >
-                <option value="time">Najszybsza trasa</option>
-                <option value="distance">Najkrótsza trasa</option>
-                <option value="elevation">Najmniejsze przewyższenie</option>
-              </select>
-
-              <button className="route-button" onClick={calculateRoute}>
-                Wyznacz trasę
-              </button>
-
-              {routeResult && (
-                <div className="result-card">
-                  <h2>Wynik trasy</h2>
-
-                  <div className="result-grid">
-                    <div className="result-box">
-                      <span>Dystans</span>
-                      <strong>{routeResult.distance.toFixed(1)} km</strong>
-                    </div>
-
-                    <div className="result-box">
-                      <span>Czas</span>
-                      <strong>{routeResult.time} min</strong>
-                    </div>
-
-                    <div className="result-box">
-                      <span>Przewyższenie</span>
-                      <strong>{routeResult.elevation} m</strong>
-                    </div>
-                  </div>
-
-                  <button
-                    className="favorite-button"
-                    onClick={addRouteToFavorites}
-                  >
-                    Dodaj do ulubionych
-                  </button>
-
-                  <div className="route-path">
-                    <h3>Przebieg trasy</h3>
-
-                    {routeResult.routeNodes.map((node, index) => (
-                      <p key={node.id || index}>
-                        {index + 1}. {node.name || node.id}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            <PlannerPanel
+              loadingGraph={loadingGraph}
+              startSearch={startSearch}
+              endSearch={endSearch}
+              activeSearch={activeSearch}
+              filteredStartNodes={filteredStartNodes}
+              filteredEndNodes={filteredEndNodes}
+              criterion={criterion}
+              routeResult={routeResult}
+              onStartFocus={() => {
+                setActiveSearch("start");
+                setSelectingPoint("A");
+              }}
+              onEndFocus={() => {
+                setActiveSearch("end");
+                setSelectingPoint("B");
+              }}
+              onBlurSearch={() => setTimeout(() => setActiveSearch(null), 150)}
+              onStartSearchChange={(value) => {
+                setStartSearch(value);
+                setStartId("");
+                setActiveSearch("start");
+              }}
+              onEndSearchChange={(value) => {
+                setEndSearch(value);
+                setEndId("");
+                setActiveSearch("end");
+              }}
+              onStartSelect={selectStartPoint}
+              onEndSelect={selectEndPoint}
+              onCriterionChange={setCriterion}
+              onCalculateRoute={calculateRoute}
+              onAddFavorite={addRouteToFavorites}
+            />
           )}
 
-          {activeTab === "recommended" && (
-            <div className="planner-content">
-              <h2 className="recommended-title">Polecane trasy</h2>
-
-              <div className="recommended-card">
-                <h3>Palenica Białczańska → Rysy</h3>
-                <p>Przez Morskie Oko i Czarny Staw pod Rysami</p>
-              </div>
-
-              <div className="recommended-card">
-                <h3>Kuźnice → Giewont</h3>
-                <p>Przez Kalatówki, Halę Kondratową i Przełęcz Kondracką</p>
-              </div>
-
-              <div className="recommended-card">
-                <h3>Kuźnice → Świnica</h3>
-                <p>Przez Halę Gąsienicową i Liliowe</p>
-              </div>
-            </div>
-          )}
-
-          {activeTab === "favorites" && (
-            <div className="planner-content">
-              <h2 className="recommended-title">Ulubione trasy</h2>
-
-              {!user && (
-                <p className="empty-favorites">
-                  Zaloguj się, aby korzystać z ulubionych tras.
-                </p>
-              )}
-
-              {user &&
-                favoriteRoutes.filter((route) => route.userId === user.id)
-                  .length === 0 && (
-                  <p className="empty-favorites">
-                    Nie masz jeszcze zapisanych tras.
-                  </p>
-                )}
-
-              {user &&
-                favoriteRoutes
-                  .filter((route) => route.userId === user.id)
-                  .map((route) => (
-                    <div className="recommended-card" key={route.id}>
-                      <h3>{route.name}</h3>
-                      <p>Dystans: {route.distance.toFixed(1)} km</p>
-                      <p>Czas: {route.time} min</p>
-                      <p>Przewyższenie: {route.elevation} m</p>
-                      <p>Kryterium: {route.criterion}</p>
-                    </div>
-                  ))}
-            </div>
-          )}
-        </aside>
-      </section>
+          {activeTab === "recommended" && <RecommendedRoutes />}
+          {activeTab === "favorites" && <FavoriteRoutes user={user} favoriteRoutes={favoriteRoutes} />}
+        </section>
+      </main>
     </>
   );
 }

@@ -86,3 +86,46 @@ export function filterPoints(points, query) {
     })
     .slice(0, 8);
 }
+export function isGenericPointName(name) {
+  return /^Punkt\s+\d+$/i.test(String(name || "").trim());
+}
+
+export function isCharacteristicRoutePoint(point) {
+  const name = getPointName(point).trim();
+
+  if (!name) {
+    return false;
+  }
+
+  if (isGenericPointName(name)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function getCharacteristicRoutePoints(routeNodes) {
+  if (!Array.isArray(routeNodes)) {
+    return [];
+  }
+
+  const uniquePoints = [];
+  const usedNames = new Set();
+
+  routeNodes.forEach((point) => {
+    const name = getPointName(point).trim();
+
+    if (!isCharacteristicRoutePoint(point)) {
+      return;
+    }
+
+    if (usedNames.has(name)) {
+      return;
+    }
+
+    usedNames.add(name);
+    uniquePoints.push(point);
+  });
+
+  return uniquePoints;
+}

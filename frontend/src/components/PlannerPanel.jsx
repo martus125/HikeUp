@@ -1,4 +1,5 @@
 //główny panel planowania trasy
+import { getCharacteristicRoutePoints } from "../utils/points";
 import { SearchInput } from "./SearchInput";
 
 export function PlannerPanel({
@@ -73,9 +74,17 @@ export function PlannerPanel({
 
           <h3>Przebieg trasy</h3>
           <ol>
-            {routeResult.routeNodes.map((node, index) => (
-              <li key={`${node.id}-${index}`}>{node.name || node.id}</li>
+            {getCharacteristicRoutePoints(routeResult.routeNodes).length > 0 ? (
+          <ol>
+            {getCharacteristicRoutePoints(routeResult.routeNodes).map((node, index) => (
+              <li key={node.id || `${node.name}-${index}`}>
+                {node.name}
+              </li>
             ))}
+          </ol>
+        ) : (
+          <p>Brak punktów charakterystycznych na tej trasie.</p>
+        )}
           </ol>
         </div>
       )}

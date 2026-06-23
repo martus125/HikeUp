@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import os
+import math
 
 from algorithms.dijkstra import calculate_route
 from database import (
@@ -38,9 +39,22 @@ def load_full_map():
 
 
 def get_point_by_id(points, point_id):
+    if isinstance(points, dict):
+        if point_id in points:
+            point = points[point_id]
+
+            if isinstance(point, dict):
+                return {
+                    "id": point.get("id", point_id),
+                    **point
+                }
+
+        points = points.get("points") or points.get("nodes") or list(points.values())
+
     for point in points:
-        if point.get("id") == point_id:
+        if isinstance(point, dict) and point.get("id") == point_id:
             return point
+
     return None
 
 
@@ -52,13 +66,15 @@ def get_node_by_id(nodes, node_id):
 
 
 def get_routing_node_id(point):
-    """
-    Punkt charakterystyczny może leżeć obok szlaku, więc do Dijkstry bierzemy
-    nearest_routing_node_id. Jeśli go nie ma, używamy id punktu.
-    """
-    if not point:
-        return None
-    return point.get("nearest_routing_node_id") or point.get("id")
+    if not isinstance(point, dict):
+        return point
+
+    return (
+        point.get("routing_node_id")
+        or point.get("node_id")
+        or point.get("nearest_node")
+        or point.get("id")
+    )
 
 
 def build_route_points(route_node_ids, routing_nodes, start_point=None, end_point=None):
@@ -147,14 +163,6 @@ def get_points():
             "message": f"Błąd pobierania punktów: {str(error)}"
         }), 500
 
-@app.route("/api/points", methods=["GET"])
-def get_points():
-    points = load_points()
-    return jsonify({
-        "success": True,
-        "points": points,
-    })
-
 
 @app.route("/api/full-map", methods=["GET"])
 def get_full_map_info():
@@ -166,87 +174,199 @@ def get_full_map_info():
         "edges_count": len(full_map.get("edges", [])),
     })
 
+def normalize_nodes(nodes):
+    if isinstance(nodes, dict):
+        return [
+            {
+                "id": node_id,
+                **node
+            }
+            for node_id, node in nodes.items()
+            if isinstance(node, dict)
+        ]
+
+    return nodes
+
+def get_lat_lng(point):
+    if not isinstance(point, dict):
+        return None, None
+
+    lat = point.get("lat") or point.get("latitude")
+    lng = point.get("lng") or point.get("lon") or point.get("longitude")
+
+    try:
+        return float(lat), float(lng)
+    except (TypeError, ValueError):
+        return None, None
+
+
+def distance_between_points(lat1, lng1, lat2, lng2):
+    r = 6371
+
+    lat1 = math.radians(lat1)
+    lng1 = math.radians(lng1)
+    lat2 = math.radians(lat2)
+    lng2 = math.radians(lng2)
+
+    dlat = lat2 - lat1
+    dlng = lng2 - lng1
+
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(dlng / 2) ** 2
+    )
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    return r * c
+
+
+def find_nearest_routing_node_id(point, routing_nodes):
+    point_lat, point_lng = get_lat_lng(point)
+
+    if point_lat is None or point_lng is None:
+        return None
+
+    nearest_id = None
+    nearest_distance = float("inf")
+
+    for node in routing_nodes:
+        if not isinstance(node, dict):
+            continue
+
+        node_lat, node_lng = get_lat_lng(node)
+
+        if node_lat is None or node_lng is None:
+            continue
+
+        distance = distance_between_points(point_lat, point_lng, node_lat, node_lng)
+
+        if distance < nearest_distance:
+            nearest_distance = distance
+            nearest_id = node.get("id")
+
+    return nearest_id
 
 @app.route("/api/route", methods=["POST"])
 def route():
-    data = request.get_json() or {}
+    try:
+        data = request.get_json() or {}
 
-    start = data.get("start")
-    end = data.get("end")
-    criterion = data.get("criterion", "time")
+        start = data.get("start")
+        end = data.get("end")
+        criterion = data.get("criterion", "time")
 
-    if not start or not end:
+        if not start or not end:
+            return jsonify({
+                "success": False,
+                "message": "Brakuje punktu początkowego lub końcowego.",
+            }), 400
+
+        if start == end:
+            return jsonify({
+                "success": False,
+                "message": "Punkt początkowy i końcowy nie mogą być takie same.",
+            }), 400
+
+        points = load_points()
+        full_map = load_full_map()
+
+        routing_nodes = normalize_nodes(full_map.get("nodes", []))
+        routing_edges = full_map.get("edges", [])
+
+        if isinstance(routing_edges, dict):
+            routing_edges = list(routing_edges.values())
+
+        start_point = get_point_by_id(points, start)
+        end_point = get_point_by_id(points, end)
+
+        if start_point is None or end_point is None:
+            return jsonify({
+                "success": False,
+                "message": "Nie znaleziono wybranego punktu w graph_nodes.json.",
+                "debug": {
+                    "start": start,
+                    "end": end,
+                },
+            }), 404
+
+        routing_start = get_routing_node_id(start_point)
+        routing_end = get_routing_node_id(end_point)
+
+        routing_node_ids = {
+            node.get("id")
+            for node in routing_nodes
+            if isinstance(node, dict) and node.get("id")
+        }
+
+        if routing_start not in routing_node_ids:
+            routing_start = find_nearest_routing_node_id(start_point, routing_nodes)
+
+        if routing_end not in routing_node_ids:
+            routing_end = find_nearest_routing_node_id(end_point, routing_nodes)
+
+        if routing_start is None or routing_end is None:
+            return jsonify({
+                "success": False,
+                "message": "Nie udało się dopasować punktów do grafu szlaków.",
+                "debug": {
+                    "start": start,
+                    "end": end,
+                    "routing_start": routing_start,
+                    "routing_end": routing_end,
+                },
+            }), 404
+
+        route_result = calculate_route(
+            routing_nodes,
+            routing_edges,
+            routing_start,
+            routing_end,
+            criterion,
+        )
+
+        if route_result is None:
+            return jsonify({
+                "success": False,
+                "message": "Nie znaleziono połączenia między wybranymi punktami.",
+                "debug": {
+                    "start": start,
+                    "end": end,
+                    "routing_start": routing_start,
+                    "routing_end": routing_end,
+                },
+            }), 404
+
+        path_points = build_route_points(
+            route_result["path"],
+            routing_nodes,
+            start_point=start_point,
+            end_point=end_point,
+        )
+
+        return jsonify({
+            "success": True,
+            "path": path_points,
+            "path_ids": route_result["path"],
+            "start_point": start_point,
+            "end_point": end_point,
+            "routing_start": routing_start,
+            "routing_end": routing_end,
+            "total_distance_km": route_result.get("total_distance_km", 0),
+            "total_time_min": route_result.get("total_time_min", 0),
+            "total_difficulty": route_result.get("total_difficulty", 0),
+            "total_elevation_gain_m": route_result.get("total_elevation_gain_m", 0),
+            "route_weight": route_result.get("route_weight", 0),
+            "criterion": criterion,
+        })
+
+    except Exception as error:
+        print("BŁĄD /api/route:", error)
+
         return jsonify({
             "success": False,
-            "message": "Brakuje punktu początkowego lub końcowego.",
-        }), 400
-
-    if start == end:
-        return jsonify({
-            "success": False,
-            "message": "Punkt początkowy i końcowy nie mogą być takie same.",
-        }), 400
-
-    points = load_points()
-    full_map = load_full_map()
-    routing_nodes = full_map.get("nodes", [])
-    routing_edges = full_map.get("edges", [])
-
-    start_point = get_point_by_id(points, start)
-    end_point = get_point_by_id(points, end)
-
-    if start_point is None or end_point is None:
-        return jsonify({
-            "success": False,
-            "message": "Nie znaleziono wybranego punktu w graph_nodes.json.",
-        }), 404
-
-    routing_start = get_routing_node_id(start_point)
-    routing_end = get_routing_node_id(end_point)
-
-    route_result = calculate_route(
-        routing_nodes,
-        routing_edges,
-        routing_start,
-        routing_end,
-        criterion,
-    )
-
-    if route_result is None:
-        return jsonify({
-            "success": False,
-            "message": "Nie znaleziono połączenia między wybranymi punktami.",
-            "debug": {
-                "start": start,
-                "end": end,
-                "routing_start": routing_start,
-                "routing_end": routing_end,
-            },
-        }), 404
-
-    path_points = build_route_points(
-        route_result["path"],
-        routing_nodes,
-        start_point=start_point,
-        end_point=end_point,
-    )
-
-    return jsonify({
-        "success": True,
-        "path": path_points,
-        "path_ids": route_result["path"],
-        "start_point": start_point,
-        "end_point": end_point,
-        "routing_start": routing_start,
-        "routing_end": routing_end,
-        "total_distance_km": route_result["total_distance_km"],
-        "total_time_min": route_result["total_time_min"],
-        "total_difficulty": route_result["total_difficulty"],
-        "total_elevation_gain_m": route_result["total_elevation_gain_m"],
-        "route_weight": route_result["route_weight"],
-        "criterion": criterion,
-    })
-
+            "message": f"Błąd backendu w /api/route: {str(error)}"
+        }), 500
 
 @app.route("/api/register", methods=["POST"])
 def register():

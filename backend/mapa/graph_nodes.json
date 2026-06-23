@@ -454,30 +454,20 @@
       "id": "relation/8626083",
       "name": "Czarny Staw Gąsienicowy",
       "type": "water",
-      "lat": 49.230748,
-      "lng": 20.018069,
+      "lat": 49.2325730,
+      "lng": 20.0147367,
       "elevation": 1624.0,
       "nearest_routing_node_id": "node/356339574",
       "distance_to_trail_m": 205
     },
     {
-      "id": "way/29239574",
-      "name": "Czarny Staw Polski",
-      "type": "water",
-      "lat": 49.204384,
-      "lng": 20.025838,
-      "elevation": 1722.0,
-      "nearest_routing_node_id": "node/11379617464",
-      "distance_to_trail_m": 595
-    },
-    {
       "id": "way/29239539",
       "name": "Czarny Staw pod Rysami",
       "type": "water",
-      "lat": 49.188404,
-      "lng": 20.076197,
+      "lat": 49.1903503,
+      "lng": 20.0737544,
       "elevation": 1583.0,
-      "nearest_routing_node_id": "node/9952912473",
+      "nearest_routing_node_id": "node/9952912473", 
       "distance_to_trail_m": 227
     },
     {
@@ -519,16 +509,6 @@
       "elevation": 1294.0,
       "nearest_routing_node_id": "node/9709524949",
       "distance_to_trail_m": 266
-    },
-    {
-      "id": "way/29239713",
-      "name": "Czerwony Staw",
-      "type": "water",
-      "lat": 49.239993,
-      "lng": 20.035769,
-      "elevation": 1654.0,
-      "nearest_routing_node_id": "node/1200866533",
-      "distance_to_trail_m": 396
     },
     {
       "id": "node/1295379308",
@@ -631,16 +611,6 @@
       "distance_to_trail_m": 503
     },
     {
-      "id": "relation/12980773",
-      "name": "Dwoiśniaczek",
-      "type": "water",
-      "lat": 49.230816,
-      "lng": 20.00259,
-      "elevation": 0.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 334
-    },
-    {
       "id": "way/200463480",
       "name": "Dwoiśniak",
       "type": "water",
@@ -699,16 +669,6 @@
       "elevation": 1867.0,
       "nearest_routing_node_id": "node/3741575976",
       "distance_to_trail_m": 326
-    },
-    {
-      "id": "way/29239656",
-      "name": "Długi Staw Gąsienicowy",
-      "type": "water",
-      "lat": 49.226886,
-      "lng": 20.008914,
-      "elevation": 1783.0,
-      "nearest_routing_node_id": "node/3653329493",
-      "distance_to_trail_m": 219
     },
     {
       "id": "way/174700529",
@@ -1581,16 +1541,6 @@
       "distance_to_trail_m": 1007
     },
     {
-      "id": "way/343888526",
-      "name": "Kotlinowy Stawek",
-      "type": "water",
-      "lat": 49.229627,
-      "lng": 19.996832,
-      "elevation": 1680.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 451
-    },
-    {
       "id": "node/9512402786",
       "name": "Kotlinowy Wierch",
       "type": "peak",
@@ -1801,16 +1751,6 @@
       "distance_to_trail_m": 10
     },
     {
-      "id": "relation/9968121",
-      "name": "Kurtkowiec",
-      "type": "water",
-      "lat": 49.229354,
-      "lng": 20.003009,
-      "elevation": 1686.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 177
-    },
-    {
       "id": "node/9004693486",
       "name": "Kępa",
       "type": "peak",
@@ -1849,16 +1789,6 @@
       "elevation": 0.0,
       "nearest_routing_node_id": "node/991639132",
       "distance_to_trail_m": 798
-    },
-    {
-      "id": "way/200463482",
-      "name": "Litworowy Staw Gąsienicowy",
-      "type": "water",
-      "lat": 49.233557,
-      "lng": 19.997011,
-      "elevation": 1618.0,
-      "nearest_routing_node_id": "node/308092499",
-      "distance_to_trail_m": 255
     },
     {
       "id": "node/10700151985",
@@ -2141,16 +2071,6 @@
       "distance_to_trail_m": 83
     },
     {
-      "id": "way/29239547",
-      "name": "Mały Staw Polski",
-      "type": "water",
-      "lat": 49.211839,
-      "lng": 20.045422,
-      "elevation": 1668.0,
-      "nearest_routing_node_id": "node/11156672432",
-      "distance_to_trail_m": 42
-    },
-    {
       "id": "node/3503810011",
       "name": "Mały Wołoszyn",
       "type": "peak",
@@ -2281,21 +2201,11 @@
       "distance_to_trail_m": 709
     },
     {
-      "id": "way/487217782",
-      "name": "Mokra Jama",
-      "type": "water",
-      "lat": 49.241572,
-      "lng": 20.003358,
-      "elevation": 0.0,
-      "nearest_routing_node_id": "node/295645429",
-      "distance_to_trail_m": 117
-    },
-    {
       "id": "way/27952583",
       "name": "Morskie Oko",
       "type": "water",
-      "lat": 49.197147,
-      "lng": 20.070107,
+      "lat": 49.2011835,
+      "lng": 20.0708500,
       "elevation": 1395.0,
       "nearest_routing_node_id": "node/1779864985",
       "distance_to_trail_m": 404
@@ -2509,16 +2419,6 @@
       "elevation": 1835.0,
       "nearest_routing_node_id": "node/11157565047",
       "distance_to_trail_m": 341
-    },
-    {
-      "id": "way/136388846",
-      "name": "Niżni Czerwony Stawek",
-      "type": "water",
-      "lat": 49.227828,
-      "lng": 20.004643,
-      "elevation": 1693.2,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 163
     },
     {
       "id": "node/452477312",
@@ -3089,16 +2989,6 @@
       "elevation": 0.0,
       "nearest_routing_node_id": "node/5907345208",
       "distance_to_trail_m": 318
-    },
-    {
-      "id": "way/29239542",
-      "name": "Przedni Staw Polski",
-      "type": "water",
-      "lat": 49.212069,
-      "lng": 20.049,
-      "elevation": 1668.0,
-      "nearest_routing_node_id": "node/10007501934",
-      "distance_to_trail_m": 168
     },
     {
       "id": "node/11217424621",
@@ -4661,16 +4551,6 @@
       "distance_to_trail_m": 899
     },
     {
-      "id": "way/29239554",
-      "name": "Wielki Staw Polski",
-      "type": "water",
-      "lat": 49.208652,
-      "lng": 20.039496,
-      "elevation": 1665.0,
-      "nearest_routing_node_id": "node/5874402120",
-      "distance_to_trail_m": 352
-    },
-    {
       "id": "node/2103273002",
       "name": "Wielki Wołoszyn",
       "type": "peak",
@@ -4761,16 +4641,6 @@
       "distance_to_trail_m": 1206
     },
     {
-      "id": "way/248995274",
-      "name": "Wole Oko",
-      "type": "water",
-      "lat": 49.209789,
-      "lng": 20.015257,
-      "elevation": 1862.0,
-      "nearest_routing_node_id": "node/5980841173",
-      "distance_to_trail_m": 96
-    },
-    {
       "id": "node/3503813793",
       "name": "Wołoszyńska Szczerbina",
       "type": "saddle",
@@ -4829,16 +4699,6 @@
       "elevation": 1579.0,
       "nearest_routing_node_id": "node/9514597545",
       "distance_to_trail_m": 558
-    },
-    {
-      "id": "relation/9968120",
-      "name": "Wschodni Dwoisty Staw",
-      "type": "water",
-      "lat": 49.233089,
-      "lng": 20.005043,
-      "elevation": 1657.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 617
     },
     {
       "id": "node/11592361116",
@@ -4909,16 +4769,6 @@
       "elevation": 2181.0,
       "nearest_routing_node_id": "node/1779828445",
       "distance_to_trail_m": 116
-    },
-    {
-      "id": "way/136388849",
-      "name": "Wyżni Czerwony Stawek",
-      "type": "water",
-      "lat": 49.227629,
-      "lng": 20.003986,
-      "elevation": 1694.6,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 117
     },
     {
       "id": "node/2359130656",
@@ -5231,16 +5081,6 @@
       "distance_to_trail_m": 625
     },
     {
-      "id": "way/200463486",
-      "name": "Zachodni Dwoisty Staw",
-      "type": "water",
-      "lat": 49.233256,
-      "lng": 20.003394,
-      "elevation": 1657.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 609
-    },
-    {
       "id": "node/11592361112",
       "name": "Zadni Giewoncki Karbik",
       "type": "saddle",
@@ -5299,16 +5139,6 @@
       "elevation": 1852.0,
       "nearest_routing_node_id": "node/11373293906",
       "distance_to_trail_m": 89
-    },
-    {
-      "id": "way/29239582",
-      "name": "Zadni Staw Polski",
-      "type": "water",
-      "lat": 49.21295,
-      "lng": 20.012946,
-      "elevation": 1890.0,
-      "nearest_routing_node_id": "node/7813849872",
-      "distance_to_trail_m": 423
     },
     {
       "id": "node/11592361113",
@@ -5551,16 +5381,6 @@
       "distance_to_trail_m": 241
     },
     {
-      "id": "way/95951672",
-      "name": "Zielony Staw Gąsienicowy",
-      "type": "water",
-      "lat": 49.228636,
-      "lng": 19.999236,
-      "elevation": 1672.0,
-      "nearest_routing_node_id": "node/355985902",
-      "distance_to_trail_m": 247
-    },
-    {
       "id": "node/9041097016",
       "name": "Zmarzła Przełączka Wyżnia",
       "type": "saddle",
@@ -5589,16 +5409,6 @@
       "elevation": 0.0,
       "nearest_routing_node_id": "node/3755385023",
       "distance_to_trail_m": 207
-    },
-    {
-      "id": "way/29239619",
-      "name": "Zmarzły Staw Gąsienicowy",
-      "type": "water",
-      "lat": 49.224057,
-      "lng": 20.022489,
-      "elevation": 1788.0,
-      "nearest_routing_node_id": "node/8721150911",
-      "distance_to_trail_m": 47
     },
     {
       "id": "node/9512402761",

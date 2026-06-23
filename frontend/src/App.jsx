@@ -10,6 +10,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 
+const API_URL = "http://localhost:5000";
+
 const markerIcon = new L.Icon({
   iconUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
@@ -55,6 +57,51 @@ function App() {
 
   const [authMessage, setAuthMessage] = useState("");
 
+  const normalizePoint = (point) => ({
+    ...point,
+    id: point.id,
+    name: point.name || point.label || point.title || point.id,
+    lat: Number(point.lat ?? point.latitude),
+    lng: Number(point.lng ?? point.lon ?? point.longitude),
+  });
+
+  const normalizePointList = (data) => {
+    const rawPoints = Array.isArray(data)
+      ? data
+      : Array.isArray(data?.points)
+      ? data.points
+      : Array.isArray(data?.nodes)
+      ? data.nodes
+      : data?.points && typeof data.points === "object"
+      ? Object.values(data.points)
+      : data?.nodes && typeof data.nodes === "object"
+      ? Object.values(data.nodes)
+      : data && typeof data === "object"
+      ? Object.values(data)
+      : [];
+
+    return rawPoints
+      .map(normalizePoint)
+      .filter(
+        (point) =>
+          point.id &&
+          point.name &&
+          Number.isFinite(point.lat) &&
+          Number.isFinite(point.lng)
+      );
+  };
+
+  const normalizeText = (text) => {
+    return String(text || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
+  const getPointName = (point) => {
+    return String(point?.name || point?.label || point?.title || point?.id || "");
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -79,74 +126,36 @@ function App() {
     }
   }, []);
 
-useEffect(() => {
-  fetch("http://localhost:5000/api/points")
-    .then((response) => response.json())
-    .then((data) => {
-      const rawPoints = Array.isArray(data)
-        ? data
-        : Array.isArray(data.points)
-        ? data.points
-        : Array.isArray(data.nodes)
-        ? data.nodes
-        : [];
-
-      const normalizedPoints = rawPoints
-        .map((point) => ({
-          ...point,
-          id: point.id,
-          name: point.name || point.label || point.title || point.id,
-          lat: Number(point.lat ?? point.latitude),
-          lng: Number(point.lng ?? point.lon ?? point.longitude),
-        }))
-        .filter(
-          (point) =>
-            point.id &&
-            point.name &&
-            Number.isFinite(point.lat) &&
-            Number.isFinite(point.lng)
-        );
-
-      console.log("Punkty do wyszukiwarki:", normalizedPoints.length);
-      setSearchPoints(normalizedPoints);
-    })
-    .catch((error) => {
-      console.error("Błąd pobierania punktów do wyszukiwarki:", error);
-    });
-}, []);
-
   useEffect(() => {
-  fetch("http://localhost:5000/api/nodes")
-    .then((response) => response.json())
-    .then((data) => {
-      const rawPoints = Array.isArray(data)
-        ? data
-        : Array.isArray(data.nodes)
-        ? data.nodes
-        : Object.values(data.nodes || data);
+    const loadMapData = async () => {
+      try {
+        setLoadingGraph(true);
 
-      const normalizedPoints = rawPoints
-        .map((point) => ({
-          ...point,
-          id: point.id,
-          name: point.name || point.label || point.id,
-          lat: Number(point.lat ?? point.latitude),
-          lng: Number(point.lng ?? point.lon ?? point.longitude),
-        }))
-        .filter(
-          (point) =>
-            point.id &&
-            point.name &&
-            Number.isFinite(point.lat) &&
-            Number.isFinite(point.lng)
-        );
+        const graphResponse = await fetch(`${API_URL}/api/graph`);
+        const graphData = await graphResponse.json();
 
-      setSearchPoints(normalizedPoints);
-    })
-    .catch((error) => {
-      console.error("Błąd pobierania punktów do wyszukiwarki:", error);
-    });
-}, []);
+        if (graphResponse.ok && graphData.success) {
+          setGraph({
+            nodes: normalizePointList(graphData.nodes || graphData),
+            edges: Array.isArray(graphData.edges) ? graphData.edges : [],
+          });
+        }
+
+        const pointsResponse = await fetch(`${API_URL}/api/points`);
+        const pointsData = await pointsResponse.json();
+
+        if (pointsResponse.ok && pointsData.success) {
+          setSearchPoints(normalizePointList(pointsData.points || pointsData));
+        }
+      } catch (error) {
+        console.error("Błąd pobierania danych mapy:", error);
+      } finally {
+        setLoadingGraph(false);
+      }
+    };
+
+    loadMapData();
+  }, []);
 
   const nodes = useMemo(() => {
     if (!graph?.nodes) return [];
@@ -158,20 +167,7 @@ useEffect(() => {
           ...node,
         }));
 
-    return rawNodes
-      .map((node) => ({
-        ...node,
-        id: node.id,
-        name: node.name || node.label || node.id,
-        lat: Number(node.lat ?? node.latitude),
-        lng: Number(node.lng ?? node.lon ?? node.longitude),
-      }))
-      .filter(
-        (node) =>
-          node.id &&
-          Number.isFinite(node.lat) &&
-          Number.isFinite(node.lng)
-      );
+    return normalizePointList(rawNodes);
   }, [graph]);
 
   const edges = useMemo(() => {
@@ -184,139 +180,167 @@ useEffect(() => {
     return Object.values(graph.edges);
   }, [graph]);
 
-const nodeById = useMemo(() => {
-  const map = {};
+  const nodeById = useMemo(() => {
+    const map = {};
 
-  nodes.forEach((node) => {
-    map[node.id] = node;
-  });
+    nodes.forEach((node) => {
+      map[node.id] = node;
+    });
 
-  return map;
-}, [nodes]);
+    return map;
+  }, [nodes]);
 
-const pointById = useMemo(() => {
-  const map = {};
+  const pointById = useMemo(() => {
+    const map = {};
 
-  searchPoints.forEach((point) => {
-    map[point.id] = point;
-  });
+    searchPoints.forEach((point) => {
+      map[point.id] = point;
+    });
 
-  return map;
-}, [searchPoints]);
+    return map;
+  }, [searchPoints]);
 
-const normalizeText = (text) => {
-  return String(text || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-};
+  const allSearchPoints = useMemo(() => {
+    const source = searchPoints.length > 0 ? searchPoints : nodes;
+    const uniquePoints = new Map();
 
-const getPointName = (point) => {
-  return String(point?.name || point?.label || point?.title || point?.id || "");
-};
+    source.forEach((point) => {
+      if (point?.id) {
+        uniquePoints.set(point.id, point);
+      }
+    });
 
+    return Array.from(uniquePoints.values()).sort((a, b) =>
+      getPointName(a).localeCompare(getPointName(b), "pl")
+    );
+  }, [searchPoints, nodes]);
 
-const filteredStartNodes = useMemo(() => {
-  if (!startSearch.trim()) return [];
+  const filterPoints = (query) => {
+    const search = normalizeText(query.trim());
 
-  const search = normalizeText(startSearch);
+    if (!search) return [];
 
-  return searchPoints
-    .filter((node) => {
-      const text = normalizeText(node.name || node.label || node.id);
-      return text.includes(search);
-    })
-    .slice(0, 8);
-}, [searchPoints, startSearch]);
+    return allSearchPoints
+      .filter((point) => {
+        const name = normalizeText(getPointName(point));
+        const id = normalizeText(point.id);
+        const type = normalizeText(point.type);
 
-const filteredEndNodes = useMemo(() => {
-  if (!endSearch.trim()) return [];
+        return (
+          name.startsWith(search) ||
+          name.includes(search) ||
+          id.includes(search) ||
+          type.includes(search)
+        );
+      })
+      .slice(0, 8);
+  };
 
-  const search = normalizeText(endSearch);
+  const filteredStartNodes = useMemo(() => {
+    return filterPoints(startSearch);
+  }, [allSearchPoints, startSearch]);
 
-  return searchPoints
-    .filter((node) => {
-      const text = normalizeText(node.name || node.label || node.id);
-      return text.includes(search);
-    })
-    .slice(0, 8);
-}, [searchPoints, endSearch]);
+  const filteredEndNodes = useMemo(() => {
+    return filterPoints(endSearch);
+  }, [allSearchPoints, endSearch]);
+
+  const selectStartPoint = (node) => {
+    setStartId(node.id);
+    setStartSearch(getPointName(node));
+    setActiveSearch(null);
+    setSelectingPoint("B");
+  };
+
+  const selectEndPoint = (node) => {
+    setEndId(node.id);
+    setEndSearch(getPointName(node));
+    setActiveSearch(null);
+    setSelectingPoint("A");
+  };
 
   const scrollToPlanner = () => {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const calculateRoute = async () => {
-    if (!startId || !endId) {
-      alert("Wybierz punkt A i punkt B.");
+const calculateRoute = async () => {
+  if (!startId || !endId) {
+    alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
+    return;
+  }
+
+  if (startId === endId) {
+    alert("Punkt A i punkt B nie mogą być takie same.");
+    return;
+  }
+
+  console.log("Wysyłam trasę:", {
+    start: startId,
+    end: endId,
+    criterion: criterion,
+  });
+
+  try {
+    const response = await fetch(`${API_URL}/api/route`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        start: startId,
+        end: endId,
+        criterion: criterion,
+      }),
+    });
+
+    const data = await response.json();
+
+    console.log("Odpowiedź backendu:", data);
+
+    if (!response.ok || !data.success) {
+      alert(data.message || "Nie udało się wyznaczyć trasy.");
+      setRouteResult(null);
       return;
     }
 
-    if (startId === endId) {
-      alert("Punkt A i punkt B nie mogą być takie same.");
-      return;
-    }
+    const routeNodes = data.path || [];
 
-    try {
-      const response = await fetch("http://localhost:5000/api/route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          start: startId,
-          end: endId,
-          criterion: criterion,
-        }),
-      });
+    const positions = routeNodes
+      .map((node) => [
+        Number(node.lat ?? node.latitude),
+        Number(node.lng ?? node.lon ?? node.longitude),
+      ])
+      .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        alert(data.message || "Nie udało się wyznaczyć trasy.");
-        setRouteResult(null);
-        return;
-      }
-
-      const routeNodes = data.path || [];
-
-      const positions = routeNodes
-        .map((node) => [
-          Number(node.lat ?? node.latitude),
-          Number(node.lng ?? node.lon ?? node.longitude),
-        ])
-        .filter(
-          ([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng)
-        );
-
-      setRouteResult({
-        pathIds: data.path_ids || routeNodes.map((node) => node.id),
-        routeNodes: routeNodes,
-        positions: positions,
-        distance: data.total_distance_km || 0,
-        time: data.total_time_min || 0,
-        elevation: data.total_elevation_gain_m || 0,
-        criterion: data.criterion,
-      });
-    } catch (error) {
-      console.error("Błąd wyznaczania trasy:", error);
-      alert("Błąd połączenia z backendem.");
-    }
-  };
-
-const handleMarkerClick = (nodeId) => {
-  const node = pointById[nodeId] || nodeById[nodeId];
-
-  if (selectingPoint === "A") {
-    setStartId(nodeId);
-    setStartSearch(getPointName(node));
-    setSelectingPoint("B");
-  } else {
-    setEndId(nodeId);
-    setEndSearch(getPointName(node));
-    setSelectingPoint("A");
+    setRouteResult({
+      pathIds: data.path_ids || routeNodes.map((node) => node.id),
+      routeNodes: routeNodes,
+      positions: positions,
+      distance: data.total_distance_km || 0,
+      time: data.total_time_min || 0,
+      elevation: data.total_elevation_gain_m || 0,
+      criterion: data.criterion,
+    });
+  } catch (error) {
+    console.error("Błąd wyznaczania trasy:", error);
+    alert(
+      "Błąd połączenia z backendem. Sprawdź, czy backend działa na http://localhost:5000 i czy endpoint /api/route nie wywala błędu."
+    );
   }
 };
+
+  const handleMarkerClick = (nodeId) => {
+    const node = pointById[nodeId] || nodeById[nodeId];
+
+    if (selectingPoint === "A") {
+      setStartId(nodeId);
+      setStartSearch(getPointName(node));
+      setSelectingPoint("B");
+    } else {
+      setEndId(nodeId);
+      setEndSearch(getPointName(node));
+      setSelectingPoint("A");
+    }
+  };
 
   const handleRegister = async () => {
     if (!registerName || !registerEmail || !registerPassword) {
@@ -325,7 +349,7 @@ const handleMarkerClick = (nodeId) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch(`${API_URL}/api/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -363,7 +387,7 @@ const handleMarkerClick = (nodeId) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -424,7 +448,7 @@ const handleMarkerClick = (nodeId) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/favorites", {
+      const response = await fetch(`${API_URL}/api/favorites`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -660,7 +684,7 @@ const handleMarkerClick = (nodeId) => {
                 }}
               >
                 <Popup>
-                  <strong>{node.name}</strong>
+                  <strong>{getPointName(node)}</strong>
                   <br />
                   Wysokość: {node.elevation || "brak danych"} m n.p.m.
                   <br />
@@ -720,6 +744,10 @@ const handleMarkerClick = (nodeId) => {
 
           {activeTab === "plan" && (
             <div className="planner-content">
+              {loadingGraph && (
+                <p className="empty-favorites">Ładowanie punktów mapy...</p>
+              )}
+
               <div className="points-wrapper">
                 <div className="point-row">
                   <div className="point-marker">A</div>
@@ -733,6 +761,9 @@ const handleMarkerClick = (nodeId) => {
                       onFocus={() => {
                         setActiveSearch("start");
                         setSelectingPoint("A");
+                      }}
+                      onBlur={() => {
+                        setTimeout(() => setActiveSearch(null), 150);
                       }}
                       onChange={(event) => {
                         setStartSearch(event.target.value);
@@ -749,11 +780,9 @@ const handleMarkerClick = (nodeId) => {
                               key={node.id}
                               type="button"
                               className="search-result-item"
-                              onClick={() => {
-                                setStartId(node.id);
-                                setStartSearch(getPointName(node));
-                                setActiveSearch(null);
-                                setSelectingPoint("B");
+                              onMouseDown={(event) => {
+                                event.preventDefault();
+                                selectStartPoint(node);
                               }}
                             >
                               <span className="search-result-name">
@@ -782,6 +811,9 @@ const handleMarkerClick = (nodeId) => {
                         setActiveSearch("end");
                         setSelectingPoint("B");
                       }}
+                      onBlur={() => {
+                        setTimeout(() => setActiveSearch(null), 150);
+                      }}
                       onChange={(event) => {
                         setEndSearch(event.target.value);
                         setEndId("");
@@ -796,15 +828,13 @@ const handleMarkerClick = (nodeId) => {
                             key={node.id}
                             type="button"
                             className="search-result-item"
-                            onClick={() => {
-                              setEndId(node.id);
-                              setEndSearch(getPointName(node));
-                              setActiveSearch(null);
-                              setSelectingPoint("A");
+                            onMouseDown={(event) => {
+                              event.preventDefault();
+                              selectEndPoint(node);
                             }}
                           >
                             <span className="search-result-name">
-                              {getPointName(node)}{node.name}
+                              {getPointName(node)}
                             </span>
                             <span className="search-result-type">
                               {node.type || "punkt trasy"}

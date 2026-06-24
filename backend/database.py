@@ -31,6 +31,18 @@ def execute_schema(cursor):
 
     cursor.execute(
         """
+        CREATE TABLE IF NOT EXISTS user_profiles (
+            user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+            height_cm INTEGER,
+            experience_level VARCHAR(100),
+            route_preference VARCHAR(100),
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """
+    )
+
+    cursor.execute(
+        """
         CREATE TABLE IF NOT EXISTS favorite_routes (
             id SERIAL PRIMARY KEY,
             user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -226,3 +238,83 @@ def get_favorite_routes(user_id):
         return {"success": True, "favorites": favorites}
     except Exception as error:
         return {"success": False, "message": f"Błąd pobierania ulubionych tras: {error}"}
+
+
+def get_user_profile(user_id):
+    try:
+        with get_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """
+                    SELECT user_id, height_cm, experience_level, route_preference
+                    FROM user_profiles
+                    WHERE user_id = %s;
+                    """,
+                    (user_id,),
+                )
+                profile = cursor.fetchone()
+
+        if profile:
+            return {
+                "user_id": profile[0],
+                "height_cm": profile[1],
+                "experience_level": profile[2] or "",
+                "route_preference": profile[3] or "",
+            }
+
+        return {
+            "user_id": user_id,
+            "height_cm": "",
+            "experience_level": "",
+            "route_preference": "",
+        }
+    except Exception as error:
+        return {
+            "user_id": user_id,
+            "height_cm": "",
+            "experience_level": "",
+            "route_preference": "",
+            "message": f"Błąd pobierania profilu: {error}",
+        }
+
+
+def update_user_profile(user_id, height_cm, experience_level, route_preference):
+    try:
+        height_value = int(height_cm) if height_cm not in ("", None) else None
+
+        with get_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """
+                    INSERT INTO user_profiles (
+                        user_id,
+                        height_cm,
+                        experience_level,
+                        route_preference,
+                        updated_at
+                    )
+                    VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP)
+                    ON CONFLICT (user_id) DO UPDATE SET
+                        height_cm = EXCLUDED.height_cm,
+                        experience_level = EXCLUDED.experience_level,
+                        route_preference = EXCLUDED.route_preference,
+                        updated_at = CURRENT_TIMESTAMP;
+                    """,
+                    (
+                        user_id,
+                        height_value,
+                        experience_level,
+                        route_preference,
+                    ),
+                )
+
+        return {
+            "success": True,
+            "message": "Profil użytkownika został zapisany.",
+        }
+    except Exception as error:
+        return {
+            "success": False,
+            "message": f"Błąd zapisu profilu: {error}",
+        }
+

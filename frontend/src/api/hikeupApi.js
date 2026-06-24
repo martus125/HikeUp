@@ -57,3 +57,14 @@ export async function saveFavoriteRoute(favoriteData) {
     body: JSON.stringify(favoriteData),
   });
 }
+export async function getUserProfile(userId) {
+  return request(`/profile/${userId}`);
+}
+
+export async function updateUserProfile(userId, profileData) {
+  return request(`/profile/${userId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(profileData),
+  });
+}

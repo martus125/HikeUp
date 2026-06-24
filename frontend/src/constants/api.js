@@ -1,2 +1,2 @@
-export const API_URL = "http://localhost:5000";
+export const API_URL = "https://hikeup.onrender.com";
 //główny adres backendu

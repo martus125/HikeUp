@@ -2,7 +2,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 
-import { fetchRoute, loginUser, registerUser, saveFavoriteRoute } from "./api/hikeupApi";
+import {
+  fetchRoute,
+  getUserProfile,
+  loginUser,
+  registerUser,
+  saveFavoriteRoute,
+  updateUserProfile,
+} from "./api/hikeupApi";
 import { AuthModal } from "./components/AuthModal";
 import { FavoriteRoutes } from "./components/FavoriteRoutes";
 import { Header } from "./components/Header";
@@ -21,6 +28,14 @@ import {
 } from "./utils/points";
 
 function App() {
+  const [showUserPanel, setShowUserPanel] = useState(false);
+  const [profile, setProfile] = useState({
+    height_cm: "",
+    experience_level: "",
+    route_preference: "",
+  });
+  const [profileMessage, setProfileMessage] = useState("");
+
   const plannerRef = useRef(null);
   const showScrollTop = useScrollTopButton();
   const { graph, searchPoints, loadingGraph } = useMapData();
@@ -126,6 +141,26 @@ function App() {
   function scrollToPlanner() {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
   }
+//dobieranie trasy do preferencji użytkownika
+function getCriterionFromPreference(routePreference) {
+  if (routePreference === "shortest") {
+    return "distance";
+  }
+
+  if (routePreference === "fastest") {
+    return "time";
+  }
+
+  if (routePreference === "easy") {
+    return "difficulty";
+  }
+
+  if (routePreference === "balanced") {
+    return "time";
+  }
+
+  return criterion;
+}
 
   async function calculateRoute() {
     if (!startId || !endId) {
@@ -139,7 +174,15 @@ function App() {
     }
 
     try {
-      const data = await fetchRoute({ start: startId, end: endId, criterion });
+      const routeCriterion = user
+        ? getCriterionFromPreference(profile.route_preference)
+        : criterion;
+
+      const data = await fetchRoute({
+        start: startId,
+        end: endId,
+        criterion: routeCriterion,
+      });
       const routeNodes = data.path || [];
       const positionsSource =
         Array.isArray(data.positions) && data.positions.length > 0 ? data.positions : routeNodes;
@@ -164,7 +207,7 @@ function App() {
         distance: data.total_distance_km || 0,
         time: data.total_time_min || 0,
         elevation: data.total_elevation_gain_m || 0,
-        criterion: data.criterion,
+        criterion: routeCriterion,
       });
     } catch (error) {
       console.error("Błąd wyznaczania trasy:", error);
@@ -218,6 +261,13 @@ function App() {
 
   function handleLogout() {
     setUser(null);
+    setShowUserPanel(false);
+    setProfile({
+      height_cm: "",
+      experience_level: "",
+      route_preference: "",
+    });
+    setProfileMessage("");
   }
 
   async function addRouteToFavorites() {
@@ -267,6 +317,45 @@ function App() {
     }
   }
 
+
+  async function loadUserProfile() {
+    if (!user) return;
+
+    try {
+      const data = await getUserProfile(user.id);
+
+      setProfile({
+        height_cm: data.height_cm || "",
+        experience_level: data.experience_level || "",
+        route_preference: data.route_preference || "",
+      });
+    } catch (error) {
+      console.error("Błąd pobierania profilu:", error);
+      setProfileMessage("Nie udało się pobrać profilu.");
+    }
+  }
+
+  async function handleSaveProfile(event) {
+    event.preventDefault();
+
+    if (!user) return;
+
+    try {
+      const data = await updateUserProfile(user.id, profile);
+      setProfileMessage(data.message || "Profil został zapisany.");
+      setCriterion(getCriterionFromPreference(profile.route_preference)); //po zapisaniu profilu automatycznie wybierze preferencje trasy
+    } catch (error) {
+      console.error("Błąd zapisu profilu:", error);
+      setProfileMessage(error.message || "Nie udało się zapisać profilu.");
+    }
+  }
+
+  function openUserPanel() {
+    setShowUserPanel(true);
+    setProfileMessage("");
+    loadUserProfile();
+  }
+
   return (
     <>
       <Header
@@ -274,6 +363,7 @@ function App() {
         onLoginClick={() => openLoginModal()}
         onLogout={handleLogout}
         onPlanClick={scrollToPlanner}
+        onUserPanelClick={openUserPanel}
       />
 
       {showScrollTop && (
@@ -304,6 +394,86 @@ function App() {
           onLogin={handleLogin}
           onRegister={handleRegister}
         />
+      )}
+
+      {showUserPanel && user && (
+        <div className="modal-backdrop">
+          <div className="auth-modal">
+            <button
+              className="modal-close"
+              onClick={() => {
+                setShowUserPanel(false);
+                setProfileMessage("");
+              }}
+            >
+              ×
+            </button>
+
+            <h2>Panel użytkownika</h2>
+
+            <form className="auth-form" onSubmit={handleSaveProfile}>
+              <label>
+                Wzrost [cm]
+                <input
+                  type="number"
+                  min="100"
+                  max="230"
+                  value={profile.height_cm}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      height_cm: event.target.value,
+                    })
+                  }
+                  placeholder="np. 170"
+                />
+              </label>
+
+              <label>
+                Poziom zaawansowania
+                <select
+                  value={profile.experience_level}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      experience_level: event.target.value,
+                    })
+                  }
+                >
+                  <option value="">Wybierz poziom</option>
+                  <option value="beginner">Początkujący</option>
+                  <option value="intermediate">Średniozaawansowany</option>
+                  <option value="advanced">Zaawansowany</option>
+                </select>
+              </label>
+
+              <label>
+                Preferencje trasy
+                <select
+                  value={profile.route_preference}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      route_preference: event.target.value,
+                    })
+                  }
+                >
+                  <option value="">Wybierz preferencję</option>
+                  <option value="shortest">Najkrótsza trasa</option>
+                  <option value="fastest">Najszybsza trasa</option>
+                  <option value="easy">Najłatwiejsza / mniej przewyższeń</option>
+                  <option value="balanced">Zbalansowana</option>
+                </select>
+              </label>
+
+              <button type="submit" className="auth-submit">
+                Zapisz profil
+              </button>
+            </form>
+
+            {profileMessage && <p className="auth-message">{profileMessage}</p>}
+          </div>
+        </div>
       )}
 
       <main ref={plannerRef} className="main-layout">

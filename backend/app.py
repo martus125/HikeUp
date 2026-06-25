@@ -12,7 +12,13 @@ from routes.profile_routes import profile_bp
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    
+    CORS(
+    app,
+    resources={r"/*": {"origins": "*"}},
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+)
 
     init_database()
 
@@ -30,6 +36,9 @@ def create_app():
 
 app = create_app()
 
+
 if __name__ == "__main__":
+    import os
+
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)

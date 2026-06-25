@@ -43,6 +43,7 @@ def get_full_map_info():
 
 @map_bp.route("/route", methods=["POST"])
 def route():
+    console.log("Rozpoczecie wyznaczania trasy")
     try:
         data = request.get_json() or {}
         start = data.get("start")

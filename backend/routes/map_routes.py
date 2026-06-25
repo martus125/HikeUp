@@ -66,12 +66,12 @@ def route():
                     "message": "Punkt początkowy i końcowy nie mogą być takie same.",
                 }
             ), 400
-
+        print('Rozpoczecie ładowania mapy i punktów', flush=True)
         points = load_points()
         full_map = load_full_map()
         routing_nodes = full_map["nodes"]
         routing_edges = full_map["edges"]
-
+        print('Rozpoczecie pobrania punktow startowego i koncowego', flush=True)
         start_point = get_point_by_id(points, start)
         end_point = get_point_by_id(points, end)
 
@@ -83,7 +83,7 @@ def route():
                     "debug": {"start": start, "end": end},
                 }
             ), 404
-
+        print('Rozpoczecie dopasowania punktow do grafu szlakow', flush=True)
         routing_start = resolve_routing_node(start_point, routing_nodes)
         routing_end = resolve_routing_node(end_point, routing_nodes)
 
@@ -101,6 +101,7 @@ def route():
                 }
             ), 404
 
+        print('Rozpoczecie obliczania trasy', flush=True)   
         route_result = calculate_route(
             routing_nodes,
             routing_edges,
@@ -122,7 +123,7 @@ def route():
                     },
                 }
             ), 404
-
+        print('Rozpoczecie budowania odpowiedzi trasy', flush=True)
         path_points = build_route_points(
             route_result["path"],
             routing_nodes,

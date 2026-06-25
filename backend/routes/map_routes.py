@@ -1,4 +1,5 @@
 """Endpointy API związane z mapą, punktami i wyznaczaniem trasy."""
+import traceback
 from flask import Blueprint, jsonify, request
 
 from algorithms.dijkstra import calculate_route
@@ -43,7 +44,7 @@ def get_full_map_info():
 
 @map_bp.route("/route", methods=["POST"])
 def route():
-    console.log("Rozpoczecie wyznaczania trasy")
+    print("Rozpoczęcie wyznaczania trasy", flush=True)
     try:
         data = request.get_json() or {}
         start = data.get("start")
@@ -153,7 +154,9 @@ def route():
             }
         )
     except Exception as error:
-        print("BŁĄD /api/route:", error)
+        print("BŁĄD /api/route:", error, flush=True)
+        traceback.print_exc()
+
         return jsonify(
             {
                 "success": False,

@@ -1,10 +1,12 @@
 """Logika związana z mapą, punktami i geometrią trasy."""
 import json
 import math
+from functools import lru_cache
 
 from config import FULL_MAP_FILE, POI_FILE
 
 
+@lru_cache(maxsize=None)
 def load_json(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
@@ -35,10 +37,12 @@ def normalize_collection(data, key_names=("points", "nodes")):
     return []
 
 
+@lru_cache(maxsize=1)
 def load_points():
     return normalize_collection(load_json(POI_FILE))
 
 
+@lru_cache(maxsize=1)
 def load_full_map():
     data = load_json(FULL_MAP_FILE)
 
@@ -68,13 +72,13 @@ def get_node_map(nodes):
     return {node.get("id"): node for node in nodes if node.get("id")}
 
 
-def get_routing_node_id(point):
+def nearest_routing_node_id(point):
     if not isinstance(point, dict):
         return point
 
     return (
-        point.get("nearest_routing_node_id")
-        or point.get("routing_node_id")
+        point.get("routing_node_id")
+        or point.get("nearest_routing_node_id")
         or point.get("node_id")
         or point.get("nearest_node")
         or point.get("id")
@@ -139,7 +143,7 @@ def find_nearest_routing_node_id(point, routing_nodes):
 
 
 def resolve_routing_node(point, routing_nodes):
-    routing_node_id = get_routing_node_id(point)
+    routing_node_id = nearest_routing_node_id(point)
     routing_node_ids = {node.get("id") for node in routing_nodes if node.get("id")}
 
     if routing_node_id not in routing_node_ids:

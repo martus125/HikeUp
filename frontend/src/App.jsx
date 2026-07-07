@@ -162,7 +162,7 @@ function getCriterionFromPreference(routePreference) {
   return criterion;
 }
 
-  async function calculateRoute() {
+    async function calculateRoute() {
     if (!startId || !endId) {
       alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
       return;
@@ -171,6 +171,46 @@ function getCriterionFromPreference(routePreference) {
     if (startId === endId) {
       alert("Punkt A i punkt B nie mogą być takie same.");
       return;
+    }
+
+    function normalizePositions(positionsSource, fallbackNodes = []) {
+      const source =
+        Array.isArray(positionsSource) && positionsSource.length > 0
+          ? positionsSource
+          : fallbackNodes;
+
+      return source
+        .map((point) => {
+          if (Array.isArray(point)) {
+            return [Number(point[0]), Number(point[1])];
+          }
+
+          return [
+            Number(point.lat ?? point.latitude),
+            Number(point.lng ?? point.lon ?? point.longitude),
+          ];
+        })
+        .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
+    }
+
+    function normalizeAlgorithmRoute(route) {
+      const routeNodes = route.path || [];
+
+      return {
+        algorithm: route.algorithm || "dijkstra",
+        label: route.label || route.algorithm || "Trasa",
+        pathIds: route.path_ids || routeNodes.map((node) => node.id),
+        routeNodes,
+        positions: normalizePositions(route.positions, routeNodes),
+        distance: Number(route.total_distance_km || 0),
+        time: Number(route.total_time_min || 0),
+        elevation: Number(route.total_elevation_gain_m || 0),
+        difficulty: Number(route.total_difficulty || 0),
+        routeWeight: Number(route.route_weight || 0),
+        criterion: route.criterion || criterion,
+        metrics: route.metrics || {},
+        totals: route.totals || {},
+      };
     }
 
     try {
@@ -183,30 +223,37 @@ function getCriterionFromPreference(routePreference) {
         end: endId,
         criterion: routeCriterion,
       });
-      const routeNodes = data.path || [];
-      const positionsSource =
-        Array.isArray(data.positions) && data.positions.length > 0 ? data.positions : routeNodes;
 
-      const positions = positionsSource
-        .map((point) => {
-          if (Array.isArray(point)) {
-            return [Number(point[0]), Number(point[1])];
-          }
+      console.log("ODPOWIEDŹ BACKENDU:", data);
+      console.log("ALGORYTMY:", data.routes?.map((route) => route.algorithm));
+      console.log("BŁĘDY ALGORYTMÓW:", data.algorithm_errors);
 
-          return [
-            Number(point.lat ?? point.latitude),
-            Number(point.lng ?? point.lon ?? point.longitude),
-          ];
-        })
-        .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
+      const routes = Array.isArray(data.routes)
+        ? data.routes
+            .map(normalizeAlgorithmRoute)
+            .filter((route) => route.positions.length > 1)
+        : [normalizeAlgorithmRoute(data)].filter(
+            (route) => route.positions.length > 1,
+          );
+
+      if (routes.length === 0) {
+        throw new Error("Backend nie zwrócił poprawnej geometrii trasy.");
+      }
+
+      const primaryRoute =
+        routes.find((route) => route.algorithm === "dijkstra") || routes[0];
 
       setRouteResult({
-        pathIds: data.path_ids || routeNodes.map((node) => node.id),
-        routeNodes,
-        positions,
-        distance: data.total_distance_km || 0,
-        time: data.total_time_min || 0,
-        elevation: data.total_elevation_gain_m || 0,
+        ...primaryRoute,
+        routes,
+        pathIds: primaryRoute.pathIds,
+        routeNodes: primaryRoute.routeNodes,
+        positions: primaryRoute.positions,
+        distance: primaryRoute.distance,
+        time: primaryRoute.time,
+        elevation: primaryRoute.elevation,
+        difficulty: primaryRoute.difficulty,
+        routeWeight: primaryRoute.routeWeight,
         criterion: routeCriterion,
       });
     } catch (error) {

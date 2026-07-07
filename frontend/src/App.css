@@ -334,3 +334,59 @@ button {
   border-radius: 8px;
   font-size: 15px;
 }
+.algorithm-legend {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+
+.algorithm-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.algorithm-dot {
+  width: 28px;
+  height: 5px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.algorithm-dijkstra {
+  background: #2563eb;
+}
+
+.algorithm-greedy {
+  background: #f97316;
+}
+
+.algorithm-astar {
+  background: #9333ea;
+}
+
+.algorithm-custom_hikeup {
+  background: #16a34a;
+}
+
+.algorithm-comparison {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.algorithm-card {
+  border: 1px solid #e2e8e0;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: #f8faf7;
+}
+
+.algorithm-card h3 {
+  margin: 0 0 8px;
+}
+
+.algorithm-card p {
+  margin: 4px 0;
+}

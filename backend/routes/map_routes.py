@@ -2,7 +2,11 @@
 import traceback
 from flask import Blueprint, jsonify, request
 
-from algorithms.dijkstra import calculate_route
+from algorithms.dijkstra import calculate_route as calculate_dijkstra
+from algorithms.astar import calculate_route as calculate_astar
+from algorithms.greedy import calculate_route as calculate_greedy
+from algorithms.custom import calculate_route as calculate_custom_hikeup
+
 from services.map_service import (
     build_route_points,
     build_route_positions,
@@ -41,15 +45,18 @@ def get_full_map_info():
         }
     )
 
-
 @map_bp.route("/route", methods=["POST"])
 def route():
     print("Rozpoczęcie wyznaczania trasy", flush=True)
+
     try:
         data = request.get_json() or {}
+
         start = data.get("start")
         end = data.get("end")
         criterion = data.get("criterion", "time")
+        algorithm = data.get("algorithm", "dijkstra").lower()
+        print("Wybrany algorytm:", algorithm, flush=True)
 
         if not start or not end:
             return jsonify(
@@ -66,12 +73,17 @@ def route():
                     "message": "Punkt początkowy i końcowy nie mogą być takie same.",
                 }
             ), 400
-        print('Rozpoczecie ładowania mapy i punktów', flush=True)
+
+        print("Rozpoczecie ładowania mapy i punktów", flush=True)
+
         points = load_points()
         full_map = load_full_map()
+
         routing_nodes = full_map["nodes"]
         routing_edges = full_map["edges"]
-        print('Rozpoczecie pobrania punktow startowego i koncowego', flush=True)
+
+        print("Rozpoczecie pobrania punktow startowego i koncowego", flush=True)
+
         start_point = get_point_by_id(points, start)
         end_point = get_point_by_id(points, end)
 
@@ -80,10 +92,15 @@ def route():
                 {
                     "success": False,
                     "message": "Nie znaleziono wybranego punktu w graph_nodes.json.",
-                    "debug": {"start": start, "end": end},
+                    "debug": {
+                        "start": start,
+                        "end": end,
+                    },
                 }
             ), 404
-        print('Rozpoczecie dopasowania punktow do grafu szlakow', flush=True)
+
+        print("Rozpoczecie dopasowania punktow do grafu szlakow", flush=True)
+
         routing_start = resolve_routing_node(start_point, routing_nodes)
         routing_end = resolve_routing_node(end_point, routing_nodes)
 
@@ -101,14 +118,44 @@ def route():
                 }
             ), 404
 
-        print('Rozpoczecie obliczania trasy', flush=True)   
-        route_result = calculate_route(
+        print("Rozpoczecie obliczania trasy", flush=True)
+
+        if algorithm == "astar":
+            print("Uruchamiam A*", flush=True)
+            route_result = calculate_astar(
+                routing_nodes,
+                routing_edges,
+                routing_start,
+                routing_end,
+                criterion,
+            )
+        elif algorithm == "greedy":
+         print("Uruchamiam Greedy", flush=True)
+         route_result = calculate_greedy(
             routing_nodes,
             routing_edges,
             routing_start,
             routing_end,
             criterion,
-        )
+            )
+        elif algorithm in ["custom_hikeup", "custom"]:
+            print("Uruchamiam Custom HikeUp", flush=True)
+            route_result = calculate_custom_hikeup(
+                routing_nodes,
+                routing_edges,
+                routing_start,
+                routing_end,
+                criterion,
+            )
+        else:
+            print("Uruchamiam Dijkstra", flush=True)
+            route_result = calculate_dijkstra(
+                routing_nodes,
+                routing_edges,
+                routing_start,
+                routing_end,
+                criterion,
+            )
 
         if route_result is None:
             return jsonify(
@@ -123,22 +170,29 @@ def route():
                     },
                 }
             ), 404
-        print('Rozpoczecie budowania odpowiedzi trasy', flush=True)
+
+        print("Rozpoczecie budowania odpowiedzi trasy", flush=True)
+
         path_points = build_route_points(
             route_result["path"],
             routing_nodes,
             start_point=start_point,
             end_point=end_point,
         )
+
         route_positions = build_route_positions(
             route_result["path"],
             routing_nodes,
             routing_edges,
         )
 
+        totals = route_result.get("totals", {})
+        metrics = route_result.get("metrics", {})
+
         return jsonify(
             {
                 "success": True,
+                "algorithm": route_result.get("algorithm", algorithm),
                 "path": path_points,
                 "positions": route_positions,
                 "path_ids": route_result["path"],
@@ -146,14 +200,34 @@ def route():
                 "end_point": end_point,
                 "routing_start": routing_start,
                 "routing_end": routing_end,
-                "total_distance_km": route_result.get("total_distance_km", 0),
-                "total_time_min": route_result.get("total_time_min", 0),
-                "total_difficulty": route_result.get("total_difficulty", 0),
-                "total_elevation_gain_m": route_result.get("total_elevation_gain_m", 0),
-                "route_weight": route_result.get("route_weight", 0),
+
+                "total_distance_km": totals.get(
+                    "distance_km",
+                    route_result.get("distance", 0),
+                ),
+                "total_time_min": totals.get(
+                    "time_min",
+                    route_result.get("time", 0),
+                ),
+                "total_difficulty": totals.get(
+                    "difficulty",
+                    route_result.get("difficulty", 0),
+                ),
+                "total_elevation_gain_m": totals.get(
+                    "elevation_gain_m",
+                    route_result.get("total_elevation_gain", 0),
+                ),
+
+                "route_weight": metrics.get(
+                    "route_weight",
+                    route_result.get("route_weight", 0),
+                ),
                 "criterion": criterion,
+                "metrics": metrics,
+                "totals": totals,
             }
         )
+
     except Exception as error:
         print("BŁĄD /api/route:", error, flush=True)
         traceback.print_exc()

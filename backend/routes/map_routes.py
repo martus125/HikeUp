@@ -1,6 +1,7 @@
-"""Endpointy API związane z mapą, punktami i wyznaczaniem trasy."""
-import traceback
+#Endpointy API związane z mapą, punktami i wyznaczaniem trasy wyznaczania tras wszystkimi algorytmami
 from flask import Blueprint, jsonify, request
+import time
+import traceback
 
 from algorithms.dijkstra import calculate_route as calculate_dijkstra
 from algorithms.astar import calculate_route as calculate_astar
@@ -214,6 +215,40 @@ def route():
         routing_start = resolve_routing_node(start_point, routing_nodes)
         routing_end = resolve_routing_node(end_point, routing_nodes)
 
+        routing_start_id = routing_start["id"] if isinstance(routing_start, dict) else routing_start
+        routing_end_id = routing_end["id"] if isinstance(routing_end, dict) else routing_end
+
+
+        def count_neighbors(node_id):
+            neighbors = []
+
+            for edge in routing_edges:
+                edge_from = edge.get("from")
+                edge_to = edge.get("to")
+
+                if edge_from == node_id:
+                    neighbors.append(edge_to)
+
+                if edge_to == node_id:
+                    neighbors.append(edge_from)
+
+            return neighbors
+
+
+        start_neighbors = count_neighbors(routing_start_id)
+        end_neighbors = count_neighbors(routing_end_id)
+
+        print("Routing start:", routing_start, flush=True)
+        print("Routing end:", routing_end, flush=True)
+        print("Routing start ID:", routing_start_id, flush=True)
+        print("Routing end ID:", routing_end_id, flush=True)
+        print("Czy start jest w grafie:", len(start_neighbors) > 0, flush=True)
+        print("Czy koniec jest w grafie:", len(end_neighbors) > 0, flush=True)
+        print("Liczba sąsiadów startu:", len(start_neighbors), flush=True)
+        print("Liczba sąsiadów końca:", len(end_neighbors), flush=True)
+        print("Przykładowi sąsiedzi startu:", start_neighbors[:5], flush=True)
+        print("Przykładowi sąsiedzi końca:", end_neighbors[:5], flush=True)
+
         if routing_start is None or routing_end is None:
             return jsonify(
                 {
@@ -233,13 +268,16 @@ def route():
         routes = []
         algorithm_errors = {}
 
-        for algorithm_config in ROUTE_ALGORITHMS:
+        for algorithm_config in ROUTE_ALGORITHMS[:1]:
             algorithm_key = algorithm_config["key"]
             algorithm_label = algorithm_config["label"]
             algorithm_function = algorithm_config["function"]
 
+            algorithm_start_time = time.perf_counter()
+
             try:
-                print(f"Uruchamiam algorytm: {algorithm_label}", flush=True)
+                print("=" * 60, flush=True)
+                print(f"START ALGORYTMU: {algorithm_label}", flush=True)
 
                 route_result = algorithm_function(
                     routing_nodes,
@@ -249,9 +287,21 @@ def route():
                     criterion,
                 )
 
+                algorithm_elapsed = time.perf_counter() - algorithm_start_time
+
+                print(
+                    f"ALGORYTM ZWRÓCIŁ WYNIK: {algorithm_label}, czas: {algorithm_elapsed:.2f}s",
+                    flush=True,
+                )
+
                 if route_result is None:
+                    print(f"{algorithm_label}: route_result is None", flush=True)
                     algorithm_errors[algorithm_key] = "Nie znaleziono trasy."
                     continue
+
+                print(f"{algorithm_label}: rozpoczynam budowanie odpowiedzi", flush=True)
+
+                response_start_time = time.perf_counter()
 
                 route_response = build_single_route_response(
                     algorithm_key=algorithm_key,
@@ -264,14 +314,32 @@ def route():
                     criterion=criterion,
                 )
 
-                routes.append(route_response)
+                response_elapsed = time.perf_counter() - response_start_time
 
-            except Exception as algorithm_error:
-                algorithm_errors[algorithm_key] = str(algorithm_error)
                 print(
-                    f"BŁĄD ALGORYTMU {algorithm_label}: {algorithm_error}",
+                    f"{algorithm_label}: odpowiedź zbudowana, czas: {response_elapsed:.2f}s",
                     flush=True,
                 )
+
+                routes.append(route_response)
+
+                total_elapsed = time.perf_counter() - algorithm_start_time
+
+                print(
+                    f"KONIEC ALGORYTMU: {algorithm_label}, całkowity czas: {total_elapsed:.2f}s",
+                    flush=True,
+                )
+
+            except Exception as algorithm_error:
+                algorithm_elapsed = time.perf_counter() - algorithm_start_time
+
+                algorithm_errors[algorithm_key] = str(algorithm_error)
+
+                print(
+                    f"BŁĄD ALGORYTMU {algorithm_label}, po czasie: {algorithm_elapsed:.2f}s",
+                    flush=True,
+                )
+                print(algorithm_error, flush=True)
                 traceback.print_exc()
 
         if not routes:

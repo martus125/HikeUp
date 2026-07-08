@@ -333,7 +333,7 @@ def route():
         routes = []
         algorithm_errors = {}
 
-        for algorithm_config in ROUTE_ALGORITHMS[:1]:
+        for algorithm_config in ROUTE_ALGORITHMS:
             algorithm_key = algorithm_config["key"]
             algorithm_label = algorithm_config["label"]
             algorithm_function = algorithm_config["function"]

@@ -55,6 +55,68 @@ def get_total_value(route_result, totals, *keys, default=0):
     return default
 
 
+def build_route_points_fast(path_ids, node_lookup, start_point=None, end_point=None):
+    path_points = []
+
+    for node_id in path_ids:
+        node = node_lookup.get(node_id)
+
+        if node is None:
+            continue
+
+        path_points.append(
+            {
+                "id": node_id,
+                "name": node.get("name", ""),
+                "type": node.get("type", "route_node"),
+                "lat": node.get("lat"),
+                "lng": node.get("lng", node.get("lon")),
+                "elevation": node.get("elevation"),
+            }
+        )
+
+    if path_points and start_point:
+        path_points[0]["name"] = start_point.get("name", path_points[0].get("name", ""))
+
+    if path_points and end_point:
+        path_points[-1]["name"] = end_point.get("name", path_points[-1].get("name", ""))
+
+    return path_points
+
+
+def build_route_positions_fast(path_ids, node_lookup):
+    positions = []
+
+    for node_id in path_ids:
+        node = node_lookup.get(node_id)
+
+        if node is None:
+            continue
+
+        lat = node.get("lat")
+        lng = node.get("lng", node.get("lon"))
+
+        if lat is None or lng is None:
+            continue
+
+        positions.append([lat, lng])
+
+    return positions
+
+def build_node_lookup(routing_nodes):
+    if isinstance(routing_nodes, dict):
+        return routing_nodes
+
+    node_lookup = {}
+
+    for node in routing_nodes:
+        node_id = node.get("id")
+
+        if node_id is not None:
+            node_lookup[node_id] = node
+
+    return node_lookup
+
 def build_single_route_response(
     algorithm_key,
     algorithm_label,
@@ -65,17 +127,20 @@ def build_single_route_response(
     end_point,
     criterion,
 ):
-    path_points = build_route_points(
-        route_result["path"],
-        routing_nodes,
+    node_lookup = build_node_lookup(routing_nodes)
+
+    path_ids = route_result["path"]
+
+    path_points = build_route_points_fast(
+        path_ids,
+        node_lookup,
         start_point=start_point,
         end_point=end_point,
     )
 
-    route_positions = build_route_positions(
-        route_result["path"],
-        routing_nodes,
-        routing_edges,
+    route_positions = build_route_positions_fast(
+        path_ids,
+        node_lookup,
     )
 
     totals = route_result.get("totals", {})
@@ -86,7 +151,7 @@ def build_single_route_response(
         "label": algorithm_label,
         "path": path_points,
         "positions": route_positions,
-        "path_ids": route_result["path"],
+        "path_ids": path_ids,
 
         "total_distance_km": get_total_value(
             route_result,

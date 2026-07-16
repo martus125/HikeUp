@@ -85,15 +85,11 @@ def custom_hikeup_edge_weight(edge, criterion="time"):
 
 def calculate_route(nodes, edges, start, end, criterion="time"):
     """
-    Custom HikeUp.
-
-    Jest to autorski algorytm do wyznaczania tras górskich.
     Działa podobnie do A*, bo korzysta z heurystyki,
     ale ma własną wielokryterialną funkcję kosztu.
 
-    Różnica polega na tym, że Custom HikeUp nie patrzy tylko
-    na jedno kryterium, ale bierze pod uwagę kilka parametrów
-    ważnych w terenie górskim.
+    custom nie patrzy tylko na jedno kryterium, 
+    ale bierze pod uwagę kilka parametrów ważnych w terenie górskim.
     """
     start_time = perf_counter()
 

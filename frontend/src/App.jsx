@@ -128,14 +128,7 @@ function App() {
   }
 
   function handleMarkerClick(nodeId) {
-    const node = pointById[nodeId] || nodeById[nodeId];
-    if (!node) return;
-
-    if (selectingPoint === "A") {
-      selectStartPoint(node);
-    } else {
-      selectEndPoint(node);
-    }
+   
   }
 
   function scrollToPlanner() {

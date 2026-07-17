@@ -1,5 +1,6 @@
 import heapq
 from time import perf_counter
+from algorithms.weights import custom_hikeup_edge_weight
 
 from algorithms.common import (
     SearchMetrics,
@@ -83,7 +84,7 @@ def custom_hikeup_edge_weight(edge, criterion="time"):
     )
 
 
-def calculate_route(nodes, edges, start, end, criterion="time"):
+def calculate_route(nodes, edges, start, end, criterion="time", user_profile=None):
     """
     Działa podobnie do A*, bo korzysta z heurystyki,
     ale ma własną wielokryterialną funkcję kosztu.
@@ -132,6 +133,7 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
             new_g_score = g_score[current_node] + custom_hikeup_edge_weight(
                 edge,
                 criterion,
+                user_profile,
             )
 
             if new_g_score < g_score[neighbor]:

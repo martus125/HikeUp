@@ -1,53 +1,107 @@
-export async function fetchRoute(
-    start,
-    end,
-    criterion = "time",
-    userId = null  // ← DODAJ parametr
-) {
+import { API_URL } from "../constants/api";
+import { normalizePointList } from "../utils/points";
+
+async function request(path, options = {}) {
+  const response = await fetch(`${API_URL}${path}`, options);
+
+  let data;
+
   try {
-    const response = await fetch(`${API_URL}/route`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        start,
-        end,
-        criterion,
-        user_id: userId,  // ← DODAJ do requestu
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Błąd pobierania trasy:", error);
-    throw error;
+    data = await response.json();
+  } catch {
+    throw new Error("Backend zwrócił nieprawidłową odpowiedź.");
   }
+
+  if (!response.ok || data.success === false) {
+    throw new Error(
+      data.message || "Wystąpił błąd połączenia z backendem."
+    );
+  }
+
+  return data;
 }
 
-export async function updateUserProfile(profileData) {
-  try {
-    const response = await fetch(`${API_URL}/profile`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        age_years: profileData.age_years,
-        experience_level: profileData.experience_level,
-        route_preference: profileData.route_preference,
-      }),
-    });
+export async function fetchGraph() {
+  const data = await request("/api/graph");
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+  return {
+    nodes: normalizePointList(data.nodes || data),
+    edges: Array.isArray(data.edges) ? data.edges : [],
+  };
+}
 
-    const data = await response.json();
-    return data.success;
-  } catch (error) {
-    console.error("Błąd aktualizacji profilu:", error);
-    return false;
-  }
+export async function fetchPoints() {
+  const data = await request("/api/points");
+  return normalizePointList(data.points || data);
+}
+
+export async function fetchRoute({
+  start,
+  end,
+  criterion = "time",
+  user_id = null,
+}) {
+  return request("/api/route", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      start,
+      end,
+      criterion,
+      user_id,
+    }),
+  });
+}
+
+export async function registerUser({ name, email, password }) {
+  return request("/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+    }),
+  });
+}
+
+export async function loginUser({ email, password }) {
+  return request("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+}
+
+export async function saveFavoriteRoute(favoriteData) {
+  return request("/api/favorites", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(favoriteData),
+  });
+}
+
+export async function getUserProfile(userId) {
+  return request(`/profile/${userId}`);
+}
+
+export async function updateUserProfile(userId, profileData) {
+  return request(`/profile/${userId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(profileData),
+  });
 }

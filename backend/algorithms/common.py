@@ -116,3 +116,26 @@ def calculate_route_totals(path, edges):
         "difficulty": round(total_difficulty, 2),
         "elevation_gain_m": round(total_elevation_gain),
     }
+from algorithms.weights import as_number, edge_weight
+
+
+def calculate_route_weight(path, edges, criterion):
+    """
+    Liczy porównywalną wagę końcowej trasy,
+    identycznie dla wszystkich algorytmów.
+    """
+    edge_map = build_edge_map(edges)
+    total_weight = 0.0
+
+    for index in range(len(path) - 1):
+        start = path[index]
+        end = path[index + 1]
+
+        edge = edge_map.get((start, end))
+
+        if edge is None:
+            continue
+
+        total_weight += edge_weight(edge, criterion)
+
+    return round(total_weight, 3)

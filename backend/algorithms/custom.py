@@ -9,6 +9,7 @@ from time import perf_counter
 from algorithms.common import (
     SearchMetrics,
     build_graph,
+    calculate_route_weight,
     reconstruct_path,
     calculate_route_totals,
 )
@@ -81,17 +82,16 @@ def custom_hikeup_edge_weight(edge, criterion="time", user_limits=None):
         )
     
     elif criterion == "time":
-        # Optymalizacja: NAJSZYBSZA trasa
         return (
-            time                       # czas jest głównym celem
-            + distance * 5             # dystans wpływa na czas
-            + total_elevation * 0.05   # przewyższenie wpływa na tempo
-            + difficulty * 30
-            + slope_penalty * 1.5
+            time
+            + distance * 5
+            + total_elevation * 0.05
+            + difficulty * distance * 30
+            + slope_penalty * distance * 1.5
+            + difficulty_penalty * distance
         )
-    
+        
     elif criterion == "elevation":
-        # Optymalizacja: Trasa z NAJMNIEJSZYM przewyższeniem
         return (
             total_elevation * 0.15     # przewyższenie jest głównym celem
             + time * 0.8
@@ -210,27 +210,25 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
     path = reconstruct_path(previous, end)
     totals = calculate_route_totals(path, edges)
 
-    
+    comparable_route_weight = calculate_route_weight(
+    path,
+    edges,
+    criterion,
+    )
+
+    custom_score = round(g_score[end], 3)
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
 
     
     return {
-        "algorithm": "custom_hikeup",
-        "label": "Custom HikeUp",
-        "path": path,
-        "distance": totals["distance_km"],
-        "time": totals["time_min"],
-        "difficulty": totals["difficulty"],
-        "total_elevation_gain": totals["elevation_gain_m"],
-        "total_elevation_loss": totals.get("elevation_loss_m", 0),
-        "criterion": criterion,
-        "route_weight": round(g_score[end], 3),
-        "totals": totals,
+        "route_weight": comparable_route_weight,
+        "custom_score": custom_score,
         "metrics": {
-            "visited_nodes": metrics.visited_nodes,
-            "analyzed_edges": metrics.analyzed_edges,
-            "queue_pushes": metrics.queue_pushes,
-            "execution_time_ms": metrics.execution_time_ms,
-            "route_weight": round(g_score[end], 3),
+        "visited_nodes": metrics.visited_nodes,
+        "analyzed_edges": metrics.analyzed_edges,
+        "queue_pushes": metrics.queue_pushes,
+        "execution_time_ms": metrics.execution_time_ms,
+        "route_weight": comparable_route_weight,
+        "custom_score": custom_score,
+    },
         },
-    }

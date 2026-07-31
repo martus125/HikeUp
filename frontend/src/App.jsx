@@ -30,7 +30,7 @@ import {
 function App() {
   const [showUserPanel, setShowUserPanel] = useState(false);
   const [profile, setProfile] = useState({
-    height_cm: "",
+    age_years: "",
     experience_level: "",
     route_preference: "",
   });
@@ -49,6 +49,7 @@ function App() {
   const [criterion, setCriterion] = useState("time");
   const [selectingPoint, setSelectingPoint] = useState("A");
   const [routeResult, setRouteResult] = useState(null);
+  const [loadingRoutes, setLoadingRoutes] = useState(false);
   const [favoriteRoutes, setFavoriteRoutes] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -134,28 +135,25 @@ function App() {
   function scrollToPlanner() {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
   }
-//dobieranie trasy do preferencji użytkownika
-function getCriterionFromPreference(routePreference) {
-  if (routePreference === "shortest") {
-    return "distance";
+  // Dobieranie kryterium trasy do preferencji użytkownika.
+  // Stare angielskie wartości pozostają obsługiwane dla istniejących profili.
+  function getCriterionFromPreference(routePreference) {
+    if (routePreference === "najkrótsza" || routePreference === "shortest") {
+      return "distance";
+    }
+
+    if (routePreference === "najszybsza" || routePreference === "fastest") {
+      return "time";
+    }
+
+    if (routePreference === "najłatwiejsza" || routePreference === "easy") {
+      return "difficulty";
+    }
+
+    return criterion;
   }
 
-  if (routePreference === "fastest") {
-    return "time";
-  }
-
-  if (routePreference === "easy") {
-    return "difficulty";
-  }
-
-  if (routePreference === "balanced") {
-    return "time";
-  }
-
-  return criterion;
-}
-
-    async function calculateRoute() {
+  async function calculateRoute() {
     if (!startId || !endId) {
       alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
       return;
@@ -165,6 +163,8 @@ function getCriterionFromPreference(routePreference) {
       alert("Punkt A i punkt B nie mogą być takie same.");
       return;
     }
+
+    setLoadingRoutes(true);
 
     function normalizePositions(positionsSource, fallbackNodes = []) {
       const source =
@@ -211,10 +211,20 @@ function getCriterionFromPreference(routePreference) {
         ? getCriterionFromPreference(profile.route_preference)
         : criterion;
 
+      const userId = user?.id || null;
+
+      console.log("Wyznaczanie tras...", {
+        startId,
+        endId,
+        criterion: routeCriterion,
+        userId,
+      });
+
       const data = await fetchRoute({
         start: startId,
         end: endId,
         criterion: routeCriterion,
+        user_id: userId,
       });
 
       console.log("ODPOWIEDŹ BACKENDU:", data);
@@ -253,6 +263,8 @@ function getCriterionFromPreference(routePreference) {
       console.error("Błąd wyznaczania trasy:", error);
       alert(error.message || "Nie udało się wyznaczyć trasy.");
       setRouteResult(null);
+    } finally {
+      setLoadingRoutes(false);
     }
   }
 
@@ -303,7 +315,7 @@ function getCriterionFromPreference(routePreference) {
     setUser(null);
     setShowUserPanel(false);
     setProfile({
-      height_cm: "",
+      age_years: "",
       experience_level: "",
       route_preference: "",
     });
@@ -365,7 +377,7 @@ function getCriterionFromPreference(routePreference) {
       const data = await getUserProfile(user.id);
 
       setProfile({
-        height_cm: data.height_cm || "",
+        age_years: data.age_years || "",
         experience_level: data.experience_level || "",
         route_preference: data.route_preference || "",
       });
@@ -381,11 +393,19 @@ function getCriterionFromPreference(routePreference) {
     if (!user) return;
 
     try {
-      const data = await updateUserProfile(user.id, profile);
-      setProfileMessage(data.message || "Profil został zapisany.");
-      setCriterion(getCriterionFromPreference(profile.route_preference)); //po zapisaniu profilu automatycznie wybierze preferencje trasy
+      const data = await updateUserProfile(user.id, {
+        age_years: profile.age_years,
+        experience_level: profile.experience_level,
+        route_preference: profile.route_preference,
+      });
+
+      setCriterion(getCriterionFromPreference(profile.route_preference));
+      alert(data.message || "Profil zaktualizowany!");
+      setShowUserPanel(false);
+      setProfileMessage("");
     } catch (error) {
       console.error("Błąd zapisu profilu:", error);
+      alert(error.message || "Błąd aktualizacji profilu");
       setProfileMessage(error.message || "Nie udało się zapisać profilu.");
     }
   }
@@ -453,24 +473,24 @@ function getCriterionFromPreference(routePreference) {
 
             <form className="auth-form" onSubmit={handleSaveProfile}>
               <label>
-                Wzrost [cm]
+                Wiek (lata):
                 <input
                   type="number"
-                  min="100"
-                  max="230"
-                  value={profile.height_cm}
+                  min="1"
+                  max="120"
+                  value={profile.age_years}
                   onChange={(event) =>
                     setProfile({
                       ...profile,
-                      height_cm: event.target.value,
+                      age_years: event.target.value,
                     })
                   }
-                  placeholder="np. 170"
+                  placeholder="np. 25"
                 />
               </label>
 
               <label>
-                Poziom zaawansowania
+                Poziom doświadczenia:
                 <select
                   value={profile.experience_level}
                   onChange={(event) =>
@@ -480,15 +500,17 @@ function getCriterionFromPreference(routePreference) {
                     })
                   }
                 >
-                  <option value="">Wybierz poziom</option>
+                  <option value="">-- Wybierz --</option>
                   <option value="beginner">Początkujący</option>
                   <option value="intermediate">Średniozaawansowany</option>
                   <option value="advanced">Zaawansowany</option>
+                  <option value="expert">Ekspert</option>
+                  <option value="senior">Senior</option>
                 </select>
               </label>
 
               <label>
-                Preferencje trasy
+                Preferowana trasa:
                 <select
                   value={profile.route_preference}
                   onChange={(event) =>
@@ -498,11 +520,10 @@ function getCriterionFromPreference(routePreference) {
                     })
                   }
                 >
-                  <option value="">Wybierz preferencję</option>
-                  <option value="shortest">Najkrótsza trasa</option>
-                  <option value="fastest">Najszybsza trasa</option>
-                  <option value="easy">Najłatwiejsza / mniej przewyższeń</option>
-                  <option value="balanced">Zbalansowana</option>
+                  <option value="">-- Wybierz --</option>
+                  <option value="najkrótsza">Najkrótsza</option>
+                  <option value="najszybsza">Najszybsza</option>
+                  <option value="najłatwiejsza">Najłatwiejsza</option>
                 </select>
               </label>
 
@@ -535,6 +556,7 @@ function getCriterionFromPreference(routePreference) {
           {activeTab === "plan" && (
             <PlannerPanel
               loadingGraph={loadingGraph}
+              loadingRoutes={loadingRoutes}
               startSearch={startSearch}
               endSearch={endSearch}
               activeSearch={activeSearch}

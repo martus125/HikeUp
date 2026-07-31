@@ -58,6 +58,25 @@ def execute_schema(cursor):
         );
         """
     )
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS user_profiles (
+            user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+            age_years INTEGER,  -- ← ZMIANA: zamiast height_cm
+            experience_level VARCHAR(100),
+            route_preference VARCHAR(100),
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """
+    )
+    
+    # Dodaj kolumnę jeśli już istnieje stara tabela
+    try:
+        cursor.execute("ALTER TABLE user_profiles ADD COLUMN IF NOT EXISTS age_years INTEGER;")
+    except:
+        pass  # Kolumna już istnieje
+    
+    print("[DB] Schema tables created/verified", flush=True)
 
     cursor.execute("ALTER TABLE favorite_routes ADD COLUMN IF NOT EXISTS start_point_name VARCHAR(255);")
     cursor.execute("ALTER TABLE favorite_routes ADD COLUMN IF NOT EXISTS end_point_name VARCHAR(255);")
@@ -241,12 +260,21 @@ def get_favorite_routes(user_id):
 
 
 def get_user_profile(user_id):
+    """
+    Pobierz profil użytkownika z bazy danych.
+    
+    Args:
+        user_id: int - ID użytkownika
+    
+    Returns:
+        dict - profil zawierający age_years, experience_level, route_preference
+    """
     try:
         with get_connection() as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     """
-                    SELECT user_id, height_cm, experience_level, route_preference
+                    SELECT user_id, age_years, experience_level, route_preference
                     FROM user_profiles
                     WHERE user_id = %s;
                     """,
@@ -257,30 +285,49 @@ def get_user_profile(user_id):
         if profile:
             return {
                 "user_id": profile[0],
-                "height_cm": profile[1],
+                "age_years": profile[1],              # ← ZMIANA
                 "experience_level": profile[2] or "",
                 "route_preference": profile[3] or "",
             }
 
+        # Zwróć pusty profil jeśli nie znaleziony
         return {
             "user_id": user_id,
-            "height_cm": "",
+            "age_years": None,                        # ← ZMIANA
             "experience_level": "",
             "route_preference": "",
         }
     except Exception as error:
+        print(f"Błąd get_user_profile: {error}")
         return {
             "user_id": user_id,
-            "height_cm": "",
+            "age_years": None,
             "experience_level": "",
             "route_preference": "",
-            "message": f"Błąd pobierania profilu: {error}",
         }
 
 
-def update_user_profile(user_id, height_cm, experience_level, route_preference):
+def update_user_profile(user_id, age_years, experience_level, route_preference):
+    """
+    Zapisz/aktualizuj profil użytkownika.
+    
+    Args:
+        user_id: int - ID użytkownika
+        age_years: int lub None - wiek użytkownika
+        experience_level: str - poziom doświadczenia (beginner/intermediate/advanced/expert/senior)
+        route_preference: str - preferowany typ trasy
+    
+    Returns:
+        dict - {success: bool, message: str}
+    """
     try:
-        height_value = int(height_cm) if height_cm not in ("", None) else None
+        # Konwertuj age_years do liczby lub None
+        age_value = None
+        if age_years not in ("", None):
+            try:
+                age_value = int(age_years)
+            except (ValueError, TypeError):
+                age_value = None
 
         with get_connection() as connection:
             with connection.cursor() as cursor:
@@ -288,31 +335,33 @@ def update_user_profile(user_id, height_cm, experience_level, route_preference):
                     """
                     INSERT INTO user_profiles (
                         user_id,
-                        height_cm,
+                        age_years,
                         experience_level,
                         route_preference,
                         updated_at
                     )
                     VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP)
                     ON CONFLICT (user_id) DO UPDATE SET
-                        height_cm = EXCLUDED.height_cm,
+                        age_years = EXCLUDED.age_years,
                         experience_level = EXCLUDED.experience_level,
                         route_preference = EXCLUDED.route_preference,
                         updated_at = CURRENT_TIMESTAMP;
                     """,
                     (
                         user_id,
-                        height_value,
+                        age_value,
                         experience_level,
                         route_preference,
                     ),
                 )
 
+        print(f"[DB] Profil użytkownika {user_id} zaktualizowany: age={age_value}, exp={experience_level}")
         return {
             "success": True,
             "message": "Profil użytkownika został zapisany.",
         }
     except Exception as error:
+        print(f"Błąd update_user_profile: {error}")
         return {
             "success": False,
             "message": f"Błąd zapisu profilu: {error}",

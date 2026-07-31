@@ -225,6 +225,17 @@ def get_full_map_info():
 
 @map_bp.route("/route", methods=["POST"])
 def route():
+    """
+    Główny endpoint do wyznaczania tras wszystkimi algorytmami.
+
+    Request body powinien zawierać:
+    {
+        "start": "Zakopane" lub ID,
+        "end": "Morskie Oko" lub ID,
+        "criterion": "time" | "distance" | "elevation" | "difficulty",
+        "user_id": 123 (opcjonalne - jeśli nie ma, użyj domyślnych limitów)
+    }
+    """
     print("Rozpoczęcie wyznaczania tras wszystkimi algorytmami", flush=True)
 
     try:
@@ -233,6 +244,40 @@ def route():
         start = data.get("start")
         end = data.get("end")
         criterion = data.get("criterion", "time")
+        user_id = data.get("user_id")
+
+        user_limits = None
+        if user_id:
+            try:
+                from database import get_user_profile
+                from models.experience_config import infer_experience_level, get_limits
+
+                profile = get_user_profile(user_id)
+
+                experience = infer_experience_level(
+                    profile.get("age_years"),
+                    profile.get("experience_level"),
+                )
+
+                user_limits = get_limits(experience)
+
+                print(
+                    f"[LOG] User {user_id}: doświadczenie={experience}, "
+                    f"limity={user_limits}",
+                    flush=True,
+                )
+            except Exception as error:
+                print(f"[LOG] Błąd pobierania profilu: {error}", flush=True)
+                user_limits = None
+
+        if not user_limits:
+            from models.experience_config import get_limits
+
+            user_limits = get_limits("intermediate")
+            print(
+                "[LOG] Brak profilu - używam domyślnych limitów (intermediate)",
+                flush=True,
+            )
 
         if not start or not end:
             return jsonify(
@@ -344,13 +389,27 @@ def route():
                 print("=" * 60, flush=True)
                 print(f"START ALGORYTMU: {algorithm_label}", flush=True)
 
-                route_result = algorithm_function(
-                    routing_nodes,
-                    routing_edges,
-                    routing_start,
-                    routing_end,
-                    criterion,
-                )
+                if algorithm_key == "custom_hikeup":
+                    route_result = algorithm_function(
+                        routing_nodes,
+                        routing_edges,
+                        routing_start,
+                        routing_end,
+                        criterion,
+                        user_limits,
+                    )
+                    print(
+                        f"[LOG] Custom HikeUp otrzymał limity: {user_limits}",
+                        flush=True,
+                    )
+                else:
+                    route_result = algorithm_function(
+                        routing_nodes,
+                        routing_edges,
+                        routing_start,
+                        routing_end,
+                        criterion,
+                    )
 
                 algorithm_elapsed = time.perf_counter() - algorithm_start_time
 

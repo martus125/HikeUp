@@ -1,5 +1,7 @@
 import osmnx as ox
 import json
+import networkx as nx
+import requests
 
 # --- 1. ROZSZERZENIE KONFIGURACJI ---
 # Dodajemy tagi, które OSMnx standardowo ignoruje, a które zawierają ważne dane o terenie

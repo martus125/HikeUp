@@ -220,9 +220,11 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
 
     
     return {
-        "route_weight": comparable_route_weight,
-        "custom_score": custom_score,
-        "metrics": {
+    "path": path,
+    "totals": totals,
+    "route_weight": comparable_route_weight,
+    "custom_score": custom_score,
+    "metrics": {
         "visited_nodes": metrics.visited_nodes,
         "analyzed_edges": metrics.analyzed_edges,
         "queue_pushes": metrics.queue_pushes,
@@ -230,4 +232,4 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         "route_weight": comparable_route_weight,
         "custom_score": custom_score,
     },
-        },
+}

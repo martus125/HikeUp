@@ -27,7 +27,7 @@ def custom_hikeup_edge_weight(edge, criterion="time", user_limits=None):
     - Przewyższenie w górę (m) - trudne
     - Przewyższenie w dół (m) - łatwe (waga 0.3)
     - Trudność (1-7)
-    - Nachylenie (%)
+    - Nachylenie (%) 
     - Limity użytkownika (max_slope, max_difficulty)
     
     Args:
@@ -183,7 +183,6 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
             edge = neighbor_data["edge"]
 
             # Oblicz koszt przejścia do sąsiada za pomocą custom_hikeup_edge_weight
-            # ← KLUCZOWE: tutaj przekazujemy user_limits!
             new_g_score = g_score[current_node] + custom_hikeup_edge_weight(
                 edge,
                 criterion,

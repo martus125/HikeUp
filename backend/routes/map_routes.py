@@ -1,4 +1,4 @@
-#Endpointy API związane z mapą, punktami i wyznaczaniem trasy wyznaczania tras wszystkimi algorytmami
+# Endpointy API związane z mapą, punktami i wyznaczaniem tras wszystkimi algorytmami
 from flask import Blueprint, jsonify, request
 import time
 import traceback
@@ -9,8 +9,6 @@ from algorithms.greedy import calculate_route as calculate_greedy
 from algorithms.custom import calculate_route as calculate_custom_hikeup
 
 from services.map_service import (
-    build_route_points,
-    build_route_positions,
     get_point_by_id,
     load_full_map,
     load_points,
@@ -55,7 +53,12 @@ def get_total_value(route_result, totals, *keys, default=0):
     return default
 
 
-def build_route_points_fast(path_ids, node_lookup, start_point=None, end_point=None):
+def build_route_points_fast(
+    path_ids,
+    node_lookup,
+    start_point=None,
+    end_point=None,
+):
     path_points = []
 
     for node_id in path_ids:
@@ -76,10 +79,16 @@ def build_route_points_fast(path_ids, node_lookup, start_point=None, end_point=N
         )
 
     if path_points and start_point:
-        path_points[0]["name"] = start_point.get("name", path_points[0].get("name", ""))
+        path_points[0]["name"] = start_point.get(
+            "name",
+            path_points[0].get("name", ""),
+        )
 
     if path_points and end_point:
-        path_points[-1]["name"] = end_point.get("name", path_points[-1].get("name", ""))
+        path_points[-1]["name"] = end_point.get(
+            "name",
+            path_points[-1].get("name", ""),
+        )
 
     return path_points
 
@@ -103,6 +112,7 @@ def build_route_positions_fast(path_ids, node_lookup):
 
     return positions
 
+
 def build_node_lookup(routing_nodes):
     if isinstance(routing_nodes, dict):
         return routing_nodes
@@ -116,6 +126,7 @@ def build_node_lookup(routing_nodes):
             node_lookup[node_id] = node
 
     return node_lookup
+
 
 def build_single_route_response(
     algorithm_key,
@@ -152,7 +163,6 @@ def build_single_route_response(
         "path": path_points,
         "positions": route_positions,
         "path_ids": path_ids,
-
         "total_distance_km": get_total_value(
             route_result,
             totals,
@@ -180,7 +190,6 @@ def build_single_route_response(
             "total_elevation_gain",
             default=0,
         ),
-
         "route_weight": metrics.get(
             "route_weight",
             route_result.get("route_weight", 0),
@@ -233,10 +242,13 @@ def route():
         "start": "Zakopane" lub ID,
         "end": "Morskie Oko" lub ID,
         "criterion": "time" | "distance" | "elevation" | "difficulty",
-        "user_id": 123 (opcjonalne - jeśli nie ma, użyj domyślnych limitów)
+        "user_id": 123
     }
     """
-    print("Rozpoczęcie wyznaczania tras wszystkimi algorytmami", flush=True)
+    print(
+        "Rozpoczęcie wyznaczania tras wszystkimi algorytmami",
+        flush=True,
+    )
 
     try:
         data = request.get_json() or {}
@@ -247,10 +259,14 @@ def route():
         user_id = data.get("user_id")
 
         user_limits = None
+
         if user_id:
             try:
                 from database import get_user_profile
-                from models.experience_config import infer_experience_level, get_limits
+                from models.experience_config import (
+                    get_limits,
+                    infer_experience_level,
+                )
 
                 profile = get_user_profile(user_id)
 
@@ -262,20 +278,26 @@ def route():
                 user_limits = get_limits(experience)
 
                 print(
-                    f"[LOG] User {user_id}: doświadczenie={experience}, "
+                    f"[LOG] User {user_id}: "
+                    f"doświadczenie={experience}, "
                     f"limity={user_limits}",
                     flush=True,
                 )
             except Exception as error:
-                print(f"[LOG] Błąd pobierania profilu: {error}", flush=True)
+                print(
+                    f"[LOG] Błąd pobierania profilu: {error}",
+                    flush=True,
+                )
                 user_limits = None
 
         if not user_limits:
             from models.experience_config import get_limits
 
             user_limits = get_limits("intermediate")
+
             print(
-                "[LOG] Brak profilu - używam domyślnych limitów (intermediate)",
+                "[LOG] Brak profilu - używam domyślnych "
+                "limitów (intermediate)",
                 flush=True,
             )
 
@@ -283,7 +305,9 @@ def route():
             return jsonify(
                 {
                     "success": False,
-                    "message": "Brakuje punktu początkowego lub końcowego.",
+                    "message": (
+                        "Brakuje punktu początkowego lub końcowego."
+                    ),
                 }
             ), 400
 
@@ -291,11 +315,17 @@ def route():
             return jsonify(
                 {
                     "success": False,
-                    "message": "Punkt początkowy i końcowy nie mogą być takie same.",
+                    "message": (
+                        "Punkt początkowy i końcowy "
+                        "nie mogą być takie same."
+                    ),
                 }
             ), 400
 
-        print("Rozpoczecie ładowania mapy i punktów", flush=True)
+        print(
+            "Rozpoczęcie ładowania mapy i punktów",
+            flush=True,
+        )
 
         points = load_points()
         full_map = load_full_map()
@@ -303,7 +333,10 @@ def route():
         routing_nodes = full_map["nodes"]
         routing_edges = full_map["edges"]
 
-        print("Rozpoczecie pobrania punktow startowego i koncowego", flush=True)
+        print(
+            "Rozpoczęcie pobrania punktów startowego i końcowego",
+            flush=True,
+        )
 
         start_point = get_point_by_id(points, start)
         end_point = get_point_by_id(points, end)
@@ -312,7 +345,10 @@ def route():
             return jsonify(
                 {
                     "success": False,
-                    "message": "Nie znaleziono wybranego punktu w graph_nodes.json.",
+                    "message": (
+                        "Nie znaleziono wybranego punktu "
+                        "w graph_nodes.json."
+                    ),
                     "debug": {
                         "start": start,
                         "end": end,
@@ -320,14 +356,47 @@ def route():
                 }
             ), 404
 
-        print("Rozpoczecie dopasowania punktow do grafu szlakow", flush=True)
+        print(
+            "Rozpoczęcie dopasowania punktów do grafu szlaków",
+            flush=True,
+        )
 
-        routing_start = resolve_routing_node(start_point, routing_nodes)
-        routing_end = resolve_routing_node(end_point, routing_nodes)
+        routing_start = resolve_routing_node(
+            start_point,
+            routing_nodes,
+        )
+        routing_end = resolve_routing_node(
+            end_point,
+            routing_nodes,
+        )
 
-        routing_start_id = routing_start["id"] if isinstance(routing_start, dict) else routing_start
-        routing_end_id = routing_end["id"] if isinstance(routing_end, dict) else routing_end
+        if routing_start is None or routing_end is None:
+            return jsonify(
+                {
+                    "success": False,
+                    "message": (
+                        "Nie udało się dopasować punktów "
+                        "do grafu szlaków."
+                    ),
+                    "debug": {
+                        "start": start,
+                        "end": end,
+                        "routing_start": routing_start,
+                        "routing_end": routing_end,
+                    },
+                }
+            ), 404
 
+        routing_start_id = (
+            routing_start["id"]
+            if isinstance(routing_start, dict)
+            else routing_start
+        )
+        routing_end_id = (
+            routing_end["id"]
+            if isinstance(routing_end, dict)
+            else routing_end
+        )
 
         def count_neighbors(node_id):
             neighbors = []
@@ -344,7 +413,6 @@ def route():
 
             return neighbors
 
-
         start_neighbors = count_neighbors(routing_start_id)
         end_neighbors = count_neighbors(routing_end_id)
 
@@ -352,28 +420,41 @@ def route():
         print("Routing end:", routing_end, flush=True)
         print("Routing start ID:", routing_start_id, flush=True)
         print("Routing end ID:", routing_end_id, flush=True)
-        print("Czy start jest w grafie:", len(start_neighbors) > 0, flush=True)
-        print("Czy koniec jest w grafie:", len(end_neighbors) > 0, flush=True)
-        print("Liczba sąsiadów startu:", len(start_neighbors), flush=True)
-        print("Liczba sąsiadów końca:", len(end_neighbors), flush=True)
-        print("Przykładowi sąsiedzi startu:", start_neighbors[:5], flush=True)
-        print("Przykładowi sąsiedzi końca:", end_neighbors[:5], flush=True)
+        print(
+            "Czy start jest w grafie:",
+            len(start_neighbors) > 0,
+            flush=True,
+        )
+        print(
+            "Czy koniec jest w grafie:",
+            len(end_neighbors) > 0,
+            flush=True,
+        )
+        print(
+            "Liczba sąsiadów startu:",
+            len(start_neighbors),
+            flush=True,
+        )
+        print(
+            "Liczba sąsiadów końca:",
+            len(end_neighbors),
+            flush=True,
+        )
+        print(
+            "Przykładowi sąsiedzi startu:",
+            start_neighbors[:5],
+            flush=True,
+        )
+        print(
+            "Przykładowi sąsiedzi końca:",
+            end_neighbors[:5],
+            flush=True,
+        )
 
-        if routing_start is None or routing_end is None:
-            return jsonify(
-                {
-                    "success": False,
-                    "message": "Nie udało się dopasować punktów do grafu szlaków.",
-                    "debug": {
-                        "start": start,
-                        "end": end,
-                        "routing_start": routing_start,
-                        "routing_end": routing_end,
-                    },
-                }
-            ), 404
-
-        print("Rozpoczecie obliczania tras", flush=True)
+        print(
+            "Rozpoczęcie obliczania tras",
+            flush=True,
+        )
 
         routes = []
         algorithm_errors = {}
@@ -387,43 +468,104 @@ def route():
 
             try:
                 print("=" * 60, flush=True)
-                print(f"START ALGORYTMU: {algorithm_label}", flush=True)
+                print(
+                    f"START ALGORYTMU: {algorithm_label}",
+                    flush=True,
+                )
 
                 if algorithm_key == "custom_hikeup":
                     route_result = algorithm_function(
                         routing_nodes,
                         routing_edges,
-                        routing_start,
-                        routing_end,
+                        routing_start_id,
+                        routing_end_id,
                         criterion,
                         user_limits,
                     )
+
                     print(
-                        f"[LOG] Custom HikeUp otrzymał limity: {user_limits}",
+                        "[LOG] Custom HikeUp otrzymał limity: "
+                        f"{user_limits}",
                         flush=True,
                     )
                 else:
                     route_result = algorithm_function(
                         routing_nodes,
                         routing_edges,
-                        routing_start,
-                        routing_end,
+                        routing_start_id,
+                        routing_end_id,
                         criterion,
                     )
 
-                algorithm_elapsed = time.perf_counter() - algorithm_start_time
+                algorithm_elapsed = (
+                    time.perf_counter() - algorithm_start_time
+                )
 
                 print(
-                    f"ALGORYTM ZWRÓCIŁ WYNIK: {algorithm_label}, czas: {algorithm_elapsed:.2f}s",
+                    f"ALGORYTM ZWRÓCIŁ WYNIK: "
+                    f"{algorithm_label}, "
+                    f"czas: {algorithm_elapsed:.2f}s",
                     flush=True,
                 )
 
+                print(
+                    f"[DEBUG] {algorithm_label}: "
+                    f"type={type(route_result).__name__}, "
+                    f"value_preview={str(route_result)[:300]}",
+                    flush=True,
+                )
+
+                # Obsługa starszego formatu wyniku:
+                # ({...wynik...}, metryki)
+                if isinstance(route_result, tuple):
+                    print(
+                        f"[WARNING] {algorithm_label} "
+                        "zwrócił tuple zamiast dict.",
+                        flush=True,
+                    )
+
+                    if (
+                        len(route_result) > 0
+                        and isinstance(route_result[0], dict)
+                    ):
+                        route_result = route_result[0]
+                    else:
+                        raise TypeError(
+                            f"{algorithm_label} zwrócił "
+                            "nieprawidłowy format wyniku. "
+                            "Oczekiwano słownika."
+                        )
+
                 if route_result is None:
-                    print(f"{algorithm_label}: route_result is None", flush=True)
-                    algorithm_errors[algorithm_key] = "Nie znaleziono trasy."
+                    print(
+                        f"{algorithm_label}: "
+                        "route_result is None",
+                        flush=True,
+                    )
+                    algorithm_errors[algorithm_key] = (
+                        "Nie znaleziono trasy."
+                    )
                     continue
 
-                print(f"{algorithm_label}: rozpoczynam budowanie odpowiedzi", flush=True)
+                if not isinstance(route_result, dict):
+                    raise TypeError(
+                        f"{algorithm_label} zwrócił "
+                        f"nieprawidłowy typ: "
+                        f"{type(route_result).__name__}. "
+                        "Oczekiwano dict."
+                    )
+
+                if "path" not in route_result:
+                    raise ValueError(
+                        f"{algorithm_label} zwrócił "
+                        "wynik bez pola 'path'."
+                    )
+
+                print(
+                    f"{algorithm_label}: "
+                    "rozpoczynam budowanie odpowiedzi",
+                    flush=True,
+                )
 
                 response_start_time = time.perf_counter()
 
@@ -438,29 +580,40 @@ def route():
                     criterion=criterion,
                 )
 
-                response_elapsed = time.perf_counter() - response_start_time
+                response_elapsed = (
+                    time.perf_counter() - response_start_time
+                )
 
                 print(
-                    f"{algorithm_label}: odpowiedź zbudowana, czas: {response_elapsed:.2f}s",
+                    f"{algorithm_label}: odpowiedź zbudowana, "
+                    f"czas: {response_elapsed:.2f}s",
                     flush=True,
                 )
 
                 routes.append(route_response)
 
-                total_elapsed = time.perf_counter() - algorithm_start_time
+                total_elapsed = (
+                    time.perf_counter() - algorithm_start_time
+                )
 
                 print(
-                    f"KONIEC ALGORYTMU: {algorithm_label}, całkowity czas: {total_elapsed:.2f}s",
+                    f"KONIEC ALGORYTMU: {algorithm_label}, "
+                    f"całkowity czas: {total_elapsed:.2f}s",
                     flush=True,
                 )
 
             except Exception as algorithm_error:
-                algorithm_elapsed = time.perf_counter() - algorithm_start_time
+                algorithm_elapsed = (
+                    time.perf_counter() - algorithm_start_time
+                )
 
-                algorithm_errors[algorithm_key] = str(algorithm_error)
+                algorithm_errors[algorithm_key] = str(
+                    algorithm_error
+                )
 
                 print(
-                    f"BŁĄD ALGORYTMU {algorithm_label}, po czasie: {algorithm_elapsed:.2f}s",
+                    f"BŁĄD ALGORYTMU {algorithm_label}, "
+                    f"po czasie: {algorithm_elapsed:.2f}s",
                     flush=True,
                 )
                 print(algorithm_error, flush=True)
@@ -470,7 +623,10 @@ def route():
             return jsonify(
                 {
                     "success": False,
-                    "message": "Nie znaleziono połączenia między wybranymi punktami żadnym algorytmem.",
+                    "message": (
+                        "Nie znaleziono połączenia między "
+                        "wybranymi punktami żadnym algorytmem."
+                    ),
                     "debug": {
                         "start": start,
                         "end": end,
@@ -482,35 +638,39 @@ def route():
             ), 404
 
         primary_route = next(
-            (route_item for route_item in routes if route_item["algorithm"] == "dijkstra"),
+            (
+                route_item
+                for route_item in routes
+                if route_item["algorithm"] == "dijkstra"
+            ),
             routes[0],
         )
 
         return jsonify(
             {
                 "success": True,
-
-                # wszystkie trasy do rysowania na mapie
                 "routes": routes,
                 "algorithm_errors": algorithm_errors,
-
-                # dane wspólne
                 "start_point": start_point,
                 "end_point": end_point,
                 "routing_start": routing_start,
                 "routing_end": routing_end,
                 "criterion": criterion,
-
-                # zgodność ze starym frontendem — domyślnie Dijkstra
                 "algorithm": primary_route["algorithm"],
                 "label": primary_route["label"],
                 "path": primary_route["path"],
                 "positions": primary_route["positions"],
                 "path_ids": primary_route["path_ids"],
-                "total_distance_km": primary_route["total_distance_km"],
+                "total_distance_km": (
+                    primary_route["total_distance_km"]
+                ),
                 "total_time_min": primary_route["total_time_min"],
-                "total_difficulty": primary_route["total_difficulty"],
-                "total_elevation_gain_m": primary_route["total_elevation_gain_m"],
+                "total_difficulty": (
+                    primary_route["total_difficulty"]
+                ),
+                "total_elevation_gain_m": (
+                    primary_route["total_elevation_gain_m"]
+                ),
                 "route_weight": primary_route["route_weight"],
                 "metrics": primary_route["metrics"],
                 "totals": primary_route["totals"],
@@ -518,12 +678,18 @@ def route():
         )
 
     except Exception as error:
-        print("BŁĄD /api/route:", error, flush=True)
+        print(
+            "BŁĄD /api/route:",
+            error,
+            flush=True,
+        )
         traceback.print_exc()
 
         return jsonify(
             {
                 "success": False,
-                "message": f"Błąd backendu w /api/route: {error}",
+                "message": (
+                    f"Błąd backendu w /api/route: {error}"
+                ),
             }
         ), 500

@@ -1,37 +1,31 @@
 """
-Uzupełnia dane wysokościowe krawędzi grafu.
+Uzupełnia dane wysokościowe wszystkich krawędzi grafu.
 
 Dla każdej krawędzi zapisuje:
-- elevation_change_m - podpisana zmiana wysokości from -> to,
-- elevation_gain_m - suma podejścia w kierunku from -> to,
-- elevation_loss_m - suma zejścia w kierunku from -> to,
-- slope_percent - średnia bezwzględna stromizna odcinka.
+- elevation_change_m – zmiana wysokości od from do to,
+- elevation_gain_m – suma podejścia w kierunku from -> to,
+- elevation_loss_m – suma zejścia w kierunku from -> to,
+- slope_percent – średnia stromizna odcinka.
 """
 
 import json
-import math
 import os
 from pathlib import Path
 
 
+# Folder backend
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 
-# Ustaw tutaj plik, w którym wszystkie węzły mają już wysokość.
-INPUT_FILE = (
-    BACKEND_DIR
-    / "mapa"
-    / "cala_mapa_with_elevation.json"
-)
-
-OUTPUT_FILE = (
-    BACKEND_DIR
-    / "mapa"
-    / "cala_mapa_with_elevation.json"
-)
+# Plik faktycznie używany przez aplikację
+INPUT_FILE = BACKEND_DIR / "mapa" / "cala_mapa.json"
+OUTPUT_FILE = BACKEND_DIR / "mapa" / "cala_mapa.json"
 
 
 def as_number(value, default=None):
-    """Bezpiecznie zamienia wartość na liczbę."""
+    """
+    Bezpiecznie zamienia wartość na liczbę.
+    """
+
     try:
         if value is None:
             return default
@@ -51,7 +45,11 @@ def as_number(value, default=None):
 
 
 def build_nodes_by_id(nodes):
-    """Tworzy słownik węzłów według ich ID."""
+    """
+    Tworzy słownik węzłów według ich ID.
+    Obsługuje zarówno listę, jak i słownik nodes.
+    """
+
     nodes_by_id = {}
 
     if isinstance(nodes, list):
@@ -74,7 +72,8 @@ def build_nodes_by_id(nodes):
 
     else:
         raise TypeError(
-            "Pole nodes musi być listą albo słownikiem."
+            "Pole nodes w pliku cala_mapa.json "
+            "musi być listą albo słownikiem."
         )
 
     return nodes_by_id
@@ -85,12 +84,14 @@ def calculate_slope_percent(
     distance_km,
 ):
     """
-    Oblicza średnie nachylenie odcinka.
+    Oblicza średnie nachylenie odcinka w procentach.
 
-    distance_km jest długością odcinka szlaku.
-    Przy bardzo krótkich albo błędnych odcinkach
-    wynik jest ograniczany do rozsądnej wartości.
+    Przykład:
+    różnica wysokości 10 m,
+    długość odcinka 100 m,
+    nachylenie = 10%.
     """
+
     distance_m = distance_km * 1000
 
     if distance_m <= 0:
@@ -106,12 +107,25 @@ def calculate_slope_percent(
 
 
 def update_edges(map_data):
+    """
+    Przelicza dane wysokościowe wszystkich krawędzi.
+    """
+
     nodes = map_data.get("nodes", [])
     edges = map_data.get("edges", [])
+
+    if not isinstance(edges, list):
+        raise TypeError(
+            "Pole edges w pliku cala_mapa.json "
+            "musi być listą."
+        )
 
     nodes_by_id = build_nodes_by_id(nodes)
 
     statistics = {
+        "all_nodes": len(nodes_by_id),
+        "nodes_with_elevation": 0,
+        "nodes_without_elevation": 0,
         "all_edges": len(edges),
         "updated": 0,
         "missing_node": 0,
@@ -120,7 +134,20 @@ def update_edges(map_data):
         "suspicious_slope": 0,
     }
 
+    # Sprawdzenie wszystkich wysokości w nodes
+    for node in nodes_by_id.values():
+        elevation = as_number(node.get("elevation"))
+
+        if elevation is not None and elevation > 0:
+            statistics["nodes_with_elevation"] += 1
+        else:
+            statistics["nodes_without_elevation"] += 1
+
+    # Przeliczenie wszystkich edges
     for edge in edges:
+        if not isinstance(edge, dict):
+            continue
+
         start_id = edge.get("from")
         end_id = edge.get("to")
 
@@ -134,6 +161,7 @@ def update_edges(map_data):
         start_elevation = as_number(
             start_node.get("elevation")
         )
+
         end_elevation = as_number(
             end_node.get("elevation")
         )
@@ -179,10 +207,6 @@ def update_edges(map_data):
             statistics["invalid_distance"] += 1
             continue
 
-        # Wartość bardzo wysoka może wskazywać na:
-        # - bardzo krótki odcinek,
-        # - niedokładność modelu wysokościowego,
-        # - błędne dane mapy.
         if slope_percent > 100:
             statistics["suspicious_slope"] += 1
 
@@ -197,12 +221,23 @@ def update_edges(map_data):
 
 
 def main():
+    """
+    Wczytuje cala_mapa.json, przelicza krawędzie
+    i bezpiecznie zapisuje wynik.
+    """
+
     if not INPUT_FILE.exists():
         raise FileNotFoundError(
             f"Nie znaleziono pliku: {INPUT_FILE}"
         )
 
-    print(f"Wczytywanie: {INPUT_FILE}")
+    print("=" * 60)
+    print("UZUPEŁNIANIE DANYCH WYSOKOŚCIOWYCH KRAWĘDZI")
+    print("=" * 60)
+    print(f"Plik wejściowy: {INPUT_FILE}")
+    print()
+
+    print("Wczytywanie dużego pliku JSON...")
 
     with INPUT_FILE.open(
         "r",
@@ -210,9 +245,18 @@ def main():
     ) as file:
         map_data = json.load(file)
 
+    print("Plik został wczytany.")
+    print("Sprawdzanie węzłów i przeliczanie krawędzi...")
+    print()
+
     statistics = update_edges(map_data)
 
+    # Najpierw zapis do pliku tymczasowego.
+    # Dzięki temu oryginalny plik nie zostanie uszkodzony,
+    # gdyby zapis został przerwany.
     temporary_file = OUTPUT_FILE.with_suffix(".tmp")
+
+    print("Zapisywanie pliku tymczasowego...")
 
     with temporary_file.open(
         "w",
@@ -225,33 +269,93 @@ def main():
             indent=2,
         )
 
-    os.replace(temporary_file, OUTPUT_FILE)
+    os.replace(
+        temporary_file,
+        OUTPUT_FILE,
+    )
 
     print()
-    print("Uzupełnianie krawędzi zakończone.")
+    print("=" * 60)
+    print("WYNIKI")
+    print("=" * 60)
+
     print(
-        f"Uzupełnione: "
+        f"Wszystkie węzły: "
+        f"{statistics['all_nodes']}"
+    )
+
+    print(
+        f"Węzły z wysokością: "
+        f"{statistics['nodes_with_elevation']}"
+    )
+
+    print(
+        f"Węzły bez wysokości: "
+        f"{statistics['nodes_without_elevation']}"
+    )
+
+    print()
+    print(
+        f"Wszystkie krawędzie: "
+        f"{statistics['all_edges']}"
+    )
+
+    print(
+        f"Uzupełnione krawędzie: "
         f"{statistics['updated']} / "
         f"{statistics['all_edges']}"
     )
+
     print(
-        f"Brak węzła: "
+        f"Krawędzie z brakującym węzłem: "
         f"{statistics['missing_node']}"
     )
+
     print(
-        f"Brak wysokości: "
+        f"Krawędzie bez wysokości węzłów: "
         f"{statistics['missing_elevation']}"
     )
+
     print(
-        f"Nieprawidłowa długość: "
+        f"Krawędzie z nieprawidłową długością: "
         f"{statistics['invalid_distance']}"
     )
+
     print(
-        f"Podejrzane nachylenie > 100%: "
+        f"Podejrzane nachylenie powyżej 100%: "
         f"{statistics['suspicious_slope']}"
     )
+
     print()
-    print(f"Nowy plik: {OUTPUT_FILE}")
+    print(f"Zapisany plik: {OUTPUT_FILE}")
+    print("=" * 60)
+
+    if statistics["nodes_without_elevation"] > 0:
+        print()
+        print(
+            "UWAGA: Nie wszystkie węzły mają wysokość. "
+            "Krawędzie połączone z tymi węzłami "
+            "nie mogły zostać przeliczone."
+        )
+
+    if statistics["missing_elevation"] > 0:
+        print()
+        print(
+            "UWAGA: Część krawędzi nadal nie ma "
+            "poprawnych danych wysokościowych."
+        )
+
+    if (
+        statistics["nodes_without_elevation"] == 0
+        and statistics["missing_node"] == 0
+        and statistics["missing_elevation"] == 0
+        and statistics["invalid_distance"] == 0
+    ):
+        print()
+        print(
+            "Wszystkie węzły i krawędzie zostały "
+            "poprawnie przetworzone."
+        )
 
 
 if __name__ == "__main__":

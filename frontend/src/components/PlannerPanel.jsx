@@ -56,7 +56,8 @@ export function PlannerPanel({
         <select value={criterion} onChange={(event) => onCriterionChange(event.target.value)}>
           <option value="time">Najszybsza trasa</option>
           <option value="distance">Najkrótsza trasa</option>
-          <option value="difficulty">Najłatwiejsza / najmniejsze przewyższenie</option>
+          <option value="elevation">Najmniejsze podejście</option>
+          <option value="difficulty">Najłatwiejsza trasa</option>
         </select>
       </label>
 
@@ -95,6 +96,19 @@ export function PlannerPanel({
 
                 {route.metrics?.visited_nodes !== undefined && (
                   <p>Odwiedzone węzły: {route.metrics.visited_nodes}</p>
+                )}
+
+                {route.warnings?.length > 0 && (
+                  <div className="route-warnings">
+                    <strong>Uwagi profilu:</strong>
+                    <ul>
+                      {route.warnings.map((warning, index) => (
+                        <li key={`${route.algorithm}-warning-${index}`}>
+                          {warning}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </article>
             ))}

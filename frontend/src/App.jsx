@@ -203,13 +203,13 @@ function App() {
         criterion: route.criterion || criterion,
         metrics: route.metrics || {},
         totals: route.totals || {},
+        profileEvaluation: route.profile_evaluation || null,
+        warnings: Array.isArray(route.warnings) ? route.warnings : [],
       };
     }
 
     try {
-      const routeCriterion = user
-        ? getCriterionFromPreference(profile.route_preference)
-        : criterion;
+      const routeCriterion = criterion;
 
       const userId = user?.id || null;
 
@@ -381,6 +381,12 @@ function App() {
         experience_level: data.experience_level || "",
         route_preference: data.route_preference || "",
       });
+
+      if (data.route_preference) {
+        setCriterion(
+          getCriterionFromPreference(data.route_preference),
+        );
+      }
     } catch (error) {
       console.error("Błąd pobierania profilu:", error);
       setProfileMessage("Nie udało się pobrać profilu.");

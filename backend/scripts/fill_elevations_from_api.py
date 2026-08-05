@@ -24,7 +24,7 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 MAP_FILE = (
     BACKEND_DIR
     / "mapa"
-    / "cala_mapa_with_elevation.json"
+    / "cala_mapa.json"
 )
 
 API_URL = "https://api.open-meteo.com/v1/elevation"
@@ -35,10 +35,9 @@ MAX_RETRIES = 5
 SAVE_EVERY_BATCHES = 20
 MAX_BATCHES_PER_RUN = 100
 
-# Model Open-Meteo ma rozdzielczość około 90 m.
-# Zaokrąglenie do 3 miejsc pozwala nie pobierać
-# wielokrotnie tej samej wysokości dla bardzo bliskich punktów.
-COORDINATE_DECIMALS = 3
+# Grupujemy tylko praktycznie identyczne współrzędne. Zaokrąglenie do trzech
+# miejsc powodowało skoki wysokości na granicach komórek o rozmiarze ~100 m.
+COORDINATE_DECIMALS = 6
 
 
 class ApiLimitReached(Exception):

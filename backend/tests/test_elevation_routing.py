@@ -10,6 +10,11 @@ from algorithms.common import (
 from algorithms.custom import calculate_route as calculate_custom
 from algorithms.dijkstra import calculate_route as calculate_dijkstra
 from algorithms.greedy import calculate_route as calculate_greedy
+from algorithms.weights import (
+    custom_hikeup_edge_weight,
+    edge_weight,
+)
+from models.experience_config import get_limits
 from routes.map_routes import build_single_route_response
 from scripts.fill_edge_elevation_data import update_edges
 
@@ -205,6 +210,118 @@ class ElevationAlgorithmsTests(unittest.TestCase):
 
         self.assertEqual(response["total_elevation_gain_m"], 120)
 
+    def test_extreme_slope_artifact_has_bounded_cost(self):
+        limits = get_limits("intermediate")
+        regular_edge = {
+            **EDGE,
+            "slope_percent": 100,
+        }
+        corrupted_edge = {
+            **EDGE,
+            "slope_percent": 10000,
+        }
+
+        self.assertEqual(
+            custom_hikeup_edge_weight(
+                regular_edge,
+                "time",
+                limits,
+            ),
+            custom_hikeup_edge_weight(
+                corrupted_edge,
+                "time",
+                limits,
+            ),
+        )
+
+    def test_difficulty_cost_does_not_depend_on_edge_count(self):
+        complete_edge = {
+            **EDGE,
+            "distance_km": 1.0,
+            "difficulty": 3,
+            "elevation_change_m": 0,
+            "elevation_gain_m": 0,
+            "elevation_loss_m": 0,
+        }
+        half_edge = {
+            **complete_edge,
+            "distance_km": 0.5,
+        }
+
+        self.assertAlmostEqual(
+            edge_weight(complete_edge, "difficulty"),
+            edge_weight(half_edge, "difficulty") * 2,
+        )
+
+    def test_custom_falls_back_when_detour_is_too_long(self):
+        nodes = [
+            {"id": "start", "lat": 49.0, "lng": 19.0, "elevation": 100},
+            {"id": "middle", "lat": 49.005, "lng": 19.005, "elevation": 100},
+            {"id": "end", "lat": 49.01, "lng": 19.01, "elevation": 100},
+        ]
+        edges = [
+            {
+                "from": "start",
+                "to": "end",
+                "distance_km": 1.0,
+                "difficulty": 6,
+                "elevation_change_m": 0,
+                "elevation_gain_m": 0,
+                "elevation_loss_m": 0,
+                "slope_percent": 100,
+            },
+            {
+                "from": "start",
+                "to": "middle",
+                "distance_km": 0.75,
+                "difficulty": 1,
+                "elevation_change_m": 0,
+                "elevation_gain_m": 0,
+                "elevation_loss_m": 0,
+                "slope_percent": 0,
+            },
+            {
+                "from": "middle",
+                "to": "end",
+                "distance_km": 0.75,
+                "difficulty": 1,
+                "elevation_change_m": 0,
+                "elevation_gain_m": 0,
+                "elevation_loss_m": 0,
+                "slope_percent": 0,
+            },
+        ]
+        baseline_route = calculate_dijkstra(
+            nodes,
+            edges,
+            "start",
+            "end",
+            "distance",
+        )
+        limits = {
+            **get_limits("beginner"),
+            "max_detour_ratio": 1.2,
+        }
+
+        result = calculate_custom(
+            nodes,
+            edges,
+            "start",
+            "end",
+            "time",
+            limits,
+            baseline_route,
+        )
+
+        self.assertEqual(result["path"], ["start", "end"])
+        self.assertTrue(
+            result["profile_evaluation"]["fallback_applied"]
+        )
+        self.assertEqual(
+            result["profile_evaluation"]["detour_ratio"],
+            1.5,
+        )
+
 
 class ElevationDataScriptTests(unittest.TestCase):
     def test_update_edges_populates_directional_fields(self):
@@ -227,6 +344,27 @@ class ElevationDataScriptTests(unittest.TestCase):
         self.assertEqual(edge["elevation_gain_m"], 120)
         self.assertEqual(edge["elevation_loss_m"], 0)
         self.assertEqual(edge["slope_percent"], 12)
+
+    def test_update_edges_caps_unreliable_slope(self):
+        map_data = {
+            "nodes": [
+                {"id": "a", "elevation": 100},
+                {"id": "b", "elevation": 200},
+            ],
+            "edges": [
+                {
+                    "from": "a",
+                    "to": "b",
+                    "distance_km": 0.001,
+                }
+            ],
+        }
+
+        statistics = update_edges(map_data)
+        edge = map_data["edges"][0]
+
+        self.assertEqual(statistics["suspicious_slope"], 1)
+        self.assertEqual(edge["slope_percent"], 100)
 
 
 if __name__ == "__main__":

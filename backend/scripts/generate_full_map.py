@@ -47,7 +47,8 @@ def difficulty_from_sac_scale(sac_scale):
         "difficult_alpine_hiking": 6,
     }
 
-    return levels.get(sac_scale, 1)
+    # Brak danych nie oznacza automatycznie najłatwiejszego szlaku.
+    return levels.get(sac_scale, 2)
 
 
 def fetch_osm_data():
@@ -139,9 +140,10 @@ def build_full_map(osm_data):
                     "from": start_id,
                     "to": end_id,
                     "distance_km": round(distance_km, 4),
-                    "time_min": round(max(distance_km * 15, 0.1), 2),
+                    "time_min": round(distance_km * 12, 2),
                     "elevation_gain_m": 0,
                     "difficulty": difficulty,
+                    "difficulty_known": tags.get("sac_scale") is not None,
                     "osm_way_id": osm_way_id,
                     "trail_name": trail_name,
                     "geometry": [

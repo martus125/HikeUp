@@ -7,10 +7,12 @@ EXPERIENCE_LIMITS = {
     "beginner": {
         "name": "Początkujący",
         "max_slope_percent": 15,           # Maksymalny % nachylenia
-        "max_difficulty": 2,                # Skala 1-7 (1=najłatwiej, 7=najtrudniej)
+        "max_difficulty": 2,                # Skala SAC 1-6
         "max_elevation_gain_m": 300,        # Max przewyższenie w górę na trasę
         "max_consecutive_steep": 500,       # Max długość stromego fragmentu (m)
-        "preferred_elevation_per_hour": 150 # Idealne tempo (m/h)
+        "preferred_elevation_per_hour": 150, # Idealne tempo (m/h)
+        "max_detour_ratio": 1.30,
+        "max_reasonable_slope_percent": 100,
     },
     "intermediate": {
         "name": "Średniozaawansowany",
@@ -18,7 +20,9 @@ EXPERIENCE_LIMITS = {
         "max_difficulty": 4,
         "max_elevation_gain_m": 700,
         "max_consecutive_steep": 1000,
-        "preferred_elevation_per_hour": 250
+        "preferred_elevation_per_hour": 250,
+        "max_detour_ratio": 1.35,
+        "max_reasonable_slope_percent": 100,
     },
     "advanced": {
         "name": "Zaawansowany",
@@ -26,15 +30,19 @@ EXPERIENCE_LIMITS = {
         "max_difficulty": 6,
         "max_elevation_gain_m": 1500,
         "max_consecutive_steep": 2000,
-        "preferred_elevation_per_hour": 400
+        "preferred_elevation_per_hour": 400,
+        "max_detour_ratio": 1.35,
+        "max_reasonable_slope_percent": 100,
     },
     "expert": {
         "name": "Ekspert",
         "max_slope_percent": 50,
-        "max_difficulty": 7,
+        "max_difficulty": 6,
         "max_elevation_gain_m": 2500,
         "max_consecutive_steep": 3000,
-        "preferred_elevation_per_hour": 500
+        "preferred_elevation_per_hour": 500,
+        "max_detour_ratio": 1.30,
+        "max_reasonable_slope_percent": 100,
     },
     "senior": {
         "name": "Senior",
@@ -42,7 +50,9 @@ EXPERIENCE_LIMITS = {
         "max_difficulty": 2,
         "max_elevation_gain_m": 200,
         "max_consecutive_steep": 300,       # ← Krótkie strome fragmenty
-        "preferred_elevation_per_hour": 100
+        "preferred_elevation_per_hour": 100,
+        "max_detour_ratio": 1.20,
+        "max_reasonable_slope_percent": 100,
     }
 }
 

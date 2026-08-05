@@ -1,11 +1,13 @@
-'''koszt przejścia jednego odcinka szlaku'''
-def as_number(value, default=0.0):
-    """
-    Zamienia wartość z danych mapy na liczbę.
+"""Funkcje kosztu używane podczas wyznaczania tras."""
 
-    Jest to potrzebne, ponieważ niektóre pola mogą być puste,
-    mieć wartość None albo tekst "unknown".
-    """
+DEFAULT_FLAT_SPEED_KMH = 5.0
+DEFAULT_ASCENT_RATE_M_PER_HOUR = 600.0
+MAX_TRAIL_DIFFICULTY = 6.0
+MAX_REASONABLE_SLOPE_PERCENT = 100.0
+
+
+def as_number(value, default=0.0):
+    """Bezpiecznie zamienia wartość z danych mapy na liczbę."""
     try:
         if value is None:
             return default
@@ -23,20 +25,60 @@ def as_number(value, default=0.0):
         return default
 
 
-def edge_weight(edge, criterion="time"):
-    """
-    Funkcja zwraca koszt przejścia daną krawędzią grafu
-    w zależności od wybranego kryterium.
+def clamp(value, minimum, maximum):
+    return max(minimum, min(value, maximum))
 
-    time       - trasa najszybsza
-    distance   - trasa najkrótsza
-    elevation  - trasa z uwzględnieniem przewyższenia
-    difficulty - trasa z uwzględnieniem trudności
+
+def estimate_hiking_time_minutes(
+    edge,
+    ascent_rate_m_per_hour=DEFAULT_ASCENT_RATE_M_PER_HOUR,
+    descent_effort_factor=0.0,
+):
     """
-    distance = as_number(edge.get("distance_km"), 0)
-    time = as_number(edge.get("time_min"), 0)
-    elevation = as_number(edge.get("elevation_gain_m"), 0)
-    difficulty = as_number(edge.get("difficulty"), 1)
+    Szacuje czas przejścia regułą zbliżoną do Naismitha.
+
+    Czas składa się z marszu po płaskim oraz wysiłku związanego z podejściem.
+    Dla algorytmu spersonalizowanego można też doliczyć część wysiłku zejścia.
+    """
+    distance = max(0.0, as_number(edge.get("distance_km"), 0))
+    elevation_gain = max(
+        0.0,
+        as_number(edge.get("elevation_gain_m"), 0),
+    )
+    elevation_loss = max(
+        0.0,
+        as_number(edge.get("elevation_loss_m"), 0),
+    )
+    ascent_rate = max(
+        1.0,
+        as_number(
+            ascent_rate_m_per_hour,
+            DEFAULT_ASCENT_RATE_M_PER_HOUR,
+        ),
+    )
+
+    flat_time = distance / DEFAULT_FLAT_SPEED_KMH * 60
+    elevation_effort = (
+        elevation_gain
+        + elevation_loss * max(0.0, descent_effort_factor)
+    ) / ascent_rate * 60
+
+    return flat_time + elevation_effort
+
+
+def edge_weight(edge, criterion="time"):
+    """Zwraca porównywalny koszt jednej krawędzi grafu."""
+    distance = max(0.0, as_number(edge.get("distance_km"), 0))
+    time = estimate_hiking_time_minutes(edge)
+    elevation = max(
+        0.0,
+        as_number(edge.get("elevation_gain_m"), 0),
+    )
+    difficulty = clamp(
+        as_number(edge.get("difficulty"), 1),
+        1.0,
+        MAX_TRAIL_DIFFICULTY,
+    )
 
     if criterion == "distance":
         return distance
@@ -48,107 +90,118 @@ def edge_weight(edge, criterion="time"):
         return elevation + distance * 10
 
     if criterion == "difficulty":
-        return difficulty * 100 + elevation + time + distance * 10
+        # Trudność jest ważona długością. Dzięki temu wynik nie zależy od
+        # liczby technicznych węzłów OSM, na które podzielono ten sam szlak.
+        return (
+            difficulty * distance * 100
+            + elevation
+            + time
+            + distance * 10
+        )
 
     return time
+
 
 def custom_hikeup_edge_weight(
     edge,
     criterion="time",
-    user_profile=None,
+    user_limits=None,
 ):
     """
-    Oblicza koszt przejścia odcinka dla algorytmu Custom HikeUp.
+    Znormalizowany koszt odcinka dla algorytmu Custom HikeUp.
 
-    Oprócz podstawowych parametrów trasy uwzględnia:
-    - profil użytkownika,
-    - maksymalne zalecane nachylenie,
-    - maksymalną zalecaną trudność.
+    Wszystkie kary są proporcjonalne do długości odcinka. Nachylenie jest
+    ograniczane do fizycznie użytecznego zakresu, aby pojedynczy artefakt
+    modelu wysokościowego nie wymuszał wielokilometrowego objazdu.
     """
-    distance = as_number(edge.get("distance_km"), 0)
-    time = as_number(edge.get("time_min"), 0)
-    elevation = as_number(edge.get("elevation_gain_m"), 0)
-    difficulty = as_number(edge.get("difficulty"), 1)
-    slope = as_number(edge.get("slope_percent"), 0)
+    user_limits = user_limits or {}
 
-    # Domyślne ograniczenia dla dorosłego użytkownika
-    slope_limit = 35
-    difficulty_limit = 7
+    distance = max(0.0, as_number(edge.get("distance_km"), 0))
+    difficulty = clamp(
+        as_number(edge.get("difficulty"), 1),
+        1.0,
+        MAX_TRAIL_DIFFICULTY,
+    )
+    raw_slope = abs(as_number(edge.get("slope_percent"), 0))
 
-    if user_profile:
-        slope_limit = as_number(
-            user_profile.get("slope_limit"),
-            slope_limit,
-        )
-        difficulty_limit = as_number(
-            user_profile.get("max_difficulty"),
-            difficulty_limit,
-        )
+    max_slope = max(
+        5.0,
+        as_number(
+            user_limits.get("max_slope_percent"),
+            25,
+        ),
+    )
+    max_difficulty = max(
+        1.0,
+        as_number(
+            user_limits.get("max_difficulty"),
+            4,
+        ),
+    )
+    ascent_rate = max(
+        1.0,
+        as_number(
+            user_limits.get("preferred_elevation_per_hour"),
+            250,
+        ),
+    )
+    reasonable_slope = max(
+        max_slope,
+        as_number(
+            user_limits.get("max_reasonable_slope_percent"),
+            MAX_REASONABLE_SLOPE_PERCENT,
+        ),
+    )
 
-    # Kara za nachylenie zbliżające się do limitu
-    if slope > slope_limit:
-        slope_penalty = (slope - slope_limit) ** 2.5 * 10
-    elif slope > slope_limit - 10:
-        slope_penalty = (
-            slope - slope_limit + 10
-        ) ** 1.5 * 3
-    else:
-        slope_penalty = 0
+    slope = min(raw_slope, reasonable_slope)
+    estimated_time = estimate_hiking_time_minutes(
+        edge,
+        ascent_rate_m_per_hour=ascent_rate,
+        descent_effort_factor=0.3,
+    )
+    flat_time = distance / DEFAULT_FLAT_SPEED_KMH * 60
+    elevation_effort = max(0.0, estimated_time - flat_time)
 
-    # Kara za trudność przekraczającą możliwości profilu
-    if difficulty > difficulty_limit:
-        difficulty_penalty = (
-            difficulty - difficulty_limit
-        ) ** 2 * 100
-    else:
-        difficulty_penalty = 0
+    slope_excess = clamp(
+        (slope - max_slope) / max_slope,
+        0.0,
+        1.5,
+    )
+    difficulty_excess = clamp(
+        (difficulty - max_difficulty) / max_difficulty,
+        0.0,
+        1.0,
+    )
+
+    difficulty_exposure = (
+        distance
+        * 20
+        * (difficulty / MAX_TRAIL_DIFFICULTY) ** 2
+    )
+    slope_penalty = distance * 30 * slope_excess ** 2
+    difficulty_penalty = (
+        distance * 60 * difficulty_excess ** 2
+    )
+    safety_cost = (
+        difficulty_exposure
+        + slope_penalty
+        + difficulty_penalty
+    )
 
     if criterion == "distance":
-        return (
-            distance * 20
-            + time * 0.4
-            + elevation * 0.04
-            + difficulty * 25
-            + slope_penalty * 5
-            + difficulty_penalty
-        )
+        return flat_time + elevation_effort * 0.25 + safety_cost * 0.5
 
     if criterion == "time":
-        return (
-            time
-            + distance * 5
-            + elevation * 0.05
-            + difficulty * 30
-            + slope_penalty * 6
-            + difficulty_penalty
-        )
+        return estimated_time + safety_cost * 0.5
 
     if criterion == "elevation":
         return (
-            elevation * 0.12
-            + time * 0.8
-            + distance * 8
-            + difficulty * 35
-            + slope_penalty * 8
-            + difficulty_penalty
+            flat_time * 0.35
+            + elevation_effort * 1.2
+            + safety_cost * 0.75
         )
 
     if criterion == "difficulty":
-        return (
-            difficulty * 100
-            + elevation * 0.08
-            + time * 0.6
-            + distance * 8
-            + slope_penalty * 10
-            + difficulty_penalty
-        )
+        return estimated_time * 0.5 + safety_cost * 2.0
 
-    # Wariant domyślny: zbalansowany koszt trasy
-    return (
-        time
-        + distance * 8
-        + elevation * 0.06
-        + difficulty * 50
-        + slope_penalty * 8
-        + difficulty_penalty
-    )
+    return estimated_time + safety_cost

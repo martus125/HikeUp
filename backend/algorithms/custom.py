@@ -1,235 +1,476 @@
-"""
-Algorytm Custom HikeUp - dostosowany do profilu użytkownika.
-Uwzględnia limity doświadczenia (stromość, trudność) i preferencje użytkownika.
-"""
+"""Spersonalizowany algorytm wyznaczania tras HikeUp."""
 
 import heapq
 from time import perf_counter
 
 from algorithms.common import (
     SearchMetrics,
+    build_edge_map,
     build_graph,
-    calculate_route_weight,
-    reconstruct_path,
     calculate_route_totals,
+    calculate_route_weight,
+    make_directional_edge,
+    reconstruct_path,
 )
-from algorithms.weights import as_number
-from algorithms.heuristics import build_node_map, heuristic
+from algorithms.heuristics import build_node_map, haversine_km
+from algorithms.weights import (
+    MAX_REASONABLE_SLOPE_PERCENT,
+    as_number,
+    custom_hikeup_edge_weight,
+    estimate_hiking_time_minutes,
+)
 
 
-def custom_hikeup_edge_weight(edge, criterion="time", user_limits=None):
-    """
-    Oblicza koszt przejścia jednej krawędzi dla algorytmu Custom HikeUp.
-    
-    Uwzględnia:
-    - Dystans (km)
-    - Czas przejścia (min)
-    - Przewyższenie w górę (m) - trudne
-    - Przewyższenie w dół (m) - łatwe (waga 0.3)
-    - Trudność (1-7)
-    - Nachylenie (%) 
-    - Limity użytkownika (max_slope, max_difficulty)
-    
-    Args:
-        edge: dict - krawędź z parametrami
-        criterion: str - kryterium optymalizacji (time/distance/elevation/difficulty)
-        user_limits: dict - limity użytkownika z doświadczenia
-    
-    Returns:
-        float - koszt przejścia krawędzią
-    """
-    # Pobierz dane z krawędzi
-    distance = as_number(edge.get("distance_km"), 0)
-    time = as_number(edge.get("time_min"), 0)
-    elevation_gain = as_number(edge.get("elevation_gain_m"), 0)
-    elevation_loss = as_number(edge.get("elevation_loss_m"), 0)
-    difficulty = as_number(edge.get("difficulty"), 1)
-    slope = as_number(edge.get("slope_percent"), 0)
-    
-    # Pobierz limity użytkownika (lub użyj domyślnych)
-    user_limits = user_limits or {}
-    max_slope = user_limits.get("max_slope_percent", 35)
-    max_difficulty = user_limits.get("max_difficulty", 6)
-    
-    # Jeśli nachylenie > limit użytkownika → znaczna kara
-    # Jeśli poniżej limitu → bez kary
-    if slope > max_slope:
-        # Karanie wzrasta kwadratowo (im bardziej powyżej limitu, tym większa kara)
-        slope_penalty = ((slope - max_slope) ** 2) * 50
-    else:
-        slope_penalty = 0
-    
-    # Jeśli trudność > limit użytkownika → kara
-    if difficulty > max_difficulty:
-        difficulty_penalty = ((difficulty - max_difficulty) ** 2) * 100
-    else:
-        difficulty_penalty = 0
-    
-    # Podejście (elevation_gain) jest trudne - waga 1.0
-    # Zejście (elevation_loss) jest łatwe - waga 0.3
-    # Ta różnica jest kluczowa dla wygody użytkownika!
-    total_elevation = elevation_gain * 1.0 + elevation_loss * 0.3
-    
-    
-    if criterion == "distance":
-        # Optymalizacja: NAJKRÓTSZA trasa
-        return (
-            distance * 20              # dystans jest głównym celem
-            + time * 0.4               # czas drugorzędny
-            + total_elevation * 0.04   # przewyższenie mało ważne
-            + difficulty * 25
-            + slope_penalty
-        )
-    
-    elif criterion == "time":
-        return (
-            time
-            + distance * 5
-            + total_elevation * 0.05
-            + difficulty * distance * 30
-            + slope_penalty * distance * 1.5
-            + difficulty_penalty * distance
-        )
-        
-    elif criterion == "elevation":
-        return (
-            total_elevation * 0.15     # przewyższenie jest głównym celem
-            + time * 0.8
-            + distance * 8
-            + difficulty * 35
-            + slope_penalty * 2
-        )
-    
-    elif criterion == "difficulty":
-        # Optymalizacja: NAJŁATWNIEJSZA trasa
-        return (
-            difficulty * 100           # trudność jest głównym celem
-            + total_elevation * 0.08
-            + time * 0.6
-            + distance * 8
-            + slope_penalty * 2.5
-            + difficulty_penalty
-        )
-    
-    # Domyślnie: balans wszystkich kryteriów
-    return (
-        time
-        + distance * 8
-        + total_elevation * 0.07
-        + difficulty * 50
-        + slope_penalty * 1.5
-        + difficulty_penalty
+def custom_hikeup_heuristic(
+    current_id,
+    goal_id,
+    nodes_by_id,
+    criterion,
+    user_limits,
+):
+    """Zwraca dolne oszacowanie kosztu pozostałej drogi."""
+    current = nodes_by_id.get(current_id)
+    goal = nodes_by_id.get(goal_id)
+
+    if not current or not goal:
+        return 0.0
+
+    distance = haversine_km(current, goal)
+    current_elevation = as_number(current.get("elevation"), 0)
+    goal_elevation = as_number(goal.get("elevation"), 0)
+    minimum_gain = max(0.0, goal_elevation - current_elevation)
+    ascent_rate = max(
+        1.0,
+        as_number(
+            user_limits.get("preferred_elevation_per_hour"),
+            250,
+        ),
     )
 
+    optimistic_edge = {
+        "distance_km": distance,
+        "elevation_gain_m": minimum_gain,
+        "elevation_loss_m": 0,
+    }
+    estimated_time = estimate_hiking_time_minutes(
+        optimistic_edge,
+        ascent_rate_m_per_hour=ascent_rate,
+    )
+    flat_time = distance / 5.0 * 60
+    elevation_effort = max(0.0, estimated_time - flat_time)
 
-def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None):
-    """
-    Algorytm Custom HikeUp - dostosowany do profilu użytkownika.
-    
-    Zwraca trasę optymalizowaną pod względem wybranego kryterium,
-    z uwzględnieniem limitów wynikających z poziomu doświadczenia.
-    
-    Args:
-        nodes: list - lista wszystkich węzłów grafu
-        edges: list - lista wszystkich krawędzi grafu
-        start: int - ID węzła startowego
-        end: int - ID węzła końcowego
-        criterion: str - kryterium optymalizacji (time/distance/elevation/difficulty)
-        user_limits: dict - limity użytkownika na podstawie doświadczenia
-    
-    Returns:
-        dict - wynik zawierający ścieżkę i metryki, lub None jeśli nie znaleziono
-    """
+    if criterion == "distance":
+        return flat_time + elevation_effort * 0.25
+
+    if criterion == "time":
+        return estimated_time
+
+    if criterion == "elevation":
+        return flat_time * 0.35 + elevation_effort * 1.2
+
+    if criterion == "difficulty":
+        return estimated_time * 0.5
+
+    return estimated_time
+
+
+def calculate_custom_path_score(
+    path,
+    edge_lookup,
+    criterion,
+    user_limits,
+):
+    """Oblicza spersonalizowany koszt gotowej ścieżki."""
+    score = 0.0
+
+    for start, end in zip(path, path[1:]):
+        source_edge = edge_lookup.get((start, end))
+
+        if source_edge is None:
+            continue
+
+        edge = make_directional_edge(
+            source_edge,
+            start,
+            end,
+        )
+        score += custom_hikeup_edge_weight(
+            edge,
+            criterion,
+            user_limits,
+        )
+
+    return score
+
+
+def evaluate_route_profile(
+    path,
+    totals,
+    edge_lookup,
+    user_limits,
+):
+    """Sprawdza wynik trasy względem limitów profilu użytkownika."""
+    max_slope = max(
+        5.0,
+        as_number(
+            user_limits.get("max_slope_percent"),
+            25,
+        ),
+    )
+    max_difficulty = max(
+        1.0,
+        as_number(
+            user_limits.get("max_difficulty"),
+            4,
+        ),
+    )
+    max_elevation_gain = max(
+        0.0,
+        as_number(
+            user_limits.get("max_elevation_gain_m"),
+            700,
+        ),
+    )
+    max_consecutive_steep = max(
+        0.0,
+        as_number(
+            user_limits.get("max_consecutive_steep"),
+            1000,
+        ),
+    )
+    reasonable_slope = max(
+        max_slope,
+        as_number(
+            user_limits.get("max_reasonable_slope_percent"),
+            MAX_REASONABLE_SLOPE_PERCENT,
+        ),
+    )
+
+    maximum_observed_slope = 0.0
+    maximum_effective_slope = 0.0
+    maximum_observed_difficulty = 0.0
+    current_steep_distance_m = 0.0
+    maximum_consecutive_steep_m = 0.0
+    steep_distance_m = 0.0
+    invalid_slope_edges = 0
+
+    for start, end in zip(path, path[1:]):
+        source_edge = edge_lookup.get((start, end))
+
+        if source_edge is None:
+            continue
+
+        edge = make_directional_edge(
+            source_edge,
+            start,
+            end,
+        )
+        distance_m = max(
+            0.0,
+            as_number(edge.get("distance_km"), 0) * 1000,
+        )
+        raw_slope = abs(
+            as_number(edge.get("slope_percent"), 0)
+        )
+        effective_slope = min(raw_slope, reasonable_slope)
+        difficulty = as_number(edge.get("difficulty"), 1)
+
+        maximum_observed_slope = max(
+            maximum_observed_slope,
+            raw_slope,
+        )
+        maximum_effective_slope = max(
+            maximum_effective_slope,
+            effective_slope,
+        )
+        maximum_observed_difficulty = max(
+            maximum_observed_difficulty,
+            difficulty,
+        )
+
+        if raw_slope > reasonable_slope:
+            invalid_slope_edges += 1
+
+        if effective_slope > max_slope:
+            current_steep_distance_m += distance_m
+            steep_distance_m += distance_m
+            maximum_consecutive_steep_m = max(
+                maximum_consecutive_steep_m,
+                current_steep_distance_m,
+            )
+        else:
+            current_steep_distance_m = 0.0
+
+    elevation_exceeded = (
+        max_elevation_gain > 0
+        and totals["elevation_gain_m"] > max_elevation_gain
+    )
+    difficulty_exceeded = (
+        maximum_observed_difficulty > max_difficulty
+    )
+    steep_section_exceeded = (
+        max_consecutive_steep > 0
+        and maximum_consecutive_steep_m
+        > max_consecutive_steep
+    )
+
+    warnings = []
+
+    if elevation_exceeded:
+        difference = round(
+            totals["elevation_gain_m"] - max_elevation_gain
+        )
+        warnings.append(
+            "Przewyższenie przekracza limit profilu "
+            f"o {difference} m."
+        )
+
+    if difficulty_exceeded:
+        warnings.append(
+            "Trasa zawiera odcinek o trudności "
+            f"{maximum_observed_difficulty:g}, a limit profilu "
+            f"wynosi {max_difficulty:g}."
+        )
+
+    if steep_section_exceeded:
+        warnings.append(
+            "Najdłuższy stromy fragment przekracza limit profilu."
+        )
+
+    if invalid_slope_edges:
+        warnings.append(
+            "Na trasie wykryto niewiarygodne dane nachylenia; "
+            "ich wpływ na wybór trasy został ograniczony."
+        )
+
+    return {
+        "within_limits": not (
+            elevation_exceeded
+            or difficulty_exceeded
+            or steep_section_exceeded
+        ),
+        "elevation_limit_m": max_elevation_gain,
+        "elevation_exceeded": elevation_exceeded,
+        "max_difficulty_limit": max_difficulty,
+        "difficulty_exceeded": difficulty_exceeded,
+        "max_observed_difficulty": round(
+            maximum_observed_difficulty,
+            2,
+        ),
+        "max_slope_limit_percent": max_slope,
+        "max_observed_slope_percent": round(
+            maximum_observed_slope,
+            2,
+        ),
+        "max_effective_slope_percent": round(
+            maximum_effective_slope,
+            2,
+        ),
+        "steep_distance_m": round(steep_distance_m),
+        "max_consecutive_steep_m": round(
+            maximum_consecutive_steep_m
+        ),
+        "steep_section_exceeded": steep_section_exceeded,
+        "invalid_slope_edges": invalid_slope_edges,
+        "warnings": warnings,
+    }
+
+
+def calculate_route(
+    nodes,
+    edges,
+    start,
+    end,
+    criterion="time",
+    user_limits=None,
+    baseline_route=None,
+):
+    """Wyznacza spersonalizowaną trasę algorytmem A*."""
     start_time = perf_counter()
+    user_limits = user_limits or {}
 
-    # Zbuduj graf wewnętrzny algorytmu
     graph = build_graph(edges)
     nodes_by_id = build_node_map(nodes)
     metrics = SearchMetrics()
 
-    # Sprawdź czy węzły startowy i końcowy są w grafie
     if start not in graph or end not in graph:
         return None
 
-    
-    # Odległości od startu
-    g_score = {node_id: float("inf") for node_id in graph}
-    
-    # Poprzedni węzeł w optymalnej ścieżce
-    previous = {node_id: None for node_id in graph}
+    g_score = {
+        node_id: float("inf")
+        for node_id in graph
+    }
+    previous = {
+        node_id: None
+        for node_id in graph
+    }
 
-    # Start ma odległość 0
-    g_score[start] = 0
-
-    # Kolejka priorytetowa: (priorytet, węzeł)
-    first_priority = heuristic(start, end, nodes_by_id, criterion)
-    queue = [(first_priority, start)]
+    g_score[start] = 0.0
+    first_priority = custom_hikeup_heuristic(
+        start,
+        end,
+        nodes_by_id,
+        criterion,
+        user_limits,
+    )
+    queue = [(first_priority, 0.0, start)]
     metrics.queue_pushes += 1
 
-    
     while queue:
-        current_priority, current_node = heapq.heappop(queue)
+        _, current_score, current_node = heapq.heappop(queue)
+
+        if current_score > g_score[current_node]:
+            continue
+
         metrics.visited_nodes += 1
 
-        # Jeśli dotarliśmy do celu, możemy zakończyć
         if current_node == end:
             break
 
-        # Przeanalizuj wszystkich sąsiadów
         for neighbor_data in graph[current_node]:
             metrics.analyzed_edges += 1
 
             neighbor = neighbor_data["node"]
             edge = neighbor_data["edge"]
-
-            # Oblicz koszt przejścia do sąsiada za pomocą custom_hikeup_edge_weight
-            new_g_score = g_score[current_node] + custom_hikeup_edge_weight(
-                edge,
-                criterion,
-                user_limits  # ← Tutaj profil użytkownika wpływa na trasę!
+            new_score = (
+                current_score
+                + custom_hikeup_edge_weight(
+                    edge,
+                    criterion,
+                    user_limits,
+                )
             )
 
-            # Jeśli znaleźliśmy lepszą ścieżkę do sąsiada
-            if new_g_score < g_score[neighbor]:
-                g_score[neighbor] = new_g_score
-                previous[neighbor] = current_node
+            if new_score >= g_score[neighbor]:
+                continue
 
-                # Dodaj do kolejki z priorytetem (g_score + heurystyka)
-                h_score = heuristic(neighbor, end, nodes_by_id, criterion)
-                priority = new_g_score + h_score
+            g_score[neighbor] = new_score
+            previous[neighbor] = current_node
 
-                heapq.heappush(queue, (priority, neighbor))
-                metrics.queue_pushes += 1
+            heuristic_score = custom_hikeup_heuristic(
+                neighbor,
+                end,
+                nodes_by_id,
+                criterion,
+                user_limits,
+            )
+            heapq.heappush(
+                queue,
+                (
+                    new_score + heuristic_score,
+                    new_score,
+                    neighbor,
+                ),
+            )
+            metrics.queue_pushes += 1
 
-    
     if g_score[end] == float("inf"):
-        return None  # Nie znaleziono drogi
+        return None
 
-    
-    path = reconstruct_path(previous, end)
-    totals = calculate_route_totals(path, edges)
+    candidate_path = reconstruct_path(previous, end)
+    candidate_totals = calculate_route_totals(
+        candidate_path,
+        edges,
+    )
+    candidate_score = g_score[end]
+
+    path = candidate_path
+    totals = candidate_totals
+    custom_score = candidate_score
+    fallback_applied = False
+    detour_ratio = 1.0
+    max_detour_ratio = max(
+        1.0,
+        as_number(
+            user_limits.get("max_detour_ratio"),
+            1.35,
+        ),
+    )
+    edge_lookup = build_edge_map(edges)
+
+    if baseline_route and baseline_route.get("path"):
+        baseline_path = baseline_route["path"]
+        baseline_totals = baseline_route.get("totals") or (
+            calculate_route_totals(baseline_path, edges)
+        )
+        baseline_distance = max(
+            0.0,
+            as_number(
+                baseline_totals.get("distance_km"),
+                0,
+            ),
+        )
+
+        if baseline_distance > 0:
+            detour_ratio = (
+                candidate_totals["distance_km"]
+                / baseline_distance
+            )
+
+        if detour_ratio > max_detour_ratio:
+            fallback_applied = True
+            path = baseline_path
+            totals = baseline_totals
+            custom_score = calculate_custom_path_score(
+                path,
+                edge_lookup,
+                criterion,
+                user_limits,
+            )
 
     comparable_route_weight = calculate_route_weight(
-    path,
-    edges,
-    criterion,
+        path,
+        edges,
+        criterion,
+    )
+    profile_evaluation = evaluate_route_profile(
+        path,
+        totals,
+        edge_lookup,
+        user_limits,
     )
 
-    custom_score = round(g_score[end], 3)
-    metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
+    if fallback_applied:
+        profile_evaluation["warnings"].insert(
+            0,
+            "Wariant spersonalizowany był zbyt długi "
+            f"({detour_ratio:.2f}× trasy bazowej), dlatego "
+            "zastosowano bezpieczne ograniczenie objazdu.",
+        )
 
-    
+    profile_evaluation.update(
+        {
+            "detour_ratio": round(detour_ratio, 3),
+            "max_detour_ratio": max_detour_ratio,
+            "fallback_applied": fallback_applied,
+        }
+    )
+
+    metrics.execution_time_ms = round(
+        (perf_counter() - start_time) * 1000,
+        3,
+    )
+
     return {
-    "path": path,
-    "totals": totals,
-    "route_weight": comparable_route_weight,
-    "custom_score": custom_score,
-    "metrics": {
-        "visited_nodes": metrics.visited_nodes,
-        "analyzed_edges": metrics.analyzed_edges,
-        "queue_pushes": metrics.queue_pushes,
-        "execution_time_ms": metrics.execution_time_ms,
+        "algorithm": "custom_hikeup",
+        "path": path,
+        "totals": totals,
         "route_weight": comparable_route_weight,
-        "custom_score": custom_score,
-    },
-}
+        "custom_score": round(custom_score, 3),
+        "profile_evaluation": profile_evaluation,
+        "warnings": profile_evaluation["warnings"],
+        "metrics": {
+            "visited_nodes": metrics.visited_nodes,
+            "analyzed_edges": metrics.analyzed_edges,
+            "queue_pushes": metrics.queue_pushes,
+            "execution_time_ms": metrics.execution_time_ms,
+            "route_weight": comparable_route_weight,
+            "custom_score": round(custom_score, 3),
+            "candidate_custom_score": round(
+                candidate_score,
+                3,
+            ),
+            "fallback_applied": fallback_applied,
+            "detour_ratio": round(detour_ratio, 3),
+        },
+    }

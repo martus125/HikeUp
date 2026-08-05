@@ -33,7 +33,7 @@ def execute_schema(cursor):
         """
         CREATE TABLE IF NOT EXISTS user_profiles (
             user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-            height_cm INTEGER,
+            age_years INTEGER,
             experience_level VARCHAR(100),
             route_preference VARCHAR(100),
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -59,22 +59,9 @@ def execute_schema(cursor):
         """
     )
     cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS user_profiles (
-            user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-            age_years INTEGER,  -- ← ZMIANA: zamiast height_cm
-            experience_level VARCHAR(100),
-            route_preference VARCHAR(100),
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
-        """
+        "ALTER TABLE user_profiles "
+        "ADD COLUMN IF NOT EXISTS age_years INTEGER;"
     )
-    
-    # Dodaj kolumnę jeśli już istnieje stara tabela
-    try:
-        cursor.execute("ALTER TABLE user_profiles ADD COLUMN IF NOT EXISTS age_years INTEGER;")
-    except:
-        pass  # Kolumna już istnieje
     
     print("[DB] Schema tables created/verified", flush=True)
 

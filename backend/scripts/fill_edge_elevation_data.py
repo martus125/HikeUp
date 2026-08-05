@@ -9,6 +9,7 @@ from pathlib import Path
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 MAP_FILE = BACKEND_DIR / "mapa" / "cala_mapa.json"
+MAX_REASONABLE_SLOPE_PERCENT = 100
 
 
 def as_number(value, default=None):
@@ -48,6 +49,13 @@ def calculate_slope_percent(elevation_difference_m, distance_km):
     absolute_difference = abs(elevation_difference_m)
     slope_percent = (absolute_difference / distance_m) * 100
     return round(slope_percent, 2)
+
+
+def calculate_hiking_time_minutes(distance_km, elevation_gain_m):
+    """Szacuje czas: 5 km/h po płaskim i 600 m podejścia na godzinę."""
+    flat_time = distance_km / 5 * 60
+    ascent_time = elevation_gain_m / 600 * 60
+    return round(flat_time + ascent_time, 2)
 
 
 def update_edges(map_data):
@@ -103,13 +111,22 @@ def update_edges(map_data):
             statistics["invalid_distance"] += 1
             continue
 
-        if slope_percent > 100:
+        if slope_percent > MAX_REASONABLE_SLOPE_PERCENT:
             statistics["suspicious_slope"] += 1
+
+        slope_percent = min(
+            slope_percent,
+            MAX_REASONABLE_SLOPE_PERCENT,
+        )
 
         edge["elevation_change_m"] = elevation_change
         edge["elevation_gain_m"] = elevation_gain
         edge["elevation_loss_m"] = elevation_loss
         edge["slope_percent"] = slope_percent
+        edge["time_min"] = calculate_hiking_time_minutes(
+            distance_km,
+            elevation_gain,
+        )
 
         statistics["updated"] += 1
 

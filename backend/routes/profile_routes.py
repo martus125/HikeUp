@@ -14,13 +14,13 @@ def profile_get(user_id):
 def profile_update(user_id):
     data = request.get_json() or {}
 
-    height_cm = data.get("height_cm")
+    age_years = data.get("age_years")
     experience_level = data.get("experience_level")
     route_preference = data.get("route_preference")
 
     result = update_user_profile(
         user_id,
-        height_cm,
+        age_years,
         experience_level,
         route_preference,
     )

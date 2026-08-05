@@ -1,6 +1,10 @@
 from dataclasses import dataclass
 
-from algorithms.weights import as_number, edge_weight
+from algorithms.weights import (
+    as_number,
+    edge_weight,
+    estimate_hiking_time_minutes,
+)
 
 
 @dataclass
@@ -171,7 +175,8 @@ def calculate_route_totals(path, edges):
 
     total_distance = 0.0
     total_time = 0.0
-    total_difficulty = 0.0
+    weighted_difficulty = 0.0
+    maximum_difficulty = 0.0
     total_elevation_gain = 0.0
     total_elevation_loss = 0.0
 
@@ -190,9 +195,22 @@ def calculate_route_totals(path, edges):
             end,
         )
 
-        total_distance += as_number(edge.get("distance_km"), 0)
-        total_time += as_number(edge.get("time_min"), 0)
-        total_difficulty += as_number(edge.get("difficulty"), 0)
+        distance = max(
+            0.0,
+            as_number(edge.get("distance_km"), 0),
+        )
+        difficulty = max(
+            0.0,
+            as_number(edge.get("difficulty"), 0),
+        )
+
+        total_distance += distance
+        total_time += estimate_hiking_time_minutes(edge)
+        weighted_difficulty += difficulty * distance
+        maximum_difficulty = max(
+            maximum_difficulty,
+            difficulty,
+        )
         total_elevation_gain += as_number(
             edge.get("elevation_gain_m"),
             0,
@@ -202,10 +220,17 @@ def calculate_route_totals(path, edges):
             0,
         )
 
+    average_difficulty = (
+        weighted_difficulty / total_distance
+        if total_distance > 0
+        else 0.0
+    )
+
     return {
         "distance_km": round(total_distance, 2),
         "time_min": round(total_time),
-        "difficulty": round(total_difficulty, 2),
+        "difficulty": round(average_difficulty, 2),
+        "max_difficulty": round(maximum_difficulty, 2),
         "elevation": round(total_elevation_gain),
         "elevation_gain": round(total_elevation_gain),
         "elevation_gain_m": round(total_elevation_gain),

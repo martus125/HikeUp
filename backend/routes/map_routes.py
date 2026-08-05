@@ -197,6 +197,10 @@ def build_single_route_response(
         "criterion": criterion,
         "metrics": metrics,
         "totals": totals,
+        "profile_evaluation": route_result.get(
+            "profile_evaluation"
+        ),
+        "warnings": route_result.get("warnings", []),
     }
 
 
@@ -458,6 +462,7 @@ def route():
 
         routes = []
         algorithm_errors = {}
+        algorithm_results = {}
 
         for algorithm_config in ROUTE_ALGORITHMS:
             algorithm_key = algorithm_config["key"]
@@ -481,6 +486,7 @@ def route():
                         routing_end_id,
                         criterion,
                         user_limits,
+                        algorithm_results.get("dijkstra"),
                     )
 
                     print(
@@ -560,6 +566,8 @@ def route():
                         f"{algorithm_label} zwrócił "
                         "wynik bez pola 'path'."
                     )
+
+                algorithm_results[algorithm_key] = route_result
 
                 print(
                     f"{algorithm_label}: "

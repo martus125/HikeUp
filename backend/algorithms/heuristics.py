@@ -1,5 +1,7 @@
 import math
 
+from algorithms.weights import DEFAULT_FLAT_SPEED_KMH, validate_criterion
+
 
 def haversine_km(first_node, second_node):
     """
@@ -49,6 +51,8 @@ def heuristic(current_id, goal_id, nodes_by_id, criterion="time"):
 
     h(n) to właśnie ta funkcja.
     """
+    validate_criterion(criterion)
+
     current = nodes_by_id.get(current_id)
     goal = nodes_by_id.get(goal_id)
 
@@ -61,18 +65,25 @@ def heuristic(current_id, goal_id, nodes_by_id, criterion="time"):
         return distance
 
     if criterion == "time":
-        # Zakładam orientacyjnie 5 km/h jako maksymalnie optymistyczne tempo.
-        return distance / 5 * 60
+        # 5 km/h jest optymistyczną prędkością użytą również przez edge_weight.
+        # Podejścia tylko zwiększają koszt, więc oszacowanie pozostaje dolne.
+        return distance / DEFAULT_FLAT_SPEED_KMH * 60
 
-    if criterion == "elevation":
-        current_elevation = float(current.get("elevation") or 0)
-        goal_elevation = float(goal.get("elevation") or 0)
+    if criterion in {"elevation", "difficulty"}:
+        # Dla tych złożonych kosztów nie używamy odległości w kilometrach jako
+        # heurystyki o innej jednostce. h=0 zachowuje optymalność i sprawia, że
+        # A* działa metodologicznie jak Dijkstra dla danego edge_weight.
+        return 0.0
 
-        estimated_gain = max(0, goal_elevation - current_elevation)
+    raise AssertionError("Kryterium zostało zweryfikowane powyżej.")
 
-        return estimated_gain + distance * 10
 
-    if criterion == "difficulty":
-        return distance * 10
+def greedy_heuristic(current_id, goal_id, nodes_by_id):
+    """Geograficzna heurystyka Greedy, niezależna od kryterium kosztu."""
+    current = nodes_by_id.get(current_id)
+    goal = nodes_by_id.get(goal_id)
 
-    return distance
+    if not current or not goal:
+        return 0.0
+
+    return haversine_km(current, goal)

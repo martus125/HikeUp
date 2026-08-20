@@ -33,6 +33,7 @@ function App() {
     age_years: "",
     experience_level: "",
     route_preference: "",
+    prefer_shelters: false,
   });
   const [profileMessage, setProfileMessage] = useState("");
 
@@ -47,10 +48,19 @@ function App() {
   const [endSearch, setEndSearch] = useState("");
   const [activeSearch, setActiveSearch] = useState(null);
   const [criterion, setCriterion] = useState("time");
-  const [selectingPoint, setSelectingPoint] = useState("A");
   const [routeResult, setRouteResult] = useState(null);
   const [loadingRoutes, setLoadingRoutes] = useState(false);
-  const [favoriteRoutes, setFavoriteRoutes] = useState([]);
+  const [favoriteRoutes, setFavoriteRoutes] = useState(() => {
+    const savedFavorites = localStorage.getItem("hikeup_favorite_routes");
+    if (!savedFavorites) return [];
+
+    try {
+      const parsedFavorites = JSON.parse(savedFavorites);
+      return Array.isArray(parsedFavorites) ? parsedFavorites : [];
+    } catch {
+      return [];
+    }
+  });
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("login");
@@ -67,13 +77,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const savedFavorites = localStorage.getItem("hikeup_favorite_routes");
-    if (savedFavorites) {
-      setFavoriteRoutes(JSON.parse(savedFavorites));
-    }
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem("hikeup_favorite_routes", JSON.stringify(favoriteRoutes));
   }, [favoriteRoutes]);
 
@@ -83,7 +86,6 @@ function App() {
     [graph.edges],
   );
   const nodeById = useMemo(() => createPointMap(nodes), [nodes]);
-  const pointById = useMemo(() => createPointMap(searchPoints), [searchPoints]);
   const allSearchPoints = useMemo(() => {
     const source = searchPoints.length > 0 ? searchPoints : nodes;
     return getUniqueSortedPoints(source);
@@ -118,19 +120,15 @@ function App() {
     setStartId(point.id);
     setStartSearch(getPointName(point));
     setActiveSearch(null);
-    setSelectingPoint("B");
   }
 
   function selectEndPoint(point) {
     setEndId(point.id);
     setEndSearch(getPointName(point));
     setActiveSearch(null);
-    setSelectingPoint("A");
   }
 
-  function handleMarkerClick(nodeId) {
-   
-  }
+  function handleMarkerClick() {}
 
   function scrollToPlanner() {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -148,6 +146,10 @@ function App() {
 
     if (routePreference === "najłatwiejsza" || routePreference === "easy") {
       return "difficulty";
+    }
+
+    if (routePreference === "najmniejsze przewyższenie") {
+      return "elevation";
     }
 
     return criterion;
@@ -205,6 +207,13 @@ function App() {
         totals: route.totals || {},
         profileEvaluation: route.profile_evaluation || null,
         warnings: Array.isArray(route.warnings) ? route.warnings : [],
+        recommendationStatus:
+          route.recommendation_status || "recommended",
+        message: route.message || "",
+        comparisonRoute: route.comparison_route || null,
+        alternativeDestinations: Array.isArray(route.alternative_destinations)
+          ? route.alternative_destinations
+          : [],
       };
     }
 
@@ -234,7 +243,11 @@ function App() {
       const routes = Array.isArray(data.routes)
         ? data.routes
             .map(normalizeAlgorithmRoute)
-            .filter((route) => route.positions.length > 1)
+            .filter(
+              (route) =>
+                route.positions.length > 1 ||
+                route.recommendationStatus === "no_suitable_route",
+            )
         : [normalizeAlgorithmRoute(data)].filter(
             (route) => route.positions.length > 1,
           );
@@ -318,6 +331,7 @@ function App() {
       age_years: "",
       experience_level: "",
       route_preference: "",
+      prefer_shelters: false,
     });
     setProfileMessage("");
   }
@@ -380,6 +394,7 @@ function App() {
         age_years: data.age_years || "",
         experience_level: data.experience_level || "",
         route_preference: data.route_preference || "",
+        prefer_shelters: Boolean(data.prefer_shelters),
       });
 
       if (data.route_preference) {
@@ -403,6 +418,7 @@ function App() {
         age_years: profile.age_years,
         experience_level: profile.experience_level,
         route_preference: profile.route_preference,
+        prefer_shelters: profile.prefer_shelters,
       });
 
       setCriterion(getCriterionFromPreference(profile.route_preference));
@@ -530,8 +546,30 @@ function App() {
                   <option value="najkrótsza">Najkrótsza</option>
                   <option value="najszybsza">Najszybsza</option>
                   <option value="najłatwiejsza">Najłatwiejsza</option>
+                  <option value="najmniejsze przewyższenie">
+                    Najmniejsze przewyższenie
+                  </option>
                 </select>
               </label>
+
+              <label className="profile-checkbox">
+                <input
+                  type="checkbox"
+                  checked={profile.prefer_shelters}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      prefer_shelters: event.target.checked,
+                    })
+                  }
+                />
+                <span>Chcę trasę przebiegającą przy schroniskach</span>
+              </label>
+              <p className="profile-field-help">
+                Custom HikeUp uwzględni schronisko do 350 m od szlaku tylko
+                wtedy, gdy wariant pozostaje bezpieczny i jest najwyżej o 10%
+                dłuższy od najkrótszej akceptowalnej trasy.
+              </p>
 
               <button type="submit" className="auth-submit">
                 Zapisz profil
@@ -572,11 +610,9 @@ function App() {
               routeResult={routeResult}
               onStartFocus={() => {
                 setActiveSearch("start");
-                setSelectingPoint("A");
               }}
               onEndFocus={() => {
                 setActiveSearch("end");
-                setSelectingPoint("B");
               }}
               onBlurSearch={() => setTimeout(() => setActiveSearch(null), 150)}
               onStartSearchChange={(value) => {
@@ -591,6 +627,7 @@ function App() {
               }}
               onStartSelect={selectStartPoint}
               onEndSelect={selectEndPoint}
+              onAlternativeSelect={selectEndPoint}
               onCriterionChange={setCriterion}
               onCalculateRoute={calculateRoute}
               onAddFavorite={addRouteToFavorites}

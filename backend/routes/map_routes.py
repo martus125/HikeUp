@@ -6,9 +6,20 @@ import traceback
 from algorithms.dijkstra import calculate_route as calculate_dijkstra
 from algorithms.astar import calculate_route as calculate_astar
 from algorithms.greedy import calculate_route as calculate_greedy
-from algorithms.custom import calculate_route as calculate_custom_hikeup
+from algorithms.custom import (
+    calculate_route as calculate_custom_hikeup,
+    find_profile_suitable_destination_alternatives,
+)
+from algorithms.weights import validate_criterion
+from models.experience_config import (
+    apply_shelter_preference,
+    criterion_from_route_preference,
+    get_limits,
+    infer_experience_level,
+)
 
 from services.map_service import (
+    distance_between_points,
     get_point_by_id,
     load_full_map,
     load_points,
@@ -16,6 +27,9 @@ from services.map_service import (
 )
 
 map_bp = Blueprint("map", __name__, url_prefix="/api")
+
+ALTERNATIVE_DESTINATION_RADIUS_KM = 8.0
+ALTERNATIVE_DESTINATION_CANDIDATES = 24
 
 
 ROUTE_ALGORITHMS = [
@@ -128,6 +142,110 @@ def build_node_lookup(routing_nodes):
     return node_lookup
 
 
+def build_alternative_destination_candidates(
+    points,
+    start_point,
+    end_point,
+    routing_nodes,
+    routing_start_id,
+    routing_end_id,
+):
+    """Wybiera podobne pobliskie POI, zanim algorytm oceni ich trasy."""
+    end_type = end_point.get("type")
+    related_types = {
+        "alpine_hut": {"alpine_hut", "shelter"},
+        "shelter": {"alpine_hut", "shelter"},
+    }
+    allowed_types = related_types.get(end_type, {end_type})
+    end_lat = end_point.get("lat")
+    end_lng = end_point.get("lng", end_point.get("lon"))
+    end_elevation = end_point.get("elevation")
+
+    try:
+        end_lat = float(end_lat)
+        end_lng = float(end_lng)
+    except (TypeError, ValueError):
+        return []
+
+    try:
+        end_elevation = float(end_elevation)
+    except (TypeError, ValueError):
+        end_elevation = None
+
+    preliminary = []
+    for point in points:
+        if point.get("id") in {start_point.get("id"), end_point.get("id")}:
+            continue
+        if point.get("type") not in allowed_types:
+            continue
+
+        point_lat = point.get("lat")
+        point_lng = point.get("lng", point.get("lon"))
+        try:
+            point_lat = float(point_lat)
+            point_lng = float(point_lng)
+        except (TypeError, ValueError):
+            continue
+
+        distance_km = distance_between_points(
+            end_lat,
+            end_lng,
+            point_lat,
+            point_lng,
+        )
+        if not 0.1 <= distance_km <= ALTERNATIVE_DESTINATION_RADIUS_KM:
+            continue
+
+        elevation_penalty = 0.0
+        try:
+            point_elevation = float(point.get("elevation"))
+            if end_elevation is not None and point_elevation > 0:
+                elevation_penalty = abs(point_elevation - end_elevation) / 1000
+        except (TypeError, ValueError):
+            pass
+
+        preliminary.append(
+            {
+                "point": point,
+                "distance_from_requested_km": distance_km,
+                "similarity_score": distance_km + elevation_penalty,
+            }
+        )
+
+    preliminary.sort(key=lambda item: item["similarity_score"])
+    routing_node_ids = {
+        node.get("id")
+        for node in routing_nodes
+        if node.get("id") is not None
+    }
+    candidates = []
+    for candidate in preliminary[:ALTERNATIVE_DESTINATION_CANDIDATES]:
+        point = candidate["point"]
+        routing_node_id = (
+            point.get("routing_node_id")
+            or point.get("nearest_routing_node_id")
+            or point.get("node_id")
+            or point.get("nearest_node")
+        )
+        if routing_node_id not in routing_node_ids:
+            routing_node_id = resolve_routing_node(point, routing_nodes)
+        if routing_node_id in {
+            None,
+            routing_start_id,
+            routing_end_id,
+        }:
+            continue
+
+        candidates.append(
+            {
+                **candidate,
+                "routing_node_id": routing_node_id,
+            }
+        )
+
+    return candidates
+
+
 def build_single_route_response(
     algorithm_key,
     algorithm_label,
@@ -157,50 +275,75 @@ def build_single_route_response(
     totals = route_result.get("totals", {})
     metrics = route_result.get("metrics", {})
 
+    distance = get_total_value(
+        route_result,
+        totals,
+        "distance_km",
+        "distance",
+        default=0,
+    )
+    route_time = get_total_value(
+        route_result,
+        totals,
+        "time_min",
+        "time",
+        default=0,
+    )
+    difficulty = get_total_value(
+        route_result,
+        totals,
+        "difficulty",
+        default=0,
+    )
+    elevation_gain = get_total_value(
+        route_result,
+        totals,
+        "elevation_gain_m",
+        "total_elevation_gain",
+        default=0,
+    )
+    route_weight = metrics.get(
+        "route_weight",
+        route_result.get("route_weight", 0),
+    )
+
     return {
         "algorithm": algorithm_key,
         "label": algorithm_label,
         "path": path_points,
         "positions": route_positions,
         "path_ids": path_ids,
-        "total_distance_km": get_total_value(
-            route_result,
-            totals,
-            "distance_km",
-            "distance",
-            default=0,
-        ),
-        "total_time_min": get_total_value(
-            route_result,
-            totals,
-            "time_min",
-            "time",
-            default=0,
-        ),
-        "total_difficulty": get_total_value(
-            route_result,
-            totals,
-            "difficulty",
-            default=0,
-        ),
-        "total_elevation_gain_m": get_total_value(
-            route_result,
-            totals,
-            "elevation_gain_m",
-            "total_elevation_gain",
-            default=0,
-        ),
-        "route_weight": metrics.get(
-            "route_weight",
-            route_result.get("route_weight", 0),
-        ),
+        "total_distance_km": distance,
+        "total_time_min": route_time,
+        "total_difficulty": difficulty,
+        "total_elevation_gain_m": elevation_gain,
+        "total_elevation_loss_m": totals.get("elevation_loss_m", 0),
+        "route_weight": route_weight,
+        "max_slope_percent": totals.get("max_slope_percent", 0),
+        "average_slope_percent": totals.get("average_slope_percent", 0),
+        "shelters_count": totals.get("shelters_count", 0),
+
+        # Zachowane aliasy pozwalają obsłużyć starsze i nowsze komponenty UI.
+        "distance": distance,
+        "time": route_time,
+        "difficulty": difficulty,
+        "elevation": elevation_gain,
+        "routeWeight": route_weight,
         "criterion": criterion,
         "metrics": metrics,
         "totals": totals,
-        "profile_evaluation": route_result.get(
-            "profile_evaluation"
-        ),
+        "profile_evaluation": route_result.get("profile_evaluation") or {},
         "warnings": route_result.get("warnings", []),
+        "recommendation_status": route_result.get(
+            "recommendation_status",
+            "recommended",
+        ),
+        "message": route_result.get("message"),
+        "comparison_route": route_result.get("comparison_route"),
+        "alternative_destinations": route_result.get(
+            "alternative_destinations",
+            [],
+        ),
     }
 
 
@@ -259,18 +402,15 @@ def route():
 
         start = data.get("start")
         end = data.get("end")
-        criterion = data.get("criterion", "time")
+        criterion = data.get("criterion")
         user_id = data.get("user_id")
 
         user_limits = None
+        profile = {}
 
         if user_id:
             try:
                 from database import get_user_profile
-                from models.experience_config import (
-                    get_limits,
-                    infer_experience_level,
-                )
 
                 profile = get_user_profile(user_id)
 
@@ -279,7 +419,10 @@ def route():
                     profile.get("experience_level"),
                 )
 
-                user_limits = get_limits(experience)
+                user_limits = apply_shelter_preference(
+                    get_limits(experience),
+                    profile.get("prefer_shelters", False),
+                )
 
                 print(
                     f"[LOG] User {user_id}: "
@@ -294,10 +437,27 @@ def route():
                 )
                 user_limits = None
 
-        if not user_limits:
-            from models.experience_config import get_limits
+        if not criterion:
+            criterion = criterion_from_route_preference(
+                profile.get("route_preference"),
+                default="time",
+            )
 
-            user_limits = get_limits("intermediate")
+        try:
+            validate_criterion(criterion)
+        except ValueError as error:
+            return jsonify(
+                {
+                    "success": False,
+                    "message": str(error),
+                }
+            ), 400
+
+        if not user_limits:
+            user_limits = apply_shelter_preference(
+                get_limits("intermediate"),
+                False,
+            )
 
             print(
                 "[LOG] Brak profilu - używam domyślnych "
@@ -487,6 +647,7 @@ def route():
                         criterion,
                         user_limits,
                         algorithm_results.get("dijkstra"),
+                        points,
                     )
 
                     print(
@@ -501,6 +662,7 @@ def route():
                         routing_start_id,
                         routing_end_id,
                         criterion,
+                        points,
                     )
 
                 algorithm_elapsed = (
@@ -626,6 +788,62 @@ def route():
                 )
                 print(algorithm_error, flush=True)
                 traceback.print_exc()
+
+        custom_result = algorithm_results.get("custom_hikeup")
+        if (
+            custom_result
+            and custom_result.get("recommendation_status")
+            == "no_suitable_route"
+        ):
+            destination_candidates = build_alternative_destination_candidates(
+                points,
+                start_point,
+                end_point,
+                routing_nodes,
+                routing_start_id,
+                routing_end_id,
+            )
+            dijkstra_result = algorithm_results.get("dijkstra") or {}
+            dijkstra_totals = dijkstra_result.get("totals") or {}
+            alternatives = find_profile_suitable_destination_alternatives(
+                routing_nodes,
+                routing_edges,
+                routing_start_id,
+                destination_candidates,
+                criterion,
+                user_limits,
+                points=points,
+                reference_distance_km=dijkstra_totals.get("distance_km"),
+            )
+            custom_result["alternative_destinations"] = alternatives
+            custom_result["profile_evaluation"][
+                "alternative_destinations_count"
+            ] = len(alternatives)
+
+            if not alternatives:
+                no_alternative_warning = (
+                    "Nie znaleziono pobliskiego celu tego samego typu, do "
+                    "którego prowadzi rozsądna trasa zgodna z profilem."
+                )
+                custom_result["warnings"].append(no_alternative_warning)
+                custom_result["profile_evaluation"]["warnings"].append(
+                    no_alternative_warning
+                )
+
+            custom_response = next(
+                (
+                    route_item
+                    for route_item in routes
+                    if route_item["algorithm"] == "custom_hikeup"
+                ),
+                None,
+            )
+            if custom_response is not None:
+                custom_response["alternative_destinations"] = alternatives
+                custom_response["profile_evaluation"] = custom_result[
+                    "profile_evaluation"
+                ]
+                custom_response["warnings"] = custom_result["warnings"]
 
         if not routes:
             return jsonify(

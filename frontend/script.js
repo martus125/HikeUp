@@ -1,3 +1,5 @@
+/* global L */
+
 const routeButton = document.getElementById("routeButton");
 const routeResult = document.getElementById("routeResult");
 const startSelect = document.getElementById("start");
@@ -37,7 +39,7 @@ async function loadPoints() {
         fillSelect(endSelect, data.points);
         showAllPointsOnMap(data.points);
 
-    } catch (error) {
+    } catch {
         showPointsError();
     }
 }
@@ -142,7 +144,7 @@ routeButton.addEventListener("click", async function () {
 
         drawRouteOnMap(data.path);
 
-    } catch (error) {
+    } catch {
         routeResult.innerHTML = `
             <div class="error">
                 Nie udało się połączyć z serwerem. Sprawdź, czy backend jest uruchomiony.

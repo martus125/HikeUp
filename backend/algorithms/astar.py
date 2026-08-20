@@ -3,15 +3,23 @@ from time import perf_counter
 
 from algorithms.common import (
     SearchMetrics,
+    build_algorithm_result,
     build_graph,
     reconstruct_path,
     calculate_route_totals,
 )
-from algorithms.weights import edge_weight
+from algorithms.weights import edge_weight, validate_criterion
 from algorithms.heuristics import build_node_map, heuristic
 
 
-def calculate_route(nodes, edges, start, end, criterion="time"):
+def calculate_route(
+    nodes,
+    edges,
+    start,
+    end,
+    criterion="time",
+    points=None,
+):
     """
     Algorytm A* wyznaczający trasę po grafie szlaków.
 
@@ -19,6 +27,7 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
     bierze pod uwagę heurystykę, czyli szacowany koszt dojścia do celu.
     """
     start_time = perf_counter()
+    validate_criterion(criterion)
 
     graph = build_graph(edges)
     nodes_by_id = build_node_map(nodes)
@@ -40,11 +49,15 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
     g_score[start] = 0
 
     first_priority = heuristic(start, end, nodes_by_id, criterion)
-    queue = [(first_priority, start)]
+    queue = [(first_priority, 0.0, start)]
     metrics.queue_pushes += 1
 
     while queue:
-        current_priority, current_node = heapq.heappop(queue)
+        _, queued_g_score, current_node = heapq.heappop(queue)
+
+        if queued_g_score > g_score[current_node]:
+            continue
+
         metrics.visited_nodes += 1
 
         if current_node == end:
@@ -56,7 +69,7 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
             neighbor = neighbor_data["node"]
             edge = neighbor_data["edge"]
 
-            new_g_score = g_score[current_node] + edge_weight(edge, criterion)
+            new_g_score = queued_g_score + edge_weight(edge, criterion)
 
             if new_g_score < g_score[neighbor]:
                 g_score[neighbor] = new_g_score
@@ -65,36 +78,30 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
                 h_score = heuristic(neighbor, end, nodes_by_id, criterion)
                 priority = new_g_score + h_score
 
-                heapq.heappush(queue, (priority, neighbor))
+                heapq.heappush(
+                    queue,
+                    (priority, new_g_score, neighbor),
+                )
                 metrics.queue_pushes += 1
 
     if g_score[end] == float("inf"):
         return None
 
     path = reconstruct_path(previous, end)
-    totals = calculate_route_totals(path, edges)
+    totals = calculate_route_totals(
+        path,
+        edges,
+        nodes=nodes,
+        points=points,
+    )
 
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
 
-    return {
-        "algorithm": "astar",
-        "path": path,
-
-        # Te pola zostawiamy, żeby backend/frontend działał tak jak przy Dijkstrze.
-        "distance": totals["distance_km"],
-        "time": totals["time_min"],
-        "difficulty": totals["difficulty"],
-        "total_elevation_gain": totals["elevation_gain_m"],
-        "criterion": criterion,
-        "route_weight": round(g_score[end], 3),
-
-        # Te pola są już pod porównywanie algorytmów.
-        "totals": totals,
-        "metrics": {
-            "visited_nodes": metrics.visited_nodes,
-            "analyzed_edges": metrics.analyzed_edges,
-            "queue_pushes": metrics.queue_pushes,
-            "execution_time_ms": metrics.execution_time_ms,
-            "route_weight": round(g_score[end], 3),
-        },
-    }
+    return build_algorithm_result(
+        algorithm="astar",
+        path=path,
+        totals=totals,
+        metrics=metrics,
+        criterion=criterion,
+        route_weight=g_score[end],
+    )

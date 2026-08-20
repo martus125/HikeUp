@@ -16,7 +16,10 @@ from algorithms.weights import (
 )
 from models.experience_config import get_limits
 from routes.map_routes import build_single_route_response
-from scripts.fill_edge_elevation_data import update_edges
+from scripts.fill_edge_elevation_data import (
+    calculate_hiking_time_minutes,
+    update_edges,
+)
 
 
 NODES = [
@@ -253,7 +256,7 @@ class ElevationAlgorithmsTests(unittest.TestCase):
             edge_weight(half_edge, "difficulty") * 2,
         )
 
-    def test_custom_falls_back_when_detour_is_too_long(self):
+    def test_custom_keeps_safe_detour_within_absolute_limit(self):
         nodes = [
             {"id": "start", "lat": 49.0, "lng": 19.0, "elevation": 100},
             {"id": "middle", "lat": 49.005, "lng": 19.005, "elevation": 100},
@@ -313,9 +316,14 @@ class ElevationAlgorithmsTests(unittest.TestCase):
             baseline_route,
         )
 
-        self.assertEqual(result["path"], ["start", "end"])
+        self.assertEqual(result["path"], ["start", "middle", "end"])
+        self.assertFalse(result["profile_evaluation"]["fallback_applied"])
+        self.assertEqual(
+            result["profile_evaluation"]["recommendation_status"],
+            "recommended",
+        )
         self.assertTrue(
-            result["profile_evaluation"]["fallback_applied"]
+            result["profile_evaluation"]["detour_preference_exceeded"]
         )
         self.assertEqual(
             result["profile_evaluation"]["detour_ratio"],
@@ -324,6 +332,12 @@ class ElevationAlgorithmsTests(unittest.TestCase):
 
 
 class ElevationDataScriptTests(unittest.TestCase):
+    def test_positive_micro_edge_time_does_not_round_to_zero(self):
+        self.assertEqual(
+            calculate_hiking_time_minutes(0.0001, 0),
+            0.01,
+        )
+
     def test_update_edges_populates_directional_fields(self):
         map_data = {
             "nodes": [dict(node) for node in NODES],
@@ -349,7 +363,7 @@ class ElevationDataScriptTests(unittest.TestCase):
         map_data = {
             "nodes": [
                 {"id": "a", "elevation": 100},
-                {"id": "b", "elevation": 200},
+                {"id": "b", "elevation": 400},
             ],
             "edges": [
                 {
@@ -364,7 +378,40 @@ class ElevationDataScriptTests(unittest.TestCase):
         edge = map_data["edges"][0]
 
         self.assertEqual(statistics["suspicious_slope"], 1)
+        self.assertEqual(statistics["corrected_slope_capped"], 1)
         self.assertEqual(edge["slope_percent"], 100)
+
+    def test_update_edges_spreads_dem_step_over_short_way(self):
+        nodes = [
+            {
+                "id": f"n{index}",
+                "elevation": 100 if index < 5 else 118,
+            }
+            for index in range(11)
+        ]
+        edges = [
+            {
+                "from": f"n{index}",
+                "to": f"n{index + 1}",
+                "distance_km": 0.01,
+                "osm_way_id": "way/test",
+            }
+            for index in range(10)
+        ]
+        map_data = {"nodes": nodes, "edges": edges}
+
+        statistics = update_edges(map_data)
+
+        self.assertEqual(statistics["raw_zero_slope"], 9)
+        self.assertEqual(statistics["raw_slope_above_100"], 1)
+        self.assertEqual(statistics["corrected_zero_slope"], 0)
+        self.assertTrue(
+            all(edge["slope_percent"] == 10 for edge in edges)
+        )
+        self.assertEqual(
+            map_data["routing_data_metadata"]["slope_calculation"]["window_m"],
+            180.0,
+        )
 
 
 if __name__ == "__main__":

@@ -36,6 +36,7 @@ def execute_schema(cursor):
             age_years INTEGER,
             experience_level VARCHAR(100),
             route_preference VARCHAR(100),
+            prefer_shelters BOOLEAN NOT NULL DEFAULT FALSE,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """
@@ -61,6 +62,11 @@ def execute_schema(cursor):
     cursor.execute(
         "ALTER TABLE user_profiles "
         "ADD COLUMN IF NOT EXISTS age_years INTEGER;"
+    )
+    cursor.execute(
+        "ALTER TABLE user_profiles "
+        "ADD COLUMN IF NOT EXISTS prefer_shelters "
+        "BOOLEAN NOT NULL DEFAULT FALSE;"
     )
     
     print("[DB] Schema tables created/verified", flush=True)
@@ -261,7 +267,8 @@ def get_user_profile(user_id):
             with connection.cursor() as cursor:
                 cursor.execute(
                     """
-                    SELECT user_id, age_years, experience_level, route_preference
+                    SELECT user_id, age_years, experience_level,
+                           route_preference, prefer_shelters
                     FROM user_profiles
                     WHERE user_id = %s;
                     """,
@@ -275,6 +282,7 @@ def get_user_profile(user_id):
                 "age_years": profile[1],              # ← ZMIANA
                 "experience_level": profile[2] or "",
                 "route_preference": profile[3] or "",
+                "prefer_shelters": bool(profile[4]),
             }
 
         # Zwróć pusty profil jeśli nie znaleziony
@@ -283,6 +291,7 @@ def get_user_profile(user_id):
             "age_years": None,                        # ← ZMIANA
             "experience_level": "",
             "route_preference": "",
+            "prefer_shelters": False,
         }
     except Exception as error:
         print(f"Błąd get_user_profile: {error}")
@@ -291,10 +300,17 @@ def get_user_profile(user_id):
             "age_years": None,
             "experience_level": "",
             "route_preference": "",
+            "prefer_shelters": False,
         }
 
 
-def update_user_profile(user_id, age_years, experience_level, route_preference):
+def update_user_profile(
+    user_id,
+    age_years,
+    experience_level,
+    route_preference,
+    prefer_shelters=False,
+):
     """
     Zapisz/aktualizuj profil użytkownika.
     
@@ -303,6 +319,7 @@ def update_user_profile(user_id, age_years, experience_level, route_preference):
         age_years: int lub None - wiek użytkownika
         experience_level: str - poziom doświadczenia (beginner/intermediate/advanced/expert/senior)
         route_preference: str - preferowany typ trasy
+        prefer_shelters: bool - czy preferować rozsądne warianty przy schronisku
     
     Returns:
         dict - {success: bool, message: str}
@@ -316,6 +333,13 @@ def update_user_profile(user_id, age_years, experience_level, route_preference):
             except (ValueError, TypeError):
                 age_value = None
 
+        if isinstance(prefer_shelters, str):
+            shelter_value = prefer_shelters.strip().lower() in {
+                "1", "true", "yes", "on", "tak"
+            }
+        else:
+            shelter_value = bool(prefer_shelters)
+
         with get_connection() as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -325,13 +349,15 @@ def update_user_profile(user_id, age_years, experience_level, route_preference):
                         age_years,
                         experience_level,
                         route_preference,
+                        prefer_shelters,
                         updated_at
                     )
-                    VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP)
+                    VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
                     ON CONFLICT (user_id) DO UPDATE SET
                         age_years = EXCLUDED.age_years,
                         experience_level = EXCLUDED.experience_level,
                         route_preference = EXCLUDED.route_preference,
+                        prefer_shelters = EXCLUDED.prefer_shelters,
                         updated_at = CURRENT_TIMESTAMP;
                     """,
                     (
@@ -339,6 +365,7 @@ def update_user_profile(user_id, age_years, experience_level, route_preference):
                         age_value,
                         experience_level,
                         route_preference,
+                        shelter_value,
                     ),
                 )
 

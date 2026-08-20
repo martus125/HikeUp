@@ -3,15 +3,23 @@ from time import perf_counter
 
 from algorithms.common import (
     SearchMetrics,
+    build_algorithm_result,
     build_graph,
     reconstruct_path,
     calculate_route_totals,
 )
-from algorithms.weights import edge_weight
-from algorithms.heuristics import build_node_map, heuristic
+from algorithms.weights import edge_weight, validate_criterion
+from algorithms.heuristics import build_node_map, greedy_heuristic
 
 
-def calculate_route(nodes, edges, start, end, criterion="time"):
+def calculate_route(
+    nodes,
+    edges,
+    start,
+    end,
+    criterion="time",
+    points=None,
+):
     """
     Greedy Best-First Search wyznaczający trasę po grafie szlaków.
 
@@ -21,8 +29,13 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
     W przeciwieństwie do A* nie bierze pod uwagę pełnego kosztu dojścia
     od startu, dlatego może działać szybciej, ale nie gwarantuje
     najkrótszej albo najtańszej trasy.
+
+    Kolejność przeszukiwania jest zawsze geograficzna. ``criterion`` służy do
+    porównywalnego policzenia kosztu gotowej trasy, ale Greedy nie udaje przez
+    to bezpośredniej optymalizacji elevation ani difficulty.
     """
     start_time = perf_counter()
+    validate_criterion(criterion)
 
     graph = build_graph(edges)
     nodes_by_id = build_node_map(nodes)
@@ -43,7 +56,7 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
 
     queue = [
         (
-            heuristic(start, end, nodes_by_id, criterion),
+            greedy_heuristic(start, end, nodes_by_id),
             start,
         )
     ]
@@ -78,7 +91,7 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
                     criterion,
                 )
 
-                priority = heuristic(neighbor, end, nodes_by_id, criterion)
+                priority = greedy_heuristic(neighbor, end, nodes_by_id)
 
                 heapq.heappush(queue, (priority, neighbor))
                 metrics.queue_pushes += 1
@@ -87,27 +100,20 @@ def calculate_route(nodes, edges, start, end, criterion="time"):
         return None
 
     path = reconstruct_path(previous, end)
-    totals = calculate_route_totals(path, edges)
+    totals = calculate_route_totals(
+        path,
+        edges,
+        nodes=nodes,
+        points=points,
+    )
 
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
 
-    return {
-        "algorithm": "greedy",
-        "path": path,
-
-        "distance": totals["distance_km"],
-        "time": totals["time_min"],
-        "difficulty": totals["difficulty"],
-        "total_elevation_gain": totals["elevation_gain_m"],
-        "criterion": criterion,
-        "route_weight": round(cost_so_far.get(end, 0), 3),
-
-        "totals": totals,
-        "metrics": {
-            "visited_nodes": metrics.visited_nodes,
-            "analyzed_edges": metrics.analyzed_edges,
-            "queue_pushes": metrics.queue_pushes,
-            "execution_time_ms": metrics.execution_time_ms,
-            "route_weight": round(cost_so_far.get(end, 0), 3),
-        },
-    }
+    return build_algorithm_result(
+        algorithm="greedy",
+        path=path,
+        totals=totals,
+        metrics=metrics,
+        criterion=criterion,
+        route_weight=cost_so_far.get(end, 0),
+    )

@@ -38,7 +38,7 @@ export async function fetchPoints() {
 export async function fetchRoute({
   start,
   end,
-  criterion = "time",
+  criterion,
   user_id = null,
 }) {
   return request("/api/route", {

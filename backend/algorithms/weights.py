@@ -1,9 +1,13 @@
 """Funkcje kosztu używane podczas wyznaczania tras."""
 
+import math
+
 DEFAULT_FLAT_SPEED_KMH = 5.0
 DEFAULT_ASCENT_RATE_M_PER_HOUR = 600.0
 MAX_TRAIL_DIFFICULTY = 6.0
 MAX_REASONABLE_SLOPE_PERCENT = 100.0
+MIN_EDGE_DISTANCE_KM = 1e-9
+VALID_CRITERIA = frozenset({"time", "distance", "elevation", "difficulty"})
 
 
 def as_number(value, default=0.0):
@@ -20,13 +24,64 @@ def as_number(value, default=0.0):
         }:
             return default
 
-        return float(value)
+        number = float(value)
+        return number if math.isfinite(number) else default
     except (TypeError, ValueError):
         return default
 
 
 def clamp(value, minimum, maximum):
     return max(minimum, min(value, maximum))
+
+
+def validate_criterion(criterion):
+    """Zwraca kryterium albo zgłasza czytelny błąd dla nieznanej wartości."""
+    if criterion not in VALID_CRITERIA:
+        supported = ", ".join(sorted(VALID_CRITERIA))
+        raise ValueError(
+            f"Nieznane kryterium trasy: {criterion!r}. "
+            f"Obsługiwane wartości: {supported}."
+        )
+
+    return criterion
+
+
+def calculate_slope_percent(elevation_difference_m, distance_km):
+    """Liczy bezwzględne średnie nachylenie i chroni przed zerowym dystansem."""
+    distance = as_number(distance_km, None)
+    elevation_difference = as_number(elevation_difference_m, None)
+
+    if (
+        distance is None
+        or elevation_difference is None
+        or distance <= MIN_EDGE_DISTANCE_KM
+    ):
+        return None
+
+    return abs(elevation_difference) / (distance * 1000.0) * 100.0
+
+
+def get_slope_percent(edge, default=0.0):
+    """Zwraca zapisane nachylenie lub bezpiecznie wylicza je z danych krawędzi."""
+    stored_slope = as_number(edge.get("slope_percent"), None)
+
+    if stored_slope is not None:
+        return abs(stored_slope)
+
+    elevation_change = as_number(edge.get("elevation_change_m"), None)
+
+    if elevation_change is None:
+        elevation_gain = as_number(edge.get("elevation_gain_m"), None)
+        elevation_loss = as_number(edge.get("elevation_loss_m"), None)
+
+        if elevation_gain is not None or elevation_loss is not None:
+            elevation_change = (elevation_gain or 0.0) - (elevation_loss or 0.0)
+
+    calculated = calculate_slope_percent(
+        elevation_change,
+        edge.get("distance_km"),
+    )
+    return default if calculated is None else calculated
 
 
 def estimate_hiking_time_minutes(
@@ -68,6 +123,8 @@ def estimate_hiking_time_minutes(
 
 def edge_weight(edge, criterion="time"):
     """Zwraca porównywalny koszt jednej krawędzi grafu."""
+    validate_criterion(criterion)
+
     distance = max(0.0, as_number(edge.get("distance_km"), 0))
     time = estimate_hiking_time_minutes(edge)
     elevation = max(
@@ -87,6 +144,8 @@ def edge_weight(edge, criterion="time"):
         return time
 
     if criterion == "elevation":
+        # Dystans jest wyłącznie deterministycznym kosztem pomocniczym. Zapobiega
+        # wybieraniu bardzo długich objazdów o identycznym przewyższeniu.
         return elevation + distance * 10
 
     if criterion == "difficulty":
@@ -99,22 +158,26 @@ def edge_weight(edge, criterion="time"):
             + distance * 10
         )
 
-    return time
+    raise AssertionError("Kryterium zostało zweryfikowane powyżej.")
 
 
 def custom_hikeup_edge_weight(
     edge,
     criterion="time",
     user_limits=None,
+    shelter_nearby=False,
 ):
     """
-    Znormalizowany koszt odcinka dla algorytmu Custom HikeUp.
+    Profilowy koszt odcinka dla algorytmu Custom HikeUp.
 
-    Wszystkie kary są proporcjonalne do długości odcinka. Nachylenie jest
-    ograniczane do fizycznie użytecznego zakresu, aby pojedynczy artefakt
-    modelu wysokościowego nie wymuszał wielokilometrowego objazdu.
+    ``base_cost`` pochodzi dokładnie ze wspólnego ``edge_weight``. Pozostałe
+    składniki są proporcjonalne do tej wartości, więc nie mieszamy kilometrów,
+    minut i punktów trudności. Współczynniki profilu są centralnie zdefiniowane
+    w ``experience_config.py``. Nachylenie jest ograniczane wyłącznie na potrzeby
+    decyzji algorytmu; surowa wartość nadal trafia do diagnostyki trasy.
     """
     user_limits = user_limits or {}
+    validate_criterion(criterion)
 
     distance = max(0.0, as_number(edge.get("distance_km"), 0))
     difficulty = clamp(
@@ -122,7 +185,7 @@ def custom_hikeup_edge_weight(
         1.0,
         MAX_TRAIL_DIFFICULTY,
     )
-    raw_slope = abs(as_number(edge.get("slope_percent"), 0))
+    raw_slope = get_slope_percent(edge)
 
     max_slope = max(
         5.0,
@@ -173,35 +236,55 @@ def custom_hikeup_edge_weight(
         1.0,
     )
 
-    difficulty_exposure = (
-        distance
-        * 20
-        * (difficulty / MAX_TRAIL_DIFFICULTY) ** 2
+    slope_factor = max(
+        0.0,
+        as_number(user_limits.get("slope_penalty_factor"), 0.8),
     )
-    slope_penalty = distance * 30 * slope_excess ** 2
-    difficulty_penalty = (
-        distance * 60 * difficulty_excess ** 2
+    difficulty_factor = max(
+        0.0,
+        as_number(user_limits.get("difficulty_penalty_factor"), 0.6),
     )
-    safety_cost = (
-        difficulty_exposure
+    elevation_factor = max(
+        0.0,
+        as_number(user_limits.get("elevation_penalty_factor"), 0.4),
+    )
+    excess_factor = max(
+        0.0,
+        as_number(user_limits.get("limit_excess_penalty_factor"), 1.0),
+    )
+    shelter_bonus_factor = clamp(
+        as_number(user_limits.get("shelter_bonus_factor"), 0.0),
+        0.0,
+        0.1,
+    )
+
+    base_cost = edge_weight(edge, criterion)
+    slope_load = (slope / max_slope) ** 2
+    difficulty_load = (difficulty / max_difficulty) ** 2
+    elevation_load = (
+        elevation_effort / max(flat_time + elevation_effort, 1.0)
+    )
+
+    slope_penalty = base_cost * slope_factor * slope_load
+    difficulty_penalty = base_cost * difficulty_factor * difficulty_load
+    elevation_penalty = base_cost * elevation_factor * elevation_load
+    profile_penalty = base_cost * excess_factor * (
+        slope_excess ** 2 + difficulty_excess ** 2
+    )
+    shelter_bonus = (
+        base_cost * shelter_bonus_factor
+        if shelter_nearby
+        else 0.0
+    )
+
+    final_weight = (
+        base_cost
         + slope_penalty
         + difficulty_penalty
+        + elevation_penalty
+        + profile_penalty
+        - shelter_bonus
     )
 
-    if criterion == "distance":
-        return flat_time + elevation_effort * 0.25 + safety_cost * 0.5
-
-    if criterion == "time":
-        return estimated_time + safety_cost * 0.5
-
-    if criterion == "elevation":
-        return (
-            flat_time * 0.35
-            + elevation_effort * 1.2
-            + safety_cost * 0.75
-        )
-
-    if criterion == "difficulty":
-        return estimated_time * 0.5 + safety_cost * 2.0
-
-    return estimated_time + safety_cost
+    # Koszt pozostaje dodatni, co jest wymagane przez przeszukiwanie Dijkstry.
+    return max(base_cost * 0.01, final_weight)

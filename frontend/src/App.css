@@ -334,6 +334,29 @@ button {
   border-radius: 8px;
   font-size: 15px;
 }
+
+.auth-modal .profile-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+.auth-modal .profile-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: #244f2b;
+}
+
+.profile-field-help {
+  margin: -6px 0 4px;
+  color: #526052;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
 .algorithm-legend {
   display: grid;
   gap: 8px;
@@ -404,4 +427,49 @@ button {
 .route-warnings ul {
   margin: 6px 0 0;
   padding-left: 18px;
+}
+
+.no-suitable-route {
+  padding: 10px 12px;
+  border: 1px solid #dc2626;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+.comparison-route-summary {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #fecaca;
+}
+
+.alternative-destinations {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.alternative-destinations h4 {
+  margin: 0;
+}
+
+.alternative-destination {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #86efac;
+  border-radius: 9px;
+  background: #f0fdf4;
+  color: #14532d;
+  text-align: left;
+  cursor: pointer;
+}
+
+.alternative-destination:hover {
+  background: #dcfce7;
+}
+
+.alternative-destination span {
+  font-size: 0.85rem;
 }

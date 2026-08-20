@@ -48,7 +48,7 @@ async function registerUser() {
             window.location.href = "login.html";
         }, 1200);
 
-    } catch (error) {
+    } catch {
         showMessage("Nie udało się połączyć z serwerem.", "error");
     }
 }
@@ -89,7 +89,7 @@ async function loginUser() {
             window.location.href = "index.html";
         }, 1000);
 
-    } catch (error) {
+    } catch {
         showMessage("Nie udało się połączyć z serwerem.", "error");
     }
 }

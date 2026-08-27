@@ -19,6 +19,7 @@ def calculate_route(
     end,
     criterion="time",
     points=None,
+    routing_context=None,
 ):
     """
     Algorytm A* wyznaczający trasę po grafie szlaków.
@@ -29,8 +30,21 @@ def calculate_route(
     start_time = perf_counter()
     validate_criterion(criterion)
 
-    graph = build_graph(edges)
-    nodes_by_id = build_node_map(nodes)
+    graph = (
+        routing_context.graph
+        if routing_context is not None
+        else build_graph(edges)
+    )
+    nodes_by_id = (
+        routing_context.nodes_by_id
+        if routing_context is not None
+        else build_node_map(nodes)
+    )
+    edge_map = (
+        routing_context.edges_by_nodes
+        if routing_context is not None
+        else None
+    )
     metrics = SearchMetrics()
 
     if start not in graph or end not in graph:
@@ -93,6 +107,8 @@ def calculate_route(
         edges,
         nodes=nodes,
         points=points,
+        edge_map=edge_map,
+        node_lookup=nodes_by_id,
     )
 
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)

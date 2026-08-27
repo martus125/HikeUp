@@ -142,9 +142,14 @@ def find_nearest_routing_node_id(point, routing_nodes):
     return nearest_id
 
 
-def resolve_routing_node(point, routing_nodes):
+def resolve_routing_node(point, routing_nodes, routing_node_ids=None):
     routing_node_id = nearest_routing_node_id(point)
-    routing_node_ids = {node.get("id") for node in routing_nodes if node.get("id")}
+    if routing_node_ids is None:
+        routing_node_ids = {
+            node.get("id")
+            for node in routing_nodes
+            if node.get("id")
+        }
 
     if routing_node_id not in routing_node_ids:
         routing_node_id = find_nearest_routing_node_id(point, routing_nodes)

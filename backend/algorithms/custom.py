@@ -30,8 +30,17 @@ odrzuca warianty naruszające twarde granice bezpieczeństwa. Spośród pozosta�
 wybiera najtańszy według kryterium użytkownika. ``detour_ratio`` to długość
 kandydata podzielona przez długość trasy najkrótszej. Limit preferowany wpływa
 na kolejność wyboru, a osobna granica bezwzględna usuwa absurdalne objazdy.
-Jeżeli żaden kandydat nie jest odpowiedni, trasa Dijkstry pozostaje wyłącznie
-porównaniem i nie jest zwracana jako rekomendacja Custom.
+Jeżeli żaden kandydat nie mieści się w limitach profilu, Custom nadal zwraca
+najłatwiejszy rozsądny wariant do wybranego celu. Wynik otrzymuje status
+``difficult_route`` i konkretne ostrzeżenia. Osobno mogą zostać wskazane
+łatwiejsze, podobne cele.
+
+Tryb bez profilu
+----------------
+Gdy endpoint nie ma zalogowanego użytkownika, Custom nie zakłada domyślnej
+sprawności. Zwraca neutralną trasę według wskazanego kryterium i oznacza ją jako
+``unpersonalized``. Ocena ograniczeń profilu jest uruchamiana dopiero po
+zalogowaniu i pobraniu profilu.
 """
 
 import heapq
@@ -516,39 +525,6 @@ def _path_criterion_weight(path, edge_lookup, criterion):
     return total
 
 
-def _empty_totals():
-    return {
-        "distance_km": 0.0,
-        "time_min": 0.0,
-        "difficulty": 0.0,
-        "average_difficulty": 0.0,
-        "max_difficulty": 0.0,
-        "elevation": 0.0,
-        "elevation_gain": 0.0,
-        "elevation_gain_m": 0.0,
-        "elevation_loss_m": 0.0,
-        "max_slope_percent": 0.0,
-        "average_slope_percent": 0.0,
-        "shelters_count": 0,
-    }
-
-
-def _candidate_summary(candidate, include_path=False):
-    evaluation = candidate["evaluation"]
-    summary = {
-        "source": candidate["source"],
-        "totals": candidate["totals"],
-        "route_weight": round(candidate["route_weight"], 3),
-        "detour_ratio": evaluation["detour_ratio"],
-        "violations": evaluation["violations"],
-        "safety_violations": evaluation["safety_violations"],
-        "profile_match_score": evaluation["profile_match_score"],
-    }
-    if include_path:
-        summary["path"] = candidate["path"]
-    return summary
-
-
 def calculate_route(
     nodes,
     edges,
@@ -558,8 +534,10 @@ def calculate_route(
     user_limits=None,
     baseline_route=None,
     points=None,
+    routing_context=None,
+    personalization_enabled=True,
 ):
-    """Wybiera najtańszą trasę spośród bezpiecznych kandydatów profilu."""
+    """Wybiera trasę ogólną albo najtańszą spośród kandydatów profilu."""
     start_time = perf_counter()
     validate_criterion(criterion)
 
@@ -567,23 +545,42 @@ def calculate_route(
         **get_limits("intermediate"),
         **(user_limits or {}),
     }
-    graph = build_graph(edges)
+    graph = (
+        routing_context.graph
+        if routing_context is not None
+        else build_graph(edges)
+    )
     metrics = SearchMetrics()
 
     if start not in graph or end not in graph:
         return None
 
-    shelter_node_ids = get_shelter_routing_node_ids(points)
-    edge_lookup = build_edge_map(edges)
+    shelter_node_ids = (
+        routing_context.shelter_node_ids
+        if routing_context is not None
+        else get_shelter_routing_node_ids(points)
+    )
+    edge_lookup = (
+        routing_context.edges_by_nodes
+        if routing_context is not None
+        else build_edge_map(edges)
+    )
+    node_lookup = (
+        routing_context.nodes_by_id
+        if routing_context is not None
+        else None
+    )
     candidate_paths = []
 
     baseline_path = None
+    baseline_weight = None
     if (
         baseline_route
         and baseline_route.get("path")
         and baseline_route.get("criterion", criterion) == criterion
     ):
         baseline_path = baseline_route["path"]
+        baseline_weight = baseline_route.get("route_weight")
     else:
         scores, previous = _search_graph(
             graph,
@@ -593,6 +590,70 @@ def calculate_route(
             end=end,
         )
         baseline_path = _path_from_search(scores, previous, end)
+        baseline_weight = scores.get(end)
+
+    if not personalization_enabled:
+        if not baseline_path:
+            return None
+
+        baseline_totals = (
+            baseline_route.get("totals")
+            if baseline_route and baseline_route.get("totals")
+            else calculate_route_totals(
+                baseline_path,
+                edges,
+                nodes=nodes,
+                points=points,
+                edge_map=edge_lookup,
+                node_lookup=node_lookup,
+            )
+        )
+        if baseline_weight is None:
+            baseline_weight = _path_criterion_weight(
+                baseline_path,
+                edge_lookup,
+                criterion,
+            )
+
+        message = (
+            "Trasa ogólna według wybranego kryterium. Zaloguj się, aby "
+            "Custom HikeUp uwzględnił doświadczenie i preferencje profilu."
+        )
+        profile_evaluation = {
+            "personalization_enabled": False,
+            "experience_level": None,
+            "recommendation_status": "unpersonalized",
+            "message": message,
+            "warnings": [],
+        }
+        metrics.execution_time_ms = round(
+            (perf_counter() - start_time) * 1000,
+            3,
+        )
+        metrics_data = metrics.as_dict()
+        metrics_data.update(
+            {
+                "custom_score": None,
+                "baseline_reused": bool(baseline_route),
+                "personalization_enabled": False,
+            }
+        )
+        return build_algorithm_result(
+            algorithm="custom_hikeup",
+            path=baseline_path,
+            totals=baseline_totals,
+            metrics=metrics_data,
+            criterion=criterion,
+            route_weight=baseline_weight,
+            profile_evaluation=profile_evaluation,
+            warnings=[],
+            extra={
+                "custom_score": None,
+                "personalization_enabled": False,
+                "recommendation_status": "unpersonalized",
+                "message": message,
+            },
+        )
 
     if baseline_path:
         candidate_paths.append(("dijkstra_baseline", baseline_path))
@@ -634,7 +695,7 @@ def calculate_route(
         candidate_paths.append(("profile_weighted", profile_candidate_path))
 
     strict_criteria = dict.fromkeys(
-        (criterion, "distance", "time", "elevation")
+        (criterion, "difficulty", "distance", "time", "elevation")
     )
     for candidate_criterion in strict_criteria:
         scores, previous = _search_graph(
@@ -668,6 +729,7 @@ def calculate_route(
             nodes=nodes,
             points=points,
             edge_map=edge_lookup,
+            node_lookup=node_lookup,
         )
         baseline_distance = max(
             0.0,
@@ -688,6 +750,7 @@ def calculate_route(
             nodes=nodes,
             points=points,
             edge_map=edge_lookup,
+            node_lookup=node_lookup,
         )
         detour_ratio = None
         if baseline_distance > 0:
@@ -878,62 +941,45 @@ def calculate_route(
             },
         )
 
-    comparison = next(
-        (
-            candidate
-            for candidate in candidates
-            if "dijkstra_baseline" in candidate["sources"]
-        ),
-        min(
-            candidates,
-            key=lambda candidate: (
-                len(candidate["evaluation"]["safety_violations"]),
-                candidate["route_weight"],
-            ),
-        ),
-    )
-    best_rejected = min(
-        candidates,
+    reasonable_candidates = [
+        candidate
+        for candidate in candidates
+        if candidate["evaluation"]["reasonable_detour"]
+    ]
+    difficult_selection_pool = reasonable_candidates or candidates
+    easiest_available = min(
+        difficult_selection_pool,
         key=lambda candidate: (
             len(candidate["evaluation"]["safety_violations"]),
-            not candidate["evaluation"]["reasonable_detour"],
+            -candidate["evaluation"]["profile_match_score"],
+            candidate["totals"]["max_difficulty"],
+            candidate["totals"]["max_slope_percent"],
+            candidate["totals"]["elevation_gain_m"],
             candidate["route_weight"],
         ),
     )
-    message = "Brak trasy odpowiedniej dla wybranego profilu."
-    comparison_summary = _candidate_summary(comparison, include_path=True)
-    comparison_summary["algorithm"] = "dijkstra"
+    difficult_evaluation = easiest_available["evaluation"]
+    message = (
+        "To najłatwiejszy rozsądny wariant do wybranego celu, ale trasa "
+        "nadal jest wymagająca dla Twojego profilu."
+    )
     profile_evaluation = {
-        "experience_level": profile_limits.get(
-            "experience_level",
-            "intermediate",
-        ),
-        "recommendation_status": "no_suitable_route",
+        **difficult_evaluation,
+        "recommendation_status": "difficult_route",
         "message": message,
         "fallback_applied": False,
         "fallback_reason": None,
-        "baseline_comparison_available": True,
-        "detour_ratio": None,
-        "limits": comparison["evaluation"]["limits"],
-        "route": {},
-        "violations": [],
-        "safety_violations": [],
-        "profile_match_score": 0.0,
-        "within_limits": False,
-        "within_safety_limits": False,
-        "reasonable_detour": False,
+        "selection_reason": "easiest_reasonable_route_to_requested_goal",
         "shelter_preference_enabled": shelter_preference_enabled,
-        "shelter_preference_matched": False,
+        "shelter_preference_matched": (
+            shelter_preference_enabled
+            and easiest_available["totals"].get("shelters_count", 0) > 0
+        ),
         "shelter_preference_rerouted": False,
         "candidate_count": len(candidates),
         "acceptable_candidate_count": 0,
-        "comparison_route": comparison_summary,
-        "best_rejected_candidate": _candidate_summary(best_rejected),
-        "warnings": [
-            message,
-            "Trasa Dijkstry jest pokazana wyłącznie jako porównanie i nie "
-            "jest rekomendacją dla tego profilu.",
-        ],
+        "selected_candidate_sources": easiest_available["sources"],
+        "warnings": list(difficult_evaluation["warnings"]),
     }
     metrics.execution_time_ms = round(
         (perf_counter() - start_time) * 1000,
@@ -942,31 +988,30 @@ def calculate_route(
     metrics_data = metrics.as_dict()
     metrics_data.update(
         {
-            "custom_score": None,
+            "custom_score": round(easiest_available["custom_score"], 3),
             "candidate_custom_score": round(
                 custom_scores.get(end, 0.0),
                 3,
             ),
             "fallback_applied": False,
-            "detour_ratio": None,
+            "detour_ratio": difficult_evaluation["detour_ratio"],
             "candidate_count": len(candidates),
         }
     )
 
     return build_algorithm_result(
         algorithm="custom_hikeup",
-        path=[],
-        totals=_empty_totals(),
+        path=easiest_available["path"],
+        totals=easiest_available["totals"],
         metrics=metrics_data,
         criterion=criterion,
-        route_weight=0.0,
+        route_weight=easiest_available["route_weight"],
         profile_evaluation=profile_evaluation,
         warnings=profile_evaluation["warnings"],
         extra={
-            "custom_score": None,
-            "recommendation_status": "no_suitable_route",
+            "custom_score": round(easiest_available["custom_score"], 3),
+            "recommendation_status": "difficult_route",
             "message": message,
-            "comparison_route": comparison_summary,
             "alternative_destinations": [],
         },
     )
@@ -981,20 +1026,29 @@ def find_profile_suitable_destination_alternatives(
     user_limits,
     points=None,
     reference_distance_km=None,
+    reference_route_totals=None,
+    reference_profile_match_score=None,
     max_results=3,
+    routing_context=None,
 ):
     """Znajduje podobne cele osiągalne trasą zgodną z profilem.
 
     ``destinations`` zawiera punkty POI z przypisanym ``routing_node_id`` i
-    wynikiem podobieństwa do pierwotnego celu. Wszystkie cele są obsługiwane
-    jednym przebiegiem Dijkstry po lokalnie dopuszczalnych krawędziach.
+    wynikiem podobieństwa do pierwotnego celu. Cele są oceniane na ścieżkach
+    profilowo ograniczonych oraz na łagodnym przebiegu zapasowym, dzięki czemu
+    można wskazać wariant wyraźnie łatwiejszy nawet wtedy, gdy żaden cel górski
+    nie mieści się w stu procentach w limitach profilu.
     """
     validate_criterion(criterion)
     profile_limits = {
         **get_limits("intermediate"),
         **(user_limits or {}),
     }
-    graph = build_graph(edges)
+    graph = (
+        routing_context.graph
+        if routing_context is not None
+        else build_graph(edges)
+    )
     if start not in graph:
         return []
 
@@ -1009,11 +1063,21 @@ def find_profile_suitable_destination_alternatives(
     if not destinations_by_node:
         return []
 
+    shelter_node_ids = (
+        routing_context.shelter_node_ids
+        if routing_context is not None
+        else get_shelter_routing_node_ids(points)
+    )
     metrics = SearchMetrics()
     scores, previous = _search_graph(
         graph,
         start,
-        lambda edge, _neighbor: edge_weight(edge, criterion),
+        lambda edge, neighbor: custom_hikeup_edge_weight(
+            edge,
+            "difficulty",
+            profile_limits,
+            shelter_nearby=neighbor in shelter_node_ids,
+        ),
         metrics,
         target_ids=destinations_by_node,
         edge_allowed=lambda edge: _profile_edge_allowed(
@@ -1021,7 +1085,28 @@ def find_profile_suitable_destination_alternatives(
             profile_limits,
         ),
     )
-    edge_lookup = build_edge_map(edges)
+    relaxed_scores, relaxed_previous = _search_graph(
+        graph,
+        start,
+        lambda edge, neighbor: custom_hikeup_edge_weight(
+            edge,
+            "difficulty",
+            profile_limits,
+            shelter_nearby=neighbor in shelter_node_ids,
+        ),
+        metrics,
+        target_ids=destinations_by_node,
+    )
+    edge_lookup = (
+        routing_context.edges_by_nodes
+        if routing_context is not None
+        else build_edge_map(edges)
+    )
+    node_lookup = (
+        routing_context.nodes_by_id
+        if routing_context is not None
+        else None
+    )
     max_route_ratio = max(
         1.0,
         as_number(
@@ -1040,39 +1125,102 @@ def find_profile_suitable_destination_alternatives(
             reference_distance + 2.0,
         )
 
+    reference_totals = reference_route_totals or {}
+    reference_match_score = as_number(reference_profile_match_score, 0)
     alternatives = []
     for routing_node_id, destination_group in destinations_by_node.items():
-        path = _path_from_search(scores, previous, routing_node_id)
-        if not path or len(path) < 2:
-            continue
-
-        totals = calculate_route_totals(
-            path,
-            edges,
-            nodes=nodes,
-            points=points,
-            edge_map=edge_lookup,
-        )
-        if (
-            max_route_distance is not None
-            and totals["distance_km"] > max_route_distance
+        path_options = []
+        seen_paths = set()
+        for search_scores, search_previous in (
+            (scores, previous),
+            (relaxed_scores, relaxed_previous),
         ):
+            path = _path_from_search(
+                search_scores,
+                search_previous,
+                routing_node_id,
+            )
+            path_key = tuple(path or ())
+            if len(path_key) < 2 or path_key in seen_paths:
+                continue
+            seen_paths.add(path_key)
+
+            totals = calculate_route_totals(
+                path,
+                edges,
+                nodes=nodes,
+                points=points,
+                edge_map=edge_lookup,
+                node_lookup=node_lookup,
+            )
+            if (
+                max_route_distance is not None
+                and totals["distance_km"] > max_route_distance
+            ):
+                continue
+
+            evaluation = evaluate_route_profile(
+                path,
+                totals,
+                edge_lookup,
+                profile_limits,
+            )
+            fully_profile_suitable = evaluation["within_safety_limits"]
+            comparison_metrics = (
+                "max_difficulty",
+                "max_slope_percent",
+                "elevation_gain_m",
+            )
+            no_harder_than_requested = bool(reference_totals) and all(
+                as_number(totals.get(metric), 0)
+                <= as_number(reference_totals.get(metric), 0) + 1e-9
+                for metric in comparison_metrics
+            )
+            meaningfully_easier = no_harder_than_requested and any(
+                as_number(totals.get(metric), 0)
+                < as_number(reference_totals.get(metric), 0) - 1e-9
+                for metric in comparison_metrics
+            )
+            easier_than_requested = (
+                meaningfully_easier
+                and evaluation["profile_match_score"]
+                > reference_match_score + 1e-9
+            )
+            if not fully_profile_suitable and not easier_than_requested:
+                continue
+
+            path_options.append(
+                {
+                    "path": path,
+                    "totals": totals,
+                    "evaluation": evaluation,
+                    "fully_profile_suitable": fully_profile_suitable,
+                    "easier_than_requested": easier_than_requested,
+                    "route_weight": _path_criterion_weight(
+                        path,
+                        edge_lookup,
+                        criterion,
+                    ),
+                }
+            )
+
+        if not path_options:
             continue
 
-        evaluation = evaluate_route_profile(
-            path,
-            totals,
-            edge_lookup,
-            profile_limits,
+        selected_path = min(
+            path_options,
+            key=lambda option: (
+                not option["fully_profile_suitable"],
+                not option["evaluation"]["within_limits"],
+                -option["evaluation"]["profile_match_score"],
+                option["route_weight"],
+            ),
         )
-        if not evaluation["within_safety_limits"]:
-            continue
-
-        route_weight = _path_criterion_weight(
-            path,
-            edge_lookup,
-            criterion,
-        )
+        totals = selected_path["totals"]
+        evaluation = selected_path["evaluation"]
+        fully_profile_suitable = selected_path["fully_profile_suitable"]
+        easier_than_requested = selected_path["easier_than_requested"]
+        route_weight = selected_path["route_weight"]
         for destination in destination_group:
             point = destination["point"]
             alternatives.append(
@@ -1095,6 +1243,9 @@ def find_profile_suitable_destination_alternatives(
                         as_number(destination.get("similarity_score"), 0),
                         3,
                     ),
+                    "same_destination_type": bool(
+                        destination.get("same_destination_type", True)
+                    ),
                     "route": {
                         "distance_km": totals["distance_km"],
                         "time_min": totals["time_min"],
@@ -1104,15 +1255,34 @@ def find_profile_suitable_destination_alternatives(
                         "profile_match_score": evaluation[
                             "profile_match_score"
                         ],
+                        "within_preferred_limits": evaluation[
+                            "within_limits"
+                        ],
+                        "within_safety_limits": fully_profile_suitable,
+                        "easier_than_requested": easier_than_requested,
+                        "recommendation_kind": (
+                            "profile_suitable"
+                            if fully_profile_suitable
+                            else "easier_than_requested"
+                        ),
                         "route_weight": round(route_weight, 3),
                     },
                 }
             )
 
-    alternatives.sort(
+    fully_suitable_alternatives = [
+        alternative
+        for alternative in alternatives
+        if alternative["route"]["within_safety_limits"]
+    ]
+    selection_pool = fully_suitable_alternatives or alternatives
+    selection_pool.sort(
         key=lambda alternative: (
+            not alternative["route"]["within_preferred_limits"],
+            not alternative["same_destination_type"],
+            -alternative["route"]["profile_match_score"],
             alternative["similarity_score"],
             alternative["route"]["route_weight"],
         )
     )
-    return alternatives[:max_results]
+    return selection_pool[:max_results]

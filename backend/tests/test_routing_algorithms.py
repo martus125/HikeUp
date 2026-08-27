@@ -6,7 +6,10 @@ from flask import Flask
 
 from algorithms.astar import calculate_route as calculate_astar
 from algorithms.common import calculate_route_totals
-from algorithms.custom import calculate_route as calculate_custom
+from algorithms.custom import (
+    calculate_route as calculate_custom,
+    find_profile_suitable_destination_alternatives,
+)
 from algorithms.dijkstra import calculate_route as calculate_dijkstra
 from algorithms.greedy import calculate_route as calculate_greedy
 from algorithms.weights import calculate_slope_percent
@@ -16,7 +19,12 @@ from models.experience_config import (
     get_limits,
     infer_experience_level,
 )
-from routes.map_routes import map_bp
+from routes.map_routes import (
+    build_alternative_destination_candidates,
+    map_bp,
+)
+from services.routing_context import build_routing_context
+from services import routing_context as routing_context_module
 
 
 NODES = [
@@ -68,13 +76,26 @@ CLASSIC_ALGORITHMS = (
 
 
 class ExperienceConfigTests(unittest.TestCase):
-    def test_declared_experience_has_priority_over_senior_age(self):
+    def test_declared_experience_has_priority_over_every_age_band(self):
+        self.assertEqual(infer_experience_level(15, "advanced"), "advanced")
         self.assertEqual(infer_experience_level(70, "expert"), "expert")
-        self.assertEqual(infer_experience_level(70, "advanced"), "advanced")
+        self.assertEqual(infer_experience_level(70, "beginner"), "beginner")
 
-    def test_senior_is_default_only_without_declared_experience(self):
-        self.assertEqual(infer_experience_level(70, ""), "senior")
+    def test_age_selects_only_automatic_experience_levels(self):
+        self.assertEqual(infer_experience_level(19, ""), "beginner")
+        self.assertEqual(infer_experience_level(20, ""), "intermediate")
         self.assertEqual(infer_experience_level(40, ""), "intermediate")
+        self.assertEqual(infer_experience_level(64, ""), "intermediate")
+        self.assertEqual(infer_experience_level(65, ""), "senior")
+        self.assertEqual(infer_experience_level(None, ""), "intermediate")
+
+    def test_advanced_profile_has_no_hard_route_limits(self):
+        limits = get_limits("advanced")
+
+        self.assertEqual(limits["max_difficulty"], 6)
+        self.assertEqual(limits["absolute_max_slope_percent"], 100)
+        self.assertEqual(limits["max_elevation_gain_m"], 0)
+        self.assertEqual(limits["max_consecutive_steep"], 0)
 
     def test_route_preference_maps_to_algorithm_criterion(self):
         self.assertEqual(
@@ -95,6 +116,97 @@ class ExperienceConfigTests(unittest.TestCase):
         preferred = apply_shelter_preference(limits, True)
         self.assertTrue(preferred["prefer_shelters"])
         self.assertGreater(preferred["shelter_bonus_factor"], 0.0)
+
+
+class RoutingContextTests(unittest.TestCase):
+    def test_cached_loader_builds_one_context_per_process(self):
+        routing_context_module.load_routing_context.cache_clear()
+        try:
+            with patch(
+                "services.routing_context.load_full_map",
+                return_value={"nodes": NODES, "edges": EDGES},
+            ) as load_map, patch(
+                "services.routing_context.load_points",
+                return_value=POINTS,
+            ) as load_test_points:
+                first = routing_context_module.load_routing_context()
+                second = routing_context_module.load_routing_context()
+
+            self.assertIs(first, second)
+            self.assertIs(first.nodes, NODES)
+            self.assertIs(first.edges, EDGES)
+            self.assertEqual(first.node_ids, {"A", "B", "C", "D"})
+            self.assertEqual(first.shelter_node_ids, {"C"})
+            load_map.assert_called_once_with()
+            load_test_points.assert_called_once_with()
+        finally:
+            routing_context_module.load_routing_context.cache_clear()
+
+    def test_context_preserves_paths_totals_and_route_weights(self):
+        context = build_routing_context(NODES, EDGES, POINTS)
+
+        for algorithm in CLASSIC_ALGORITHMS:
+            with self.subTest(algorithm=algorithm.__module__):
+                regular = algorithm(
+                    NODES,
+                    EDGES,
+                    "A",
+                    "D",
+                    "distance",
+                    POINTS,
+                )
+                shared = algorithm(
+                    NODES,
+                    EDGES,
+                    "A",
+                    "D",
+                    "distance",
+                    POINTS,
+                    context,
+                )
+                self.assertEqual(shared["path"], regular["path"])
+                self.assertEqual(shared["totals"], regular["totals"])
+                self.assertEqual(
+                    shared["route_weight"],
+                    regular["route_weight"],
+                )
+
+        limits = apply_shelter_preference(get_limits("beginner"), True)
+        baseline = calculate_dijkstra(
+            NODES,
+            EDGES,
+            "A",
+            "D",
+            "distance",
+            POINTS,
+        )
+        regular_custom = calculate_custom(
+            NODES,
+            EDGES,
+            "A",
+            "D",
+            "distance",
+            limits,
+            baseline,
+            POINTS,
+        )
+        shared_custom = calculate_custom(
+            NODES,
+            EDGES,
+            "A",
+            "D",
+            "distance",
+            limits,
+            baseline,
+            POINTS,
+            context,
+        )
+        self.assertEqual(shared_custom["path"], regular_custom["path"])
+        self.assertEqual(shared_custom["totals"], regular_custom["totals"])
+        self.assertEqual(
+            shared_custom["recommendation_status"],
+            regular_custom["recommendation_status"],
+        )
 
 
 class AlgorithmContractTests(unittest.TestCase):
@@ -249,6 +361,26 @@ class CustomProfileTests(unittest.TestCase):
                 self.assertGreaterEqual(evaluation["profile_match_score"], 0)
                 self.assertLessEqual(evaluation["profile_match_score"], 100)
 
+    def test_advanced_profile_recommends_even_the_hardest_connected_route(self):
+        nodes = [
+            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
+            {"id": "T", "lat": 49.1, "lng": 19.1, "elevation": 3100},
+        ]
+        edges = [edge("S", "T", 3.0, 6, 3000, 100)]
+
+        result = calculate_custom(
+            nodes,
+            edges,
+            "S",
+            "T",
+            "difficulty",
+            get_limits("advanced"),
+        )
+
+        self.assertEqual(result["path"], ["S", "T"])
+        self.assertEqual(result["recommendation_status"], "recommended")
+        self.assertTrue(result["profile_evaluation"]["within_safety_limits"])
+
     def test_beginner_and_expert_choose_different_routes(self):
         beginner = calculate_custom(
             NODES,
@@ -307,7 +439,7 @@ class CustomProfileTests(unittest.TestCase):
         self.assertIn("route", evaluation)
         self.assertIn("violations", evaluation)
 
-    def test_no_suitable_route_keeps_dijkstra_as_comparison_only(self):
+    def test_too_hard_goal_returns_easiest_reasonable_custom_route(self):
         nodes = [
             {"id": node_id, "lat": 49.0, "lng": 19.0, "elevation": 100}
             for node_id in ("S", "M", "T")
@@ -334,17 +466,117 @@ class CustomProfileTests(unittest.TestCase):
             baseline,
         )
 
-        self.assertEqual(result["path"], [])
-        self.assertEqual(result["recommendation_status"], "no_suitable_route")
+        self.assertEqual(result["path"], ["S", "T"])
+        self.assertEqual(result["recommendation_status"], "difficult_route")
         evaluation = result["profile_evaluation"]
         self.assertFalse(evaluation["fallback_applied"])
+        self.assertFalse(evaluation["within_safety_limits"])
         self.assertEqual(
-            evaluation["comparison_route"]["path"],
-            ["S", "T"],
+            evaluation["selection_reason"],
+            "easiest_reasonable_route_to_requested_goal",
         )
         self.assertIn(
             "max_difficulty_exceeded",
-            evaluation["comparison_route"]["safety_violations"],
+            evaluation["safety_violations"],
+        )
+
+    def test_alternative_destination_prefers_better_profile_match(self):
+        nodes = [
+            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
+            {"id": "N", "lat": 49.001, "lng": 19.001, "elevation": 200},
+            {"id": "F", "lat": 49.01, "lng": 19.01, "elevation": 200},
+        ]
+        edges = [
+            edge("S", "N", 0.2, 1, 100, 20),
+            edge("S", "F", 0.3, 1, 100, 5),
+        ]
+        destinations = [
+            {
+                "point": {
+                    "id": "near-peak",
+                    "name": "Bliższy szczyt",
+                    "type": "peak",
+                    "lat": 49.001,
+                    "lng": 19.001,
+                },
+                "routing_node_id": "N",
+                "distance_from_requested_km": 0.2,
+                "similarity_score": 0.2,
+            },
+            {
+                "point": {
+                    "id": "fitting-peak",
+                    "name": "Łagodniejszy szczyt",
+                    "type": "peak",
+                    "lat": 49.01,
+                    "lng": 19.01,
+                },
+                "routing_node_id": "F",
+                "distance_from_requested_km": 1.0,
+                "similarity_score": 1.0,
+            },
+        ]
+
+        alternatives = find_profile_suitable_destination_alternatives(
+            nodes,
+            edges,
+            "S",
+            destinations,
+            "distance",
+            get_limits("beginner"),
+        )
+
+        self.assertEqual(alternatives[0]["id"], "fitting-peak")
+        self.assertTrue(
+            alternatives[0]["route"]["within_preferred_limits"]
+        )
+        self.assertFalse(
+            alternatives[1]["route"]["within_preferred_limits"]
+        )
+
+    def test_alternative_can_be_easier_when_no_fully_suitable_peak_exists(self):
+        nodes = [
+            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
+            {"id": "X", "lat": 49.01, "lng": 19.01, "elevation": 500},
+        ]
+        edges = [edge("S", "X", 0.8, 2, 400, 10)]
+        destinations = [
+            {
+                "point": {
+                    "id": "lower-peak",
+                    "name": "Niższy szczyt",
+                    "type": "peak",
+                    "lat": 49.01,
+                    "lng": 19.01,
+                },
+                "routing_node_id": "X",
+                "distance_from_requested_km": 1.0,
+                "similarity_score": 1.0,
+                "same_destination_type": True,
+            }
+        ]
+
+        alternatives = find_profile_suitable_destination_alternatives(
+            nodes,
+            edges,
+            "S",
+            destinations,
+            "difficulty",
+            get_limits("beginner"),
+            reference_route_totals={
+                "max_difficulty": 6,
+                "max_slope_percent": 70,
+                "elevation_gain_m": 800,
+            },
+            reference_profile_match_score=0,
+        )
+
+        self.assertEqual(alternatives[0]["id"], "lower-peak")
+        self.assertFalse(alternatives[0]["route"]["within_safety_limits"])
+        self.assertTrue(alternatives[0]["route"]["easier_than_requested"])
+        self.assertEqual(
+            alternatives[0]["route"]["recommendation_kind"],
+            "easier_than_requested",
         )
 
     def test_shortest_route_wins_among_suitable_candidates(self):
@@ -492,11 +724,74 @@ class RouteEndpointTests(unittest.TestCase):
             },
             *POINTS,
         ]
+        self.routing_context = build_routing_context(
+            NODES,
+            EDGES,
+            self.points,
+        )
+
+    def test_peak_alternative_candidates_include_related_saddle(self):
+        start_point = {
+            "id": "start-poi",
+            "type": "viewpoint",
+            "lat": 49.0,
+            "lng": 19.0,
+        }
+        end_point = {
+            "id": "hard-peak",
+            "type": "peak",
+            "lat": 49.01,
+            "lng": 19.01,
+            "elevation": 1800,
+        }
+        points = [
+            start_point,
+            end_point,
+            {
+                "id": "nearby-saddle",
+                "name": "Łagodna przełęcz",
+                "type": "saddle",
+                "lat": 49.012,
+                "lng": 19.012,
+                "elevation": 1400,
+                "nearest_routing_node_id": "X",
+            },
+            {
+                "id": "nearby-water",
+                "name": "Staw",
+                "type": "water",
+                "lat": 49.013,
+                "lng": 19.013,
+                "nearest_routing_node_id": "W",
+            },
+        ]
+        routing_nodes = [
+            {"id": "S", "lat": 49.0, "lng": 19.0},
+            {"id": "D", "lat": 49.01, "lng": 19.01},
+            {"id": "X", "lat": 49.012, "lng": 19.012},
+            {"id": "W", "lat": 49.013, "lng": 19.013},
+        ]
+
+        candidates = build_alternative_destination_candidates(
+            points,
+            start_point,
+            end_point,
+            routing_nodes,
+            "S",
+            "D",
+            {"S", "D", "X", "W"},
+        )
+
+        self.assertEqual(
+            [candidate["point"]["id"] for candidate in candidates],
+            ["nearby-saddle"],
+        )
+        self.assertFalse(candidates[0]["same_destination_type"])
 
     def test_route_endpoint_returns_all_algorithms_and_compatible_fields(self):
-        with patch("routes.map_routes.load_points", return_value=self.points), patch(
-            "routes.map_routes.load_full_map",
-            return_value={"nodes": NODES, "edges": EDGES},
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=self.routing_context,
         ):
             response = self.client.post(
                 "/api/route",
@@ -512,6 +807,18 @@ class RouteEndpointTests(unittest.TestCase):
         data = response.get_json()
         self.assertTrue(data["success"])
         self.assertEqual(len(data["routes"]), 4)
+        self.assertEqual(
+            data["preprocessing_metrics"]["nodes_count"],
+            len(NODES),
+        )
+        self.assertEqual(
+            data["preprocessing_metrics"]["edges_count"],
+            len(EDGES),
+        )
+        self.assertIn(
+            "routing_context_load_ms",
+            data["preprocessing_metrics"],
+        )
         self.assertEqual(
             {route["algorithm"] for route in data["routes"]},
             {"dijkstra", "astar", "greedy", "custom_hikeup"},
@@ -532,8 +839,99 @@ class RouteEndpointTests(unittest.TestCase):
             if route["algorithm"] == "custom_hikeup"
         )
         self.assertEqual(
-            custom["profile_evaluation"]["experience_level"],
-            "intermediate",
+            custom["recommendation_status"],
+            "unpersonalized",
+        )
+        self.assertFalse(custom["personalization_enabled"])
+        self.assertEqual(custom["path_ids"], ["A", "B", "D"])
+        self.assertIsNone(
+            custom["profile_evaluation"]["experience_level"]
+        )
+
+    def test_guest_is_unpersonalized_and_beginner_gets_easiest_route(self):
+        nodes = [
+            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
+            {"id": "T", "lat": 49.01, "lng": 19.01, "elevation": 900},
+        ]
+        edges = [edge("S", "T", 1.0, 6, 800, 90)]
+        points = [
+            {
+                "id": "start-poi",
+                "name": "Start",
+                "type": "viewpoint",
+                "lat": 49.0,
+                "lng": 19.0,
+                "nearest_routing_node_id": "S",
+            },
+            {
+                "id": "end-poi",
+                "name": "Trudny cel",
+                "type": "peak",
+                "lat": 49.01,
+                "lng": 19.01,
+                "nearest_routing_node_id": "T",
+            },
+        ]
+        routing_context = build_routing_context(nodes, edges, points)
+
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=routing_context,
+        ):
+            guest_response = self.client.post(
+                "/api/route",
+                json={
+                    "start": "start-poi",
+                    "end": "end-poi",
+                    "criterion": "distance",
+                    "user_id": None,
+                },
+            )
+
+        database_module = types.ModuleType("database")
+        database_module.get_user_profile = lambda _user_id: {
+            "user_id": 15,
+            "age_years": 30,
+            "experience_level": "beginner",
+            "route_preference": "najkrótsza",
+            "prefer_shelters": False,
+        }
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=routing_context,
+        ), patch.dict("sys.modules", {"database": database_module}):
+            profile_response = self.client.post(
+                "/api/route",
+                json={
+                    "start": "start-poi",
+                    "end": "end-poi",
+                    "criterion": "distance",
+                    "user_id": 15,
+                },
+            )
+
+        self.assertEqual(guest_response.status_code, 200)
+        guest_custom = next(
+            route
+            for route in guest_response.get_json()["routes"]
+            if route["algorithm"] == "custom_hikeup"
+        )
+        self.assertEqual(guest_custom["path_ids"], ["S", "T"])
+        self.assertEqual(
+            guest_custom["recommendation_status"],
+            "unpersonalized",
+        )
+
+        self.assertEqual(profile_response.status_code, 200)
+        profile_custom = next(
+            route
+            for route in profile_response.get_json()["routes"]
+            if route["algorithm"] == "custom_hikeup"
+        )
+        self.assertEqual(profile_custom["path_ids"], ["S", "T"])
+        self.assertEqual(
+            profile_custom["recommendation_status"],
+            "difficult_route",
         )
 
     def test_route_endpoint_rejects_unknown_criterion(self):
@@ -558,9 +956,9 @@ class RouteEndpointTests(unittest.TestCase):
             "prefer_shelters": True,
         }
 
-        with patch("routes.map_routes.load_points", return_value=self.points), patch(
-            "routes.map_routes.load_full_map",
-            return_value={"nodes": NODES, "edges": EDGES},
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=self.routing_context,
         ), patch.dict(
             "sys.modules",
             {"database": database_module},
@@ -604,9 +1002,9 @@ class RouteEndpointTests(unittest.TestCase):
             "prefer_shelters": False,
         }
 
-        with patch("routes.map_routes.load_points", return_value=self.points), patch(
-            "routes.map_routes.load_full_map",
-            return_value={"nodes": NODES, "edges": EDGES},
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=self.routing_context,
         ), patch.dict("sys.modules", {"database": database_module}):
             response = self.client.post(
                 "/api/route",
@@ -679,9 +1077,10 @@ class RouteEndpointTests(unittest.TestCase):
             "route_preference": "najkrótsza",
         }
 
-        with patch("routes.map_routes.load_points", return_value=points), patch(
-            "routes.map_routes.load_full_map",
-            return_value={"nodes": nodes, "edges": edges},
+        routing_context = build_routing_context(nodes, edges, points)
+        with patch(
+            "routes.map_routes.load_routing_context",
+            return_value=routing_context,
         ), patch.dict("sys.modules", {"database": database_module}):
             response = self.client.post(
                 "/api/route",
@@ -699,14 +1098,18 @@ class RouteEndpointTests(unittest.TestCase):
             for route in response.get_json()["routes"]
             if route["algorithm"] == "custom_hikeup"
         )
-        self.assertEqual(custom["path_ids"], [])
+        self.assertEqual(custom["path_ids"], ["S", "D"])
         self.assertEqual(
             custom["recommendation_status"],
-            "no_suitable_route",
+            "difficult_route",
         )
         self.assertEqual(
             custom["alternative_destinations"][0]["id"],
             "alternative-poi",
+        )
+        self.assertTrue(
+            custom["alternative_destinations"][0]["route"]
+            ["within_preferred_limits"]
         )
 
 

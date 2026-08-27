@@ -20,16 +20,20 @@ from models.experience_config import (
 
 from services.map_service import (
     distance_between_points,
-    get_point_by_id,
     load_full_map,
     load_points,
     resolve_routing_node,
 )
+from services.routing_context import (
+    load_routing_context,
+    routing_context_is_cached,
+)
 
 map_bp = Blueprint("map", __name__, url_prefix="/api")
 
-ALTERNATIVE_DESTINATION_RADIUS_KM = 8.0
-ALTERNATIVE_DESTINATION_CANDIDATES = 24
+ALTERNATIVE_DESTINATION_RADIUS_KM = 12.0
+ALTERNATIVE_DESTINATION_CANDIDATES = 48
+ALTERNATIVE_RELATED_TYPE_CANDIDATES = 16
 
 
 ROUTE_ALGORITHMS = [
@@ -149,10 +153,14 @@ def build_alternative_destination_candidates(
     routing_nodes,
     routing_start_id,
     routing_end_id,
+    routing_node_ids=None,
 ):
     """Wybiera podobne pobliskie POI, zanim algorytm oceni ich trasy."""
     end_type = end_point.get("type")
     related_types = {
+        "peak": {"peak", "saddle", "viewpoint"},
+        "saddle": {"saddle", "peak", "viewpoint"},
+        "viewpoint": {"viewpoint", "peak", "saddle"},
         "alpine_hut": {"alpine_hut", "shelter"},
         "shelter": {"alpine_hut", "shelter"},
     }
@@ -207,19 +215,28 @@ def build_alternative_destination_candidates(
         preliminary.append(
             {
                 "point": point,
+                "same_destination_type": point.get("type") == end_type,
                 "distance_from_requested_km": distance_km,
                 "similarity_score": distance_km + elevation_penalty,
             }
         )
 
     preliminary.sort(key=lambda item: item["similarity_score"])
-    routing_node_ids = {
-        node.get("id")
-        for node in routing_nodes
-        if node.get("id") is not None
-    }
+    same_type_candidates = [
+        item for item in preliminary if item["same_destination_type"]
+    ][:ALTERNATIVE_DESTINATION_CANDIDATES]
+    related_type_candidates = [
+        item for item in preliminary if not item["same_destination_type"]
+    ][:ALTERNATIVE_RELATED_TYPE_CANDIDATES]
+    preliminary = same_type_candidates + related_type_candidates
+    if routing_node_ids is None:
+        routing_node_ids = {
+            node.get("id")
+            for node in routing_nodes
+            if node.get("id") is not None
+        }
     candidates = []
-    for candidate in preliminary[:ALTERNATIVE_DESTINATION_CANDIDATES]:
+    for candidate in preliminary:
         point = candidate["point"]
         routing_node_id = (
             point.get("routing_node_id")
@@ -228,7 +245,11 @@ def build_alternative_destination_candidates(
             or point.get("nearest_node")
         )
         if routing_node_id not in routing_node_ids:
-            routing_node_id = resolve_routing_node(point, routing_nodes)
+            routing_node_id = resolve_routing_node(
+                point,
+                routing_nodes,
+                routing_node_ids,
+            )
         if routing_node_id in {
             None,
             routing_start_id,
@@ -255,8 +276,9 @@ def build_single_route_response(
     start_point,
     end_point,
     criterion,
+    node_lookup=None,
 ):
-    node_lookup = build_node_lookup(routing_nodes)
+    node_lookup = node_lookup or build_node_lookup(routing_nodes)
 
     path_ids = route_result["path"]
 
@@ -338,8 +360,11 @@ def build_single_route_response(
             "recommendation_status",
             "recommended",
         ),
+        "personalization_enabled": route_result.get(
+            "personalization_enabled",
+            True,
+        ),
         "message": route_result.get("message"),
-        "comparison_route": route_result.get("comparison_route"),
         "alternative_destinations": route_result.get(
             "alternative_destinations",
             [],
@@ -407,12 +432,14 @@ def route():
 
         user_limits = None
         profile = {}
+        personalization_enabled = False
 
         if user_id:
             try:
                 from database import get_user_profile
 
                 profile = get_user_profile(user_id)
+                personalization_enabled = True
 
                 experience = infer_experience_level(
                     profile.get("age_years"),
@@ -436,6 +463,7 @@ def route():
                     flush=True,
                 )
                 user_limits = None
+                personalization_enabled = False
 
         if not criterion:
             criterion = criterion_from_route_preference(
@@ -460,8 +488,8 @@ def route():
             )
 
             print(
-                "[LOG] Brak profilu - używam domyślnych "
-                "limitów (intermediate)",
+                "[LOG] Brak aktywnego profilu - Custom działa w "
+                "trybie ogólnym bez oceny ograniczeń użytkownika",
                 flush=True,
             )
 
@@ -491,19 +519,25 @@ def route():
             flush=True,
         )
 
-        points = load_points()
-        full_map = load_full_map()
+        context_was_cached = routing_context_is_cached()
+        context_start_time = time.perf_counter()
+        routing_context = load_routing_context()
+        context_load_time_ms = round(
+            (time.perf_counter() - context_start_time) * 1000,
+            3,
+        )
 
-        routing_nodes = full_map["nodes"]
-        routing_edges = full_map["edges"]
+        points = routing_context.points
+        routing_nodes = routing_context.nodes
+        routing_edges = routing_context.edges
 
         print(
             "Rozpoczęcie pobrania punktów startowego i końcowego",
             flush=True,
         )
 
-        start_point = get_point_by_id(points, start)
-        end_point = get_point_by_id(points, end)
+        start_point = routing_context.points_by_id.get(start)
+        end_point = routing_context.points_by_id.get(end)
 
         if start_point is None or end_point is None:
             return jsonify(
@@ -528,10 +562,12 @@ def route():
         routing_start = resolve_routing_node(
             start_point,
             routing_nodes,
+            routing_context.node_ids,
         )
         routing_end = resolve_routing_node(
             end_point,
             routing_nodes,
+            routing_context.node_ids,
         )
 
         if routing_start is None or routing_end is None:
@@ -562,23 +598,14 @@ def route():
             else routing_end
         )
 
-        def count_neighbors(node_id):
-            neighbors = []
-
-            for edge in routing_edges:
-                edge_from = edge.get("from")
-                edge_to = edge.get("to")
-
-                if edge_from == node_id:
-                    neighbors.append(edge_to)
-
-                if edge_to == node_id:
-                    neighbors.append(edge_from)
-
-            return neighbors
-
-        start_neighbors = count_neighbors(routing_start_id)
-        end_neighbors = count_neighbors(routing_end_id)
+        start_neighbors = [
+            neighbor["node"]
+            for neighbor in routing_context.graph.get(routing_start_id, [])
+        ]
+        end_neighbors = [
+            neighbor["node"]
+            for neighbor in routing_context.graph.get(routing_end_id, [])
+        ]
 
         print("Routing start:", routing_start, flush=True)
         print("Routing end:", routing_end, flush=True)
@@ -648,6 +675,8 @@ def route():
                         user_limits,
                         algorithm_results.get("dijkstra"),
                         points,
+                        routing_context,
+                        personalization_enabled,
                     )
 
                     print(
@@ -663,6 +692,7 @@ def route():
                         routing_end_id,
                         criterion,
                         points,
+                        routing_context,
                     )
 
                 algorithm_elapsed = (
@@ -676,10 +706,15 @@ def route():
                     flush=True,
                 )
 
+                route_path_nodes = (
+                    len(route_result.get("path", []))
+                    if isinstance(route_result, dict)
+                    else "n/a"
+                )
                 print(
                     f"[DEBUG] {algorithm_label}: "
                     f"type={type(route_result).__name__}, "
-                    f"value_preview={str(route_result)[:300]}",
+                    f"path_nodes={route_path_nodes}",
                     flush=True,
                 )
 
@@ -748,6 +783,7 @@ def route():
                     start_point=start_point,
                     end_point=end_point,
                     criterion=criterion,
+                    node_lookup=routing_context.nodes_by_id,
                 )
 
                 response_elapsed = (
@@ -793,7 +829,7 @@ def route():
         if (
             custom_result
             and custom_result.get("recommendation_status")
-            == "no_suitable_route"
+            == "difficult_route"
         ):
             destination_candidates = build_alternative_destination_candidates(
                 points,
@@ -802,6 +838,7 @@ def route():
                 routing_nodes,
                 routing_start_id,
                 routing_end_id,
+                routing_context.node_ids,
             )
             dijkstra_result = algorithm_results.get("dijkstra") or {}
             dijkstra_totals = dijkstra_result.get("totals") or {}
@@ -814,21 +851,16 @@ def route():
                 user_limits,
                 points=points,
                 reference_distance_km=dijkstra_totals.get("distance_km"),
+                reference_route_totals=custom_result.get("totals"),
+                reference_profile_match_score=(
+                    custom_result.get("profile_evaluation") or {}
+                ).get("profile_match_score"),
+                routing_context=routing_context,
             )
             custom_result["alternative_destinations"] = alternatives
             custom_result["profile_evaluation"][
                 "alternative_destinations_count"
             ] = len(alternatives)
-
-            if not alternatives:
-                no_alternative_warning = (
-                    "Nie znaleziono pobliskiego celu tego samego typu, do "
-                    "którego prowadzi rozsądna trasa zgodna z profilem."
-                )
-                custom_result["warnings"].append(no_alternative_warning)
-                custom_result["profile_evaluation"]["warnings"].append(
-                    no_alternative_warning
-                )
 
             custom_response = next(
                 (
@@ -882,6 +914,13 @@ def route():
                 "routing_start": routing_start,
                 "routing_end": routing_end,
                 "criterion": criterion,
+                "personalization_enabled": personalization_enabled,
+                "preprocessing_metrics": {
+                    "routing_context_load_ms": context_load_time_ms,
+                    "routing_context_cache_hit": context_was_cached,
+                    "nodes_count": len(routing_context.nodes_by_id),
+                    "edges_count": len(routing_context.edges),
+                },
                 "algorithm": primary_route["algorithm"],
                 "label": primary_route["label"],
                 "path": primary_route["path"],

@@ -224,18 +224,22 @@ def count_shelters_near_route(
     nodes,
     points,
     radius_m=SHELTER_ROUTE_RADIUS_M,
+    node_lookup=None,
 ):
     """Liczy unikalne schroniska w promieniu od polilinii węzłów trasy."""
-    if not path or not nodes or not points:
+    if not path or (not nodes and not node_lookup) or not points:
         return 0
 
-    node_items = nodes.values() if isinstance(nodes, dict) else nodes
     point_items = points.values() if isinstance(points, dict) else points
-    nodes_by_id = {
-        node.get("id"): node
-        for node in node_items
-        if isinstance(node, dict) and node.get("id") is not None
-    }
+    if node_lookup is None:
+        node_items = nodes.values() if isinstance(nodes, dict) else nodes
+        nodes_by_id = {
+            node.get("id"): node
+            for node in node_items
+            if isinstance(node, dict) and node.get("id") is not None
+        }
+    else:
+        nodes_by_id = node_lookup
     route_coordinates = [
         _lat_lng(nodes_by_id.get(node_id))
         for node_id in path
@@ -340,6 +344,7 @@ def calculate_route_totals(
     nodes=None,
     points=None,
     edge_map=None,
+    node_lookup=None,
 ):
     """
     Liczy parametry końcowej trasy:
@@ -421,6 +426,7 @@ def calculate_route_totals(
         path,
         nodes,
         points,
+        node_lookup=node_lookup,
     )
 
     return {

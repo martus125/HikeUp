@@ -11,6 +11,7 @@ import {
   updateUserProfile,
 } from "./api/hikeupApi";
 import { AuthModal } from "./components/AuthModal";
+import { EasierRouteSuggestions } from "./components/EasierRouteSuggestions";
 import { FavoriteRoutes } from "./components/FavoriteRoutes";
 import { Header } from "./components/Header";
 import { PlannerPanel } from "./components/PlannerPanel";
@@ -155,13 +156,15 @@ function App() {
     return criterion;
   }
 
-  async function calculateRoute() {
-    if (!startId || !endId) {
+  async function calculateRoute(options = {}) {
+    const selectedEndId = options?.endOverride || endId;
+
+    if (!startId || !selectedEndId) {
       alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
       return;
     }
 
-    if (startId === endId) {
+    if (startId === selectedEndId) {
       alert("Punkt A i punkt B nie mogą być takie same.");
       return;
     }
@@ -210,7 +213,6 @@ function App() {
         recommendationStatus:
           route.recommendation_status || "recommended",
         message: route.message || "",
-        comparisonRoute: route.comparison_route || null,
         alternativeDestinations: Array.isArray(route.alternative_destinations)
           ? route.alternative_destinations
           : [],
@@ -224,14 +226,14 @@ function App() {
 
       console.log("Wyznaczanie tras...", {
         startId,
-        endId,
+        endId: selectedEndId,
         criterion: routeCriterion,
         userId,
       });
 
       const data = await fetchRoute({
         start: startId,
-        end: endId,
+        end: selectedEndId,
         criterion: routeCriterion,
         user_id: userId,
       });
@@ -243,11 +245,7 @@ function App() {
       const routes = Array.isArray(data.routes)
         ? data.routes
             .map(normalizeAlgorithmRoute)
-            .filter(
-              (route) =>
-                route.positions.length > 1 ||
-                route.recommendationStatus === "no_suitable_route",
-            )
+            .filter((route) => route.positions.length > 1)
         : [normalizeAlgorithmRoute(data)].filter(
             (route) => route.positions.length > 1,
           );
@@ -279,6 +277,11 @@ function App() {
     } finally {
       setLoadingRoutes(false);
     }
+  }
+
+  async function selectAndCalculateAlternative(point) {
+    selectEndPoint(point);
+    await calculateRoute({ endOverride: point.id });
   }
 
   async function handleRegister() {
@@ -529,6 +532,11 @@ function App() {
                   <option value="expert">Ekspert</option>
                   <option value="senior">Senior</option>
                 </select>
+                <p className="profile-field-help">
+                  Bez ręcznego wyboru poziom zostanie dobrany z wieku: poniżej
+                  20 lat — początkujący, 20–64 — średniozaawansowany, od 65 lat
+                  — senior. Poziomy zaawansowany i ekspert wybiera się ręcznie.
+                </p>
               </label>
 
               <label>
@@ -582,15 +590,29 @@ function App() {
       )}
 
       <main ref={plannerRef} className="main-layout">
-        <div className="map-wrapper">
-          <RouteMap
-            nodes={searchPoints}
-            edges={edges}
-            nodeById={nodeById}
-            routeResult={routeResult}
-            onMarkerClick={handleMarkerClick}
-            onSetStart={selectStartPoint}
-            onSetEnd={selectEndPoint}
+        <div className="map-column">
+          <div className="map-wrapper">
+            <RouteMap
+              nodes={searchPoints}
+              edges={edges}
+              nodeById={nodeById}
+              routeResult={routeResult}
+              onMarkerClick={handleMarkerClick}
+              onSetStart={selectStartPoint}
+              onSetEnd={selectEndPoint}
+            />
+          </div>
+
+          <EasierRouteSuggestions
+            alternatives={
+              routeResult?.routes?.find(
+                (route) =>
+                  route.algorithm === "custom_hikeup" &&
+                  route.recommendationStatus === "difficult_route",
+              )?.alternativeDestinations || []
+            }
+            loading={loadingRoutes}
+            onSelect={selectAndCalculateAlternative}
           />
         </div>
 
@@ -627,9 +649,8 @@ function App() {
               }}
               onStartSelect={selectStartPoint}
               onEndSelect={selectEndPoint}
-              onAlternativeSelect={selectEndPoint}
               onCriterionChange={setCriterion}
-              onCalculateRoute={calculateRoute}
+              onCalculateRoute={() => calculateRoute()}
               onAddFavorite={addRouteToFavorites}
             />
           )}

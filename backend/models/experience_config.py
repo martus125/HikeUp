@@ -57,11 +57,14 @@ EXPERIENCE_LIMITS = {
     },
     "advanced": {
         "name": "Zaawansowany",
-        "max_slope_percent": 40,
-        "absolute_max_slope_percent": 90,
+        # Profil wybierany wyłącznie ręcznie. Dopuszcza wszystkie klasy SAC
+        # i nie odrzuca trasy z powodu przewyższenia lub długości stromego
+        # fragmentu. Wartość 0 wyłącza odpowiedni limit całej trasy.
+        "max_slope_percent": 100,
+        "absolute_max_slope_percent": 100,
         "max_difficulty": 6,
-        "max_elevation_gain_m": 1500,
-        "max_consecutive_steep": 2000,
+        "max_elevation_gain_m": 0,
+        "max_consecutive_steep": 0,
         "preferred_elevation_per_hour": 400,
         "max_detour_ratio": 1.35,
         "max_acceptable_detour_ratio": 1.45,
@@ -76,11 +79,13 @@ EXPERIENCE_LIMITS = {
     },
     "expert": {
         "name": "Ekspert",
-        "max_slope_percent": 50,
+        # Ekspert również pozostaje profilem ręcznym i nie może być bardziej
+        # ograniczony bezpieczeństwem niż poziom advanced.
+        "max_slope_percent": 100,
         "absolute_max_slope_percent": 100,
         "max_difficulty": 6,
-        "max_elevation_gain_m": 2500,
-        "max_consecutive_steep": 3000,
+        "max_elevation_gain_m": 0,
+        "max_consecutive_steep": 0,
         "preferred_elevation_per_hour": 500,
         "max_detour_ratio": 1.30,
         "max_acceptable_detour_ratio": 1.40,
@@ -195,8 +200,10 @@ def infer_experience_level(age_years, experience_level):
     """
     Określ poziom doświadczenia na podstawie deklaracji i wieku.
 
-    Jawnie wybrany poziom ma pierwszeństwo. Wiek 65+ uruchamia profil Senior
-    tylko wtedy, gdy użytkownik nie zadeklarował doświadczenia.
+    Jawnie wybrany poziom ma pierwszeństwo. Jeżeli użytkownik nie zadeklarował
+    doświadczenia, wiek wybiera profil domyślny: poniżej 20 lat Beginner,
+    20-64 lata Intermediate, a od 65 lat Senior. Advanced i Expert mogą być
+    wybrane wyłącznie ręcznie.
     
     Args:
         age_years: int lub str - wiek użytkownika
@@ -205,20 +212,23 @@ def infer_experience_level(age_years, experience_level):
     Returns:
         str - ostateczny poziom doświadczenia
     """
-    try:
-        age = int(age_years) if age_years else None
-    except (ValueError, TypeError):
-        age = None
-
     # Jawna deklaracja doświadczenia ma pierwszeństwo przed samym wiekiem.
     if experience_level in EXPERIENCE_LIMITS:
         return experience_level
-    
-    # Wiek stanowi bezpieczną wartość domyślną wyłącznie bez deklaracji.
-    if age and age >= 65:
+
+    try:
+        age = int(age_years) if age_years not in (None, "") else None
+    except (ValueError, TypeError):
+        age = None
+
+    # Wiek wybiera wyłącznie profile automatyczne. Brak lub błędny wiek
+    # zachowuje neutralną wartość domyślną Intermediate.
+    if age is not None and age < 20:
+        return "beginner"
+
+    if age is not None and age >= 65:
         return "senior"
-    
-    # Domyślnie średniozaawansowany
+
     return "intermediate"
 
 

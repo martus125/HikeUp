@@ -183,6 +183,12 @@ export function RouteMap({
         >
           <Popup>
             <strong>{getPointName(node)}</strong>
+            {node.access_point_name && (
+              <>
+                <br />
+                {node.access_point_name}
+              </>
+            )}
             <br />
             Wysokość: {node.elevation || "brak danych"} m n.p.m.
             <br />

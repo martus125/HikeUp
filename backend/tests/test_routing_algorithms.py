@@ -23,6 +23,7 @@ from routes.map_routes import (
     build_alternative_destination_candidates,
     map_bp,
 )
+from services.map_service import get_selectable_points
 from services.routing_context import build_routing_context
 from services import routing_context as routing_context_module
 
@@ -119,6 +120,27 @@ class ExperienceConfigTests(unittest.TestCase):
 
 
 class RoutingContextTests(unittest.TestCase):
+    def test_unverified_points_are_excluded_without_deleting_source_records(self):
+        hidden_point = {
+            "id": "hidden-water",
+            "name": "Staw bez zweryfikowanego dojscia",
+            "type": "water",
+            "lat": 49.005,
+            "lng": 19.005,
+            "selectable": False,
+        }
+        source_points = [*POINTS, hidden_point]
+
+        selectable = get_selectable_points(source_points)
+        context = build_routing_context(NODES, EDGES, source_points)
+
+        self.assertEqual([point["id"] for point in selectable], ["hut/C"])
+        self.assertEqual([point["id"] for point in context.points], ["hut/C"])
+        self.assertNotIn("hidden-water", context.points_by_id)
+
+    def test_legacy_point_without_selectable_flag_remains_available(self):
+        self.assertEqual(get_selectable_points(POINTS), POINTS)
+
     def test_cached_loader_builds_one_context_per_process(self):
         routing_context_module.load_routing_context.cache_clear()
         try:

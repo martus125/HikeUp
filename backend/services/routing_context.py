@@ -12,7 +12,7 @@ from algorithms.common import (
     build_graph,
     get_shelter_routing_node_ids,
 )
-from services.map_service import load_full_map, load_points
+from services.map_service import get_selectable_points, load_full_map, load_points
 
 
 @dataclass(frozen=True, slots=True)
@@ -32,7 +32,7 @@ class RoutingContext:
 
 def build_routing_context(nodes, edges, points=None):
     """Buduje kontekst z przekazanych kolekcji bez kopiowania ich zawartości."""
-    points = points or []
+    points = get_selectable_points(points or [])
     nodes_by_id = {
         node.get("id"): node
         for node in nodes

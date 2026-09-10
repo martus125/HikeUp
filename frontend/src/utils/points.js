@@ -28,6 +28,7 @@ export function normalizePointList(data) {
     .map(normalizePoint)
     .filter(
       (point) =>
+        point.selectable !== false &&
         point.id &&
         point.name &&
         Number.isFinite(point.lat) &&

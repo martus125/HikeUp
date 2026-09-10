@@ -39,7 +39,25 @@ def normalize_collection(data, key_names=("points", "nodes")):
 
 @lru_cache(maxsize=1)
 def load_points():
-    return normalize_collection(load_json(POI_FILE))
+    return get_selectable_points(normalize_collection(load_json(POI_FILE)))
+
+
+def is_selectable_point(point):
+    """Return whether a POI may be displayed and used for routing.
+
+    Missing ``selectable`` keeps older POI files backwards-compatible.
+    A false value retains the source record while keeping an unverified
+    destination out of the planner.
+    """
+    return isinstance(point, dict) and point.get("selectable", True) is not False
+
+
+def get_selectable_points(points):
+    return [
+        point
+        for point in normalize_collection(points)
+        if is_selectable_point(point)
+    ]
 
 
 @lru_cache(maxsize=1)

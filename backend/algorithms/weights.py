@@ -252,11 +252,10 @@ def custom_hikeup_edge_weight(
         0.0,
         as_number(user_limits.get("limit_excess_penalty_factor"), 1.0),
     )
-    shelter_bonus_factor = clamp(
-        as_number(user_limits.get("shelter_bonus_factor"), 0.0),
-        0.0,
-        0.1,
-    )
+    shelter_bonus_factor = as_number(
+    user_limits.get("shelter_bonus_factor"),
+    0.0,
+)
 
     base_cost = edge_weight(edge, criterion)
     slope_load = (slope / max_slope) ** 2

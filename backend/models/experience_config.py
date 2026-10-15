@@ -16,6 +16,7 @@ PROFILE_MATCH_WEIGHTS = {
     "shelters": 10.0,
 }
 
+SHELTER_PREFERENCE_BONUS_FACTOR = 0.45
 EXPERIENCE_LIMITS = {
     "beginner": {
         "name": "Początkujący",
@@ -33,7 +34,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 1.20,
         "elevation_penalty_factor": 0.80,
         "limit_excess_penalty_factor": 2.00,
-        "shelter_preference_bonus_factor": 0.08,
         "shelter_preference_max_extra_ratio": 1.10,
     },
     "intermediate": {
@@ -52,7 +52,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.60,
         "elevation_penalty_factor": 0.40,
         "limit_excess_penalty_factor": 1.00,
-        "shelter_preference_bonus_factor": 0.07,
         "shelter_preference_max_extra_ratio": 1.10,
     },
     "advanced": {
@@ -74,7 +73,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.25,
         "elevation_penalty_factor": 0.20,
         "limit_excess_penalty_factor": 0.40,
-        "shelter_preference_bonus_factor": 0.06,
         "shelter_preference_max_extra_ratio": 1.10,
     },
     "expert": {
@@ -95,7 +93,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.08,
         "elevation_penalty_factor": 0.05,
         "limit_excess_penalty_factor": 0.15,
-        "shelter_preference_bonus_factor": 0.05,
         "shelter_preference_max_extra_ratio": 1.10,
     },
     "senior": {
@@ -117,7 +114,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 1.50,
         "elevation_penalty_factor": 1.00,
         "limit_excess_penalty_factor": 2.50,
-        "shelter_preference_bonus_factor": 0.09,
         "shelter_preference_max_extra_ratio": 1.10,
     }
 }
@@ -157,15 +153,15 @@ def as_preference_bool(value):
 
 
 def apply_shelter_preference(limits, prefer_shelters):
-    """Zwraca kopię limitów z aktywną lub wyłączoną preferencją schronisk."""
     configured_limits = dict(limits)
+
     enabled = as_preference_bool(prefer_shelters)
+
     configured_limits["prefer_shelters"] = enabled
     configured_limits["shelter_bonus_factor"] = (
-        configured_limits.get("shelter_preference_bonus_factor", 0.0)
-        if enabled
-        else 0.0
+        SHELTER_PREFERENCE_BONUS_FACTOR if enabled else 0.0
     )
+
     return configured_limits
 
 

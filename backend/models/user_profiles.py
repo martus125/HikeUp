@@ -22,15 +22,7 @@ USER_PROFILES = {
         "max_difficulty": 3,
         "elevation_per_hour": 150,
         "description": "Ograniczenia zdrowotne, słaba wydolność",
-    },
-    "family": {
-        "age": 40,
-        "name": "Rodzina z dziećmi",
-        "slope_limit": 20,
-        "max_difficulty": 4,
-        "elevation_per_hour": 200,
-        "description": "Bezpieczeństwo dzieci, umiarkowane trasy",
-    },
+    }
 }
 def get_profile(profile_key):
     return USER_PROFILES.get(profile_key, USER_PROFILES["adult"])

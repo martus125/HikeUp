@@ -8,7 +8,7 @@ def haversine_km(first_node, second_node):
     Liczy odległość w linii prostej między dwoma punktami GPS.
 
     To nie jest gotowa trasa.
-    Ta odległość służy tylko jako heurystyka dla A* i Greedy.
+    Używana przez heurystyki A* i Greedy oraz preferencję bliskości schronisk.
     """
     lat1 = math.radians(float(first_node["lat"]))
     lng1 = math.radians(float(first_node["lng"]))

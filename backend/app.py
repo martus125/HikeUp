@@ -13,12 +13,24 @@ from routes.profile_routes import profile_bp
 def create_app():
     app = Flask(__name__)
     
-    CORS(
-    app,
-    resources={r"/*": {"origins": "*"}},
-    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Content-Type", "Authorization"],
-)
+    from auth import initialize_auth
+    origins = [value.strip() for value in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if value.strip()]
+    if not origins or "*" in origins:
+        raise ValueError("FRONTEND_ORIGINS must contain explicit frontend origins")
+    app.config.update(
+        FRONTEND_ORIGINS=origins,
+        AUTH_SESSION_HOURS=int(os.getenv("AUTH_SESSION_HOURS", "24")),
+        SESSION_COOKIE_SECURE=os.getenv("SESSION_COOKIE_SECURE", "true").lower() == "true",
+        SESSION_COOKIE_SAMESITE=os.getenv("SESSION_COOKIE_SAMESITE", "Lax"),
+    )
+    if app.config["SESSION_COOKIE_SAMESITE"] not in {"Lax", "Strict", "None"}:
+        raise ValueError("Invalid SESSION_COOKIE_SAMESITE")
+    if app.config["SESSION_COOKIE_SAMESITE"] == "None" and not app.config["SESSION_COOKIE_SECURE"]:
+        raise ValueError("SameSite=None requires Secure cookies")
+    CORS(app, origins=origins, supports_credentials=True,
+         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+         allow_headers=["Content-Type", "X-CSRF-Token"])
+    initialize_auth(app)
 
     init_database()
 
@@ -38,7 +50,5 @@ app = create_app()
 
 
 if __name__ == "__main__":
-    import os
-
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)

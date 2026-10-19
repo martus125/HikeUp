@@ -1,12 +1,14 @@
 import math
 from dataclasses import asdict, dataclass
 
+from algorithms.heuristics import haversine_km
 from algorithms.weights import (
     as_number,
     edge_weight,
     estimate_hiking_time_minutes,
     get_slope_percent,
 )
+from models.experience_config import SHELTER_PREFERENCE_RADIUS_M
 
 
 SHELTER_ROUTE_RADIUS_M = 350.0
@@ -305,6 +307,53 @@ def count_shelters_near_route(
             counted_shelters.add(shelter_id)
 
     return len(counted_shelters)
+
+
+def get_shelter_proximity_strength(
+    node,
+    points,
+    radius_m=SHELTER_PREFERENCE_RADIUS_M,
+):
+    """Siła preferencji 0–1 według odległości w linii prostej od schroniska.
+
+    Zakładamy, że obszary wpływu schronisk się nie nakładają, dlatego
+    zwracamy wynik dla pierwszego schroniska w promieniu.
+    Interpolacja liniowa według części promienia: 0 → 1, 0.05 → 0.98,
+    0.1 → 0.95, 0.25 → 0.3, 0.5 → 0.05, 1 → 0.
+    """
+    coordinates = _lat_lng(node)
+    if coordinates is None or not points or radius_m <= 0:
+        return 0.0
+
+    node_coordinates = {"lat": coordinates[0], "lng": coordinates[1]}
+    point_items = points.values() if isinstance(points, dict) else points
+
+    for point in point_items:
+        if not isinstance(point, dict) or point.get("type") not in SHELTER_TYPES:
+            continue
+
+        shelter_coordinates = _lat_lng(point)
+        if shelter_coordinates is None:
+            continue
+
+        distance_m = 1000.0 * haversine_km(
+            node_coordinates,
+            {"lat": shelter_coordinates[0], "lng": shelter_coordinates[1]},
+        )
+        if distance_m < radius_m:
+            distance_ratio = distance_m / radius_m
+            control_points = (
+                (0.0, 1.0), (0.05, 0.98), (0.1, 0.95),
+                (0.25, 0.3), (0.5, 0.05), (1.0, 0.0),
+            )
+            for (start, start_strength), (end, end_strength) in zip(
+                control_points, control_points[1:]
+            ):
+                if distance_ratio <= end:
+                    fraction = (distance_ratio - start) / (end - start)
+                    return start_strength + fraction * (end_strength - start_strength)
+
+    return 0.0
 
 
 def get_shelter_routing_node_ids(

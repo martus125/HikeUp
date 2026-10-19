@@ -1,3 +1,4 @@
+from auth import current_user_id
 # Endpointy API związane z mapą, punktami i wyznaczaniem tras wszystkimi algorytmami
 from flask import Blueprint, jsonify, request
 import time
@@ -428,7 +429,7 @@ def route():
         start = data.get("start")
         end = data.get("end")
         criterion = data.get("criterion")
-        user_id = data.get("user_id")
+        user_id = current_user_id()
 
         user_limits = None
         profile = {}

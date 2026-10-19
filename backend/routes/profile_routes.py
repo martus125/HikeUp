@@ -1,17 +1,22 @@
+from auth import current_user_id, login_required
 from flask import Blueprint, request, jsonify
 from database import get_user_profile, update_user_profile
 
 profile_bp = Blueprint("profile", __name__)
 
 
-@profile_bp.route("/profile/<int:user_id>", methods=["GET"])
-def profile_get(user_id):
+@profile_bp.route("/api/profile", methods=["GET"])
+@login_required
+def profile_get():
+    user_id = current_user_id()
     profile = get_user_profile(user_id)
     return jsonify(profile)
 
 
-@profile_bp.route("/profile/<int:user_id>", methods=["PUT"])
-def profile_update(user_id):
+@profile_bp.route("/api/profile", methods=["PUT"])
+@login_required
+def profile_update():
+    user_id = current_user_id()
     data = request.get_json() or {}
 
     age_years = data.get("age_years")

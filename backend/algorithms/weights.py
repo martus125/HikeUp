@@ -165,7 +165,7 @@ def custom_hikeup_edge_weight(
     edge,
     criterion="time",
     user_limits=None,
-    shelter_nearby=False,
+    shelter_proximity_strength=0.0,
 ):
     """
     Profilowy koszt odcinka dla algorytmu Custom HikeUp.
@@ -253,9 +253,9 @@ def custom_hikeup_edge_weight(
         as_number(user_limits.get("limit_excess_penalty_factor"), 1.0),
     )
     shelter_bonus_factor = as_number(
-    user_limits.get("shelter_bonus_factor"),
-    0.0,
-)
+        user_limits.get("shelter_bonus_factor"),
+        0.0,
+    )
 
     base_cost = edge_weight(edge, criterion)
     slope_load = (slope / max_slope) ** 2
@@ -271,8 +271,8 @@ def custom_hikeup_edge_weight(
         slope_excess ** 2 + difficulty_excess ** 2
     )
     shelter_bonus = (
-        base_cost * shelter_bonus_factor
-        if shelter_nearby
+        base_cost * shelter_bonus_factor * shelter_proximity_strength
+        if user_limits.get("prefer_shelters", False)
         else 0.0
     )
 

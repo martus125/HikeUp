@@ -59,6 +59,12 @@ def execute_schema(cursor):
         );
         """
     )
+    cursor.execute("""CREATE TABLE IF NOT EXISTS auth_sessions (
+        token_hash CHAR(64) PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        csrf_token TEXT NOT NULL,
+        expires_at TIMESTAMPTZ NOT NULL
+    );""")
     cursor.execute(
         "ALTER TABLE user_profiles "
         "ADD COLUMN IF NOT EXISTS age_years INTEGER;"
@@ -381,3 +387,31 @@ def update_user_profile(
             "message": f"Błąd zapisu profilu: {error}",
         }
 
+
+
+def store_auth_session(token_hash, user_id, csrf_token, expires_at):
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM auth_sessions WHERE expires_at <= CURRENT_TIMESTAMP")
+            cursor.execute(
+                "INSERT INTO auth_sessions (token_hash, user_id, csrf_token, expires_at) VALUES (%s, %s, %s, %s)",
+                (token_hash, user_id, csrf_token, expires_at),
+            )
+
+
+def find_auth_session(token_hash):
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("""SELECT u.id, u.name, u.email, u.experience_level, s.csrf_token
+                FROM auth_sessions s JOIN users u ON u.id = s.user_id
+                WHERE s.token_hash = %s AND s.expires_at > CURRENT_TIMESTAMP""", (token_hash,))
+            row = cursor.fetchone()
+    if row is None:
+        return None
+    return {"user": dict(zip(("id", "name", "email", "experience_level"), row[:4])), "csrf_token": row[4]}
+
+
+def delete_auth_session(token_hash):
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM auth_sessions WHERE token_hash = %s", (token_hash,))

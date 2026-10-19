@@ -16,7 +16,8 @@ PROFILE_MATCH_WEIGHTS = {
     "shelters": 10.0,
 }
 
-SHELTER_PREFERENCE_BONUS_FACTOR = 0.45
+SHELTER_PREFERENCE_BONUS_FACTOR = 0.95
+SHELTER_PREFERENCE_RADIUS_M = 1000.0
 EXPERIENCE_LIMITS = {
     "beginner": {
         "name": "Początkujący",
@@ -140,6 +141,7 @@ def get_limits(experience_level):
     # użytkownika, dzięki czemu schroniska nie zmieniają tras innych osób.
     limits["prefer_shelters"] = False
     limits["shelter_bonus_factor"] = 0.0
+    limits["shelter_preference_radius_m"] = SHELTER_PREFERENCE_RADIUS_M
     return limits
 
 

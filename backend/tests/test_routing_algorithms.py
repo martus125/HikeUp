@@ -921,7 +921,7 @@ class RouteEndpointTests(unittest.TestCase):
         with patch(
             "routes.map_routes.load_routing_context",
             return_value=routing_context,
-        ), patch.dict("sys.modules", {"database": database_module}):
+        ), patch("routes.map_routes.current_user_id", return_value=15), patch.dict("sys.modules", {"database": database_module}):
             profile_response = self.client.post(
                 "/api/route",
                 json={
@@ -981,7 +981,7 @@ class RouteEndpointTests(unittest.TestCase):
         with patch(
             "routes.map_routes.load_routing_context",
             return_value=self.routing_context,
-        ), patch.dict(
+        ), patch("routes.map_routes.current_user_id", return_value=7), patch.dict(
             "sys.modules",
             {"database": database_module},
         ):
@@ -1027,7 +1027,7 @@ class RouteEndpointTests(unittest.TestCase):
         with patch(
             "routes.map_routes.load_routing_context",
             return_value=self.routing_context,
-        ), patch.dict("sys.modules", {"database": database_module}):
+        ), patch("routes.map_routes.current_user_id", return_value=9), patch.dict("sys.modules", {"database": database_module}):
             response = self.client.post(
                 "/api/route",
                 json={
@@ -1103,7 +1103,7 @@ class RouteEndpointTests(unittest.TestCase):
         with patch(
             "routes.map_routes.load_routing_context",
             return_value=routing_context,
-        ), patch.dict("sys.modules", {"database": database_module}):
+        ), patch("routes.map_routes.current_user_id", return_value=8), patch.dict("sys.modules", {"database": database_module}):
             response = self.client.post(
                 "/api/route",
                 json={

@@ -4,6 +4,9 @@ import "./App.css";
 
 import {
   fetchRoute,
+  fetchFavorites,
+  getCurrentUser,
+  logoutUser,
   getUserProfile,
   loginUser,
   registerUser,
@@ -51,17 +54,7 @@ function App() {
   const [criterion, setCriterion] = useState("time");
   const [routeResult, setRouteResult] = useState(null);
   const [loadingRoutes, setLoadingRoutes] = useState(false);
-  const [favoriteRoutes, setFavoriteRoutes] = useState(() => {
-    const savedFavorites = localStorage.getItem("hikeup_favorite_routes");
-    if (!savedFavorites) return [];
-
-    try {
-      const parsedFavorites = JSON.parse(savedFavorites);
-      return Array.isArray(parsedFavorites) ? parsedFavorites : [];
-    } catch {
-      return [];
-    }
-  });
+  const [favoriteRoutes, setFavoriteRoutes] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("login");
@@ -78,8 +71,38 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("hikeup_favorite_routes", JSON.stringify(favoriteRoutes));
-  }, [favoriteRoutes]);
+    let cancelled = false;
+    getCurrentUser().then((data) => {
+      if (!cancelled) setUser(data.user);
+    }).catch(() => {});
+    const clearSession = () => {
+      setUser(null);
+      setFavoriteRoutes([]);
+      setShowUserPanel(false);
+      setRouteResult(null);
+    };
+    window.addEventListener("hikeup:session-expired", clearSession);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("hikeup:session-expired", clearSession);
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (user) {
+      fetchFavorites().then((data) => {
+        if (!cancelled) setFavoriteRoutes(data.favorites.map((route) => ({
+          id: route.id, userId: user.id, name: route.route_name,
+          distance: Number(route.distance_km), time: route.time_min,
+          elevation: route.elevation_gain_m, criterion: route.criterion, path: route.path,
+        })));
+      }).catch((error) => {
+        if (!cancelled) setAuthMessage(error.message);
+      });
+    }
+    return () => { cancelled = true; };
+  }, [user]);
 
   const nodes = useMemo(() => normalizePointList(graph.nodes), [graph.nodes]);
   const edges = useMemo(
@@ -128,8 +151,6 @@ function App() {
     setEndSearch(getPointName(point));
     setActiveSearch(null);
   }
-
-  function handleMarkerClick() {}
 
   function scrollToPlanner() {
     plannerRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -222,25 +243,11 @@ function App() {
     try {
       const routeCriterion = criterion;
 
-      const userId = user?.id || null;
-
-      console.log("Wyznaczanie tras...", {
-        startId,
-        endId: selectedEndId,
-        criterion: routeCriterion,
-        userId,
-      });
-
       const data = await fetchRoute({
         start: startId,
         end: selectedEndId,
         criterion: routeCriterion,
-        user_id: userId,
       });
-
-      console.log("ODPOWIEDŹ BACKENDU:", data);
-      console.log("ALGORYTMY:", data.routes?.map((route) => route.algorithm));
-      console.log("BŁĘDY ALGORYTMÓW:", data.algorithm_errors);
 
       const routes = Array.isArray(data.routes)
         ? data.routes
@@ -327,7 +334,15 @@ function App() {
     }
   }
 
-  function handleLogout() {
+  async function handleLogout() {
+    try {
+      await logoutUser();
+    } catch (error) {
+      alert(error.message || "Nie udało się wylogować. Spróbuj ponownie.");
+      return;
+    }
+    setFavoriteRoutes([]);
+    setRouteResult(null);
     setUser(null);
     setShowUserPanel(false);
     setProfile({
@@ -353,7 +368,6 @@ function App() {
     const startNode = routeResult.routeNodes[0];
     const endNode = routeResult.routeNodes[routeResult.routeNodes.length - 1];
     const favoriteData = {
-      user_id: user.id,
       route_name: `${startNode.name} → ${endNode.name}`,
       start_point_name: startNode.name,
       end_point_name: endNode.name,
@@ -391,7 +405,7 @@ function App() {
     if (!user) return;
 
     try {
-      const data = await getUserProfile(user.id);
+      const data = await getUserProfile();
 
       setProfile({
         age_years: data.age_years || "",
@@ -417,7 +431,7 @@ function App() {
     if (!user) return;
 
     try {
-      const data = await updateUserProfile(user.id, {
+      const data = await updateUserProfile({
         age_years: profile.age_years,
         experience_level: profile.experience_level,
         route_preference: profile.route_preference,
@@ -597,7 +611,6 @@ function App() {
               edges={edges}
               nodeById={nodeById}
               routeResult={routeResult}
-              onMarkerClick={handleMarkerClick}
               onSetStart={selectStartPoint}
               onSetEnd={selectEndPoint}
             />

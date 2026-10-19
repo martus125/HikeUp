@@ -1,3 +1,4 @@
+from auth import current_user_id, login_required
 '''dodawanie trasy do ulubionych i pobieranie ulubionych tras'''
 from flask import Blueprint, jsonify, request
 
@@ -7,10 +8,11 @@ favorites_bp = Blueprint("favorites", __name__, url_prefix="/api/favorites")
 
 
 @favorites_bp.route("", methods=["POST"])
+@login_required
 def add_favorite():
     data = request.get_json() or {}
 
-    user_id = data.get("user_id")
+    user_id = current_user_id()
     route_name = data.get("route_name")
 
     if not user_id or not route_name:
@@ -34,8 +36,10 @@ def add_favorite():
     return jsonify(result), 201
 
 
-@favorites_bp.route("/<int:user_id>", methods=["GET"])
-def get_favorites(user_id):
+@favorites_bp.route("", methods=["GET"])
+@login_required
+def get_favorites():
+    user_id = current_user_id()
     result = get_favorite_routes(user_id)
     if not result["success"]:
         return jsonify(result), 400

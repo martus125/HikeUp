@@ -20,14 +20,15 @@ distance, elevation albo difficulty. Nachylenie, trudność i wysiłek związany
 z przewyższeniem dodają osobne kary proporcjonalne do kosztu bazowego. Limity
 i współczynniki profilu są zdefiniowane centralnie w
 ``models/experience_config.py``. Beginner i senior otrzymują silniejsze kary,
-intermediate umiarkowane, a expert słabsze. Schronisko może dać wyłącznie mały,
-ograniczony bonus i nigdy nie tworzy ujemnej krawędzi.
+intermediate umiarkowane, a expert słabsze. Preferencja schronisk obniża koszt
+według odległości docelowego węzła od schroniska i nie tworzy ujemnej krawędzi.
 
 Kandydaci i detour_ratio
 -----------------------
 Custom tworzy kandydatów profilowych i ograniczonych, a następnie najpierw
 odrzuca warianty naruszające twarde granice bezpieczeństwa. Spośród pozostałych
-wybiera najtańszy według kryterium użytkownika. ``detour_ratio`` to długość
+wybiera najtańszy według kryterium użytkownika, a przy preferencji schronisk
+według kosztu profilowego Custom. ``detour_ratio`` to długość
 kandydata podzielona przez długość trasy najkrótszej. Limit preferowany wpływa
 na kolejność wyboru, a osobna granica bezwzględna usuwa absurdalne objazdy.
 Jeżeli żaden kandydat nie mieści się w limitach profilu, Custom nadal zwraca
@@ -47,12 +48,13 @@ import heapq
 from time import perf_counter
 
 from algorithms.common import (
+    SHELTER_TYPES,
     SearchMetrics,
     build_algorithm_result,
     build_edge_map,
     build_graph,
     calculate_route_totals,
-    get_shelter_routing_node_ids,
+    get_shelter_proximity_strength,
     make_directional_edge,
     reconstruct_path,
 )
@@ -64,7 +66,43 @@ from algorithms.weights import (
     get_slope_percent,
     validate_criterion,
 )
-from models.experience_config import PROFILE_MATCH_WEIGHTS, get_limits
+from models.experience_config import (
+    PROFILE_MATCH_WEIGHTS,
+    SHELTER_PREFERENCE_RADIUS_M,
+    get_limits,
+)
+
+
+def _build_shelter_proximity_lookup(nodes, points, user_limits):
+    """Tworzy funkcję siły preferencji z pamięcią na jedno wyznaczanie trasy."""
+    if not user_limits.get("prefer_shelters", False):
+        return lambda node_id: 0.0
+
+    node_items = nodes.values() if isinstance(nodes, dict) else nodes
+    nodes_by_id = {
+        node["id"]: node
+        for node in node_items
+        if isinstance(node, dict) and node.get("id") is not None
+    }
+    point_items = points.values() if isinstance(points, dict) else (points or [])
+    shelters = [
+        point
+        for point in point_items
+        if isinstance(point, dict) and point.get("type") in SHELTER_TYPES
+    ]
+    radius_m = user_limits.get(
+        "shelter_preference_radius_m", SHELTER_PREFERENCE_RADIUS_M
+    )
+    strengths_by_node = {}
+
+    def strength_for_node(node_id):
+        if node_id not in strengths_by_node:
+            strengths_by_node[node_id] = get_shelter_proximity_strength(
+                nodes_by_id.get(node_id), shelters, radius_m=radius_m
+            )
+        return strengths_by_node[node_id]
+
+    return strength_for_node
 
 
 def calculate_custom_path_score(
@@ -72,11 +110,10 @@ def calculate_custom_path_score(
     edge_lookup,
     criterion,
     user_limits,
-    shelter_node_ids=None,
+    shelter_proximity_lookup=None,
 ):
     """Oblicza profilowy koszt dowolnej gotowej ścieżki."""
     score = 0.0
-    shelter_node_ids = shelter_node_ids or set()
 
     for start, end in zip(path, path[1:]):
         source_edge = edge_lookup.get((start, end))
@@ -89,7 +126,11 @@ def calculate_custom_path_score(
             edge,
             criterion,
             user_limits,
-            shelter_nearby=end in shelter_node_ids,
+            shelter_proximity_strength=(
+                shelter_proximity_lookup(end)
+                if shelter_proximity_lookup is not None
+                else 0.0
+            ),
         )
 
     return score
@@ -555,10 +596,10 @@ def calculate_route(
     if start not in graph or end not in graph:
         return None
 
-    shelter_node_ids = (
-        routing_context.shelter_node_ids
-        if routing_context is not None
-        else get_shelter_routing_node_ids(points)
+    shelter_proximity_lookup = _build_shelter_proximity_lookup(
+        routing_context.nodes_by_id if routing_context is not None else nodes,
+        routing_context.points if routing_context is not None else points,
+        profile_limits,
     )
     edge_lookup = (
         routing_context.edges_by_nodes
@@ -681,7 +722,7 @@ def calculate_route(
             edge,
             criterion,
             profile_limits,
-            shelter_nearby=neighbor in shelter_node_ids,
+            shelter_proximity_strength=shelter_proximity_lookup(neighbor),
         ),
         metrics,
         end=end,
@@ -779,7 +820,7 @@ def calculate_route(
                 edge_lookup,
                 criterion,
                 profile_limits,
-                shelter_node_ids,
+                shelter_proximity_lookup,
             ),
         }
         seen_paths[path_key] = candidate
@@ -855,6 +896,8 @@ def calculate_route(
         selected = min(
             selection_pool,
             key=lambda candidate: (
+                (candidate["custom_score"],) if shelter_preference_enabled else ()
+            ) + (
                 candidate["route_weight"],
                 candidate["totals"]["distance_km"],
             ),
@@ -1063,10 +1106,10 @@ def find_profile_suitable_destination_alternatives(
     if not destinations_by_node:
         return []
 
-    shelter_node_ids = (
-        routing_context.shelter_node_ids
-        if routing_context is not None
-        else get_shelter_routing_node_ids(points)
+    shelter_proximity_lookup = _build_shelter_proximity_lookup(
+        routing_context.nodes_by_id if routing_context is not None else nodes,
+        routing_context.points if routing_context is not None else points,
+        profile_limits,
     )
     metrics = SearchMetrics()
     scores, previous = _search_graph(
@@ -1076,7 +1119,7 @@ def find_profile_suitable_destination_alternatives(
             edge,
             "difficulty",
             profile_limits,
-            shelter_nearby=neighbor in shelter_node_ids,
+            shelter_proximity_strength=shelter_proximity_lookup(neighbor),
         ),
         metrics,
         target_ids=destinations_by_node,
@@ -1092,7 +1135,7 @@ def find_profile_suitable_destination_alternatives(
             edge,
             "difficulty",
             profile_limits,
-            shelter_nearby=neighbor in shelter_node_ids,
+            shelter_proximity_strength=shelter_proximity_lookup(neighbor),
         ),
         metrics,
         target_ids=destinations_by_node,

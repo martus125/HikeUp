@@ -1,8 +1,17 @@
 import { API_URL } from "../constants/api";
 import { normalizePointList } from "../utils/points";
 
+let csrfToken = null;
+
 async function request(path, options = {}) {
-  const response = await fetch(`${API_URL}${path}`, options);
+  const response = await fetch(`${API_URL}${path}`, {
+    ...options,
+    credentials: "include",
+    headers: {
+      ...options.headers,
+      ...(csrfToken ? { "X-CSRF-Token": csrfToken } : {}),
+    },
+  });
 
   let data;
 
@@ -12,12 +21,17 @@ async function request(path, options = {}) {
     throw new Error("Backend zwrócił nieprawidłową odpowiedź.");
   }
 
+  if (response.status === 401) {
+    csrfToken = null;
+    if (path !== "/api/login") window.dispatchEvent(new Event("hikeup:session-expired"));
+  }
   if (!response.ok || data.success === false) {
     throw new Error(
       data.message || "Wystąpił błąd połączenia z backendem."
     );
   }
 
+  if (data.csrf_token) csrfToken = data.csrf_token;
   return data;
 }
 
@@ -39,7 +53,6 @@ export async function fetchRoute({
   start,
   end,
   criterion,
-  user_id = null,
 }) {
   return request("/api/route", {
     method: "POST",
@@ -50,7 +63,6 @@ export async function fetchRoute({
       start,
       end,
       criterion,
-      user_id,
     }),
   });
 }
@@ -92,16 +104,35 @@ export async function saveFavoriteRoute(favoriteData) {
   });
 }
 
-export async function getUserProfile(userId) {
-  return request(`/profile/${userId}`);
+export async function getUserProfile() {
+  return request("/api/profile");
 }
 
-export async function updateUserProfile(userId, profileData) {
-  return request(`/profile/${userId}`, {
+export async function updateUserProfile(profileData) {
+  return request("/api/profile", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(profileData),
   });
+}
+
+
+export function getCurrentUser() {
+  return request("/api/auth/me");
+}
+
+export async function logoutUser() {
+  const result = await request("/api/logout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: "{}",
+  });
+  csrfToken = null;
+  return result;
+}
+
+export function fetchFavorites() {
+  return request("/api/favorites");
 }

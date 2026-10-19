@@ -96,7 +96,6 @@ export function RouteMap({
   edges,
   nodeById,
   routeResult,
-  onMarkerClick,
   onSetStart,
   onSetEnd,
 }) {
@@ -179,7 +178,6 @@ export function RouteMap({
           key={node.id}
           position={[node.lat, node.lng]}
           icon={markerIcon}
-          eventHandlers={{ click: () => onMarkerClick(node.id) }}
         >
           <Popup>
             <strong>{getPointName(node)}</strong>

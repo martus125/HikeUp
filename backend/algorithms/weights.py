@@ -126,6 +126,9 @@ def edge_weight(edge, criterion="time"):
     validate_criterion(criterion)
 
     distance = max(0.0, as_number(edge.get("distance_km"), 0))
+    if criterion == "distance":
+        return distance
+
     time = estimate_hiking_time_minutes(edge)
     elevation = max(
         0.0,
@@ -136,9 +139,6 @@ def edge_weight(edge, criterion="time"):
         1.0,
         MAX_TRAIL_DIFFICULTY,
     )
-
-    if criterion == "distance":
-        return distance
 
     if criterion == "time":
         return time

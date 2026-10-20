@@ -2,6 +2,25 @@
   box-sizing: border-box;
 }
 
+.recommended-route-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.recommended-route-link:hover,
+.recommended-route-link:focus-visible {
+  text-decoration: underline;
+}
+
+.recommended-route-link:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;

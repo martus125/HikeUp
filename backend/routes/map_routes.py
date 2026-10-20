@@ -1,4 +1,5 @@
 from auth import current_user_id
+from models.route_examples import ROUTE_EXAMPLES, EXAMPLES_BY_ID
 # Endpointy API związane z mapą, punktami i wyznaczaniem tras wszystkimi algorytmami
 from flask import Blueprint, jsonify, request
 import time
@@ -405,6 +406,11 @@ def get_full_map_info():
     )
 
 
+@map_bp.route("/route-examples", methods=["GET"])
+def get_route_examples():
+    return jsonify(success=True, examples=ROUTE_EXAMPLES)
+
+
 @map_bp.route("/route", methods=["POST"])
 def route():
     """
@@ -431,11 +437,22 @@ def route():
         criterion = data.get("criterion")
         user_id = current_user_id()
 
+        example = None
+        if "example_id" in data:
+            example_id = data["example_id"]
+            if not isinstance(example_id, str) or example_id not in EXAMPLES_BY_ID:
+                return jsonify(success=False, message="Nieznany przykład trasy."), 400
+            example = EXAMPLES_BY_ID[example_id]
+            start, end, criterion = example["start"], example["end"], example["criterion"]
+
         user_limits = None
         profile = {}
         personalization_enabled = False
 
-        if user_id:
+        if example:
+            user_limits = apply_shelter_preference(get_limits(example["profile"]), False)
+            personalization_enabled = True
+        elif user_id:
             try:
                 from database import get_user_profile
 
@@ -545,8 +562,8 @@ def route():
                 {
                     "success": False,
                     "message": (
-                        "Nie znaleziono wybranego punktu "
-                        "w graph_nodes.json."
+                        "Wybrany punkt nie istnieje lub nie jest dostępny do planowania. "
+                        "Wybierz punkt z aktualnej listy przy sieci szlaków."
                     ),
                     "debug": {
                         "start": start,
@@ -576,8 +593,8 @@ def route():
                 {
                     "success": False,
                     "message": (
-                        "Nie udało się dopasować punktów "
-                        "do grafu szlaków."
+                        "Nie znaleziono pobliskiego węzła szlaku dla wybranych punktów. "
+                        "Nie można wyznaczyć trasy do odległego miejsca poza siecią."
                     ),
                     "debug": {
                         "start": start,
@@ -916,6 +933,7 @@ def route():
                 "routing_end": routing_end,
                 "criterion": criterion,
                 "personalization_enabled": personalization_enabled,
+                "example": example,
                 "preprocessing_metrics": {
                     "routing_context_load_ms": context_load_time_ms,
                     "routing_context_cache_hit": context_was_cached,

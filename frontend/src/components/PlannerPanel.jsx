@@ -68,6 +68,9 @@ export function PlannerPanel({
       {routeResult && (
         <div className="route-result">
           <h2>Wyniki algorytmów</h2>
+          {routeResult.example && (
+            <p>Przykład porównawczy · Profil: {routeResult.example.profile_name} · Bez preferencji schronisk</p>
+          )}
 
           <div className="algorithm-legend">
             {algorithmRoutes.map((route) => (
@@ -153,18 +156,6 @@ export function PlannerPanel({
                   </div>
                 )}
 
-                {route.warnings?.length > 0 && (
-                  <div className="route-warnings">
-                    <strong>Uwagi profilu:</strong>
-                    <ul>
-                      {route.warnings.map((warning, index) => (
-                        <li key={`${route.algorithm}-warning-${index}`}>
-                          {warning}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </article>
             ))}
           </div>

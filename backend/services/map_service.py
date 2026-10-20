@@ -5,6 +5,9 @@ from functools import lru_cache
 
 from config import FULL_MAP_FILE, POI_FILE
 
+# Geometric snapping tolerance, not a guarantee of legal or safe access.
+MAX_POI_SNAP_DISTANCE_M = 100.0
+
 
 @lru_cache(maxsize=None)
 def load_json(file_path):
@@ -43,13 +46,20 @@ def load_points():
 
 
 def is_selectable_point(point):
-    """Return whether a POI may be displayed and used for routing.
-
-    Missing ``selectable`` keeps older POI files backwards-compatible.
-    A false value retains the source record while keeping an unverified
-    destination out of the planner.
-    """
-    return isinstance(point, dict) and point.get("selectable", True) is not False
+    """Only expose POIs that passed the official walking-trail audit."""
+    if not isinstance(point, dict) or point.get("selectable", True) is False:
+        return False
+    if point.get("official_trail_audit_passed") is not True:
+        return False
+    distance = point.get("distance_to_trail_m")
+    if distance is None:
+        # A graph node is already on the routing network.
+        return nearest_routing_node_id(point) == point.get("id")
+    try:
+        distance = float(distance)
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(distance) and 0 <= distance <= MAX_POI_SNAP_DISTANCE_M
 
 
 def get_selectable_points(points):
@@ -171,6 +181,15 @@ def resolve_routing_node(point, routing_nodes, routing_node_ids=None):
 
     if routing_node_id not in routing_node_ids:
         routing_node_id = find_nearest_routing_node_id(point, routing_nodes)
+
+    # Recheck actual coordinates: stored distances may be stale or incorrect.
+    node = next((node for node in routing_nodes if node.get("id") == routing_node_id), None)
+    coordinates = (*get_lat_lng(point), *get_lat_lng(node))
+    if any(value is None or not math.isfinite(value) for value in coordinates):
+        return None
+    distance_m = distance_between_points(*coordinates) * 1000
+    if distance_m > MAX_POI_SNAP_DISTANCE_M:
+        return None
 
     return routing_node_id
 

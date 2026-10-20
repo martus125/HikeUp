@@ -1,4 +1,5 @@
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from "react-leaflet";
+import { useEffect } from "react";
+import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from "react-leaflet";
 import {
   DEFAULT_MAP_CENTER,
   DEFAULT_MAP_ZOOM,
@@ -91,6 +92,21 @@ function getShiftedRoutePositions(positions, offsetMeters) {
   });
 }
 
+function RouteViewport({ routeResult }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!routeResult) return;
+    const routes = routeResult.routes?.length ? routeResult.routes : [routeResult];
+    const positions = routes.flatMap((route) => route.positions || [])
+      .map(normalizePosition)
+      .filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
+    if (positions.length > 1) {
+      map.fitBounds(positions, { padding: [30, 30], maxZoom: 16 });
+    }
+  }, [map, routeResult]);
+  return null;
+}
+
 export function RouteMap({
   nodes,
   edges,
@@ -119,6 +135,7 @@ export function RouteMap({
       scrollWheelZoom
       className="map"
     >
+      <RouteViewport routeResult={routeResult} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

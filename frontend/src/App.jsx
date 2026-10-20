@@ -141,12 +141,14 @@ function App() {
   }
 
   function selectStartPoint(point) {
+    setRouteResult(null);
     setStartId(point.id);
     setStartSearch(getPointName(point));
     setActiveSearch(null);
   }
 
   function selectEndPoint(point) {
+    setRouteResult(null);
     setEndId(point.id);
     setEndSearch(getPointName(point));
     setActiveSearch(null);
@@ -178,14 +180,15 @@ function App() {
   }
 
   async function calculateRoute(options = {}) {
+    const selectedStartId = options?.startOverride || startId;
     const selectedEndId = options?.endOverride || endId;
 
-    if (!startId || !selectedEndId) {
+    if (!selectedStartId || !selectedEndId) {
       alert("Wybierz punkt A i punkt B z listy podpowiedzi albo klikając marker na mapie.");
       return;
     }
 
-    if (startId === selectedEndId) {
+    if (selectedStartId === selectedEndId) {
       alert("Punkt A i punkt B nie mogą być takie same.");
       return;
     }
@@ -241,12 +244,13 @@ function App() {
     }
 
     try {
-      const routeCriterion = criterion;
+      const routeCriterion = options?.criterionOverride || criterion;
 
       const data = await fetchRoute({
-        start: startId,
+        start: selectedStartId,
         end: selectedEndId,
         criterion: routeCriterion,
+        exampleId: options?.exampleId,
       });
 
       const routes = Array.isArray(data.routes)
@@ -266,6 +270,7 @@ function App() {
 
       setRouteResult({
         ...primaryRoute,
+        example: data.example || null,
         routes,
         pathIds: primaryRoute.pathIds,
         routeNodes: primaryRoute.routeNodes,
@@ -289,6 +294,24 @@ function App() {
   async function selectAndCalculateAlternative(point) {
     selectEndPoint(point);
     await calculateRoute({ endOverride: point.id });
+  }
+
+  async function selectRecommendedRoute(example) {
+    setStartId(example.start);
+    setEndId(example.end);
+    setStartSearch(example.start_name);
+    setEndSearch(example.end_name);
+    setCriterion(example.criterion);
+    setActiveSearch(null);
+    setRouteResult(null);
+    setActiveTab("plan");
+    scrollToPlanner();
+    await calculateRoute({
+      startOverride: example.start,
+      endOverride: example.end,
+      criterionOverride: example.criterion,
+      exampleId: example.id,
+    });
   }
 
   async function handleRegister() {
@@ -668,7 +691,7 @@ function App() {
             />
           )}
 
-          {activeTab === "recommended" && <RecommendedRoutes />}
+          {activeTab === "recommended" && <RecommendedRoutes onSelect={selectRecommendedRoute} loading={loadingRoutes} />}
           {activeTab === "favorites" && <FavoriteRoutes user={user} favoriteRoutes={favoriteRoutes} />}
         </section>
       </main>

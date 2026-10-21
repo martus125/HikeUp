@@ -191,9 +191,8 @@ def update_graph_nodes_nearest_routing_nodes(full_map):
     points = graph_nodes_data.get("nodes", [])
 
     for point in points:
-        nearest_id, distance_km = find_nearest_node(point, full_map["nodes"])
+        nearest_id, _ = find_nearest_node(point, full_map["nodes"])
         point["nearest_routing_node_id"] = nearest_id
-        point["distance_to_trail_m"] = round(distance_km * 1000)
 
     with open(GRAPH_NODES_FILE, "w", encoding="utf-8") as file:
         json.dump({"nodes": points}, file, ensure_ascii=False, indent=2)

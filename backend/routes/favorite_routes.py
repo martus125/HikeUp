@@ -1,8 +1,8 @@
 from auth import current_user_id, login_required
 '''dodawanie trasy do ulubionych i pobieranie ulubionych tras'''
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
 
-from database import add_favorite_route, get_favorite_routes
+from database import add_favorite_route, delete_favorite_route, get_favorite_routes
 
 favorites_bp = Blueprint("favorites", __name__, url_prefix="/api/favorites")
 
@@ -44,3 +44,16 @@ def get_favorites():
     if not result["success"]:
         return jsonify(result), 400
     return jsonify(result)
+
+
+@favorites_bp.route("/<int:favorite_id>", methods=["DELETE"])
+@login_required
+def delete_favorite(favorite_id):
+    try:
+        deleted = delete_favorite_route(current_user_id(), favorite_id)
+    except Exception:
+        current_app.logger.exception("Nie udało się usunąć ulubionej trasy")
+        return jsonify(success=False, message="Nie udało się usunąć trasy. Spróbuj ponownie."), 500
+    if not deleted:
+        return jsonify(success=False, message="Nie znaleziono trasy w Twoich ulubionych."), 404
+    return jsonify(success=True, message="Trasa została usunięta z ulubionych.")

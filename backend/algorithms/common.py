@@ -255,7 +255,6 @@ def count_shelters_near_route(
     if not route_coordinates:
         return 0
 
-    route_node_ids = set(path)
     counted_shelters = set()
 
     for index, point in enumerate(point_items):
@@ -263,20 +262,6 @@ def count_shelters_near_route(
             continue
 
         shelter_id = point.get("id", f"shelter-{index}")
-        nearest_node_id = (
-            point.get("nearest_routing_node_id")
-            or point.get("routing_node_id")
-        )
-        distance_to_trail = as_number(point.get("distance_to_trail_m"), None)
-
-        if (
-            nearest_node_id in route_node_ids
-            and distance_to_trail is not None
-            and distance_to_trail <= radius_m
-        ):
-            counted_shelters.add(shelter_id)
-            continue
-
         shelter_coordinates = _lat_lng(point)
 
         if shelter_coordinates is None:
@@ -354,37 +339,6 @@ def get_shelter_proximity_strength(
                     return start_strength + fraction * (end_strength - start_strength)
 
     return 0.0
-
-
-def get_shelter_routing_node_ids(
-    points,
-    radius_m=SHELTER_ROUTE_RADIUS_M,
-):
-    """Węzły najbliższe schroniskom, używane tylko do lekkiego bonusu Custom."""
-    if not points:
-        return set()
-
-    point_items = points.values() if isinstance(points, dict) else points
-    result = set()
-
-    for point in point_items:
-        if not isinstance(point, dict) or point.get("type") not in SHELTER_TYPES:
-            continue
-
-        distance_to_trail = as_number(point.get("distance_to_trail_m"), None)
-        node_id = (
-            point.get("nearest_routing_node_id")
-            or point.get("routing_node_id")
-        )
-
-        if (
-            node_id is not None
-            and distance_to_trail is not None
-            and distance_to_trail <= radius_m
-        ):
-            result.add(node_id)
-
-    return result
 
 
 def calculate_route_totals(

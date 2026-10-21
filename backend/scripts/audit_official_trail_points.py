@@ -19,7 +19,6 @@ from shapely.strtree import STRtree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.curate_tpn_access_points import CURATED_EXCEPTIONS, source_coordinates
-from services.map_service import is_selectable_point
 
 BASE = Path(__file__).resolve().parents[1]
 REPORTS = BASE / "reports"
@@ -29,6 +28,10 @@ def audit():
     snapshot_path = REPORTS / "tpn_trails_snapshot.json"
     snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
     pois = json.loads((BASE / "mapa/graph_nodes.json").read_text(encoding="utf-8"))["nodes"]
+    verification_path = REPORTS / "poi_verification.json"
+    archived = {}
+    if verification_path.exists():
+        archived = {p["id"]: p for p in json.loads(verification_path.read_text(encoding="utf-8"))["nodes"]}
     graph = json.loads((BASE / "mapa/cala_mapa.json").read_text(encoding="utf-8"))
     nodes = {node["id"]: node for node in graph["nodes"]}
     metric = Transformer.from_crs(4326, 32634, always_xy=True)
@@ -53,7 +56,7 @@ def audit():
     connected_ids = {edge[key] for edge in graph["edges"] for key in ("from", "to")}
     rows = []
     for poi in pois:
-        original = point(*source_coordinates(poi))
+        original = point(*source_coordinates({**archived.get(poi["id"], {}), **poi}))
         marker = point(poi["lng"], poi["lat"])
         nearest = int(tree.nearest(original))
         distance = original.distance(parts[nearest])
@@ -80,7 +83,7 @@ def audit():
         attr = attributes[nearest]
         rows.append({
             "id": poi["id"], "name": poi["name"], "type": poi.get("type"),
-            "currently_selectable": is_selectable_point(poi),
+            "currently_selectable": True,
             "geometric_check_passed": not reasons,
             "feature_distance_to_official_trail_m": round(distance, 2),
             "marker_distance_to_official_trail_m": round(marker.distance(union), 2),

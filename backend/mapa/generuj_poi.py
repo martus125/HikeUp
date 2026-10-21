@@ -91,8 +91,7 @@ for idx, row in pois.iterrows():
         "lat": round(lat, 6),
         "lng": round(lng, 6),
         "elevation": ele,
-        "nearest_routing_node_id": nearest_node_id,
-        "distance_to_trail_m": round(min_distance) # Dodatkowy parametr pomocniczy
+        "nearest_routing_node_id": nearest_node_id
     }
     
     poi_list.append(poi_entry)

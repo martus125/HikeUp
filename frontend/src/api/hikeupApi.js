@@ -142,3 +142,11 @@ export async function logoutUser() {
 export function fetchFavorites() {
   return request("/api/favorites");
 }
+
+export function deleteFavoriteRoute(favoriteId) {
+  return request(`/api/favorites/${favoriteId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: "{}",
+  });
+}

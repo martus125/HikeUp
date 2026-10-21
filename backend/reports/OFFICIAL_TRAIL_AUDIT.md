@@ -1,5 +1,10 @@
 # Audyt POI względem oficjalnych szlaków TPN — 20.10.2026
 
+Po ręcznym przeglądzie pozostawiono 84 pinezki. Ich rekordy w `graph_nodes.json`
+zawierają wyłącznie siedem podstawowych pól. Pełne dane tych 84 punktów sprzed
+uproszczenia zachowano w `poi_verification.json`; aplikacja nie odczytuje tego
+raportu. Poniższe liczby opisują wcześniejszy audyt 575 POI, a nie obecną listę.
+
 ## Źródło i kompletność
 
 Pobrano warstwę `Szlaki turystyczne` z oficjalnego serwera GIS TPN:

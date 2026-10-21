@@ -311,6 +311,52 @@ button {
   font-weight: 700;
 }
 
+.favorite-route {
+  position: relative;
+}
+
+.favorite-route h3 {
+  padding-right: 160px;
+}
+
+.favorite-route-actions {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.favorite-route-delete,
+.favorite-route-calculate {
+  padding: 5px 8px;
+  border: 1px solid #d6dfd4;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+}
+
+.favorite-route-calculate {
+  background: #eaf3e8;
+  border-color: #c9ddc5;
+  color: #244f2b;
+}
+
+.favorite-route-calculate:hover:not(:disabled) {
+  background: #dcebd8;
+}
+
+.favorite-route-delete:hover:not(:disabled) {
+  background: #f4f6f3;
+}
+
+.favorite-route-delete:disabled,
+.favorite-route-calculate:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 .content-card article {
   border-top: 1px solid #e2e8e0;
   padding: 14px 0;

@@ -7,24 +7,7 @@
       "lat": 49.2421649,
       "lng": 19.7761374,
       "elevation": 1356.0,
-      "nearest_routing_node_id": "node/945988502",
-      "distance_to_trail_m": 2,
-      "original_distance_to_routing_node_m": 6,
-      "feature_lat": 49.242149,
-      "feature_lng": 19.776218,
-      "feature_distance_to_official_trail_m": 5,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/945988502",
-      "access_point_distance_to_official_trail_m": 2,
-      "distance_from_feature_to_access_point_m": 6,
-      "access_point_elevation": 1353.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Bobrowiecki Żleb – Bobrowiecka Przełęcz",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/945988502"
     },
     {
       "id": "node/353112971",
@@ -33,24 +16,7 @@
       "lat": 49.2380329,
       "lng": 19.8956088,
       "elevation": 1850.0,
-      "nearest_routing_node_id": "node/353112971",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.238033,
-      "feature_lng": 19.895609,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/353112971",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 1841.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Piec – Chuda Przełęcz",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/353112971"
     },
     {
       "id": "relation/8626083",
@@ -59,24 +25,7 @@
       "lat": 49.2326004,
       "lng": 20.014767,
       "elevation": 1624.0,
-      "nearest_routing_node_id": "node/3047874937",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 4,
-      "feature_lat": 49.232573,
-      "feature_lng": 20.0147367,
-      "feature_distance_to_official_trail_m": 4,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/3047874937",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 4,
-      "access_point_elevation": 1630.0,
-      "access_point_name": "Punkt dojścia do stawu na znakowanym szlaku TPN",
-      "official_trail_section": "Czarny Staw Gąsienicowy (1) – Czarny Staw Gąsienicowy (2)",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3047874937"
     },
     {
       "id": "way/29239539",
@@ -85,24 +34,7 @@
       "lat": 49.1903748,
       "lng": 20.0737773,
       "elevation": 1583.0,
-      "nearest_routing_node_id": "node/4810516922",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 3,
-      "feature_lat": 49.1903503,
-      "feature_lng": 20.0737544,
-      "feature_distance_to_official_trail_m": 3,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/4810516922",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 3,
-      "access_point_elevation": 1552.0,
-      "access_point_name": "Punkt dojścia do stawu na znakowanym szlaku TPN",
-      "official_trail_section": "Czarny Staw pod Rysami – Rysy",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/4810516922"
     },
     {
       "id": "node/9516399111",
@@ -111,24 +43,7 @@
       "lat": 49.2628041,
       "lng": 19.9425542,
       "elevation": 1301.0,
-      "nearest_routing_node_id": "node/132274281",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 2,
-      "feature_lat": 49.262807,
-      "feature_lng": 19.942588,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/132274281",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 2,
-      "access_point_elevation": 1318.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Polana Strążyska (2) – Czerwona Przełęcz",
-      "official_trail_color": "czarny",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/132274281"
     },
     {
       "id": "node/9962071956",
@@ -137,9 +52,7 @@
       "lat": 49.228451,
       "lng": 20.012824,
       "elevation": 1896.0,
-      "nearest_routing_node_id": "node/10032256349",
-      "distance_to_trail_m": 12,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/10032256349"
     },
     {
       "id": "node/3503801146",
@@ -148,24 +61,7 @@
       "lat": 49.2271091,
       "lng": 20.0345117,
       "elevation": 2145.0,
-      "nearest_routing_node_id": "node/1200865263",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 4,
-      "feature_lat": 49.227081,
-      "feature_lng": 20.034473,
-      "feature_distance_to_official_trail_m": 3,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1200865263",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 4,
-      "access_point_elevation": 2096.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Skrajny Granat – Przełęcz Krzyżne",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1200865263"
     },
     {
       "id": "node/9034231033",
@@ -174,9 +70,7 @@
       "lat": 49.256552,
       "lng": 19.91715,
       "elevation": 1417.0,
-      "nearest_routing_node_id": "node/10033775181",
-      "distance_to_trail_m": 3,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/10033775181"
     },
     {
       "id": "node/9957754030",
@@ -185,24 +79,7 @@
       "lat": 49.2192597,
       "lng": 20.0109489,
       "elevation": 2265.0,
-      "nearest_routing_node_id": "node/8721150877",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 12,
-      "feature_lat": 49.219364,
-      "feature_lng": 20.011054,
-      "feature_distance_to_official_trail_m": 13,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/8721150877",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 14,
-      "access_point_elevation": 2238.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Zawrat – Świnica (1)",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8721150877"
     },
     {
       "id": "node/803761539",
@@ -211,9 +88,7 @@
       "lat": 49.259029,
       "lng": 20.076519,
       "elevation": 1489.0,
-      "nearest_routing_node_id": "node/6719914740",
-      "distance_to_trail_m": 3,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/6719914740"
     },
     {
       "id": "node/1125062544",
@@ -222,24 +97,7 @@
       "lat": 49.2321746,
       "lng": 19.8363044,
       "elevation": 1459.0,
-      "nearest_routing_node_id": "node/1125062544",
-      "distance_to_trail_m": 2,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.232175,
-      "feature_lng": 19.836304,
-      "feature_distance_to_official_trail_m": 2,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1125062544",
-      "access_point_distance_to_official_trail_m": 2,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 1464.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Polana Iwanówka – Iwaniacka Przełęcz",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1125062544"
     },
     {
       "id": "node/3560916856",
@@ -248,24 +106,7 @@
       "lat": 49.2045773,
       "lng": 19.803641,
       "elevation": 1955.0,
-      "nearest_routing_node_id": "node/8701877712",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 5,
-      "feature_lat": 49.204604,
-      "feature_lng": 19.803696,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/8701877712",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 5,
-      "access_point_elevation": 1860.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Kończysty Wierch – Jarząbczy Wierch",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8701877712"
     },
     {
       "id": "node/355985946",
@@ -274,24 +115,7 @@
       "lat": 49.2288106,
       "lng": 20.0117079,
       "elevation": 1853.0,
-      "nearest_routing_node_id": "node/355985946",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.228811,
-      "feature_lng": 20.011708,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/355985946",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 1835.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Czarny Staw Gąsienicowy (1) – Karb",
-      "official_trail_color": "czarny",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/355985946"
     },
     {
       "id": "node/3075294960",
@@ -300,9 +124,7 @@
       "lat": 49.229588,
       "lng": 19.893207,
       "elevation": 1767.0,
-      "nearest_routing_node_id": "node/797774714",
-      "distance_to_trail_m": 10,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/797774714"
     },
     {
       "id": "node/3508700214",
@@ -311,9 +133,7 @@
       "lat": 49.185204,
       "lng": 20.069727,
       "elevation": 2159.0,
-      "nearest_routing_node_id": "node/11373295808",
-      "distance_to_trail_m": 21,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/11373295808"
     },
     {
       "id": "node/1295341386",
@@ -322,24 +142,7 @@
       "lat": 49.2462063,
       "lng": 19.9323177,
       "elevation": 1725.0,
-      "nearest_routing_node_id": "node/10033775140",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 1,
-      "feature_lat": 49.2462,
-      "feature_lng": 19.932333,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/10033775140",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 1,
-      "access_point_elevation": 1696.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Kondracka Przełęcz – Kopa Kondracka",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/10033775140"
     },
     {
       "id": "node/3560695684",
@@ -348,9 +151,7 @@
       "lat": 49.236541,
       "lng": 19.932268,
       "elevation": 2005.0,
-      "nearest_routing_node_id": "node/3750085233",
-      "distance_to_trail_m": 3,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3750085233"
     },
     {
       "id": "node/460928401",
@@ -359,9 +160,7 @@
       "lat": 49.218317,
       "lng": 20.028705,
       "elevation": 2291.0,
-      "nearest_routing_node_id": "node/460928401",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928401"
     },
     {
       "id": "node/460928198",
@@ -370,24 +169,7 @@
       "lat": 49.2195525,
       "lng": 20.025325,
       "elevation": 2126.0,
-      "nearest_routing_node_id": "node/460928198",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.219552,
-      "feature_lng": 20.025325,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/460928198",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2004.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Zmarzły Staw (2) – Kozia Przełęcz",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928198"
     },
     {
       "id": "node/460928364",
@@ -396,24 +178,7 @@
       "lat": 49.2184851,
       "lng": 20.0279486,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/460928364",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.218485,
-      "feature_lng": 20.027949,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/460928364",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2211.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Kozia Przełęcz – Kozi Wierch",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928364"
     },
     {
       "id": "node/1103563275",
@@ -422,9 +187,7 @@
       "lat": 49.218681,
       "lng": 20.027648,
       "elevation": 2263.0,
-      "nearest_routing_node_id": "node/460928362",
-      "distance_to_trail_m": 2,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928362"
     },
     {
       "id": "node/1294543842",
@@ -433,9 +196,7 @@
       "lat": 49.205658,
       "lng": 19.807585,
       "elevation": 2002.0,
-      "nearest_routing_node_id": "node/1202079154",
-      "distance_to_trail_m": 4,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1202079154"
     },
     {
       "id": "node/355985949",
@@ -444,9 +205,7 @@
       "lat": 49.225179,
       "lng": 20.014583,
       "elevation": 2155.0,
-      "nearest_routing_node_id": "node/355985949",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/355985949"
     },
     {
       "id": "node/1295341402",
@@ -455,9 +214,7 @@
       "lat": 49.231665,
       "lng": 19.909492,
       "elevation": 2122.0,
-      "nearest_routing_node_id": "node/7838755408",
-      "distance_to_trail_m": 5,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/7838755408"
     },
     {
       "id": "node/1200864424",
@@ -466,24 +223,7 @@
       "lat": 49.228652,
       "lng": 20.0472782,
       "elevation": 2112.0,
-      "nearest_routing_node_id": "node/1200864424",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.228652,
-      "feature_lng": 20.047278,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1200864424",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2089.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Upłaz (Czerwony Staw) – Przełęcz Krzyżne",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1200864424"
     },
     {
       "id": "node/1853564156",
@@ -492,23 +232,7 @@
       "lat": 49.2689953,
       "lng": 19.9814733,
       "elevation": 1015.0,
-      "nearest_routing_node_id": "node/1853564156",
-      "distance_to_trail_m": 0,
-      "feature_lat": 49.269000981488595,
-      "feature_lng": 19.981479446182778,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-10-20",
-      "access_point_routing_node_id": "node/1853564156",
-      "access_point_distance_to_official_trail_m": 0.23,
-      "distance_from_feature_to_access_point_m": 0.77,
-      "access_point_elevation": 1015.0,
-      "access_point_name": "Wejście na szlaki w Kuźnicach",
-      "official_trail_section": "Kuźnice (3) - Przełęcz Między Kopami / Rozstaj nad Kuźnicami",
-      "official_trail_color": "żółty / zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1853564156"
     },
     {
       "id": "node/496805360",
@@ -517,9 +241,7 @@
       "lat": 49.23583,
       "lng": 19.919223,
       "elevation": 2096.0,
-      "nearest_routing_node_id": "node/3699934544",
-      "distance_to_trail_m": 11,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3699934544"
     },
     {
       "id": "node/460928032",
@@ -528,9 +250,7 @@
       "lat": 49.218922,
       "lng": 20.020038,
       "elevation": 2226.0,
-      "nearest_routing_node_id": "node/460928032",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928032"
     },
     {
       "id": "node/3560285056",
@@ -539,9 +259,7 @@
       "lat": 49.229934,
       "lng": 20.011406,
       "elevation": 1866.0,
-      "nearest_routing_node_id": "node/355986191",
-      "distance_to_trail_m": 4,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/355986191"
     },
     {
       "id": "node/615589481",
@@ -550,24 +268,7 @@
       "lat": 49.1836014,
       "lng": 20.065307,
       "elevation": 2307.0,
-      "nearest_routing_node_id": "node/9952876827",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.183705,
-      "feature_lng": 20.065128,
-      "feature_distance_to_official_trail_m": 17,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/9952876827",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 17,
-      "access_point_elevation": 2233.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Czarny Staw pod Rysami – Mięguszowiecka Przełęcz pod Chłopkiem",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/9952876827"
     },
     {
       "id": "way/27952583",
@@ -576,24 +277,7 @@
       "lat": 49.2011817,
       "lng": 20.0708321,
       "elevation": 1395.0,
-      "nearest_routing_node_id": "node/1779865005",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 1,
-      "feature_lat": 49.2011835,
-      "feature_lng": 20.07085,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1779865005",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 1,
-      "access_point_elevation": 1408.0,
-      "access_point_name": "Punkt dojścia do stawu na znakowanym szlaku TPN",
-      "official_trail_section": "Morskie Oko (1) – Morskie Oko (2)",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1779865005"
     },
     {
       "id": "way/358407058",
@@ -602,24 +286,7 @@
       "lat": 49.2433037,
       "lng": 20.0073022,
       "elevation": 1500.0,
-      "nearest_routing_node_id": "node/10773670952",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 11,
-      "feature_lat": 49.243412,
-      "feature_lng": 20.00716,
-      "feature_distance_to_official_trail_m": 15,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/10773670952",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 16,
-      "access_point_elevation": 1503.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Murowaniec (2) – Murowaniec (1)",
-      "official_trail_color": "zielony/żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/10773670952"
     },
     {
       "id": "node/2597044867",
@@ -628,24 +295,7 @@
       "lat": 49.2346015,
       "lng": 20.0875982,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/991638839",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 26,
-      "feature_lat": 49.234376,
-      "feature_lng": 20.087711,
-      "feature_distance_to_official_trail_m": 27,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/991638839",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 26,
-      "access_point_elevation": 1158.0,
-      "access_point_name": "Punkt dojścia do wodospadu na znakowanym szlaku TPN",
-      "official_trail_section": "Las pod Wołoszynem – Wodogrzmoty Mickiewicza",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/991638839"
     },
     {
       "id": "node/1103336843",
@@ -654,9 +304,7 @@
       "lat": 49.276431,
       "lng": 19.989459,
       "elevation": 1205.7,
-      "nearest_routing_node_id": "node/7925085982",
-      "distance_to_trail_m": 12,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/7925085982"
     },
     {
       "id": "node/1103336431",
@@ -665,24 +313,7 @@
       "lat": 49.2729371,
       "lng": 19.9914478,
       "elevation": 1102.8,
-      "nearest_routing_node_id": "node/1103336431",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.272937,
-      "feature_lng": 19.991448,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1103336431",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 1112.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Polana Olczyska – Nosalowa Przełęcz",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1103336431"
     },
     {
       "id": "node/3503795970",
@@ -691,9 +322,7 @@
       "lat": 49.227333,
       "lng": 20.035759,
       "elevation": 2177.0,
-      "nearest_routing_node_id": "node/8709973226",
-      "distance_to_trail_m": 13,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8709973226"
     },
     {
       "id": "node/9032605697",
@@ -702,24 +331,7 @@
       "lat": 49.2272002,
       "lng": 20.0351232,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/1200864855",
-      "distance_to_trail_m": 2,
-      "original_distance_to_routing_node_m": 12,
-      "feature_lat": 49.227106,
-      "feature_lng": 20.035055,
-      "feature_distance_to_official_trail_m": 13,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1200864855",
-      "access_point_distance_to_official_trail_m": 2,
-      "distance_from_feature_to_access_point_m": 12,
-      "access_point_elevation": 2096.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Skrajny Granat – Przełęcz Krzyżne",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1200864855"
     },
     {
       "id": "node/3571383993",
@@ -728,24 +340,7 @@
       "lat": 49.2157361,
       "lng": 19.8343153,
       "elevation": 1795.0,
-      "nearest_routing_node_id": "node/7804655479",
-      "distance_to_trail_m": 2,
-      "original_distance_to_routing_node_m": 3,
-      "feature_lat": 49.215753,
-      "feature_lng": 19.834354,
-      "feature_distance_to_official_trail_m": 2,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/7804655479",
-      "access_point_distance_to_official_trail_m": 2,
-      "distance_from_feature_to_access_point_m": 3,
-      "access_point_elevation": 1814.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Iwaniacka Przełęcz – Siwa Przełęcz",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/7804655479"
     },
     {
       "id": "node/1294577934",
@@ -754,9 +349,7 @@
       "lat": 49.219046,
       "lng": 19.832949,
       "elevation": 1854.0,
-      "nearest_routing_node_id": "node/5882321867",
-      "distance_to_trail_m": 2,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5882321867"
     },
     {
       "id": "node/1878512558",
@@ -765,9 +358,7 @@
       "lat": 49.225701,
       "lng": 20.032735,
       "elevation": 2234.0,
-      "nearest_routing_node_id": "node/460951730",
-      "distance_to_trail_m": 5,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460951730"
     },
     {
       "id": "node/321624794",
@@ -776,24 +367,7 @@
       "lat": 49.234321,
       "lng": 20.0872835,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/11134971931",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 22,
-      "feature_lat": 49.234229,
-      "feature_lng": 20.087016,
-      "feature_distance_to_official_trail_m": 21,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/11134971931",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 22,
-      "access_point_elevation": 1128.0,
-      "access_point_name": "Punkt dojścia do wodospadu na znakowanym szlaku TPN",
-      "official_trail_section": "Las pod Wołoszynem – Wodogrzmoty Mickiewicza",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/11134971931"
     },
     {
       "id": "node/3633357479",
@@ -802,24 +376,7 @@
       "lat": 49.254924,
       "lng": 20.0032225,
       "elevation": 1499.0,
-      "nearest_routing_node_id": "node/5100098610",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 5,
-      "feature_lat": 49.254913,
-      "feature_lng": 20.003291,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/5100098610",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 5,
-      "access_point_elevation": 1439.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Rozstaj nad Kuźnicami – Przełęcz Między Kopami",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5100098610"
     },
     {
       "id": "node/3503789861",
@@ -828,24 +385,7 @@
       "lat": 49.2272878,
       "lng": 20.0383928,
       "elevation": 2105.0,
-      "nearest_routing_node_id": "node/1200863936",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 4,
-      "feature_lat": 49.227257,
-      "feature_lng": 20.03836,
-      "feature_distance_to_official_trail_m": 2,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1200863936",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 4,
-      "access_point_elevation": 2086.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Skrajny Granat – Przełęcz Krzyżne",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1200863936"
     },
     {
       "id": "node/3558357900",
@@ -854,24 +394,7 @@
       "lat": 49.2343914,
       "lng": 19.9389169,
       "elevation": 1863.0,
-      "nearest_routing_node_id": "node/8721958417",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 1,
-      "feature_lat": 49.234262,
-      "feature_lng": 19.938761,
-      "feature_distance_to_official_trail_m": 19,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/8721958417",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 18,
-      "access_point_elevation": 1861.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Kasprowy Wierch (3) – Przełęcz pod Kopą Kondracką",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8721958417"
     },
     {
       "id": "node/3600497907",
@@ -880,24 +403,7 @@
       "lat": 49.2593241,
       "lng": 19.9159679,
       "elevation": 1311.0,
-      "nearest_routing_node_id": "node/937967043",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 8,
-      "feature_lat": 49.259395,
-      "feature_lng": 19.915946,
-      "feature_distance_to_official_trail_m": 4,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/937967043",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 8,
-      "access_point_elevation": 1323.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Polana Strążyska (1) – Przełęcz w Grzybowcu",
-      "official_trail_color": "czarny/czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/937967043"
     },
     {
       "id": "node/946080669",
@@ -906,9 +412,7 @@
       "lat": 49.215958,
       "lng": 19.758462,
       "elevation": 1879.0,
-      "nearest_routing_node_id": "node/244892804",
-      "distance_to_trail_m": 4,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/244892804"
     },
     {
       "id": "node/4366169405",
@@ -917,9 +421,7 @@
       "lat": 49.179576,
       "lng": 20.088108,
       "elevation": 2499.0,
-      "nearest_routing_node_id": "node/1778569991",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1778569991"
     },
     {
       "id": "way/184188834",
@@ -928,24 +430,7 @@
       "lat": 49.2497961,
       "lng": 19.9518964,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2488594938",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 9,
-      "feature_lat": 49.249871,
-      "feature_lng": 19.951679,
-      "feature_distance_to_official_trail_m": 19,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2488594938",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 18,
-      "access_point_elevation": 1389.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Kondratowa - dół polany – Kondratowa Polana (Schronisko)",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2488594938"
     },
     {
       "id": "way/300719423",
@@ -954,24 +439,7 @@
       "lat": 49.2015185,
       "lng": 20.0709401,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/3048258309",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 22,
-      "feature_lat": 49.20142,
-      "feature_lng": 20.071271,
-      "feature_distance_to_official_trail_m": 25,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/3048258309",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 26,
-      "access_point_elevation": 1399.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Morskie Oko (1) – Morskie Oko - Schronisko",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3048258309"
     },
     {
       "id": "way/241024507",
@@ -980,25 +448,7 @@
       "lat": 49.228845,
       "lng": 19.8590063,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2487026133",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 10,
-      "feature_lat": 49.229158,
-      "feature_lng": 19.858741,
-      "feature_distance_to_official_trail_m": 39,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2487026133",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 40,
-      "access_point_elevation": 1105.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Schronisko Ornak (1) – Schronisko Ornak (2)",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "verification_note": "building centroid; trail reaches the shelter",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2487026133"
     },
     {
       "id": "way/303740443",
@@ -1007,25 +457,7 @@
       "lat": 49.2365213,
       "lng": 19.7885348,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/9216911337",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 11,
-      "feature_lat": 49.236351,
-      "feature_lng": 19.787786,
-      "feature_distance_to_official_trail_m": 57,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/9216911337",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 58,
-      "access_point_elevation": 1176.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Polana Chochołowska (2) – Most przed schroniskiem na Polanie Chochołowskiej",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "verification_note": "building centroid; trail reaches the shelter",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/9216911337"
     },
     {
       "id": "way/250746663",
@@ -1034,24 +466,7 @@
       "lat": 49.2134955,
       "lng": 20.0486326,
       "elevation": 1670.0,
-      "nearest_routing_node_id": "node/2571257187",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 10,
-      "feature_lat": 49.213619,
-      "feature_lng": 20.048703,
-      "feature_distance_to_official_trail_m": 14,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2571257187",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 15,
-      "access_point_elevation": 1670.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Żabie Oko – Schronisko w Dolinie Pięciu Stawów Polskich",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2571257187"
     },
     {
       "id": "way/253824570",
@@ -1060,24 +475,7 @@
       "lat": 49.2336378,
       "lng": 20.0956232,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2597128716",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 9,
-      "feature_lat": 49.233709,
-      "feature_lng": 20.095678,
-      "feature_distance_to_official_trail_m": 9,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2597128716",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 9,
-      "access_point_elevation": 1048.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Wodogrzmoty Mickiewicza – Stara Roztoka",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2597128716"
     },
     {
       "id": "node/3503513134",
@@ -1086,24 +484,7 @@
       "lat": 49.2140196,
       "lng": 20.0440391,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/4262890322",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 16,
-      "feature_lat": 49.214156,
-      "feature_lng": 20.043961,
-      "feature_distance_to_official_trail_m": 16,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/4262890322",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 16,
-      "access_point_elevation": 1616.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Rzeżuchy – Wielki Staw Polski (1)",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/4262890322"
     },
     {
       "id": "node/1333271083",
@@ -1112,24 +493,7 @@
       "lat": 49.2593548,
       "lng": 19.9303018,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2097797498",
-      "distance_to_trail_m": 5,
-      "original_distance_to_routing_node_m": 21,
-      "feature_lat": 49.259166,
-      "feature_lng": 19.930242,
-      "feature_distance_to_official_trail_m": 11,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2097797498",
-      "access_point_distance_to_official_trail_m": 5,
-      "distance_from_feature_to_access_point_m": 21,
-      "access_point_elevation": 1153.0,
-      "access_point_name": "Punkt dojścia do wodospadu na znakowanym szlaku TPN",
-      "official_trail_section": "Polana Strążyska (2) – Siklawica",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2097797498"
     },
     {
       "id": "node/3571365293",
@@ -1138,24 +502,7 @@
       "lat": 49.205003,
       "lng": 19.8332919,
       "elevation": 1812.0,
-      "nearest_routing_node_id": "node/1202227723",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 7,
-      "feature_lat": 49.205012,
-      "feature_lng": 19.833388,
-      "feature_distance_to_official_trail_m": 4,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1202227723",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 7,
-      "access_point_elevation": 1746.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Iwaniacka Przełęcz – Siwa Przełęcz",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1202227723"
     },
     {
       "id": "node/1294577864",
@@ -1164,9 +511,7 @@
       "lat": 49.201654,
       "lng": 19.829543,
       "elevation": 1965.0,
-      "nearest_routing_node_id": "node/5882233868",
-      "distance_to_trail_m": 2,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5882233868"
     },
     {
       "id": "node/3504634616",
@@ -1175,24 +520,7 @@
       "lat": 49.2222629,
       "lng": 19.9992532,
       "elevation": 2071.0,
-      "nearest_routing_node_id": "node/3653329333",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 5,
-      "feature_lat": 49.222301,
-      "feature_lng": 19.999216,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/3653329333",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 5,
-      "access_point_elevation": 2069.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Przełęcz Liliowe – Świnicka Przełęcz",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3653329333"
     },
     {
       "id": "node/1496151182",
@@ -1201,9 +529,7 @@
       "lat": 49.226945,
       "lng": 20.033293,
       "elevation": 2228.0,
-      "nearest_routing_node_id": "node/460951756",
-      "distance_to_trail_m": 5,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460951756"
     },
     {
       "id": "node/9445410550",
@@ -1212,24 +538,7 @@
       "lat": 49.2637982,
       "lng": 19.9937858,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/5871741887",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 23,
-      "feature_lat": 49.263822,
-      "feature_lng": 19.994094,
-      "feature_distance_to_official_trail_m": 23,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/5871741887",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 23,
-      "access_point_elevation": 1286.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Rozstaj nad Kuźnicami – Przełęcz Między Kopami",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5871741887"
     },
     {
       "id": "way/171648212",
@@ -1238,25 +547,7 @@
       "lat": 49.22246,
       "lng": 19.8644336,
       "elevation": 1226.0,
-      "nearest_routing_node_id": "node/1943389694",
-      "distance_to_trail_m": 3,
-      "original_distance_to_routing_node_m": 49,
-      "feature_lat": 49.222237,
-      "feature_lng": 19.863858,
-      "feature_distance_to_official_trail_m": 50,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/1943389694",
-      "access_point_distance_to_official_trail_m": 3,
-      "distance_from_feature_to_access_point_m": 49,
-      "access_point_elevation": 1234.0,
-      "access_point_name": "Punkt dojścia do stawu na znakowanym szlaku TPN",
-      "official_trail_section": "Schronisko Ornak (1) – Smreczyński Staw",
-      "official_trail_color": "czarny",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "verification_note": "named TPN trail destination",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1943389694"
     },
     {
       "id": "way/300719425",
@@ -1265,24 +556,7 @@
       "lat": 49.2019347,
       "lng": 20.070583,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/991639164",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 20,
-      "feature_lat": 49.202045,
-      "feature_lng": 20.070797,
-      "feature_distance_to_official_trail_m": 19,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/991639164",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 20,
-      "access_point_elevation": 1399.0,
-      "access_point_name": "Punkt dojścia do obiektu na znakowanym szlaku TPN",
-      "official_trail_section": "Żabie Oko – Morskie Oko - Stare schronisko",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/991639164"
     },
     {
       "id": "node/3571391593",
@@ -1291,9 +565,7 @@
       "lat": 49.222113,
       "lng": 19.833634,
       "elevation": 1832.0,
-      "nearest_routing_node_id": "node/1202079466",
-      "distance_to_trail_m": 8,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1202079466"
     },
     {
       "id": "node/11189254686",
@@ -1302,24 +574,7 @@
       "lat": 49.1978572,
       "lng": 20.0421994,
       "elevation": 2110.0,
-      "nearest_routing_node_id": "node/384075808",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.197854,
-      "feature_lng": 20.042199,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/384075808",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2054.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Dolina za Mnichem – Szpiglasowa Przełęcz",
-      "official_trail_color": "żółty",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/384075808"
     },
     {
       "id": "node/452477062",
@@ -1328,9 +583,7 @@
       "lat": 49.197291,
       "lng": 20.040106,
       "elevation": 2172.1,
-      "nearest_routing_node_id": "node/452477062",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/452477062"
     },
     {
       "id": "node/3560322431",
@@ -1339,24 +592,7 @@
       "lat": 49.229281,
       "lng": 20.011508,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/2570573563",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 1,
-      "feature_lat": 49.229287,
-      "feature_lng": 20.011503,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/2570573563",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 1,
-      "access_point_elevation": 1835.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Czarny Staw Gąsienicowy (1) – Karb",
-      "official_trail_color": "czarny",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/2570573563"
     },
     {
       "id": "node/1294543814",
@@ -1365,9 +601,7 @@
       "lat": 49.219104,
       "lng": 19.803726,
       "elevation": 1758.0,
-      "nearest_routing_node_id": "node/3079625614",
-      "distance_to_trail_m": 3,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3079625614"
     },
     {
       "id": "node/2008611051",
@@ -1376,9 +610,7 @@
       "lat": 49.256334,
       "lng": 19.878431,
       "elevation": 1203.0,
-      "nearest_routing_node_id": "node/1200756058",
-      "distance_to_trail_m": 11,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1200756058"
     },
     {
       "id": "node/9032592432",
@@ -1387,24 +619,7 @@
       "lat": 49.2553546,
       "lng": 20.0659999,
       "elevation": 1418.0,
-      "nearest_routing_node_id": "node/6719914706",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 19,
-      "feature_lat": 49.255522,
-      "feature_lng": 20.06603,
-      "feature_distance_to_official_trail_m": 19,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/6719914706",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 19,
-      "access_point_elevation": 1416.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Rówień Waksmundzka (1) – Rówień Waksmundzka (2)",
-      "official_trail_color": "czerwony/zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/6719914706"
     },
     {
       "id": "node/1295278143",
@@ -1413,9 +628,7 @@
       "lat": 49.250954,
       "lng": 19.934102,
       "elevation": 1894.5,
-      "nearest_routing_node_id": "node/4810477703",
-      "distance_to_trail_m": 6,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/4810477703"
     },
     {
       "id": "node/2098613390",
@@ -1424,9 +637,7 @@
       "lat": 49.271655,
       "lng": 20.016304,
       "elevation": 1328.0,
-      "nearest_routing_node_id": "node/5671991137",
-      "distance_to_trail_m": 3,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5671991137"
     },
     {
       "id": "node/3344854169",
@@ -1435,24 +646,7 @@
       "lat": 49.191758,
       "lng": 20.0449941,
       "elevation": 2022.0,
-      "nearest_routing_node_id": "node/3344854169",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.191758,
-      "feature_lng": 20.044994,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/3344854169",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2012.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Dolina za Mnichem – Wrota Chałubińskiego",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3344854169"
     },
     {
       "id": "node/3600484614",
@@ -1461,24 +655,7 @@
       "lat": 49.2488626,
       "lng": 19.9337416,
       "elevation": 1765.0,
-      "nearest_routing_node_id": "node/3737047600",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 1,
-      "feature_lat": 49.248856,
-      "feature_lng": 19.933743,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/3737047600",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 1,
-      "access_point_elevation": 1766.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Przełęcz w Grzybowcu – Wyżnia Kondracka Przełęcz",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3737047600"
     },
     {
       "id": "node/3571409793",
@@ -1487,24 +664,7 @@
       "lat": 49.2203774,
       "lng": 19.8335449,
       "elevation": 1825.0,
-      "nearest_routing_node_id": "node/8699211847",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 5,
-      "feature_lat": 49.220415,
-      "feature_lng": 19.8335,
-      "feature_distance_to_official_trail_m": 3,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/8699211847",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 5,
-      "access_point_elevation": 1820.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Iwaniacka Przełęcz – Siwa Przełęcz",
-      "official_trail_color": "zielony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8699211847"
     },
     {
       "id": "node/9957754072",
@@ -1513,24 +673,7 @@
       "lat": 49.2269885,
       "lng": 19.9893498,
       "elevation": 1965.0,
-      "nearest_routing_node_id": "node/295648990",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 4,
-      "feature_lat": 49.22696,
-      "feature_lng": 19.989379,
-      "feature_distance_to_official_trail_m": 0,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/295648990",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 4,
-      "access_point_elevation": 1958.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Sucha Przełęcz – Przełęcz Liliowe",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/295648990"
     },
     {
       "id": "node/1496151183",
@@ -1539,9 +682,7 @@
       "lat": 49.22477,
       "lng": 20.032569,
       "elevation": 2240.0,
-      "nearest_routing_node_id": "node/460951721",
-      "distance_to_trail_m": 17,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460951721"
     },
     {
       "id": "node/1295379318",
@@ -1550,9 +691,7 @@
       "lat": 49.212959,
       "lng": 19.835383,
       "elevation": 1867.0,
-      "nearest_routing_node_id": "node/5882322106",
-      "distance_to_trail_m": 2,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/5882322106"
     },
     {
       "id": "node/460927985",
@@ -1561,24 +700,7 @@
       "lat": 49.2190881,
       "lng": 20.016392,
       "elevation": 2159.0,
-      "nearest_routing_node_id": "node/460927985",
-      "distance_to_trail_m": 1,
-      "original_distance_to_routing_node_m": 0,
-      "feature_lat": 49.219088,
-      "feature_lng": 20.016392,
-      "feature_distance_to_official_trail_m": 1,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/460927985",
-      "access_point_distance_to_official_trail_m": 1,
-      "distance_from_feature_to_access_point_m": 0,
-      "access_point_elevation": 2160.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Zmarzły Staw (1) – Zawrat",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460927985"
     },
     {
       "id": "node/460928124",
@@ -1587,24 +709,7 @@
       "lat": 49.2196608,
       "lng": 20.0230391,
       "elevation": 2123.0,
-      "nearest_routing_node_id": "node/460928132",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 4,
-      "feature_lat": 49.219636,
-      "feature_lng": 20.023077,
-      "feature_distance_to_official_trail_m": 3,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/460928132",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 4,
-      "access_point_elevation": 1996.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Zawrat – Kozia Przełęcz",
-      "official_trail_color": "czerwony",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/460928132"
     },
     {
       "id": "node/1103562966",
@@ -1613,9 +718,7 @@
       "lat": 49.218927,
       "lng": 20.02034,
       "elevation": 0.0,
-      "nearest_routing_node_id": "node/8709973240",
-      "distance_to_trail_m": 12,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8709973240"
     },
     {
       "id": "node/3560954589",
@@ -1624,24 +727,7 @@
       "lat": 49.2332696,
       "lng": 19.7671267,
       "elevation": 1602.0,
-      "nearest_routing_node_id": "node/4975670750",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 5,
-      "feature_lat": 49.23329,
-      "feature_lng": 19.767182,
-      "feature_distance_to_official_trail_m": 5,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/4975670750",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 5,
-      "access_point_elevation": 1597.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Grześ – Rakoń",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/4975670750"
     },
     {
       "id": "node/3343362920",
@@ -1650,9 +736,7 @@
       "lat": 49.219421,
       "lng": 20.009306,
       "elevation": 2302.0,
-      "nearest_routing_node_id": "node/3343362920",
-      "distance_to_trail_m": 0,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/3343362920"
     },
     {
       "id": "node/8757470163",
@@ -1661,9 +745,7 @@
       "lat": 49.214358,
       "lng": 20.058847,
       "elevation": 1875.0,
-      "nearest_routing_node_id": "node/1908708910",
-      "distance_to_trail_m": 7,
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/1908708910"
     },
     {
       "id": "node/8757470162",
@@ -1672,41 +754,7 @@
       "lat": 49.216171,
       "lng": 20.0574651,
       "elevation": 1755.0,
-      "nearest_routing_node_id": "node/8727840733",
-      "distance_to_trail_m": 0,
-      "original_distance_to_routing_node_m": 14,
-      "feature_lat": 49.216212,
-      "feature_lng": 20.057645,
-      "feature_distance_to_official_trail_m": 14,
-      "verification_source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-09-03",
-      "access_point_routing_node_id": "node/8727840733",
-      "access_point_distance_to_official_trail_m": 0,
-      "distance_from_feature_to_access_point_m": 14,
-      "access_point_elevation": 1610.0,
-      "access_point_name": "Punkt osiągalny znakowanym szlakiem TPN",
-      "official_trail_section": "Żabie Oko – Schronisko w Dolinie Pięciu Stawów Polskich",
-      "official_trail_color": "niebieski",
-      "selectable": true,
-      "verification_status": "verified_official_trail_access",
-      "official_trail_audit_passed": true
+      "nearest_routing_node_id": "node/8727840733"
     }
-  ],
-  "poi_access_metadata": {
-    "source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-    "verified_at": "2026-09-03",
-    "direct_access_distance_m": 30.0,
-    "routing_node_trail_distance_m": 20.0,
-    "verified_non_peak_points": 90,
-    "hidden_non_peak_points": 171,
-    "peaks_unchanged": 314,
-    "note": "lat/lng of verified non-peak POIs identify the reachable routing marker; feature_lat/feature_lng retain the natural object position",
-    "all_poi_audit": {
-      "source": "https://gis.tpn.pl/server/rest/services/Topografia___wektor_MIL1/MapServer/9",
-      "verified_at": "2026-10-20",
-      "point_count": 575,
-      "geometric_pass_count": 141,
-      "note": "Geometric screening only; no certification of current opening or legal/safe passage."
-    }
-  }
+  ]
 }

@@ -36,7 +36,7 @@ export function SearchInput({
             >
               <span>{getPointName(point)}</span>
               <small>
-                {point.access_point_name || point.type || "punkt trasy"}
+                {point.type || "punkt trasy"}
               </small>
             </button>
           ))}

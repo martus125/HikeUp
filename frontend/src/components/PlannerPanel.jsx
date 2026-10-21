@@ -161,7 +161,7 @@ export function PlannerPanel({
           </div>
 
           <button className="secondary-button" onClick={onAddFavorite}>
-            Dodaj trasę Dijkstry do ulubionych
+            Dodaj trasę do ulubionych
           </button>
 
           <h3>Przebieg trasy Dijkstry</h3>

@@ -5,6 +5,7 @@ import "./App.css";
 import {
   fetchRoute,
   fetchFavorites,
+  deleteFavoriteRoute,
   getCurrentUser,
   logoutUser,
   getUserProfile,
@@ -96,6 +97,7 @@ function App() {
           id: route.id, userId: user.id, name: route.route_name,
           distance: Number(route.distance_km), time: route.time_min,
           elevation: route.elevation_gain_m, criterion: route.criterion, path: route.path,
+          startPointName: route.start_point_name, endPointName: route.end_point_name,
         })));
       }).catch((error) => {
         if (!cancelled) setAuthMessage(error.message);
@@ -271,6 +273,8 @@ function App() {
       setRouteResult({
         ...primaryRoute,
         example: data.example || null,
+        startPointId: data.start_point?.id || selectedStartId,
+        endPointId: data.end_point?.id || selectedEndId,
         routes,
         pathIds: primaryRoute.pathIds,
         routeNodes: primaryRoute.routeNodes,
@@ -397,8 +401,12 @@ function App() {
       distance_km: routeResult.distance,
       time_min: routeResult.time,
       elevation_gain_m: routeResult.elevation,
-      criterion,
-      path: routeResult.routeNodes.map((node) => node.name).join(" → "),
+      criterion: routeResult.criterion,
+      path: {
+        start_id: routeResult.startPointId,
+        end_id: routeResult.endPointId,
+        node_ids: routeResult.pathIds,
+      },
     };
 
     try {
@@ -414,6 +422,8 @@ function App() {
           elevation: favoriteData.elevation_gain_m,
           criterion: favoriteData.criterion,
           path: favoriteData.path,
+          startPointName: favoriteData.start_point_name,
+          endPointName: favoriteData.end_point_name,
         },
         ...prevFavorites,
       ]);
@@ -423,6 +433,45 @@ function App() {
     }
   }
 
+
+  async function removeFavoriteRoute(favoriteId) {
+    await deleteFavoriteRoute(favoriteId);
+    setFavoriteRoutes((routes) => routes.filter((route) => route.id !== favoriteId));
+  }
+
+  async function calculateFavoriteRoute(route) {
+    let savedPath = route.path;
+    if (typeof savedPath === "string") {
+      try {
+        savedPath = JSON.parse(savedPath);
+      } catch {
+        savedPath = null; // Starsze zapisy zawierają ciąg nazw zamiast JSON.
+      }
+    }
+    const [oldStartName, oldEndName] = route.name.split(" → ");
+    const starts = allSearchPoints.filter((point) => savedPath?.start_id
+      ? point.id === savedPath.start_id
+      : point.name === (route.startPointName || oldStartName));
+    const ends = allSearchPoints.filter((point) => savedPath?.end_id
+      ? point.id === savedPath.end_id
+      : point.name === (route.endPointName || oldEndName));
+    if (starts.length !== 1 || ends.length !== 1) {
+      throw new Error("Nie można jednoznacznie odnaleźć punktów tej trasy. Wybierz je ponownie w planerze.");
+    }
+    const start = starts[0];
+    const end = ends[0];
+    const savedCriterion = route.criterion || "time";
+    selectStartPoint(start);
+    selectEndPoint(end);
+    setCriterion(savedCriterion);
+    setActiveTab("plan");
+    scrollToPlanner();
+    await calculateRoute({
+      startOverride: start.id,
+      endOverride: end.id,
+      criterionOverride: savedCriterion,
+    });
+  }
 
   async function loadUserProfile() {
     if (!user) return;
@@ -692,7 +741,7 @@ function App() {
           )}
 
           {activeTab === "recommended" && <RecommendedRoutes onSelect={selectRecommendedRoute} loading={loadingRoutes} />}
-          {activeTab === "favorites" && <FavoriteRoutes user={user} favoriteRoutes={favoriteRoutes} />}
+          {activeTab === "favorites" && <FavoriteRoutes user={user} favoriteRoutes={favoriteRoutes} onDelete={removeFavoriteRoute} onCalculate={calculateFavoriteRoute} loading={loadingRoutes || loadingGraph} />}
         </section>
       </main>
     </>

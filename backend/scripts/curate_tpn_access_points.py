@@ -1,4 +1,7 @@
-"""Move selectable POI markers onto verified TPN walking-trail graph nodes.
+"""Review POI access against official TPN walking-trail graph nodes.
+
+Diagnostic fields and proposed marker positions are saved only to
+reports/poi_access_review.json. This script does not change graph_nodes.json.
 
 The natural feature coordinates are retained as ``feature_lat`` and
 ``feature_lng``.  Marker coordinates (``lat``/``lng``) are replaced with the
@@ -7,9 +10,8 @@ coordinates of a routing node that:
 * is no farther than 20 m from the public TPN walking-trail geometry, and
 * belongs to the largest connected component of ``cala_mapa.json``.
 
-Non-peak POIs without a verified access point remain in ``graph_nodes.json``
-with ``selectable: false``. Peaks are deliberately left unchanged for a later
-audit.
+Non-peak POIs without a verified access point are flagged in the report.
+Peaks are left unchanged; audit_official_trail_points.py checks all types.
 
 This maintenance script requires Shapely and pyproj. Run it without
 ``--write`` to see a summary without modifying data.
@@ -328,11 +330,17 @@ def main():
     parser.add_argument(
         "--write",
         action="store_true",
-        help="write curated coordinates and visibility flags to graph_nodes.json",
+        help="save proposed access points and diagnostics to a report (does not change graph_nodes.json)",
     )
     args = parser.parse_args()
 
     poi_data = json.loads(POI_FILE.read_text(encoding="utf-8"))
+    verification_path = BASE_DIR / "reports" / "poi_verification.json"
+    if verification_path.exists():
+        archived = {
+            p["id"]: p for p in json.loads(verification_path.read_text(encoding="utf-8"))["nodes"]
+        }
+        poi_data["nodes"] = [{**archived.get(p["id"], {}), **p} for p in poi_data["nodes"]]
     full_map = json.loads(FULL_MAP_FILE.read_text(encoding="utf-8"))
     counters = curate_points(poi_data, full_map, fetch_walking_trails())
 
@@ -342,16 +350,16 @@ def main():
     print(f"Peaks left unchanged: {counters['peaks_unchanged']}")
 
     if not args.write:
-        print("Dry run only. Pass --write to update graph_nodes.json.")
+        print("Dry run only. Pass --write to save a review report.")
         return
 
-    temporary_file = POI_FILE.with_suffix(".json.tmp")
-    temporary_file.write_text(
+    report_path = BASE_DIR / "reports" / "poi_access_review.json"
+    report_path.parent.mkdir(exist_ok=True)
+    report_path.write_text(
         json.dumps(poi_data, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    temporary_file.replace(POI_FILE)
-    print(f"Updated {POI_FILE}")
+    print(f"Saved review report: {report_path}")
 
 
 if __name__ == "__main__":

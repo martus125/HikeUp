@@ -10,9 +10,8 @@ from functools import lru_cache
 from algorithms.common import (
     build_edge_map,
     build_graph,
-    get_shelter_routing_node_ids,
 )
-from services.map_service import get_selectable_points, load_full_map, load_points
+from services.map_service import normalize_collection, load_full_map, load_points
 
 
 @dataclass(frozen=True, slots=True)
@@ -27,12 +26,11 @@ class RoutingContext:
     edges_by_nodes: dict
     node_ids: frozenset
     points_by_id: dict
-    shelter_node_ids: frozenset
 
 
 def build_routing_context(nodes, edges, points=None):
     """Buduje kontekst z przekazanych kolekcji bez kopiowania ich zawartości."""
-    points = get_selectable_points(points or [])
+    points = normalize_collection(points or [])
     nodes_by_id = {
         node.get("id"): node
         for node in nodes
@@ -53,7 +51,6 @@ def build_routing_context(nodes, edges, points=None):
         edges_by_nodes=build_edge_map(edges),
         node_ids=frozenset(nodes_by_id),
         points_by_id=points_by_id,
-        shelter_node_ids=frozenset(get_shelter_routing_node_ids(points)),
     )
 
 

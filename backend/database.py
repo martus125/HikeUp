@@ -258,6 +258,17 @@ def get_favorite_routes(user_id):
         return {"success": False, "message": f"Błąd pobierania ulubionych tras: {error}"}
 
 
+def delete_favorite_route(user_id, favorite_id):
+    """Usuń zapis tylko wtedy, gdy należy do wskazanego użytkownika."""
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "DELETE FROM favorite_routes WHERE id = %s AND user_id = %s;",
+                (favorite_id, user_id),
+            )
+            return cursor.rowcount == 1
+
+
 def get_user_profile(user_id):
     """
     Pobierz profil użytkownika z bazy danych.

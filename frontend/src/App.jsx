@@ -657,12 +657,14 @@ function App() {
                     })
                   }
                 />
-                <span>Chcę trasę przebiegającą przy schroniskach</span>
+                <span>Chcę trasę przez schronisko</span>
               </label>
               <p className="profile-field-help">
-                Custom HikeUp uwzględni schronisko do 350 m od szlaku tylko
-                wtedy, gdy wariant pozostaje bezpieczny i jest najwyżej o 10%
-                dłuższy od najkrótszej akceptowalnej trasy.
+                Custom HikeUp wybierze przejście przez schronisko przy dodatkowym
+                wysiłku do 10% więcej dystansu, do 15% i maksymalnie
+                20 minut więcej marszu oraz do 100 m więcej podejścia, bez wzrostu
+                trudności ani maksymalnego nachylenia względem wariantu bez tej
+                preferencji. Trasa przekraczająca limity profilu pozostaje wymagająca.
               </p>
 
               <button type="submit" className="auth-submit">

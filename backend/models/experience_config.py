@@ -35,7 +35,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 1.20,
         "elevation_penalty_factor": 0.80,
         "limit_excess_penalty_factor": 2.00,
-        "shelter_preference_max_extra_ratio": 1.10,
     },
     "intermediate": {
         "name": "Średniozaawansowany",
@@ -53,7 +52,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.60,
         "elevation_penalty_factor": 0.40,
         "limit_excess_penalty_factor": 1.00,
-        "shelter_preference_max_extra_ratio": 1.10,
     },
     "advanced": {
         "name": "Zaawansowany",
@@ -74,7 +72,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.25,
         "elevation_penalty_factor": 0.20,
         "limit_excess_penalty_factor": 0.40,
-        "shelter_preference_max_extra_ratio": 1.10,
     },
     "expert": {
         "name": "Ekspert",
@@ -94,7 +91,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 0.08,
         "elevation_penalty_factor": 0.05,
         "limit_excess_penalty_factor": 0.15,
-        "shelter_preference_max_extra_ratio": 1.10,
     },
     "senior": {
         "name": "Senior",
@@ -115,7 +111,6 @@ EXPERIENCE_LIMITS = {
         "difficulty_penalty_factor": 1.50,
         "elevation_penalty_factor": 1.00,
         "limit_excess_penalty_factor": 2.50,
-        "shelter_preference_max_extra_ratio": 1.10,
     }
 }
 
@@ -137,6 +132,13 @@ def get_limits(experience_level):
     )
     limits = dict(EXPERIENCE_LIMITS[resolved_level])
     limits["experience_level"] = resolved_level
+    # Parametry modelu: dopuszczalny dodatkowy wysiłek przy dojściu do schroniska.
+    limits.update({
+        "shelter_preference_max_extra_ratio": 1.10,
+        "shelter_preference_max_time_ratio": 1.15,
+        "shelter_preference_max_extra_time_min": 20.0,
+        "shelter_preference_max_extra_gain_m": 100.0,
+    })
     # Bonus jest domyślnie wyłączony. Aktywuje go dopiero jawna preferencja
     # użytkownika, dzięki czemu schroniska nie zmieniają tras innych osób.
     limits["prefer_shelters"] = False

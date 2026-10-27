@@ -236,7 +236,8 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
     if start not in graph or end not in graph:
         return None
 
-    def search(selected_criterion, constrained=False, profile_weight=False):
+    def search(selected_criterion, constrained=False, profile_weight=False,
+               route_start=start, route_end=end, allowed_edges=None):
         if profile_weight:
             weight = lambda edge, neighbor: custom_hikeup_edge_weight(
                 edge, selected_criterion, limits, shelter_proximity_strength=proximity(neighbor),
@@ -244,11 +245,11 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         else:
             weight = lambda edge, neighbor: edge_weight(edge, selected_criterion)
         scores, previous = _search_graph(
-            graph, start, weight, metrics, end=end,
-            edge_allowed=edge_filter if constrained else None,
+            graph, route_start, weight, metrics, end=route_end,
+            edge_allowed=allowed_edges if allowed_edges is not None else edge_filter if constrained else None,
         )
-        path = reconstruct_path(previous, end) if end in scores else None
-        return path, scores.get(end)
+        path = reconstruct_path(previous, route_end) if route_end in scores else None
+        return path, scores.get(route_end)
 
     def totals_for(path):
         key = tuple(path)
@@ -290,10 +291,10 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                                 "recommendation_status": "unpersonalized", "message": message},
         )
 
-    proximity = _build_shelter_proximity_lookup(
-        node_lookup if node_lookup is not None else nodes,
-        routing_context.points if routing_context is not None else points, limits,
-    )
+    prefer_shelters = bool(limits.get("prefer_shelters", False))
+    # Najpierw zwykły wariant profilowy; bliskość schroniska nie obniża kosztów.
+    limits = {**limits, "prefer_shelters": False, "shelter_bonus_factor": 0.0}
+    proximity = lambda node_id: 0.0
     edge_filter = _build_profile_edge_filter(limits)
     candidate_paths = [("dijkstra_baseline", baseline_path)] if baseline_path else []
     distance_path = baseline_path
@@ -333,25 +334,18 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                   and c["evaluation"]["reasonable_detour"]]
     preferred = [c for c in acceptable if not c["evaluation"]["detour_preference_exceeded"]]
     pool = preferred or acceptable
-    prefer_shelters = bool(limits.get("prefer_shelters", False))
     rerouted = False
+    shelter_reason = "preference_disabled"
+    point_items = routing_context.points if routing_context is not None else (points or [])
+    if isinstance(point_items, dict):
+        point_items = point_items.values()
+    shelter_ids = {p.get("nearest_routing_node_id") for p in point_items
+                   if p.get("type") in SHELTER_TYPES} & graph.keys()
     if pool:
-        standard = min(pool, key=lambda c: (c["route_weight"], c["totals"]["distance_km"]))
-        if prefer_shelters:
-            shortest = min(c["totals"]["distance_km"] for c in pool)
-            extra_ratio = max(1.0, as_number(limits.get("shelter_preference_max_extra_ratio", 1.10), 1.10))
-            nearby = [c for c in pool if c["totals"]["distance_km"] <= shortest * extra_ratio + 1e-9]
-            most_shelters = max((c["totals"].get("shelters_count", 0) for c in nearby), default=0)
-            if most_shelters > 0:
-                pool = [c for c in nearby if c["totals"].get("shelters_count", 0) == most_shelters]
-        selected = min(pool, key=lambda c: (
-            ((c["custom_score"],) if prefer_shelters else ())
-            + (c["route_weight"], c["totals"]["distance_km"])
-        ))
-        rerouted = prefer_shelters and selected["path"] != standard["path"]
+        selected = min(pool, key=lambda c: (c["route_weight"], c["totals"]["distance_km"]))
         status = "recommended"
-        message = ("Znaleziono bezpieczną trasę przy schronisku, zgodną z preferencjami profilu."
-                   if prefer_shelters and selected["totals"].get("shelters_count", 0) > 0
+        message = ("Znaleziono trasę przez schronisko, zgodną z limitami profilu."
+                   if prefer_shelters and shelter_ids.intersection(selected["path"])
                    else "Znaleziono trasę odpowiednią dla profilu.")
         reason = ("safe_with_shelter_within_extra_limit" if rerouted else
                   "safe_within_preferred_detour" if preferred else "safe_within_acceptable_detour")
@@ -367,21 +361,91 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                    "nadal jest wymagająca dla Twojego profilu.")
         reason = "easiest_reasonable_route_to_requested_goal"
 
+    if prefer_shelters:
+        standard = selected
+        reference = standard["totals"]
+        # Przy trudnej trasie zachowujemy trudność i nachylenie wariantu podstawowego.
+        shelter_edge_filter = edge_filter if pool else _build_profile_edge_filter({
+            **limits, "max_difficulty": reference["max_difficulty"],
+            "max_slope_percent": reference["max_slope_percent"] + 0.01,
+            "absolute_max_slope_percent": reference["max_slope_percent"] + 0.01,
+        })
+        shelter_options = []
+        shelter_reason = "no_shelter_variant_within_limits"
+        for shelter_id in sorted(shelter_ids):
+            if shelter_id in standard["path"]:
+                shelter_options.append(standard)
+                continue
+            first, _ = search(criterion, allowed_edges=shelter_edge_filter,
+                              route_start=start, route_end=shelter_id)
+            second, _ = search(criterion, allowed_edges=shelter_edge_filter,
+                               route_start=shelter_id, route_end=end)
+            if not first or not second:
+                continue
+            path = first + second[1:]
+            totals = totals_for(path)
+            detour = totals["distance_km"] / baseline_distance if baseline_distance else None
+            assessment = evaluate_route_profile(path, totals, edge_lookup, limits, detour)
+            checks = {
+                "profile_limits": (assessment["within_safety_limits"] if pool else
+                    set(assessment["safety_violations"]).issubset(standard["evaluation"]["safety_violations"])),
+                "detour_limit": assessment["reasonable_detour"],
+                "slope_limit": totals["max_slope_percent"] <= reference["max_slope_percent"] + 1e-9,
+                "consecutive_steep_limit": (limits.get("max_consecutive_steep_m", 0) <= 0
+                    or assessment["route"]["max_consecutive_steep_m"] <= max(
+                    standard["evaluation"]["route"]["max_consecutive_steep_m"],
+                    standard["evaluation"]["limits"]["max_consecutive_steep_m"])),
+                "distance_limit": totals["distance_km"] <= reference["distance_km"] * limits["shelter_preference_max_extra_ratio"] + 1e-9,
+                "time_ratio_limit": totals["time_min"] <= reference["time_min"] * limits["shelter_preference_max_time_ratio"] + 1e-9,
+                "extra_time_limit": totals["time_min"] <= reference["time_min"] + limits["shelter_preference_max_extra_time_min"] + 1e-9,
+                "extra_ascent_limit": totals["elevation_gain_m"] <= reference["elevation_gain_m"] + limits["shelter_preference_max_extra_gain_m"] + 1e-9,
+                "difficulty_limit": totals["max_difficulty"] <= reference["max_difficulty"],
+            }
+            candidate = {
+                "shelter_node_id": shelter_id,
+                "sources": ["via_shelter"], "path": path, "totals": totals,
+                "evaluation": assessment,
+                "route_weight": _path_cost(path, edge_lookup, criterion),
+                "custom_score": _path_cost(path, edge_lookup, criterion, limits, proximity),
+            }
+            candidates.append(candidate)
+            if all(checks.values()):
+                shelter_options.append(candidate)
+            # Zapis powodów odrzucenia umożliwia sprawdzenie decyzji w odpowiedzi API.
+            candidate["shelter_rejection_reasons"] = [k for k, passed in checks.items() if not passed]
+        if shelter_options:
+            selected = min(shelter_options, key=lambda c: (c["route_weight"], c["totals"]["distance_km"]))
+            rerouted = selected["path"] != standard["path"]
+            shelter_reason = "shelter_node_visited_within_limits"
+            if status == "difficult_route":
+                message = ("Wybrano wariant przez schronisko w granicach dodatkowego wysiłku, "
+                           "ale trasa nadal przekracza limity Twojego profilu.")
+                reason = "difficult_route_with_shelter_within_extra_limit"
+            else:
+                message = "Znaleziono trasę przez schronisko, zgodną z limitami profilu."
+                reason = "safe_with_shelter_within_extra_limit"
+
     evaluation = {
         **selected["evaluation"], "recommendation_status": status, "message": message,
         "selection_reason": reason, "shelter_preference_enabled": prefer_shelters,
-        "shelter_preference_matched": prefer_shelters and selected["totals"].get("shelters_count", 0) > 0,
+        "shelter_preference_matched": prefer_shelters and bool(shelter_ids.intersection(selected["path"])),
+        "shelter_preference_reason": shelter_reason,
+        "shelter_rejected_variants": [
+            {"shelter_node_id": c["shelter_node_id"], "reasons": c["shelter_rejection_reasons"]}
+            for c in candidates if c.get("shelter_rejection_reasons")
+        ],
         "shelter_preference_rerouted": rerouted, "candidate_count": len(candidates),
-        "acceptable_candidate_count": len(acceptable), "selected_candidate_sources": selected["sources"],
+        "acceptable_candidate_count": sum(c["evaluation"]["within_safety_limits"]
+                                          and c["evaluation"]["reasonable_detour"] for c in candidates),
+        "selected_candidate_sources": selected["sources"],
         "warnings": list(selected["evaluation"]["warnings"]),
     }
     if status == "recommended" and not preferred:
         evaluation["warnings"].insert(0, "Wybrano dłuższą trasę, ponieważ pozostaje zgodna z "
                                      "profilem i mieści się w rozsądnej granicy objazdu.")
     if rerouted:
-        evaluation["warnings"].insert(0, "Wybrano nieznacznie dłuższy wariant przy schronisku. "
-                                     "Pozostaje bezpieczny i nie przekracza 10% dodatkowego "
-                                     "dystansu względem najkrótszej akceptowalnej trasy.")
+        evaluation["warnings"].insert(0, "Wybrano przejście przez schronisko w granicach "
+                                     "dodatkowego dystansu, czasu i podejścia.")
     score = round(selected["custom_score"], 3)
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
     extra = {"custom_score": score, "recommendation_status": status, "message": message}

@@ -18,6 +18,7 @@ from algorithms.weights import (
 from models.experience_config import (
     PROFILE_MATCH_WEIGHTS, SHELTER_PREFERENCE_RADIUS_M, get_limits,
 )
+from services.map_service import resolve_routing_node
 
 
 def _build_shelter_proximity_lookup(nodes, points, limits):
@@ -341,8 +342,15 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
     point_items = routing_context.points if routing_context is not None else (points or [])
     if isinstance(point_items, dict):
         point_items = point_items.values()
-    shelter_ids = {p.get("nearest_routing_node_id") for p in point_items
-                   if p.get("type") in SHELTER_TYPES} & graph.keys()
+    shelter_ids = set()
+    for point in point_items:
+        if point.get("type") not in SHELTER_TYPES:
+            continue
+        shelter_node_id = resolve_routing_node(
+            point, nodes, routing_context.node_ids if routing_context is not None else None,
+        )
+        if shelter_node_id in graph:
+            shelter_ids.add(shelter_node_id)
     if pool:
         selected = min(pool, key=lambda c: (c["route_weight"], c["totals"]["distance_km"]))
         status = "recommended"
@@ -393,7 +401,7 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                     set(assessment["safety_violations"]).issubset(standard["evaluation"]["safety_violations"])),
                 "detour_limit": assessment["reasonable_detour"],
                 "slope_limit": totals["max_slope_percent"] <= reference["max_slope_percent"] + 1e-9,
-                "consecutive_steep_limit": (limits.get("max_consecutive_steep_m", 0) <= 0
+                "consecutive_steep_limit": (limits.get("max_consecutive_steep", 0) <= 0
                     or assessment["route"]["max_consecutive_steep_m"] <= max(
                     standard["evaluation"]["route"]["max_consecutive_steep_m"],
                     standard["evaluation"]["limits"]["max_consecutive_steep_m"])),
@@ -431,6 +439,7 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         **selected["evaluation"], "recommendation_status": status, "message": message,
         "selection_reason": reason, "shelter_preference_enabled": prefer_shelters,
         "shelter_preference_matched": prefer_shelters and bool(shelter_ids.intersection(selected["path"])),
+        "shelters_visited_count": len(shelter_ids.intersection(selected["path"])),
         "shelter_preference_reason": shelter_reason,
         "shelter_rejected_variants": [
             {"shelter_node_id": c["shelter_node_id"], "reasons": c["shelter_rejection_reasons"]}

@@ -138,12 +138,15 @@ export function PlannerPanel({
                   </p>
                 )}
                 {route.totals?.shelters_count !== undefined && (
-                  <p>Schroniska przy trasie: {route.totals.shelters_count}</p>
+                  <p>Schroniska w pobliżu trasy (do 350 m): {route.totals.shelters_count}</p>
                 )}
 
                 {route.profileEvaluation?.experience_level && (
                   <div className="profile-evaluation">
                     <p>Profil: {route.profileEvaluation.experience_level}</p>
+                    {route.profileEvaluation.shelters_visited_count !== undefined && (
+                      <p>Węzły schronisk na trasie: {route.profileEvaluation.shelters_visited_count}</p>
+                    )}
                     <p>
                       Dopasowanie profilu: {" "}
                       {Number(
@@ -163,7 +166,7 @@ export function PlannerPanel({
                         Preferencja schronisk: {" "}
                         {route.profileEvaluation.shelter_preference_matched
                           ? "uwzględniona"
-                          : "brak schroniska przy rozsądnym wariancie"}
+                          : "brak wariantu przez schronisko w przyjętych limitach"}
                       </p>
                     )}
                   </div>

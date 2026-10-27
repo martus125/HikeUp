@@ -2,7 +2,6 @@ const POINT_TYPE_LABELS = {
   peak: "szczyt",
   saddle: "przełęcz",
   viewpoint: "punkt widokowy",
-  alpine_hut: "schronisko",
   shelter: "schronisko",
 };
 

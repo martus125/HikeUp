@@ -58,9 +58,9 @@ EDGES = [
 
 POINTS = [
     {
-        "id": "hut/C",
+        "id": "shelter/C",
         "name": "Schronisko testowe",
-        "type": "alpine_hut",
+        "type": "shelter",
         "lat": 49.01,
         "lng": 19.00,
         "nearest_routing_node_id": "C",
@@ -138,7 +138,7 @@ class RoutingContextTests(unittest.TestCase):
             self.assertIs(first.nodes, NODES)
             self.assertIs(first.edges, EDGES)
             self.assertEqual(first.node_ids, {"A", "B", "C", "D"})
-            self.assertEqual(first.points_by_id["hut/C"]["nearest_routing_node_id"], "C")
+            self.assertEqual(first.points_by_id["shelter/C"]["nearest_routing_node_id"], "C")
             load_map.assert_called_once_with()
             load_test_points.assert_called_once_with()
         finally:
@@ -634,9 +634,9 @@ class CustomProfileTests(unittest.TestCase):
         ]
         points = [
             {
-                "id": "hut/B",
+                "id": "shelter/B",
                 "name": "Schronisko przy wariancie B",
-                "type": "alpine_hut",
+                "type": "shelter",
                 "lat": 49.005,
                 "lng": 19.01,
                 "nearest_routing_node_id": "B",

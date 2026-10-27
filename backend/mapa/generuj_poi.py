@@ -2,6 +2,11 @@ import osmnx as ox
 import pandas as pd
 import json
 import math
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from models.point_types import OSM_SHELTER_TYPE, normalize_point_type
 
 # --- 1. FUNKCJA DO OBLICZANIA ODLEGŁOŚCI ---
 # Oblicza odległość w linii prostej między dwoma punktami na kuli ziemskiej (Haversine)
@@ -32,7 +37,7 @@ print("Pobieranie punktów charakterystycznych (POI) z obszaru Tatr...")
 # Definiujemy, czego dokładnie szukamy
 tags_to_find = {
     'natural': ['peak', 'saddle', 'water'], # Szczyty, przełęcze, jeziora (np. Morskie Oko)
-    'tourism': ['alpine_hut', 'guest_house', 'viewpoint'], # Schroniska, punkty widokowe
+    'tourism': [OSM_SHELTER_TYPE, 'guest_house', 'viewpoint'], # Schroniska, punkty widokowe
     'waterway': ['waterfall'] # Wodospady (np. Wodogrzmoty Mickiewicza)
 }
 
@@ -87,7 +92,7 @@ for idx, row in pois.iterrows():
     poi_entry = {
         "id": f"{element_type}/{osmid}",
         "name": str(name),
-        "type": str(poi_type),
+        "type": normalize_point_type(str(poi_type)),
         "lat": round(lat, 6),
         "lng": round(lng, 6),
         "elevation": ele,

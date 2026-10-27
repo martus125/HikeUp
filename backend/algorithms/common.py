@@ -13,7 +13,7 @@ from models.experience_config import SHELTER_PREFERENCE_RADIUS_M
 
 
 SHELTER_ROUTE_RADIUS_M = 350.0
-SHELTER_TYPES = frozenset({"alpine_hut", "shelter"})
+SHELTER_TYPES = frozenset({"shelter"})
 
 
 @dataclass
@@ -266,8 +266,8 @@ def get_shelter_proximity_strength(
 ):
     """Siła preferencji 0–1 według odległości w linii prostej od schroniska.
 
-    Zakładamy, że obszary wpływu schronisk się nie nakładają, dlatego
-    zwracamy wynik dla pierwszego schroniska w promieniu.
+    Przy nakładających się promieniach wybieramy największą siłę preferencji,
+    niezależnie od kolejności schronisk w danych.
     Interpolacja liniowa według części promienia: 0 → 1, 0.05 → 0.98,
     0.1 → 0.95, 0.25 → 0.3, 0.5 → 0.05, 1 → 0.
     """
@@ -278,6 +278,7 @@ def get_shelter_proximity_strength(
     node_coordinates = {"lat": coordinates[0], "lng": coordinates[1]}
     point_items = points.values() if isinstance(points, dict) else points
 
+    strongest = 0.0
     for point in point_items:
         if not isinstance(point, dict) or point.get("type") not in SHELTER_TYPES:
             continue
@@ -301,9 +302,10 @@ def get_shelter_proximity_strength(
             ):
                 if distance_ratio <= end:
                     fraction = (distance_ratio - start) / (end - start)
-                    return start_strength + fraction * (end_strength - start_strength)
+                    strongest = max(strongest, start_strength + fraction * (end_strength - start_strength))
+                    break
 
-    return 0.0
+    return strongest
 
 
 def calculate_route_totals(

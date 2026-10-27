@@ -161,7 +161,7 @@ def access_point_label(point):
         return "Punkt dojścia do stawu na znakowanym szlaku TPN"
     if point_type == "waterfall":
         return "Punkt dojścia do wodospadu na znakowanym szlaku TPN"
-    if point_type in {"alpine_hut", "guest_house"}:
+    if point_type in {"shelter", "guest_house"}:
         return "Punkt dojścia do obiektu na znakowanym szlaku TPN"
     return "Punkt osiągalny znakowanym szlakiem TPN"
 

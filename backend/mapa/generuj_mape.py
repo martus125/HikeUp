@@ -1,5 +1,10 @@
 import osmnx as ox
 import json
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from models.point_types import normalize_point_type
 
 # --- 1. ROZSZERZENIE KONFIGURACJI ---
 # Dodajemy tagi, które OSMnx standardowo ignoruje, a które zawierają ważne dane o terenie
@@ -64,7 +69,7 @@ for node_id, data in G.nodes(data=True):
     nodes_dict[node_id] = {
         "id": f"node/{node_id}",
         "name": node_name,
-        "type": node_type,
+        "type": normalize_point_type(node_type),
         "lat": data['y'],
         "lng": data['x'],
         "elevation": parse_elevation(data.get("ele"))

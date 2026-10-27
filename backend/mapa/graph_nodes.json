@@ -282,7 +282,7 @@
     {
       "id": "way/358407058",
       "name": "Murowaniec",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2433037,
       "lng": 20.0073022,
       "elevation": 1500.0,
@@ -426,7 +426,7 @@
     {
       "id": "way/184188834",
       "name": "Schronisko PTTK Hala Kondratowa",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2497961,
       "lng": 19.9518964,
       "elevation": 0.0,
@@ -435,7 +435,7 @@
     {
       "id": "way/300719423",
       "name": "Schronisko PTTK Morskie Oko",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2015185,
       "lng": 20.0709401,
       "elevation": 0.0,
@@ -444,7 +444,7 @@
     {
       "id": "way/241024507",
       "name": "Schronisko PTTK na Hali Ornak",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.228845,
       "lng": 19.8590063,
       "elevation": 0.0,
@@ -453,7 +453,7 @@
     {
       "id": "way/303740443",
       "name": "Schronisko PTTK na Polanie Chochołowskiej",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2365213,
       "lng": 19.7885348,
       "elevation": 0.0,
@@ -462,7 +462,7 @@
     {
       "id": "way/250746663",
       "name": "Schronisko PTTK w Dolinie Pięciu Stawów Polskich",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2134955,
       "lng": 20.0486326,
       "elevation": 1670.0,
@@ -471,7 +471,7 @@
     {
       "id": "way/253824570",
       "name": "Schronisko PTTK w Dolinie Roztoki",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2336378,
       "lng": 20.0956232,
       "elevation": 0.0,
@@ -552,7 +552,7 @@
     {
       "id": "way/300719425",
       "name": "Stare Schronisko PTTK Morskie Oko",
-      "type": "alpine_hut",
+      "type": "shelter",
       "lat": 49.2019347,
       "lng": 20.070583,
       "elevation": 0.0,

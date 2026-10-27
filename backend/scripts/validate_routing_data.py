@@ -20,7 +20,7 @@ EXPECTED_EDGE_FIELDS = (
     "slope_percent",
 )
 NONNEGATIVE_FIELDS = set(EXPECTED_EDGE_FIELDS) | {"elevation"}
-SHELTER_TYPES = {"alpine_hut", "shelter"}
+SHELTER_TYPES = {"shelter"}
 
 
 def as_number(value):

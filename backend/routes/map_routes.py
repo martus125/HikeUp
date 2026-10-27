@@ -164,8 +164,7 @@ def build_alternative_destination_candidates(
         "peak": {"peak", "saddle", "viewpoint"},
         "saddle": {"saddle", "peak", "viewpoint"},
         "viewpoint": {"viewpoint", "peak", "saddle"},
-        "alpine_hut": {"alpine_hut", "shelter"},
-        "shelter": {"alpine_hut", "shelter"},
+        "shelter": {"shelter"},
     }
     allowed_types = related_types.get(end_type, {end_type})
     end_lat = end_point.get("lat")

@@ -4,6 +4,7 @@ import math
 from functools import lru_cache
 
 from config import FULL_MAP_FILE, POI_FILE
+from models.point_types import normalize_point_type
 
 # Geometric snapping tolerance, not a guarantee of legal or safe access.
 MAX_POI_SNAP_DISTANCE_M = 100.0
@@ -43,7 +44,10 @@ def normalize_collection(data, key_names=("points", "nodes")):
 @lru_cache(maxsize=1)
 def load_points():
     """Load the curated list of map markers."""
-    return normalize_collection(load_json(POI_FILE))
+    return [
+        {**point, "type": normalize_point_type(point.get("type"))}
+        for point in normalize_collection(load_json(POI_FILE))
+    ]
 
 
 @lru_cache(maxsize=1)

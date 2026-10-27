@@ -36,7 +36,7 @@ def clamp(value, minimum, maximum):
 
 def validate_criterion(criterion):
     """Zwraca kryterium albo zgłasza czytelny błąd dla nieznanej wartości."""
-    if criterion not in VALID_CRITERIA:
+    if not isinstance(criterion, str) or criterion not in VALID_CRITERIA:
         supported = ", ".join(sorted(VALID_CRITERIA))
         raise ValueError(
             f"Nieznane kryterium trasy: {criterion!r}. "

@@ -32,6 +32,20 @@ def create_app():
          allow_headers=["Content-Type", "X-CSRF-Token"])
     initialize_auth(app)
 
+    from validation import ValidationError
+
+    @app.errorhandler(ValidationError)
+    def invalid_input(error):
+        from flask import jsonify
+        return jsonify(success=False, message=str(error)), 400
+
+    app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+
+    @app.errorhandler(413)
+    def request_too_large(error):
+        from flask import jsonify
+        return jsonify(success=False, message="Przesłane dane są zbyt duże."), 413
+
     init_database()
 
     app.register_blueprint(auth_bp)

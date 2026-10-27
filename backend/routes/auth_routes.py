@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request, g
 from auth import COOKIE_NAME, establish_session, login_required, revoke_session
 
 from database import create_user, verify_user
+from validation import text, email_address, password_value
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api")
 
@@ -10,15 +11,9 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/api")
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json() or {}
-    name = data.get("name")
-    email = data.get("email")
-    password = data.get("password")
-
-    if not all(isinstance(value, str) and value.strip() for value in (name, email, password)):
-        return jsonify({"success": False, "message": "Uzupełnij wszystkie pola formularza."}), 400
-
-    if len(password) < 6:
-        return jsonify({"success": False, "message": "Hasło powinno mieć co najmniej 6 znaków."}), 400
+    name = text(data.get("name"), "Imię")
+    email = email_address(data.get("email"))
+    password = password_value(data.get("password"), registration=True)
 
     result = create_user(name, email, password)
     if not result["success"]:
@@ -30,11 +25,8 @@ def register():
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    email = data.get("email")
-    password = data.get("password")
-
-    if not all(isinstance(value, str) and value.strip() for value in (email, password)):
-        return jsonify({"success": False, "message": "Podaj email i hasło."}), 400
+    email = email_address(data.get("email"))
+    password = password_value(data.get("password"))
 
     result = verify_user(email, password)
     if not result["success"]:

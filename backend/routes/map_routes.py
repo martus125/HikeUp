@@ -1,4 +1,5 @@
 from auth import current_user_id
+from validation import route_input, ValidationError
 from models.route_examples import ROUTE_EXAMPLES, EXAMPLES_BY_ID
 # Endpointy API związane z mapą, punktami i wyznaczaniem tras wszystkimi algorytmami
 from flask import Blueprint, jsonify, request
@@ -431,6 +432,11 @@ def route():
 
     try:
         data = request.get_json() or {}
+
+        try:
+            route_input(data)
+        except (ValidationError, ValueError) as error:
+            return jsonify(success=False, message=str(error)), 400
 
         start = data.get("start")
         end = data.get("end")

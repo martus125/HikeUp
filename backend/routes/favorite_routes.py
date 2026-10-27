@@ -3,6 +3,8 @@ from auth import current_user_id, login_required
 from flask import Blueprint, current_app, jsonify, request
 
 from database import add_favorite_route, delete_favorite_route, get_favorite_routes
+from validation import favorite_data, saved_path_exists
+from services.routing_context import load_routing_context
 
 favorites_bp = Blueprint("favorites", __name__, url_prefix="/api/favorites")
 
@@ -10,7 +12,8 @@ favorites_bp = Blueprint("favorites", __name__, url_prefix="/api/favorites")
 @favorites_bp.route("", methods=["POST"])
 @login_required
 def add_favorite():
-    data = request.get_json() or {}
+    data = favorite_data(request.get_json() or {})
+    saved_path_exists(data["path"], load_routing_context())
 
     user_id = current_user_id()
     route_name = data.get("route_name")

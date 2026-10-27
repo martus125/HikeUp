@@ -504,7 +504,7 @@ function App() {
 
     try {
       const data = await updateUserProfile({
-        age_years: profile.age_years,
+        age_years: profile.age_years === "" ? null : Number(profile.age_years),
         experience_level: profile.experience_level,
         route_preference: profile.route_preference,
         prefer_shelters: profile.prefer_shelters,

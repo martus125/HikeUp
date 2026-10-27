@@ -270,7 +270,9 @@ class AlgorithmContractTests(unittest.TestCase):
             with self.subTest(algorithm=algorithm.__module__):
                 result = algorithm(NODES, EDGES, "A", "D", "distance")
                 self.assertEqual(result["profile_evaluation"], {})
-                self.assertEqual(result["warnings"], [])
+                # Legacy fixtures have no provenance: all algorithms warn.
+                self.assertEqual(result["totals"]["unknown_difficulty_percent"], 100)
+                self.assertEqual(len(result["warnings"]), 2)
 
     def test_dijkstra_finds_expected_shortest_path(self):
         result = calculate_dijkstra(NODES, EDGES, "A", "D", "distance")

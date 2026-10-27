@@ -42,7 +42,9 @@ export function EasierRouteSuggestions({ alternatives, loading, onSelect }) {
                   </span>
                 </div>
                 <span className={fullySuitable ? "fit-badge" : "easier-badge"}>
-                  {fullySuitable ? "zgodna z profilem" : "wyraźnie łatwiejsza"}
+                  {route.assessment_complete === false
+                    ? "niepełne dane trasy"
+                    : fullySuitable ? "zgodna z profilem" : "wyraźnie łatwiejsza"}
                 </span>
               </div>
 
@@ -59,6 +61,12 @@ export function EasierRouteSuggestions({ alternatives, loading, onSelect }) {
                 <p className="easier-route-caution">
                   Ten wariant jest łatwiejszy od trasy do pierwotnego celu, ale
                   nadal może przekraczać część preferowanych limitów profilu.
+                </p>
+              )}
+              {route.assessment_complete === false && (
+                <p className="easier-route-caution">
+                  Ocena jest wstępna: dla części trasy brakuje potwierdzonej trudności
+                  lub danych dostępu.
                 </p>
               )}
 

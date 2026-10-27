@@ -3,6 +3,15 @@ import math
 import urllib.parse
 import urllib.request
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from algorithms.access import ACCESS_KEYS
+
+SAC_LEVELS = {
+    "hiking": 1, "mountain_hiking": 2, "demanding_mountain_hiking": 3,
+    "alpine_hiking": 4, "demanding_alpine_hiking": 5, "difficult_alpine_hiking": 6,
+}
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -38,17 +47,8 @@ def haversine_km(lat1, lng1, lat2, lng2):
 
 
 def difficulty_from_sac_scale(sac_scale):
-    levels = {
-        "hiking": 1,
-        "mountain_hiking": 2,
-        "demanding_mountain_hiking": 3,
-        "alpine_hiking": 4,
-        "demanding_alpine_hiking": 5,
-        "difficult_alpine_hiking": 6,
-    }
-
     # Brak danych nie oznacza automatycznie najłatwiejszego szlaku.
-    return levels.get(sac_scale, 2)
+    return SAC_LEVELS.get(sac_scale, 2)
 
 
 def fetch_osm_data():
@@ -57,7 +57,7 @@ def fetch_osm_data():
     query = f"""
     [out:json][timeout:180];
     (
-      way["highway"~"path|footway|track|steps|pedestrian"]["access"!~"private|no"]({south},{west},{north},{east});
+      way["highway"~"path|footway|track|steps|pedestrian"]({south},{west},{north},{east});
       way["sac_scale"]({south},{west},{north},{east});
     );
     (._;>;);
@@ -143,7 +143,12 @@ def build_full_map(osm_data):
                     "time_min": round(distance_km * 12, 2),
                     "elevation_gain_m": 0,
                     "difficulty": difficulty,
-                    "difficulty_known": tags.get("sac_scale") is not None,
+                    "difficulty_known": tags.get("sac_scale") in SAC_LEVELS,
+                    "difficulty_source": "osm:sac_scale" if tags.get("sac_scale") in SAC_LEVELS else "default",
+                    "sac_scale": tags.get("sac_scale"),
+                    "access_tags_known": True,
+                    "osm_direction": 1,
+                    **{key: tags[key] for key in ACCESS_KEYS if key in tags},
                     "osm_way_id": osm_way_id,
                     "trail_name": trail_name,
                     "geometry": [

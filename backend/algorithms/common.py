@@ -1,6 +1,7 @@
 import math
 from dataclasses import asdict, dataclass
 
+from algorithms.access import allowed_directions, difficulty_is_known
 from algorithms.heuristics import haversine_km
 from algorithms.weights import (
     as_number,
@@ -68,8 +69,8 @@ def make_directional_edge(edge, start, end):
     """
     Zwraca dane krawędzi zgodne z rzeczywistym kierunkiem przejścia.
 
-    Krawędzie w pliku mapy mają jeden zapisany kierunek, ale graf jest
-    nieskierowany. Przy przejściu odwrotnym podejście staje się zejściem,
+    Krawędzie w pliku mapy mają jeden zapisany kierunek.
+    Przy dozwolonym przejściu odwrotnym podejście staje się zejściem,
     a podpisana zmiana wysokości zmienia znak.
     """
     directional_edge = dict(edge)
@@ -97,47 +98,17 @@ def make_directional_edge(edge, start, end):
 
 
 def build_graph(edges):
-    """
-    Buduje graf nieskierowany na podstawie listy krawędzi.
-
-    Każda krawędź jest dodawana w dwie strony,
-    ponieważ szlaki można zwykle przechodzić w obu kierunkach.
-    """
+    """Build the directed pedestrian graph using the shared access policy."""
     graph = {}
-
     for edge in edges:
-        start = edge.get("from")
-        end = edge.get("to")
-
+        start, end = edge.get("from"), edge.get("to")
         if not start or not end:
             continue
-
-        if start not in graph:
-            graph[start] = []
-
-        if end not in graph:
-            graph[end] = []
-
-        graph[start].append(
-            {
-                "node": end,
-                "edge": edge,
-            }
-        )
-
-        graph[end].append(
-            {
-                "node": start,
-                "edge": make_directional_edge(
-                    edge,
-                    end,
-                    start,
-                ),
-            }
-        )
-
-    # Przed benchmarkiem wielu par warto umożliwić przekazanie grafu zbudowanego
-    # jeden raz. Obecne API celowo pozostaje bez zmian, aby zachować zgodność.
+        graph.setdefault(start, [])
+        graph.setdefault(end, [])
+        for direction in allowed_directions(edge):
+            source, target = (start, end) if direction == 1 else (end, start)
+            graph[source].append({"node": target, "edge": make_directional_edge(edge, source, target)})
     return graph
 
 
@@ -158,21 +129,15 @@ def reconstruct_path(previous, end):
 
 
 def build_edge_map(edges):
-    """
-    Tworzy mapę krawędzi, żeby szybciej znajdować dane odcinków trasy.
-    """
+    """Index only legal directions, retaining the stored elevation orientation."""
     edge_map = {}
-
     for edge in edges:
-        start = edge.get("from")
-        end = edge.get("to")
-
+        start, end = edge.get("from"), edge.get("to")
         if not start or not end:
             continue
-
-        edge_map[(start, end)] = edge
-        edge_map[(end, start)] = edge
-
+        for direction in allowed_directions(edge):
+            key = (start, end) if direction == 1 else (end, start)
+            edge_map[key] = edge
     return edge_map
 
 
@@ -367,6 +332,8 @@ def calculate_route_totals(
     maximum_slope = 0.0
     slope_distance_sum = 0.0
     slope_distance = 0.0
+    unknown_difficulty_km = unknown_access_km = 0.0
+    unknown_difficulty_edges = 0
 
     for index in range(len(path) - 1):
         start = path[index]
@@ -375,7 +342,7 @@ def calculate_route_totals(
         source_edge = edge_map.get((start, end))
 
         if source_edge is None:
-            continue
+            raise ValueError("Ścieżka zawiera niedostępny kierunek lub niepołączone węzły.")
 
         edge = make_directional_edge(
             source_edge,
@@ -392,6 +359,11 @@ def calculate_route_totals(
             as_number(edge.get("difficulty"), 0),
         )
 
+        if not difficulty_is_known(edge):
+            unknown_difficulty_km += distance
+            unknown_difficulty_edges += 1
+        if edge.get("access_tags_known") is not True:
+            unknown_access_km += distance
         total_distance += distance
         total_time += estimate_hiking_time_minutes(edge)
         weighted_difficulty += difficulty * distance
@@ -445,6 +417,13 @@ def calculate_route_totals(
         "max_slope_percent": round(maximum_slope, 2),
         "average_slope_percent": round(average_slope, 2),
         "shelters_count": shelters_count,
+        "difficulty_known": unknown_difficulty_edges == 0,
+        "unknown_difficulty_edges": unknown_difficulty_edges,
+        "unknown_difficulty_distance_km": round(unknown_difficulty_km, 3),
+        "unknown_difficulty_percent": round(100 * unknown_difficulty_km / total_distance, 1) if total_distance else 0,
+        "unknown_access_distance_km": round(unknown_access_km, 3),
+        "unknown_access_percent": round(100 * unknown_access_km / total_distance, 1) if total_distance else 0,
+        "access_policy": "exclude_seasonal_and_conditional",
     }
 
 
@@ -463,7 +442,7 @@ def calculate_route_weight(path, edges, criterion):
         source_edge = edge_map.get((start, end))
 
         if source_edge is None:
-            continue
+            raise ValueError("Ścieżka zawiera niedostępny kierunek lub niepołączone węzły.")
 
         edge = make_directional_edge(
             source_edge,
@@ -495,13 +474,27 @@ def build_algorithm_result(
     )
     metrics_data["route_weight"] = round(route_weight, 3)
 
+    route_warnings = list(warnings or [])
+    if totals.get("unknown_difficulty_edges", 0):
+        route_warnings.append(
+            f"Brak potwierdzonej trudności dla {totals['unknown_difficulty_percent']:g}% długości trasy. "
+            "Obliczenia używają wartości zastępczych; ocena profilu jest niepełna.")
+    if totals.get("unknown_access_distance_km", 0):
+        route_warnings.append("Dane części trasy nie zawierają informacji o ograniczeniach dostępu. "
+                              "Dostępność tych odcinków nie została potwierdzona.")
+    if profile_evaluation:
+        profile_evaluation = {
+            **profile_evaluation,
+            "assessment_complete": totals.get("difficulty_known", False)
+                and totals.get("unknown_access_distance_km", 0) == 0,
+        }
     result = {
         "algorithm": algorithm,
         "path": path,
         "totals": totals,
         "metrics": metrics_data,
         "profile_evaluation": profile_evaluation or {},
-        "warnings": list(warnings or []),
+        "warnings": list(dict.fromkeys(route_warnings)),
         "criterion": criterion,
         "route_weight": round(route_weight, 3),
 

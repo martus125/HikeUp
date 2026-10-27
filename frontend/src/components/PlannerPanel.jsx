@@ -28,6 +28,10 @@ export function PlannerPanel({
   return (
     <div className="planner-panel">
       {loadingGraph && <p>Ładowanie punktów mapy...</p>}
+      <p className="profile-field-help">
+        Planer pomija odcinki oznaczone jako sezonowe lub z warunkami dostępu,
+        niezależnie od daty. Dane OSM nie potwierdzają bieżącego otwarcia szlaków.
+      </p>
 
       <SearchInput
         label="A"
@@ -85,6 +89,12 @@ export function PlannerPanel({
             {algorithmRoutes.map((route) => (
               <article key={route.algorithm} className="algorithm-card">
                 <h3>{route.label || route.algorithm}</h3>
+                {route.warnings?.length > 0 && (
+                  <div className="route-data-warnings" role="status">
+                    <strong>Uwagi do trasy</strong>
+                    <ul>{route.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>
+                  </div>
+                )}
                 {route.recommendationStatus === "difficult_route" && (
                   <div className="difficult-route-notice">
                     <strong>Najłatwiejszy wariant do wybranego celu</strong>
@@ -103,6 +113,7 @@ export function PlannerPanel({
                 <p>Przewyższenie: {Number(route.elevation || 0).toFixed(0)} m</p>
                 <p>
                   Trudność średnia: {Number(route.difficulty || 0).toFixed(2)}
+                  {route.totals?.difficulty_known === false && " (dane częściowo zastępcze)"}
                 </p>
                 <p>Waga trasy: {Number(route.routeWeight || 0).toFixed(2)}</p>
 
@@ -143,6 +154,8 @@ export function PlannerPanel({
                     <p>
                       Status: {route.recommendationStatus === "difficult_route"
                         ? "najłatwiejszy wariant, nadal wymagający"
+                        : route.profileEvaluation.assessment_complete === false
+                        ? "wstępna ocena — niepełne dane trasy"
                         : "trasa rekomendowana"}
                     </p>
                     {route.profileEvaluation.shelter_preference_enabled && (

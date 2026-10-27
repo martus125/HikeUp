@@ -217,6 +217,8 @@ def evaluate_route_profile(path, totals, edge_lookup, user_limits, detour_ratio=
         "safety_violations": safety_violations, "warnings": warnings,
         "profile_match_score": round(max(0.0, min(100.0, score)), 1),
         "within_limits": not violations, "within_safety_limits": not safety_violations,
+        "assessment_complete": totals.get("difficulty_known", False)
+            and totals.get("unknown_access_distance_km", 0) == 0,
         "reasonable_detour": not detour_unreasonable,
         "detour_preference_exceeded": detour_exceeded,
     }
@@ -555,6 +557,8 @@ def find_profile_suitable_destination_alternatives(
                     "profile_match_score": evaluation["profile_match_score"],
                     "within_preferred_limits": evaluation["within_limits"],
                     "within_safety_limits": selected["suitable"],
+                    "assessment_complete": evaluation["assessment_complete"],
+                    "unknown_difficulty_percent": totals.get("unknown_difficulty_percent", 100),
                     "easier_than_requested": selected["easier"],
                     "recommendation_kind": "profile_suitable" if selected["suitable"] else "easier_than_requested",
                     "route_weight": round(selected["weight"], 3),

@@ -907,7 +907,8 @@ def route():
                     "success": False,
                     "message": (
                         "Nie znaleziono połączenia między "
-                        "wybranymi punktami żadnym algorytmem."
+                        "wybranymi punktami przy uwzględnieniu ograniczeń dostępu. "
+                        "Odcinki sezonowe i warunkowe są wyłączone z planowania."
                     ),
                     "debug": {
                         "start": start,

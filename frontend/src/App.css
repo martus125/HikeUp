@@ -655,3 +655,17 @@ button {
     align-items: start;
   }
 }
+.route-data-warnings {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #946200;
+  border-radius: 8px;
+  background: #fff7dc;
+  color: #573900;
+  overflow-wrap: anywhere;
+}
+
+.route-data-warnings ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}

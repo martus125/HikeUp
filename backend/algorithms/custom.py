@@ -1,8 +1,3 @@
-"""Custom HikeUp: wyszukiwanie kandydatów i wybór trasy według profilu.
-
-Algorytm sprawdza znalezionych kandydatów, nie wszystkie możliwe ścieżki.
-W tym pliku znajdują się również ocena profilu i propozycje łatwiejszych celów.
-"""
 import heapq
 from time import perf_counter
 

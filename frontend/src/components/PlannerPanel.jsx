@@ -112,7 +112,6 @@ export function PlannerPanel({
                   Trudność średnia: {Number(route.difficulty || 0).toFixed(2)}
                   {route.totals?.difficulty_known === false && " (dane częściowo zastępcze)"}
                 </p>
-                <p>Waga trasy: {Number(route.routeWeight || 0).toFixed(2)}</p>
 
                 {route.metrics?.execution_time_ms !== undefined && (
                   <p>

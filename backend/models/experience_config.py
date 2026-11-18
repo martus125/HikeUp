@@ -29,7 +29,6 @@ EXPERIENCE_LIMITS = {
         "preferred_elevation_per_hour": 150, # Idealne tempo (m/h)
         "max_detour_ratio": 1.30,
         "max_acceptable_detour_ratio": 1.50,
-        "alternative_destination_max_route_ratio": 1.35,
         "max_reasonable_slope_percent": 100,
         "slope_penalty_factor": 1.50,
         "difficulty_penalty_factor": 1.20,
@@ -46,7 +45,6 @@ EXPERIENCE_LIMITS = {
         "preferred_elevation_per_hour": 250,
         "max_detour_ratio": 1.35,
         "max_acceptable_detour_ratio": 1.50,
-        "alternative_destination_max_route_ratio": 1.35,
         "max_reasonable_slope_percent": 100,
         "slope_penalty_factor": 0.80,
         "difficulty_penalty_factor": 0.60,
@@ -66,7 +64,6 @@ EXPERIENCE_LIMITS = {
         "preferred_elevation_per_hour": 400,
         "max_detour_ratio": 1.35,
         "max_acceptable_detour_ratio": 1.45,
-        "alternative_destination_max_route_ratio": 1.35,
         "max_reasonable_slope_percent": 100,
         "slope_penalty_factor": 0.35,
         "difficulty_penalty_factor": 0.25,
@@ -85,7 +82,6 @@ EXPERIENCE_LIMITS = {
         "preferred_elevation_per_hour": 500,
         "max_detour_ratio": 1.30,
         "max_acceptable_detour_ratio": 1.40,
-        "alternative_destination_max_route_ratio": 1.35,
         "max_reasonable_slope_percent": 100,
         "slope_penalty_factor": 0.10,
         "difficulty_penalty_factor": 0.08,
@@ -105,7 +101,6 @@ EXPERIENCE_LIMITS = {
         # rzeczywiście usuwa naruszenia bezpieczeństwa. Powyżej 60% trasa
         # jest uznawana za zbyt odległą od pierwotnego celu.
         "max_acceptable_detour_ratio": 1.60,
-        "alternative_destination_max_route_ratio": 1.35,
         "max_reasonable_slope_percent": 100,
         "slope_penalty_factor": 2.00,
         "difficulty_penalty_factor": 1.50,

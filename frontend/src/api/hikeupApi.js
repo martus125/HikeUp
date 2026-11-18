@@ -53,7 +53,6 @@ export async function fetchRoute({
   start,
   end,
   criterion,
-  exampleId,
 }) {
   return request("/api/route", {
     method: "POST",
@@ -64,13 +63,8 @@ export async function fetchRoute({
       start,
       end,
       criterion,
-      ...(exampleId ? { example_id: exampleId } : {}),
     }),
   });
-}
-
-export async function fetchRouteExamples() {
-  return request("/api/route-examples");
 }
 
 export async function registerUser({ name, email, password }) {

@@ -15,11 +15,9 @@ import {
   updateUserProfile,
 } from "./api/hikeupApi";
 import { AuthModal } from "./components/AuthModal";
-import { EasierRouteSuggestions } from "./components/EasierRouteSuggestions";
 import { FavoriteRoutes } from "./components/FavoriteRoutes";
 import { Header } from "./components/Header";
 import { PlannerPanel } from "./components/PlannerPanel";
-import { RecommendedRoutes } from "./components/RecommendedRoutes";
 import { RouteMap } from "./components/RouteMap";
 import { Tabs } from "./components/Tabs";
 import { useMapData } from "./hooks/useMapData";
@@ -239,9 +237,6 @@ function App() {
         recommendationStatus:
           route.recommendation_status || "recommended",
         message: route.message || "",
-        alternativeDestinations: Array.isArray(route.alternative_destinations)
-          ? route.alternative_destinations
-          : [],
       };
     }
 
@@ -252,7 +247,6 @@ function App() {
         start: selectedStartId,
         end: selectedEndId,
         criterion: routeCriterion,
-        exampleId: options?.exampleId,
       });
 
       const routes = Array.isArray(data.routes)
@@ -272,7 +266,6 @@ function App() {
 
       setRouteResult({
         ...primaryRoute,
-        example: data.example || null,
         startPointId: data.start_point?.id || selectedStartId,
         endPointId: data.end_point?.id || selectedEndId,
         routes,
@@ -293,29 +286,6 @@ function App() {
     } finally {
       setLoadingRoutes(false);
     }
-  }
-
-  async function selectAndCalculateAlternative(point) {
-    selectEndPoint(point);
-    await calculateRoute({ endOverride: point.id });
-  }
-
-  async function selectRecommendedRoute(example) {
-    setStartId(example.start);
-    setEndId(example.end);
-    setStartSearch(example.start_name);
-    setEndSearch(example.end_name);
-    setCriterion(example.criterion);
-    setActiveSearch(null);
-    setRouteResult(null);
-    setActiveTab("plan");
-    scrollToPlanner();
-    await calculateRoute({
-      startOverride: example.start,
-      endOverride: example.end,
-      criterionOverride: example.criterion,
-      exampleId: example.id,
-    });
   }
 
   async function handleRegister() {
@@ -690,17 +660,6 @@ function App() {
             />
           </div>
 
-          <EasierRouteSuggestions
-            alternatives={
-              routeResult?.routes?.find(
-                (route) =>
-                  route.algorithm === "custom_hikeup" &&
-                  route.recommendationStatus === "difficult_route",
-              )?.alternativeDestinations || []
-            }
-            loading={loadingRoutes}
-            onSelect={selectAndCalculateAlternative}
-          />
         </div>
 
         <section className="side-panel">
@@ -742,7 +701,6 @@ function App() {
             />
           )}
 
-          {activeTab === "recommended" && <RecommendedRoutes onSelect={selectRecommendedRoute} loading={loadingRoutes} />}
           {activeTab === "favorites" && <FavoriteRoutes user={user} favoriteRoutes={favoriteRoutes} onDelete={removeFavoriteRoute} onCalculate={calculateFavoriteRoute} loading={loadingRoutes || loadingGraph} />}
         </section>
       </main>

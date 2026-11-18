@@ -3,7 +3,7 @@ from time import perf_counter
 
 from algorithms.common import (
     SHELTER_TYPES, SearchMetrics, build_algorithm_result, build_edge_map,
-    build_graph, calculate_route_totals, get_shelter_proximity_strength,
+    build_graph, calculate_route_totals,
     make_directional_edge, reconstruct_path,
 )
 from algorithms.weights import (
@@ -11,71 +11,32 @@ from algorithms.weights import (
     edge_weight, get_slope_percent, validate_criterion,
 )
 from models.experience_config import (
-    PROFILE_MATCH_WEIGHTS, SHELTER_PREFERENCE_RADIUS_M, get_limits,
+    PROFILE_MATCH_WEIGHTS, get_limits,
 )
 from services.map_service import resolve_routing_node
 
 
-def _build_shelter_proximity_lookup(nodes, points, limits):
-    """Odległość od schronisk obliczana najwyżej raz dla każdego węzła."""
-    if not limits.get("prefer_shelters", False):
-        return lambda node_id: 0.0
-    node_items = nodes.values() if isinstance(nodes, dict) else nodes
-    node_map = {
-        node["id"]: node for node in node_items
-        if isinstance(node, dict) and node.get("id") is not None
-    }
-    point_items = points.values() if isinstance(points, dict) else (points or [])
-    shelters = [p for p in point_items if isinstance(p, dict) and p.get("type") in SHELTER_TYPES]
-    radius = limits.get("shelter_preference_radius_m", SHELTER_PREFERENCE_RADIUS_M)
-    strengths = {}
-
-    def strength(node_id):
-        if node_id not in strengths:
-            strengths[node_id] = get_shelter_proximity_strength(
-                node_map.get(node_id), shelters, radius_m=radius,
-            )
-        return strengths[node_id]
-
-    return strength
+def _path_cost(path, edge_lookup, criterion):
+    """Sumuje koszt ścieżki według wybranego kryterium."""
+    return sum(
+        edge_weight(make_directional_edge(edge_lookup[(start, end)], start, end), criterion)
+        for start, end in zip(path, path[1:])
+        if (start, end) in edge_lookup
+    )
 
 
-def _path_cost(path, edge_lookup, criterion, limits=None, proximity=None):
-    """Wspólne sumowanie kosztu klasycznego albo profilowego ścieżki."""
-    cost = 0.0
-    for start, end in zip(path, path[1:]):
-        source = edge_lookup.get((start, end))
-        if source is None:
-            continue
-        edge = make_directional_edge(source, start, end)
-        if limits is None:
-            cost += edge_weight(edge, criterion)
-        else:
-            cost += custom_hikeup_edge_weight(
-                edge, criterion, limits,
-                shelter_proximity_strength=proximity(end) if proximity else 0.0,
-            )
-    return cost
-
-
-def _search_graph(graph, start, weight_function, metrics, end=None,
-                  target_ids=None, edge_allowed=None):
-    """Przeszukiwanie jednokosztowe do jednego lub kilku celów."""
+def _search_graph(graph, start, end, weight_function, metrics, edge_allowed=None):
+    """Przeszukiwanie jednokosztowe do wybranego celu."""
     scores, previous = {start: 0.0}, {start: None}
     queue = [(0.0, start)]
-    remaining = set(target_ids or ())
     metrics.queue_pushes += 1
     while queue:
         score, current = heapq.heappop(queue)
         if score > scores.get(current, float("inf")):
             continue
         metrics.visited_nodes += 1
-        if end is not None and current == end:
+        if current == end:
             break
-        if current in remaining:
-            remaining.remove(current)
-            if not remaining:
-                break
         for neighbor_data in graph.get(current, []):
             metrics.analyzed_edges += 1
             neighbor, edge = neighbor_data["node"], neighbor_data["edge"]
@@ -238,13 +199,16 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                route_start=start, route_end=end, allowed_edges=None):
         if profile_weight:
             weight = lambda edge, neighbor: custom_hikeup_edge_weight(
-                edge, selected_criterion, limits, shelter_proximity_strength=proximity(neighbor),
+                edge, selected_criterion, limits,
             )
         else:
             weight = lambda edge, neighbor: edge_weight(edge, selected_criterion)
+        allowed = allowed_edges
+        if allowed is None and constrained:
+            allowed = edge_filter
         scores, previous = _search_graph(
-            graph, route_start, weight, metrics, end=route_end,
-            edge_allowed=allowed_edges if allowed_edges is not None else edge_filter if constrained else None,
+            graph, route_start, route_end, weight, metrics,
+            edge_allowed=allowed,
         )
         path = reconstruct_path(previous, route_end) if route_end in scores else None
         return path, scores.get(route_end)
@@ -283,16 +247,15 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         return build_algorithm_result(
             algorithm="custom_hikeup", path=baseline_path, totals=totals,
             criterion=criterion, route_weight=baseline_weight, profile_evaluation=evaluation,
-            metrics={**metrics.as_dict(), "custom_score": None,
+            metrics={**metrics.as_dict(),
                      "baseline_reused": bool(baseline_route), "personalization_enabled": False},
-            warnings=[], extra={"custom_score": None, "personalization_enabled": False,
+            warnings=[], extra={"personalization_enabled": False,
                                 "recommendation_status": "unpersonalized", "message": message},
         )
 
     prefer_shelters = bool(limits.get("prefer_shelters", False))
     # Najpierw zwykły wariant profilowy; bliskość schroniska nie obniża kosztów.
     limits = {**limits, "prefer_shelters": False, "shelter_bonus_factor": 0.0}
-    proximity = lambda node_id: 0.0
     edge_filter = _build_profile_edge_filter(limits)
     candidate_paths = [("dijkstra_baseline", baseline_path)] if baseline_path else []
     distance_path = baseline_path
@@ -300,7 +263,7 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         distance_path, _ = search("distance")
         if distance_path:
             candidate_paths.append(("shortest_distance_reference", distance_path))
-    profile_path, profile_cost = search(criterion, profile_weight=True)
+    profile_path, _ = search(criterion, profile_weight=True)
     if profile_path:
         candidate_paths.append(("profile_weighted", profile_path))
     for selected_criterion in dict.fromkeys((criterion, "difficulty", "distance", "time", "elevation")):
@@ -323,7 +286,6 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
             "sources": [source], "path": path, "totals": totals,
             "evaluation": evaluate_route_profile(path, totals, edge_lookup, limits, detour),
             "route_weight": _path_cost(path, edge_lookup, criterion),
-            "custom_score": _path_cost(path, edge_lookup, criterion, limits, proximity),
         }
         seen[key] = candidate
         candidates.append(candidate)
@@ -352,8 +314,7 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
         message = ("Znaleziono trasę przez schronisko, zgodną z limitami profilu."
                    if prefer_shelters and shelter_ids.intersection(selected["path"])
                    else "Znaleziono trasę odpowiednią dla profilu.")
-        reason = ("safe_with_shelter_within_extra_limit" if rerouted else
-                  "safe_within_preferred_detour" if preferred else "safe_within_acceptable_detour")
+        reason = "safe_within_preferred_detour" if preferred else "safe_within_acceptable_detour"
     else:
         reasonable = [c for c in candidates if c["evaluation"]["reasonable_detour"]]
         selected = min(reasonable or candidates, key=lambda c: (
@@ -411,7 +372,6 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
                 "sources": ["via_shelter"], "path": path, "totals": totals,
                 "evaluation": assessment,
                 "route_weight": _path_cost(path, edge_lookup, criterion),
-                "custom_score": _path_cost(path, edge_lookup, criterion, limits, proximity),
             }
             candidates.append(candidate)
             if all(checks.values()):
@@ -452,126 +412,12 @@ def calculate_route(nodes, edges, start, end, criterion="time", user_limits=None
     if rerouted:
         evaluation["warnings"].insert(0, "Wybrano przejście przez schronisko w granicach "
                                      "dodatkowego dystansu, czasu i podejścia.")
-    score = round(selected["custom_score"], 3)
     metrics.execution_time_ms = round((perf_counter() - start_time) * 1000, 3)
-    extra = {"custom_score": score, "recommendation_status": status, "message": message}
-    if status == "difficult_route":
-        extra["alternative_destinations"] = []
+    extra = {"recommendation_status": status, "message": message}
     return build_algorithm_result(
         algorithm="custom_hikeup", path=selected["path"], totals=selected["totals"],
         criterion=criterion, route_weight=selected["route_weight"],
         profile_evaluation=evaluation, warnings=evaluation["warnings"], extra=extra,
-        metrics={**metrics.as_dict(), "custom_score": score,
-                 "candidate_custom_score": round(profile_cost if profile_cost is not None else
-                                                   selected["custom_score"] if pool else 0.0, 3),
-                 "fallback_applied": False, "detour_ratio": evaluation["detour_ratio"],
+        metrics={**metrics.as_dict(), "detour_ratio": evaluation["detour_ratio"],
                  "candidate_count": len(candidates)},
     )
-
-
-def find_profile_suitable_destination_alternatives(
-    nodes, edges, start, destinations, criterion, user_limits, points=None,
-    reference_distance_km=None, reference_route_totals=None,
-    reference_profile_match_score=None, max_results=3, routing_context=None,
-):
-    """Proponuje inne cele, które spełniają limity lub są wyraźnie łatwiejsze."""
-    validate_criterion(criterion)
-    limits = {**get_limits("intermediate"), **(user_limits or {})}
-    graph = routing_context.graph if routing_context is not None else build_graph(edges)
-    if start not in graph:
-        return []
-    by_node = {}
-    for destination in destinations:
-        node_id = destination.get("routing_node_id")
-        if node_id in graph:
-            by_node.setdefault(node_id, []).append(destination)
-    if not by_node:
-        return []
-    edge_lookup = routing_context.edges_by_nodes if routing_context is not None else build_edge_map(edges)
-    node_lookup = routing_context.nodes_by_id if routing_context is not None else None
-    proximity = _build_shelter_proximity_lookup(
-        node_lookup if node_lookup is not None else nodes,
-        routing_context.points if routing_context is not None else points, limits,
-    )
-    weight = lambda edge, neighbor: custom_hikeup_edge_weight(
-        edge, "difficulty", limits, shelter_proximity_strength=proximity(neighbor),
-    )
-    metrics = SearchMetrics()
-    searches = [
-        _search_graph(graph, start, weight, metrics, target_ids=by_node,
-                      edge_allowed=_build_profile_edge_filter(limits)),
-        _search_graph(graph, start, weight, metrics, target_ids=by_node),
-    ]
-    ratio = max(1.0, as_number(limits.get("alternative_destination_max_route_ratio"), 1.35))
-    reference_distance = max(0.0, as_number(reference_distance_km, 0))
-    max_distance = max(reference_distance * ratio, reference_distance + 2.0) if reference_distance > 0 else None
-    reference_totals = reference_route_totals or {}
-    reference_score = as_number(reference_profile_match_score, 0)
-    comparison_metrics = ("max_difficulty", "max_slope_percent", "elevation_gain_m")
-    alternatives = []
-    for node_id, destination_group in by_node.items():
-        options, seen = [], set()
-        for scores, previous in searches:
-            path = reconstruct_path(previous, node_id) if node_id in scores else None
-            key = tuple(path or ())
-            if len(key) < 2 or key in seen:
-                continue
-            seen.add(key)
-            totals = calculate_route_totals(
-                path, edges, nodes=nodes, points=points,
-                edge_map=edge_lookup, node_lookup=node_lookup,
-            )
-            if max_distance is not None and totals["distance_km"] > max_distance:
-                continue
-            evaluation = evaluate_route_profile(path, totals, edge_lookup, limits)
-            suitable = evaluation["within_safety_limits"]
-            no_harder = bool(reference_totals) and all(
-                as_number(totals.get(k), 0) <= as_number(reference_totals.get(k), 0) + 1e-9
-                for k in comparison_metrics
-            )
-            easier = (no_harder and any(
-                as_number(totals.get(k), 0) < as_number(reference_totals.get(k), 0) - 1e-9
-                for k in comparison_metrics)
-                      and evaluation["profile_match_score"] > reference_score + 1e-9)
-            if suitable or easier:
-                options.append({
-                    "totals": totals, "evaluation": evaluation, "suitable": suitable,
-                    "easier": easier, "weight": _path_cost(path, edge_lookup, criterion),
-                })
-        if not options:
-            continue
-        selected = min(options, key=lambda o: (
-            not o["suitable"], not o["evaluation"]["within_limits"],
-            -o["evaluation"]["profile_match_score"], o["weight"],
-        ))
-        totals, evaluation = selected["totals"], selected["evaluation"]
-        for destination in destination_group:
-            point = destination["point"]
-            alternatives.append({
-                "id": point.get("id"), "name": point.get("name", "Alternatywny cel"),
-                "type": point.get("type"), "lat": point.get("lat"),
-                "lng": point.get("lng", point.get("lon")), "elevation": point.get("elevation"),
-                "routing_node_id": node_id,
-                "distance_from_requested_km": round(as_number(destination.get("distance_from_requested_km"), 0), 2),
-                "similarity_score": round(as_number(destination.get("similarity_score"), 0), 3),
-                "same_destination_type": bool(destination.get("same_destination_type", True)),
-                "route": {
-                    **{k: totals[k] for k in ("distance_km", "time_min", "elevation_gain_m",
-                                             "max_slope_percent", "max_difficulty")},
-                    "profile_match_score": evaluation["profile_match_score"],
-                    "within_preferred_limits": evaluation["within_limits"],
-                    "within_safety_limits": selected["suitable"],
-                    "assessment_complete": evaluation["assessment_complete"],
-                    "unknown_difficulty_percent": totals.get("unknown_difficulty_percent", 100),
-                    "easier_than_requested": selected["easier"],
-                    "recommendation_kind": "profile_suitable" if selected["suitable"] else "easier_than_requested",
-                    "route_weight": round(selected["weight"], 3),
-                },
-            })
-    suitable = [a for a in alternatives if a["route"]["within_safety_limits"]]
-    pool = suitable or alternatives
-    pool.sort(key=lambda a: (
-        not a["route"]["within_preferred_limits"], not a["same_destination_type"],
-        -a["route"]["profile_match_score"], a["similarity_score"], a["route"]["route_weight"],
-    ))
-    return pool[:max_results]

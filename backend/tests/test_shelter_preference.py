@@ -2,8 +2,8 @@
 import math
 import pytest
 from unittest.mock import patch
-from algorithms.common import build_edge_map, get_shelter_proximity_strength
-from algorithms.custom import _build_shelter_proximity_lookup, calculate_route
+from algorithms.common import get_shelter_proximity_strength
+from algorithms.custom import calculate_route
 from algorithms.weights import custom_hikeup_edge_weight, edge_weight
 from models.experience_config import apply_shelter_preference, get_limits
 from services.routing_context import build_routing_context
@@ -43,20 +43,6 @@ def test_bonus_is_applied_once_and_only_when_enabled():
         assert actual > 0
     assert custom_hikeup_edge_weight(edge, 'distance', {**enabled, 'prefer_shelters': False}, 1) == original
 
-def test_lookup_caches_per_call_and_skips_disabled_preference():
-    nodes = [node_at_distance('N', 500)]
-    enabled = apply_shelter_preference(get_limits('intermediate'), True)
-    lookup = _build_shelter_proximity_lookup(nodes, [SHELTER], enabled)
-    other_lookup = _build_shelter_proximity_lookup(nodes, [SHELTER], enabled)
-    disabled_lookup = _build_shelter_proximity_lookup(nodes, [SHELTER], {})
-    with patch('algorithms.custom.get_shelter_proximity_strength', wraps=get_shelter_proximity_strength) as calculate:
-        assert disabled_lookup('N') == 0
-        calculate.assert_not_called()
-        assert lookup('N') == pytest.approx(0.05)
-        assert lookup('N') == pytest.approx(0.05)
-        assert calculate.call_count == 1
-        assert other_lookup('N') == pytest.approx(0.05)
-        assert calculate.call_count == 2
 
 def test_custom_start_to_end_chooses_shelter_detour():
     nodes = [node_at_distance('S', 2000), {**node_at_distance('A', 1500), 'lng': 20.04}, node_at_distance('B', 500), node_at_distance('H', 0), node_at_distance('T', -2000)]
@@ -73,7 +59,7 @@ def test_custom_start_to_end_chooses_shelter_detour():
     assert preferred["profile_evaluation"]["shelter_preference_matched"]
     context_result = calculate_route(nodes, edges, 'S', 'T', 'distance', enabled, points=[SHELTER], routing_context=build_routing_context(nodes, edges, [SHELTER]))
     assert context_result['path'] == preferred['path']
-    assert context_result['custom_score'] == preferred['custom_score']
+    assert context_result['route_weight'] == preferred['route_weight']
 
 
 @pytest.mark.parametrize("prefer_shelters, middle", [(False, "B"), (True, "H")])

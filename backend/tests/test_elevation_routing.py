@@ -317,7 +317,6 @@ class ElevationAlgorithmsTests(unittest.TestCase):
         )
 
         self.assertEqual(result["path"], ["start", "middle", "end"])
-        self.assertFalse(result["metrics"]["fallback_applied"])
         self.assertEqual(
             result["profile_evaluation"]["recommendation_status"],
             "recommended",

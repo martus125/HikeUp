@@ -8,7 +8,6 @@ from algorithms.astar import calculate_route as calculate_astar
 from algorithms.common import calculate_route_totals
 from algorithms.custom import (
     calculate_route as calculate_custom,
-    find_profile_suitable_destination_alternatives,
 )
 from algorithms.dijkstra import calculate_route as calculate_dijkstra
 from algorithms.greedy import calculate_route as calculate_greedy
@@ -20,7 +19,6 @@ from models.experience_config import (
     infer_experience_level,
 )
 from routes.map_routes import (
-    build_alternative_destination_candidates,
     map_bp,
 )
 from services.routing_context import build_routing_context
@@ -430,7 +428,6 @@ class CustomProfileTests(unittest.TestCase):
         evaluation = result["profile_evaluation"]
 
         self.assertEqual(result["path"], ["A", "C", "D"])
-        self.assertFalse(result["metrics"]["fallback_applied"])
         self.assertEqual(evaluation["recommendation_status"], "recommended")
         self.assertEqual(
             evaluation["selection_reason"],
@@ -473,7 +470,6 @@ class CustomProfileTests(unittest.TestCase):
         self.assertEqual(result["path"], ["S", "T"])
         self.assertEqual(result["recommendation_status"], "difficult_route")
         evaluation = result["profile_evaluation"]
-        self.assertFalse(result["metrics"]["fallback_applied"])
         self.assertFalse(evaluation["within_safety_limits"])
         self.assertEqual(
             evaluation["selection_reason"],
@@ -484,104 +480,7 @@ class CustomProfileTests(unittest.TestCase):
             evaluation["safety_violations"],
         )
 
-    def test_alternative_destination_prefers_better_profile_match(self):
-        nodes = [
-            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
-            {"id": "N", "lat": 49.001, "lng": 19.001, "elevation": 200},
-            {"id": "F", "lat": 49.01, "lng": 19.01, "elevation": 200},
-        ]
-        edges = [
-            edge("S", "N", 0.2, 1, 100, 20),
-            edge("S", "F", 0.3, 1, 100, 5),
-        ]
-        destinations = [
-            {
-                "point": {
-                    "id": "near-peak",
-                    "name": "Bliższy szczyt",
-                    "type": "peak",
-                    "lat": 49.001,
-                    "lng": 19.001,
-                },
-                "routing_node_id": "N",
-                "distance_from_requested_km": 0.2,
-                "similarity_score": 0.2,
-            },
-            {
-                "point": {
-                    "id": "fitting-peak",
-                    "name": "Łagodniejszy szczyt",
-                    "type": "peak",
-                    "lat": 49.01,
-                    "lng": 19.01,
-                },
-                "routing_node_id": "F",
-                "distance_from_requested_km": 1.0,
-                "similarity_score": 1.0,
-            },
-        ]
 
-        alternatives = find_profile_suitable_destination_alternatives(
-            nodes,
-            edges,
-            "S",
-            destinations,
-            "distance",
-            get_limits("beginner"),
-        )
-
-        self.assertEqual(alternatives[0]["id"], "fitting-peak")
-        self.assertTrue(
-            alternatives[0]["route"]["within_preferred_limits"]
-        )
-        self.assertFalse(
-            alternatives[1]["route"]["within_preferred_limits"]
-        )
-
-    def test_alternative_can_be_easier_when_no_fully_suitable_peak_exists(self):
-        nodes = [
-            {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
-            {"id": "X", "lat": 49.01, "lng": 19.01, "elevation": 500},
-        ]
-        edges = [edge("S", "X", 0.8, 2, 400, 10)]
-        destinations = [
-            {
-                "point": {
-                    "id": "lower-peak",
-                    "name": "Niższy szczyt",
-                    "type": "peak",
-                    "lat": 49.01,
-                    "lng": 19.01,
-                },
-                "routing_node_id": "X",
-                "distance_from_requested_km": 1.0,
-                "similarity_score": 1.0,
-                "same_destination_type": True,
-            }
-        ]
-
-        alternatives = find_profile_suitable_destination_alternatives(
-            nodes,
-            edges,
-            "S",
-            destinations,
-            "difficulty",
-            get_limits("beginner"),
-            reference_route_totals={
-                "max_difficulty": 6,
-                "max_slope_percent": 70,
-                "elevation_gain_m": 800,
-            },
-            reference_profile_match_score=0,
-        )
-
-        self.assertEqual(alternatives[0]["id"], "lower-peak")
-        self.assertFalse(alternatives[0]["route"]["within_safety_limits"])
-        self.assertTrue(alternatives[0]["route"]["easier_than_requested"])
-        self.assertEqual(
-            alternatives[0]["route"]["recommendation_kind"],
-            "easier_than_requested",
-        )
 
     def test_shortest_route_wins_among_suitable_candidates(self):
         nodes = [
@@ -734,63 +633,6 @@ class RouteEndpointTests(unittest.TestCase):
             self.points,
         )
 
-    def test_peak_alternative_candidates_include_related_saddle(self):
-        start_point = {
-            "id": "start-poi",
-            "type": "viewpoint",
-            "lat": 49.0,
-            "lng": 19.0,
-        }
-        end_point = {
-            "id": "hard-peak",
-            "type": "peak",
-            "lat": 49.01,
-            "lng": 19.01,
-            "elevation": 1800,
-        }
-        points = [
-            start_point,
-            end_point,
-            {
-                "id": "nearby-saddle",
-                "name": "Łagodna przełęcz",
-                "type": "saddle",
-                "lat": 49.012,
-                "lng": 19.012,
-                "elevation": 1400,
-                "nearest_routing_node_id": "X",
-            },
-            {
-                "id": "nearby-water",
-                "name": "Staw",
-                "type": "water",
-                "lat": 49.013,
-                "lng": 19.013,
-                "nearest_routing_node_id": "W",
-            },
-        ]
-        routing_nodes = [
-            {"id": "S", "lat": 49.0, "lng": 19.0},
-            {"id": "D", "lat": 49.01, "lng": 19.01},
-            {"id": "X", "lat": 49.012, "lng": 19.012},
-            {"id": "W", "lat": 49.013, "lng": 19.013},
-        ]
-
-        candidates = build_alternative_destination_candidates(
-            points,
-            start_point,
-            end_point,
-            routing_nodes,
-            "S",
-            "D",
-            {"S", "D", "X", "W"},
-        )
-
-        self.assertEqual(
-            [candidate["point"]["id"] for candidate in candidates],
-            ["nearby-saddle"],
-        )
-        self.assertFalse(candidates[0]["same_destination_type"])
 
     def test_route_endpoint_returns_all_algorithms_and_compatible_fields(self):
         with patch(
@@ -1035,7 +877,7 @@ class RouteEndpointTests(unittest.TestCase):
             "expert",
         )
 
-    def test_endpoint_suggests_suitable_similar_destination(self):
+    def test_difficult_route_keeps_requested_destination(self):
         nodes = [
             {"id": "S", "lat": 49.0, "lng": 19.0, "elevation": 100},
             {"id": "D", "lat": 49.01, "lng": 19.01, "elevation": 900},
@@ -1107,14 +949,7 @@ class RouteEndpointTests(unittest.TestCase):
             custom["recommendation_status"],
             "difficult_route",
         )
-        self.assertEqual(
-            custom["alternative_destinations"][0]["id"],
-            "alternative-poi",
-        )
-        self.assertTrue(
-            custom["alternative_destinations"][0]["route"]
-            ["within_preferred_limits"]
-        )
+        self.assertNotIn("alternative_destinations", custom)
 
 
 if __name__ == "__main__":

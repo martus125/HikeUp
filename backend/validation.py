@@ -54,10 +54,7 @@ def profile_data(data):
 
 
 def route_input(data):
-    """Examples are resolved separately; identity always comes from the session."""
-    if "example_id" in data:
-        text(data["example_id"], "Identyfikator przykładu")
-        return
+    """Sprawdza punkty i kryterium; tożsamość pochodzi wyłącznie z sesji."""
     start = text(data.get("start"), "Punkt początkowy")
     end = text(data.get("end"), "Punkt końcowy")
     if start == end:

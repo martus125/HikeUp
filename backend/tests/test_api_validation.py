@@ -61,6 +61,7 @@ def test_valid_profile_is_normalized(auth_app, age):
     {"start": "A", "end": "B", "criterion": False},
     {"start": "A", "end": "B", "criterion": "unknown"},
     {"example_id": []}, {"example_id": "unknown"},
+    {"start": "A", "end": "A", "example_id": "old-example"},
 ])
 def test_invalid_route_is_400_before_loading_map(auth_app, payload):
     with patch("routes.map_routes.load_routing_context") as load:
@@ -76,6 +77,28 @@ def test_unknown_points_and_disconnected_route(auth_app, small_context):
             response = client.post("/api/route", json=dict(start="A", end=end, criterion="distance"))
             assert response.status_code == 404
             assert response.json["success"] is False
+
+
+def test_algorithm_failure_does_not_hide_other_routes(auth_app, small_context):
+    from routes.map_routes import ROUTE_ALGORITHMS
+
+    algorithms = [
+        {**config, "function": MagicMock(side_effect=RuntimeError("Test failure"))}
+        if config["key"] == "dijkstra" else config
+        for config in ROUTE_ALGORITHMS
+    ]
+    with patch("routes.map_routes.load_routing_context", return_value=small_context), patch(
+        "routes.map_routes.ROUTE_ALGORITHMS", algorithms,
+    ):
+        response = auth_app[0].test_client().post(
+            "/api/route", json=dict(start="A", end="B", criterion="distance"),
+        )
+
+    assert response.status_code == 200
+    assert response.json["algorithm_errors"] == {"dijkstra": "Test failure"}
+    routes = {route["algorithm"]: route for route in response.json["routes"]}
+    assert set(routes) == {"astar", "greedy", "custom_hikeup"}
+    assert all(route["path_ids"] == ["A", "B"] for route in routes.values())
 
 
 @pytest.mark.parametrize("field,value", [

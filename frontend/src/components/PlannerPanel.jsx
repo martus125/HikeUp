@@ -72,9 +72,6 @@ export function PlannerPanel({
       {routeResult && (
         <div className="route-result">
           <h2>Wyniki algorytmów</h2>
-          {routeResult.example && (
-            <p>Przykład porównawczy · Profil: {routeResult.example.profile_name} · Bez preferencji schronisk</p>
-          )}
 
           <div className="algorithm-legend">
             {algorithmRoutes.map((route) => (
